@@ -117,15 +117,18 @@
 		}
 
 		.output-box textarea {
-			background-color: #313131;
-			/* 黑色背景 */
-			color: #d1d1d1;
-			/* 白字 */
-			font-size: 16px;
-			/* 防止 iOS Safari 點擊時自動放大 */
-			line-height: 1.4em;
-			touch-action: manipulation;
-			-webkit-text-size-adjust: 100%;
+			width: 100%;
+			/* 佔滿父容器 */
+			height: 60px;
+			/* 預設高度 */
+			resize: none;
+			background-color: #333;
+			color: #eee;
+			border: none;
+			border-radius: 4px;
+			padding: 5px;
+			font-size: 14px;
+			/* 桌機用小一點的字體 */
 		}
 
 
@@ -237,10 +240,9 @@
 
 			.output-box {
 				width: 100% !important;
-				/* 自適應手機寬度 */
+				/* 撐滿螢幕 */
 				margin: 0 auto;
 				overflow-x: hidden;
-				/* 禁止左右滑動 */
 				padding: 0 5px;
 			}
 
@@ -254,10 +256,10 @@
 
 			.output-box textarea {
 				font-size: 16px !important;
-				/* 確保輸入時不會放大 */
+				/* 防止 Safari 自動放大 */
 				width: 100% !important;
 				min-height: 100px;
-				/* 手機版保持適中高度 */
+				/* 手機預設高度再大一點 */
 			}
 
 			/* 確保 left-buttons 是 flex（你檔案裡已經有這設定，但強制一次保險） */
