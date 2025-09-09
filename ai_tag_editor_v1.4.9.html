@@ -239,11 +239,13 @@
 			}
 
 			.output-box {
-				width: 100% !important;
-				/* 撐滿螢幕 */
+				width: 100%;
 				margin: 0 auto;
-				overflow-x: hidden;
 				padding: 0 5px;
+				box-sizing: border-box;
+				/* ⭐包含 padding，不會超出 */
+				overflow-x: hidden;
+				/* 避免橫向滾動 */
 			}
 
 			.output-tags {
@@ -255,11 +257,15 @@
 			}
 
 			.output-box textarea {
+				width: 100%;
+				max-width: 100%;
+				box-sizing: border-box;
+				/* ⭐避免 padding 撐爆 */
 				font-size: 16px !important;
-				/* 防止 Safari 自動放大 */
-				width: 100% !important;
 				min-height: 100px;
-				/* 手機預設高度再大一點 */
+				white-space: pre-wrap;
+				word-break: break-word;
+				overflow-x: hidden;
 			}
 
 			/* 確保 left-buttons 是 flex（你檔案裡已經有這設定，但強制一次保險） */
