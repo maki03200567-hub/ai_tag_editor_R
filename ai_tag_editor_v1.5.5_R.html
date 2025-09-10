@@ -3922,7 +3922,7 @@
 			{ group: { key: "Clothes", zh: "衣服", en: "Clothes", jp: "服" }, classification: ["pattern", "Innerwear", "upper body clothing(tops)", "bottoms", "full outfit", "swimsuit", "clothes (option)", "sleeves", "ziraike", "head decoration/hat", "clothes", "boots"] },
 			{ group: { key: "Action", zh: "動作", en: "Action", jp: "動作" }, classification: ["pose（sample）", "pose（hand）", "pose（foot）", "pose", "pose（option）", "pose（sex）", "Sex"] },
 			{ group: { key: "Emotion", zh: "表情", en: "Expression", jp: "表情" }, classification: ["Emotions_General", "Emotions （Happy）", "Emotions （Sad）", "Emotions （Anger）", "Emotions （Fear）", "Emotions （Other）", "Emotions （Sex）", "Sightline"] },
-			{ group: { key: "Environment", zh: "環境", en: "Environment", jp: "環境" }, classification: ["time_weather", "Pleace", "item", "effect", "male_npc", "Ejaculation", "exposure"] },
+			{ group: { key: "Environment", zh: "環境", en: "Environment", jp: "環境" }, classification: ["angle", "time_weather", "Pleace", "item", "effect", "male_npc", "Ejaculation", "exposure"] },
 
 
 		];
@@ -4489,11 +4489,22 @@
 			const templateBox = document.querySelector(".template-box");
 
 			if (toggleBtn && templateBox) {
-				toggleBtn.onclick = () => {
+				toggleBtn.onclick = (e) => {
+					e.stopPropagation(); // ✅ 阻止事件冒泡
 					templateBox.classList.toggle("show");
 				};
+
+				// ✅ 點擊其他地方就關閉
+				document.addEventListener("click", (e) => {
+					if (templateBox.classList.contains("show")) {
+						if (!templateBox.contains(e.target) && e.target !== toggleBtn) {
+							templateBox.classList.remove("show");
+						}
+					}
+				});
 			}
 		});
+
 
 		const div = document.createElement("div");
 		div.className = "template-item";  // 這一行
