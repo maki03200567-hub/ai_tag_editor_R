@@ -184,7 +184,7 @@
 				overflow-y: auto;
 				line-height: 1.6em;
 				max-height: calc(1.6em * 2 + 12px);
-				min-height: calc(1.6em * 2 + 12px);
+				min-height: calc(1.6em * 1 + 12px);
 				margin-bottom: 6px;
 				flex-shrink: 0;
 				background: #1e1e1e;
@@ -198,7 +198,7 @@
 				flex-wrap: wrap;
 				overflow-y: auto;
 				line-height: 1.6em;
-				max-height: calc(1.6em * 2 + 12px);
+				max-height: calc(1.6em * 3 + 12px);
 				min-height: calc(1.6em * 2 + 12px);
 				margin-bottom: 6px;
 				flex-shrink: 0;
@@ -3917,9 +3917,9 @@
 
 		// 大類資料，對應 rawData 的 category.key
 		const groupData = [
-			{ group: { key: "Common", zh: "常用/汎用", en: "General", jp: "汎用" }, classification: ["Common words", "Pelope", "Hololive", "ren"] },
-			{ group: { key: "Body", zh: "身體", en: "Body", jp: "体" }, classification: ["color", "hair color", "Bangs(fringe)", "back of the head hair", "hitomi", "Eyes", "Ear", "Mouse", "body", "brisket", "pussy", "butt", "Physical", "effect（body）"] },
-			{ group: { key: "Clothes", zh: "衣服", en: "Clothes", jp: "服" }, classification: ["pattern", "Innerwear", "upper body clothing(tops)", "bottoms", "full outfit", "swimsuit", "clothes (option)", "sleeves", "ziraike", "head decoration/hat", "clothes", "boots"] },
+			{ group: { key: "Common", zh: "常用/汎用", en: "General", jp: "汎用" }, classification: ["Common words", "Pelope", "Hololive", "ren", "color"] },
+			{ group: { key: "Body", zh: "身體", en: "Body", jp: "体" }, classification: ["hair color", "Bangs(fringe)", "back of the head hair", "hitomi", "Eyes", "Ear", "Mouse", "body", "brisket", "pussy", "butt", "Physical", "effect（body）"] },
+			{ group: { key: "Clothes", zh: "衣服", en: "Clothes", jp: "服" }, classification: ["Innerwear", "upper body clothing(tops)", "bottoms", "full outfit", "swimsuit", "clothes (option)", "pattern", "sleeves", "ziraike", "head decoration/hat", "clothes", "boots"] },
 			{ group: { key: "Action", zh: "動作", en: "Action", jp: "動作" }, classification: ["pose（sample）", "pose（hand）", "pose（foot）", "pose", "pose（option）", "pose（sex）", "Sex"] },
 			{ group: { key: "Emotion", zh: "表情", en: "Expression", jp: "表情" }, classification: ["Emotions_General", "Emotions （Happy）", "Emotions （Sad）", "Emotions （Anger）", "Emotions （Fear）", "Emotions （Other）", "Emotions （Sex）", "Sightline"] },
 			{ group: { key: "Environment", zh: "環境", en: "Environment", jp: "環境" }, classification: ["angle", "time_weather", "Pleace", "item", "effect", "male_npc", "Ejaculation", "exposure"] },
