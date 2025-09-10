@@ -1055,11 +1055,22 @@
 			const templateBox = document.querySelector(".template-box");
 
 			if (toggleBtn && templateBox) {
-				toggleBtn.onclick = () => {
+				toggleBtn.onclick = (e) => {
+					e.stopPropagation(); // ✅ 阻止事件冒泡
 					templateBox.classList.toggle("show");
 				};
+
+				// ✅ 點擊其他地方就關閉
+				document.addEventListener("click", (e) => {
+					if (templateBox.classList.contains("show")) {
+						if (!templateBox.contains(e.target) && e.target !== toggleBtn) {
+							templateBox.classList.remove("show");
+						}
+					}
+				});
 			}
 		});
+
 
 		const div = document.createElement("div");
 		div.className = "template-item";  // 這一行
