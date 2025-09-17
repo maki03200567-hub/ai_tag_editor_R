@@ -695,16 +695,26 @@
 				// tags
 				group.tags.forEach(tag => {
 					const btn = document.createElement("button");
-					btn.className = "tag-btn";
+					btn.className = "tag";   // ✅ 統一用 .tag
 					btn.textContent = tag.zh;
+					btn.dataset.value = tag.value;  // ✅ 讓 updateAllTagHighlight 能找到對應值
+
+					btn.addEventListener("click", () => {
+						toggleTag(btn, tag);   // ✅ 用 toggleTag 正確加入/刪除
+						updateAllTagHighlight();
+					});
+
 					groupDiv.appendChild(btn);
 				});
+
 
 				container.appendChild(groupDiv);
 			});
 
 			return container;
 		}
+
+
 
 		function autoAdjustWeight(value, delta) {
 			const found = outputData.findIndex(arr => arr.some(t => t.value === value || t.value.startsWith(`${value}:`)));
