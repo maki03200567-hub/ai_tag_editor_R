@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Multi-column Tag Editor</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			margin: 0;
+			display: flex;
+			height: 100vh;
+			overflow: hidden;
+			background-color: #121212;
+			color: #e0e0e0;
+		}
+
+		.left,
+		.right {
+			padding: 10px;
+			overflow-y: auto;
+		}
+
+		.left {
+			width: 40%;
+			border-right: 1px solid #444;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.right {
+			width: 60%;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.topbar,
+		.template-box,
+		.footer-controls {
+			background-color: #1e1e1e;
+			padding: 10px;
+			border-radius: 6px;
+		}
+
+		.topbar select {
+			background-color: #2c2c2c;
+			color: #e0e0e0;
+			border: 1px solid #555;
+			padding: 4px;
+		}
+
+		.category-buttons button,
+		.template-box button {
+			margin: 2px;
+			background-color: #2c2c2c;
+			color: #e0e0e0;
+			border: 1px solid #555;
+			border-radius: 4px;
+			cursor: pointer;
+			padding: 5px 10px;
+		}
+
+		.tag-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 5px;
+			background-color: #1e1e1e;
+			padding: 10px;
+			border-radius: 6px;
+			margin-top: 10px;
+			overflow-y: auto;
+			scrollbar-gutter: stable;
+		}
+
+		.tag {
+			padding: 5px 8px;
+			background: #c2c2c2;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		.tag.selected {
+			background: #1fce62;
+			color: #000;
+		}
+
+		.tag-category h3 {
+			margin-top: 15px;
+			font-size: 18px;
+			font-weight: bold;
+			color: #ffcc00;
+		}
+
+		.tag-subcategory h4 {
+			margin: 8px 0 4px;
+			font-size: 14px;
+			font-weight: bold;
+			color: #66ccff;
+		}
+
+		.output-box {
+			border: 1px solid #555;
+			background-color: #1e1e1e;
+			padding: 5px;
+			position: relative;
+		}
+
+		.output-box.selected {
+			border: 2px solid #00BCD4;
+		}
+
+		.output-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 5px;
+			margin-bottom: 5px;
+		}
+
+		.output-tag {
+			background: #4caf50;
+			padding: 4px 6px;
+			border-radius: 4px;
+		}
+
+		.output-tag span {
+			margin-left: 4px;
+			cursor: pointer;
+			color: red;
+		}
+
+		.output-box textarea {
+			width: 100%;
+			/* 佔滿父容器 */
+			height: 60px;
+			/* 預設高度 */
+			resize: none;
+			background-color: #333;
+			color: #eee;
+			border: none;
+			border-radius: 4px;
+			padding: 5px;
+			font-size: 14px;
+			/* 桌機用小一點的字體 */
+		}
+
+
+		.output-controls button {
+			margin-left: 5px;
+		}
+
+		.template-box span {
+			cursor: pointer;
+			margin-left: 5px;
+			color: red;
+		}
+
+		.footer-controls {
+			margin-top: auto;
+			display: flex;
+			justify-content: space-between;
+			padding: 10px;
+			background: #1e1e1e;
+			border-radius: 6px;
+		}
+
+		.footer-controls>div {
+			display: flex;
+			gap: 10px;
+		}
+
+		#templateToggle {
+			display: none;
+		}
+
+		.group-buttons button.active,
+		.category-buttons button.active {
+			background-color: #00bcd4;
+			color: #000;
+			border: 1px solid #00bcd4;
+		}
+
+		/* 手機專用調整 */
+		@media (max-width: 768px) {
+
+			body {
+				flex-direction: column;
+				overflow-x: hidden;
+				/* 防止橫向滑動 */
+			}
+
+			/* 大類區塊固定兩行 */
+			.group-buttons {
+				display: flex;
+				flex-wrap: wrap;
+				overflow-y: auto;
+				line-height: 1.6em;
+				max-height: calc(1.6em * 2 + 12px);
+				min-height: calc(1.6em * 2 + 12px);
+				margin-bottom: 6px;
+				flex-shrink: 0;
+				background: #1e1e1e;
+				border-radius: 6px;
+				padding: 6px;
+			}
+
+			/* 分類區塊固定兩行 */
+			.category-buttons {
+				display: flex;
+				flex-wrap: wrap;
+				overflow-y: auto;
+				line-height: 1.6em;
+				max-height: calc(1.6em * 2 + 12px);
+				min-height: calc(1.6em * 2 + 12px);
+				margin-bottom: 6px;
+				flex-shrink: 0;
+				background: #1e1e1e;
+				border-radius: 6px;
+				padding: 6px;
+			}
+
+			/* 大類/分類按鈕 */
+			.group-buttons button,
+			.category-buttons button {
+				margin: 2px;
+				background-color: #2c2c2c;
+				color: #e0e0e0;
+				border: 1px solid #555;
+				border-radius: 4px;
+				cursor: pointer;
+				height: 32px;
+				/* 固定高度，跟 tag 一致 */
+				line-height: 22px;
+				padding: 0 8px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			/* 左側欄 */
+			.left {
+				width: 100% !important;
+				max-width: 100% !important;
+				box-sizing: border-box;
+				max-height: 40vh;
+				display: flex;
+				flex-direction: column;
+				flex-shrink: 0;
+				/* 防止被壓縮 */
+				min-height: 200px;
+				/* 保底高度 */
+			}
+
+			/* TAG 固定三行半 */
+			.tag-list {
+				display: flex;
+				flex-wrap: wrap;
+				overflow-y: auto;
+				line-height: 1.6em;
+				max-height: calc(1.6em * 6.9);
+				min-height: calc(1.6em * 6.9);
+				flex-shrink: 0;
+			}
+
+			/* 手機版模板鍵 */
+			#templateToggle.mobile-only {
+				display: block;
+				background-color: #2c2c2c;
+				color: #e0e0e0;
+				border: 1px solid #555;
+				border-radius: 4px;
+				padding: 6px 10px;
+				text-align: left;
+				height: 38px;
+			}
+
+			.template-box {
+				display: none;
+				position: fixed;
+				bottom: 70px;
+				left: 5%;
+				width: 90%;
+				max-height: 60vh;
+				overflow-y: auto;
+				background: #1e1e1e;
+				border: 1px solid #444;
+				border-radius: 8px;
+				padding: 10px;
+				z-index: 1000;
+			}
+
+			.template-box.show {
+				display: block;
+			}
+
+			.right {
+				width: 100% !important;
+				max-width: 100% !important;
+				box-sizing: border-box;
+				flex-grow: 1;
+				max-height: 43.2vh;
+				overflow-y: auto;
+				padding-right: 0;
+				padding-left: 0;
+				padding-bottom: 90px;
+			}
+
+			/* footer 改成上下兩列 */
+			.footer-controls {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background: #1e1e1e;
+				display: flex;
+				flex-direction: column;
+				/* 上下排列 */
+				gap: 6px;
+				padding: 10px;
+				z-index: 999;
+			}
+
+			.footer-row1,
+			.footer-row2 {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0 10px;
+				/* ✅ 左右都留 6px 內縮 */
+			}
+
+			/* 語言鍵與模板鍵固定寬度 */
+			#languageSelect,
+			#templateToggle.mobile-only {
+				width: 80px;
+				min-width: 80px;
+				max-width: 80px;
+				box-sizing: border-box;
+			}
+
+			/* 四個功能鍵固定寬度並置中 */
+			.footer-row1 .right-buttons button,
+			.footer-row2 .right-buttons button {
+				width: 120px;
+				min-width: 120px;
+				max-width: 120px;
+				text-align: center;
+				flex-shrink: 0;
+			}
+
+			/* 右側按鈕群組 */
+			.footer-row1 .right-buttons button,
+			.footer-row2 .right-buttons button {
+				flex: 1 1 45%;
+				/* ✅ 兩顆按鈕並排各佔約一半 */
+				max-width: 120px;
+				/* ✅ 保持上限 */
+				text-align: center;
+			}
+
+
+			/* 隱藏語言標籤文字 */
+			.topbar label[for="languageSelect"] {
+				display: none !important;
+			}
+
+			/* 調整語言選單樣式 */
+			.footer-controls #languageSelect {
+				-webkit-appearance: none;
+				appearance: none;
+				background-color: #2c2c2c;
+				color: #e0e0e0;
+				border: 1px solid #555;
+				padding: 6px 8px;
+				border-radius: 4px;
+				font-size: 14px;
+			}
+		}
+
+		/* 已儲存的模板 - 橫式排列 */
+		#templateList {
+			display: flex;
+			flex-wrap: wrap;
+			/* 自動換行 */
+			gap: 10px;
+			/* 間距 */
+			margin-top: 10px;
+		}
+
+		#templateList .template-item {
+			flex: 0 0 auto;
+			/* 固定大小，不要拉長 */
+			min-width: 150px;
+			/* 每個卡片最小寬度 */
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 8px;
+			background: #f9f9f9;
+			text-align: center;
+			cursor: pointer;
+			transition: background 0.2s;
+		}
+
+
+		#templateList .template-item:hover {
+			background: #eaeaea;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 左邊欄 -->
+	<div class="left">
+		<div class="topbar">
+			<label for="languageSelect">介面語言:</label>
+			<select id="languageSelect">
+				<option value=zh>中文</option>
+				<option value=en>English</option>
+				<option value=jp>日本語</option>
+			</select>
+
+			<!-- 📂 模板鍵要放在這裡，緊貼語言選單下面 -->
+			<button id="templateToggle" class="mobile-only">📂 模板</button>
+		</div>
+
+		<!-- 新增大類按鈕列（僅手機版會顯示） -->
+		<div class="group-buttons" id="groupButtons"></div>
+		<div class="category-buttons" id="categories"></div>
+		<div class="tag-list" id="tagList"></div>
+
+
+		<div class="template-box">
+			<input type="text" id="templateName" placeholder="模板名稱">
+			<button onclick="saveTemplate()">💾 儲存模板</button>
+			<button onclick="downloadTemplates()">⬇ 下載模板</button>
+			<input type="file" id="uploadInput" onchange="uploadTemplates()" style="margin-top: 6px;">
+			<div id="templateList"></div>
+		</div>
+	</div>
+
+	<!-- 右邊欄 -->
+	<div class="right">
+		<div id="outputs"></div>
+		<div class="footer-controls">
+			<div class="left-buttons">
+				<button onclick="addOutput()">➕ Add Output</button>
+				<button onclick="removeLast()">➖ Remove Last</button>
+			</div>
+			<div class="right-buttons">
+				<button onclick="clearAll()">🗑️ Clear All</button>
+				<button onclick="copyAll()">📋 Copy All</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		const rawData = [
+			{
+				category: { key: "Common words", zh: "常用", en: "Common words", jp: "基本" },
+				groups: [
+					{
+						subCategory: "戰場",
+						tags: [
+							{ zh: "戰場", en: "battlefield", jp: "戦場", value: "battlefield" },
+							{ zh: "廢墟戰場", en: "ruined battlefield", jp: "廃墟の戦場", value: "ruined battlefield" },
+							{ zh: "燃燒的戰場", en: "burning battlefield", jp: "燃える戦場", value: "burning battlefield" },
+							{ zh: "近戰廝殺", en: "close combat scene", jp: "接近戦シーン", value: "close combat scene" },
+							{ zh: "遠程交火", en: "ranged firefight", jp: "遠距離銃撃戦", value: "ranged firefight" }
+						]
+					}
+				]
+			},
+			{
+				category: { key: "pattern", zh: "花紋與圖案", en: "pattern", jp: "柄・パターン" },
+				groups: [
+					{
+						subCategory: "材質",
+						tags: [
+							{ zh: "蕾絲", en: "lace", jp: "レース", value: "lace" },
+							{ zh: "絲綢", en: "silk", jp: "シルク", value: "silk" },
+							{ zh: "緞面", en: "satin", jp: "サテン", value: "satin" },
+							{ zh: "天鵝絨", en: "velvet", jp: "ベルベット", value: "velvet" }
+						]
+					},
+					{
+						subCategory: "花紋",
+						tags: [
+							{ zh: "迷彩", en: "camouflage", jp: "迷彩", value: "camouflage" },
+							{ zh: "條紋", en: "stripes", jp: "ストライプ", value: "stripes" },
+							{ zh: "水玉點", en: "polka dots", jp: "水玉模様", value: "polka dots" },
+							{ zh: "格子", en: "checkered", jp: "チェック柄", value: "checkered" }
+						]
+					}
+				]
+			}
+
+		]
+
+		// 大類資料，對應 rawData 的 category.key
+		const groupData = [
+			{ group: { key: "Common", zh: "常用", en: "Basic", jp: "基本" }, classification: ["Common words", "angle"] },
+			{ group: { key: "pattern all", zh: "花紋", en: "pattern", jp: "柄" }, classification: ["pattern"] }
+		];
+
+		let currentGroupKey = groupData[0].group.key;
+
+		// 🔧 自動轉換為 categories 與 jsonData（程式用）
+		const categories = {};
+		const jsonData = {};
+		rawData.forEach(group => {
+			const { key, zh, en, jp } = group.category;
+			categories[key] = { zh, en, jp };
+
+			// 🔽 扁平化所有子分類的 tags
+			const allTags = [];
+			if (group.groups) {
+				group.groups.forEach(sub => {
+					sub.tags.forEach(tag => {
+						allTags.push({
+							label: { zh: tag.zh, en: tag.en, jp: tag.jp },
+							value: tag.value
+						});
+					});
+				});
+			}
+
+			jsonData[key] = allTags;
+		});
+
+		let currentLang = 'zh';
+		let currentCategory = Object.keys(jsonData)[0];
+		let currentOutputIndex = 0;
+		let outputData = [];
+		let templateData = [];
+
+		function saveToLocal() {
+			localStorage.setItem("aitagTemplates", JSON.stringify(templateData));
+		}
+		function loadFromLocal() {
+			const saved = localStorage.getItem("aitagTemplates");
+			if (saved) {
+				try {
+					templateData = JSON.parse(saved);
+				} catch {
+					templateData = [];
+				}
+			}
+		}
+
+		function downloadTemplates() {
+			const checkboxes = document.querySelectorAll(".template-checkbox:checked");
+			if (!checkboxes.length) return alert("請勾選欲下載的模板");
+
+			const selected = Array.from(checkboxes).map(cb => templateData[parseInt(cb.dataset.index)]);
+			const blob = new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" });
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = "selected_templates.json";
+			a.click();
+			URL.revokeObjectURL(url);
+		}
+
+		function uploadTemplates() {
+			const input = document.getElementById("uploadInput");
+			const file = input.files[0];
+			if (!file) return;
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				try {
+					const newTemplates = JSON.parse(e.target.result);
+					if (!Array.isArray(newTemplates)) throw new Error("格式錯誤");
+					newTemplates.forEach(t => {
+						if (t.name && t.data) templateData.push(t);
+					});
+					saveToLocal();
+					renderTemplateList();
+					updateAllTagHighlight();
+				} catch {
+					alert("模板格式錯誤");
+				}
+			};
+			reader.readAsText(file);
+			input.value = "";
+		}
+
+		function renderTemplateList() {
+			const container = document.getElementById("templateList");
+			container.innerHTML = "";
+			templateData.forEach((tpl, idx) => {
+				const checkbox = document.createElement("input");
+				checkbox.type = "checkbox";
+				checkbox.className = "template-checkbox";
+				checkbox.dataset.index = idx;
+
+				const btn = document.createElement("button");
+				btn.textContent = tpl.name;
+				btn.onclick = () => {
+					applyTemplate(idx);
+					updateAllTagHighlight();
+				};
+
+				const del = document.createElement("span");
+				del.textContent = "✕";
+				del.onclick = () => {
+					templateData.splice(idx, 1);
+					saveToLocal();
+					renderTemplateList();
+				};
+
+				const wrapper = document.createElement("div");
+				wrapper.appendChild(checkbox);
+				wrapper.appendChild(btn);
+				wrapper.appendChild(del);
+				container.appendChild(wrapper);
+			});
+		}
+
+		function saveTemplate() {
+			const name = document.getElementById("templateName").value.trim();
+			if (!name) return alert("請輸入模板名稱！");
+			if (templateData.length >= 10) return alert("最多只能儲存 10 個模板！");
+			if (templateData.some(t => t.name === name)) return alert("名稱重複，請換一個名稱");
+			const template = {
+				name: name,
+				data: JSON.parse(JSON.stringify(outputData))
+			};
+			templateData.push(template);
+			saveToLocal();
+			renderTemplateList();
+			document.getElementById("templateName").value = "";
+		}
+		function applyTemplate(index) {
+			const t = templateData[index];
+			if (!t) return;
+			outputData = [];
+			outputsDiv.innerHTML = "";
+			outputData = JSON.parse(JSON.stringify(t.data));
+			outputData.forEach((_, i) => createOutputBox(i));
+		}
+		function renderCategoryButtons() {
+			categoriesDiv.innerHTML = '';
+			Object.keys(jsonData).forEach((key) => {
+				const btn = document.createElement('button');
+				btn.textContent = categories[key][currentLang] || key;
+				btn.onclick = () => {
+					currentCategory = key;
+					renderTags(key);
+				};
+				categoriesDiv.appendChild(btn);
+			});
+		}
+
+		function renderTags(categoryKey) {
+			tagListDiv.innerHTML = '';
+
+			const categoryData = rawData.find(c => c.category.key === categoryKey);
+			if (!categoryData) return;
+
+			const categoryEl = renderCategory(categoryData);
+			tagListDiv.appendChild(categoryEl);
+
+			updateAllTagHighlight();
+		}
+
+		function renderCategory(categoryData) {
+			const container = document.createElement("div");
+			container.className = "tag-category";
+
+			// 主分類標題
+			const mainTitle = document.createElement("h3");
+			mainTitle.textContent = categoryData.category.zh;
+			container.appendChild(mainTitle);
+
+			// 子分類
+			categoryData.groups.forEach(group => {
+				const groupDiv = document.createElement("div");
+				groupDiv.className = "tag-subcategory";
+
+				const subTitle = document.createElement("h4");
+				subTitle.textContent = group.subCategory;
+				groupDiv.appendChild(subTitle);
+
+				// tags
+				group.tags.forEach(tag => {
+					const btn = document.createElement("button");
+					btn.className = "tag";   // ✅ 統一用 .tag
+					btn.textContent = tag.zh;
+					btn.dataset.value = tag.value;  // ✅ 讓 updateAllTagHighlight 能找到對應值
+
+					//Add weight
+					const weight = document.createElement('span');
+					weight.className = 'weight-control';
+					weight.innerHTML = '<button class="wplus">+</button><button class="wminus">-</button>';
+					weight.querySelector('.wplus').onclick = e => {
+						e.stopPropagation();
+						const added = autoAdjustWeight(tag.value, 0.1);
+						if (!added) {
+							const match = tag;
+							match.weight = 1.0;
+							addTagToCurrent(match);
+						}
+						updateAllTagHighlight();
+					};
+					weight.querySelector('.wminus').onclick = e => {
+						e.stopPropagation();
+						autoAdjustWeight(tag.value, -0.1);
+						updateAllTagHighlight();
+					};
+					btn.appendChild(weight);
+
+					btn.addEventListener("click", () => {
+						toggleTag(btn, tag);   // ✅ 用 toggleTag 正確加入/刪除
+						updateAllTagHighlight();
+					});
+
+					groupDiv.appendChild(btn);
+				});
+
+
+				container.appendChild(groupDiv);
+			});
+
+			return container;
+		}
+
+
+
+		function autoAdjustWeight(value, delta) {
+			const found = outputData.findIndex(arr => arr.some(t => t.value === value || t.value.startsWith(`${value}:`)));
+			if (found !== -1) {
+				currentOutputIndex = found;
+				updateOutputHighlight();
+				adjustTagWeight(value, delta);
+				return true;
+			}
+			return false;
+		}
+
+		function adjustTagWeight(value, delta) {
+			const tag = outputData[currentOutputIndex].find(t => t.value === value || t.value.startsWith(`${value}:`));
+			if (!tag) return;
+			const currentWeight = tag.weight || parseFloat((tag.value.match(/:(\d+(\.\d+)?)\)$/) || [])[1]) || 1.0;
+			const newWeight = Math.max(0.1, Math.min(2.0, +(currentWeight + delta).toFixed(1)));
+			tag.weight = newWeight;
+			updateOutput(currentOutputIndex);
+			updateAllTagHighlight();
+		}
+
+		function toggleTag(el, tagObj) {
+			// 檢查這個 tag 在哪些 output 裡存在
+			const foundIndex = outputData.findIndex(arr =>
+				arr.some(t => t.value === tagObj.value)
+			);
+
+			if (foundIndex !== -1 && foundIndex !== currentOutputIndex) {
+				// 👉 如果已經存在於其他 Output
+				currentOutputIndex = foundIndex;       // 跳到該 Output
+				updateOutputHighlight();               // 更新高亮顯示
+				removeTag(foundIndex, tagObj.value);   // 並在該 Output 移除
+				return;
+			}
+
+			// 👉 原本流程：在當前 Output 做新增或刪除
+			const isSelected = el.classList.toggle('selected');
+			if (isSelected) {
+				addTagToCurrent(tagObj);
+			} else {
+				removeTag(currentOutputIndex, tagObj.value);
+			}
+		}
+
+
+
+		function createOutputBox(index) {
+			const box = document.createElement('div');
+			box.className = 'output-box';
+			box.onclick = () => {
+				currentOutputIndex = index;
+				updateOutputHighlight();
+			};
+
+			const tagDisplay = document.createElement('div');
+			tagDisplay.className = 'output-tags';
+			const textarea = document.createElement('textarea');
+			textarea.oninput = () => {
+				const values = textarea.value.split(',').map(t => t.trim()).filter(t => t);
+				outputData[index] = values.map(v => {
+					for (let cat in jsonData) {
+						const match = jsonData[cat].find(t => t.value === v);
+						if (match) return match;
+					}
+					return { label: { zh: v, en: v, jp: v }, value: v };
+				});
+				renderTagDisplay(index);
+				updateAllTagHighlight();
+			};
+			const controls = document.createElement('div');
+			controls.className = 'output-controls';
+			const copyBtn = document.createElement('button');
+			copyBtn.textContent = '📋';
+			copyBtn.onclick = (e) => {
+				e.stopPropagation();
+				navigator.clipboard.writeText(textarea.value);
+			};
+			const clearBtn = document.createElement('button');
+			clearBtn.textContent = '🗑️';
+			clearBtn.onclick = (e) => {
+				e.stopPropagation();
+				outputData[index] = [];
+				updateOutput(index);
+				updateAllTagHighlight();
+			};
+			controls.appendChild(copyBtn);
+			controls.appendChild(clearBtn);
+			box.appendChild(tagDisplay);
+			box.appendChild(textarea);
+			box.appendChild(controls);
+			outputsDiv.appendChild(box);
+			updateOutput(index);
+		}
+
+		function renderTagDisplay(index) {
+			const tagContainer = outputsDiv.children[index].querySelector('.output-tags');
+			tagContainer.innerHTML = '';
+			outputData[index].forEach(tag => {
+				const tagEl = document.createElement('div');
+				tagEl.className = 'output-tag';
+				tagEl.innerHTML = `${(tag.label != undefined && tag.label.hasOwnProperty(currentLang) && tag.label[currentLang]) || tag.value}<span onclick="removeTag(${index}, '${tag.value.replace(/'/g, "\\'")}')">✕</span>`;
+				tagContainer.appendChild(tagEl);
+			});
+		}
+
+		function removeTag(index, value) {
+			// 刪掉該 output 裡的 tag
+			outputData[index] = outputData[index].filter(t => t.value !== value);
+
+			// 更新 output 欄內容
+			updateOutput(index);
+
+			// 重新整理所有 TAG 高亮狀態
+			updateAllTagHighlight();
+		}
+
+
+		function updateOutput(index) {
+			const text = outputData[index].map(t => {
+				if (t.weight && t.weight !== 1.0) {
+					return `(${t.value}:${t.weight}), `;
+				}
+				return `${t.value}, `;
+			}).join('');
+			outputsDiv.children[index].querySelector('textarea').value = text;
+			renderTagDisplay(index);
+			updateOutputHighlight();
+		}
+
+		function updateOutputHighlight() {
+			document.querySelectorAll('.output-box').forEach((el, i) => {
+				el.classList.toggle('selected', i === currentOutputIndex);
+			});
+			updateAllTagHighlight();
+		}
+
+		function updateAllTagHighlight() {
+			// 收集所有 output 裡還存在的 tag
+			const selected = new Set(outputData.flat().map(t => t.value));
+
+			document.querySelectorAll('.tag').forEach(el => {
+				el.classList.toggle('selected', selected.has(el.dataset.value));
+			});
+		}
+
+
+
+		function addTagToCurrent(tagObj) {
+			const exists = outputData[currentOutputIndex].some(t => t.value === tagObj.value);
+			if (!exists) {
+				const cleanTag = JSON.parse(JSON.stringify(tagObj));
+				delete cleanTag.weight; // 確保重設為無權重
+				outputData[currentOutputIndex].push(cleanTag);
+				updateOutput(currentOutputIndex);
+				updateAllTagHighlight();
+			}
+		}
+		function copyAll() {
+			const allText = outputData.map(arr =>
+				arr.map(t => {
+					if (t.weight && t.weight !== 1) {
+						return `(${t.value}:${t.weight}), `;
+					} else {
+						return `${t.value}, `;
+					}
+				}).join('')
+			).join('\nBREAK\n');
+
+			// 嘗試用新 API
+			if (navigator.clipboard && window.isSecureContext) {
+				navigator.clipboard.writeText(allText).catch(err => {
+					console.error("Clipboard API 失敗:", err);
+				});
+			} else {
+				// fallback 方法（兼容 file:// 桌機）
+				const textarea = document.createElement("textarea");
+				textarea.value = allText;
+				document.body.appendChild(textarea);
+				textarea.select();
+				document.execCommand("copy");
+				document.body.removeChild(textarea);
+			}
+		}
+
+		function clearAll() {
+			for (let i = 0; i < outputData.length; i++) {
+				outputData[i] = [];
+				updateOutput(i);
+			}
+			updateAllTagHighlight();
+		}
+		function addOutput() {
+			const newIndex = outputData.length;
+			outputData.push([]);
+			createOutputBox(newIndex);
+		}
+		function removeLast() {
+			if (outputData.length > 1) {
+				outputsDiv.removeChild(outputsDiv.lastChild);
+				outputData.pop();
+				if (currentOutputIndex >= outputData.length) {
+					currentOutputIndex = outputData.length - 1;
+				}
+				updateAllTagHighlight();
+			}
+		}
+
+		// 手機寬度時把 #languageSelect 搬到 footer 的左按鈕區，桌機時還原
+		(function () {
+			function moveLanguageSelect() {
+				const select = document.getElementById('languageSelect');
+				const label = document.querySelector('label[for="languageSelect"]');
+				const templateToggle = document.getElementById('templateToggle');
+				const footerControls = document.querySelector('.footer-controls');
+				const topbar = document.querySelector('.topbar');
+
+				if (!select || !footerControls || !templateToggle || !topbar) return;
+
+				// 把原本 footer 裡的左右群組先抓出來（可能會 later 被移除）
+				const origLeft = footerControls.querySelector('.left-buttons');
+				const origRight = footerControls.querySelector('.right-buttons');
+
+				if (window.innerWidth <= 768) {
+					// 手機版：隱藏 label
+					if (label) label.style.display = 'none';
+
+					// 建立 row1、row2（如果還沒有）
+					let row1 = footerControls.querySelector('.footer-row1');
+					let row2 = footerControls.querySelector('.footer-row2');
+					if (!row1) {
+						row1 = document.createElement('div');
+						row1.className = 'footer-row1';
+						// 放在 footerControls 最前面
+						footerControls.insertBefore(row1, footerControls.firstChild);
+					}
+					if (!row2) {
+						row2 = document.createElement('div');
+						row2.className = 'footer-row2';
+						footerControls.appendChild(row2);
+					}
+
+					// 在 row1、row2 各自建立 .right-buttons （如果不存在）
+					let row1Right = row1.querySelector('.right-buttons');
+					if (!row1Right) {
+						row1Right = document.createElement('div');
+						row1Right.className = 'right-buttons';
+						row1.appendChild(row1Right);
+					}
+					let row2Right = row2.querySelector('.right-buttons');
+					if (!row2Right) {
+						row2Right = document.createElement('div');
+						row2Right.className = 'right-buttons';
+						row2.appendChild(row2Right);
+					}
+
+					// 把語言選單移到 row1 左側（若尚未移）
+					if (!row1.contains(select)) row1.insertBefore(select, row1.firstChild);
+
+					// 把原本 footer 的 left-buttons 裡面的按鈕（Add/Remove）搬到 row1Right
+					if (origLeft) {
+						while (origLeft.firstChild) {
+							row1Right.appendChild(origLeft.firstChild);
+						}
+						// 移完就刪掉空的 container，避免殘留
+						origLeft.remove();
+					} else {
+						// fallback：若找不到 origLeft，嘗試直接抓函式名稱來找按鈕
+						const btnAdd = footerControls.querySelector('button[onclick*="addOutput"]');
+						const btnRemove = footerControls.querySelector('button[onclick*="removeLast"]');
+						if (btnAdd && !row1Right.contains(btnAdd)) row1Right.appendChild(btnAdd);
+						if (btnRemove && !row1Right.contains(btnRemove)) row1Right.appendChild(btnRemove);
+					}
+
+					// 把模板鍵放到 row2 左側
+					if (!row2.contains(templateToggle)) row2.insertBefore(templateToggle, row2.firstChild);
+
+					// 把原本 footer 的 right-buttons（Clear/Copy）搬到 row2Right
+					if (origRight) {
+						// 注意：origRight 可能是我們剛剛新建的 row1Right/row2Right 的其中一個，只有在它不是剛剛建立的 container 才搬
+						if (origRight !== row1Right && origRight !== row2Right) {
+							while (origRight.firstChild) {
+								row2Right.appendChild(origRight.firstChild);
+							}
+							origRight.remove();
+						} else {
+							// fallback：找指定按鈕搬移
+							const btnClear = footerControls.querySelector('button[onclick*="clearAll"]');
+							const btnCopy = footerControls.querySelector('button[onclick*="copyAll"]');
+							if (btnClear && !row2Right.contains(btnClear)) row2Right.appendChild(btnClear);
+							if (btnCopy && !row2Right.contains(btnCopy)) row2Right.appendChild(btnCopy);
+						}
+					} else {
+						const btnClear = footerControls.querySelector('button[onclick*="clearAll"]');
+						const btnCopy = footerControls.querySelector('button[onclick*="copyAll"]');
+						if (btnClear && !row2Right.contains(btnClear)) row2Right.appendChild(btnClear);
+						if (btnCopy && !row2Right.contains(btnCopy)) row2Right.appendChild(btnCopy);
+					}
+
+				} else {
+					// 桌機版：還原
+
+					if (label) label.style.display = '';
+
+					// 建立 footer-level 的 left-buttons、right-buttons（如果不存在）
+					let newLeft = footerControls.querySelector('.left-buttons');
+					if (!newLeft) {
+						newLeft = document.createElement('div');
+						newLeft.className = 'left-buttons';
+						footerControls.insertBefore(newLeft, footerControls.firstChild);
+					}
+					// create a footer-level right-buttons at end if not exists
+					let newRight = null;
+					// 若 footerControls 最底已經有 .right-buttons 且不是 row container，拿來用
+					footerControls.querySelectorAll(':scope > .right-buttons').forEach(el => newRight = el);
+					if (!newRight) {
+						newRight = document.createElement('div');
+						newRight.className = 'right-buttons';
+						footerControls.appendChild(newRight);
+					}
+
+					// 如果我們之前建立了 row1/row2，從裡面把按鈕搬回新建的 left/right
+					const row1 = footerControls.querySelector('.footer-row1');
+					const row2 = footerControls.querySelector('.footer-row2');
+
+					if (row1) {
+						// row1 內可能有 select 與 row1Right
+						const r1Right = row1.querySelector('.right-buttons');
+						if (r1Right) {
+							while (r1Right.firstChild) {
+								newLeft.appendChild(r1Right.firstChild);
+							}
+						}
+						// 把 select 還原回 topbar（放在 label 後）
+						if (!topbar.contains(select)) {
+							if (label && label.parentNode) label.parentNode.insertBefore(select, label.nextSibling);
+							else topbar.appendChild(select);
+						}
+					}
+
+					if (row2) {
+						const r2Right = row2.querySelector('.right-buttons');
+						if (r2Right) {
+							while (r2Right.firstChild) {
+								newRight.appendChild(r2Right.firstChild);
+							}
+						}
+						// 把 templateToggle 還回 topbar（desktop CSS 會隱藏它）
+						if (!topbar.contains(templateToggle)) topbar.appendChild(templateToggle);
+					}
+
+					// 最後把 row1 / row2 刪掉（清乾淨）
+					if (row1) row1.remove();
+					if (row2) row2.remove();
+				}
+			}
+
+			// 綁定事件（已存在也沒關係）
+			window.addEventListener('DOMContentLoaded', moveLanguageSelect);
+			window.addEventListener('resize', moveLanguageSelect);
+			window.addEventListener('orientationchange', moveLanguageSelect);
+		})();
+
+		function renderGroupButtons() {
+			const container = document.getElementById("groupButtons");
+			if (!container) return;
+			container.innerHTML = "";
+			groupData.forEach(g => {
+				const btn = document.createElement("button");
+				btn.textContent = g.group[currentLang] || g.group.key;
+				if (g.group.key === currentGroupKey) btn.classList.add("active");
+				btn.onclick = () => {
+					currentGroupKey = g.group.key;
+					currentCategory = g.classification[0];
+					renderGroupButtons();              // 重新渲染 → 更新高亮
+					renderCategoryButtons_mobile();
+					renderTags(currentCategory);
+				};
+				container.appendChild(btn);
+			});
+		}
+
+		function renderCategoryButtons_mobile() {
+			categoriesDiv.innerHTML = '';
+			const group = groupData.find(g => g.group.key === currentGroupKey);
+			if (!group) return;
+			group.classification.forEach(key => {
+				const category = categories[key];
+				if (!category) return;
+				const btn = document.createElement('button');
+				btn.textContent = category[currentLang] || key;
+				if (key === currentCategory) btn.classList.add("active");
+				btn.onclick = () => {
+					currentCategory = key;
+					renderCategoryButtons_mobile();    // 重新渲染 → 更新高亮
+					renderTags(key);
+				};
+				categoriesDiv.appendChild(btn);
+			});
+		}
+
+		document.addEventListener("DOMContentLoaded", () => {
+			const toggleBtn = document.getElementById("templateToggle");
+			const templateBox = document.querySelector(".template-box");
+
+			if (toggleBtn && templateBox) {
+				toggleBtn.onclick = () => {
+					templateBox.classList.toggle("show");
+				};
+			}
+		});
+
+
+
+		window.addEventListener("DOMContentLoaded", () => {
+			categoriesDiv = document.getElementById('categories');
+			tagListDiv = document.getElementById('tagList');
+			outputsDiv = document.getElementById('outputs');
+			languageSelect = document.getElementById('languageSelect');
+			templateList = document.getElementById('templateList');
+
+			loadFromLocal();
+
+			if (window.innerWidth <= 768) {
+				renderGroupButtons();
+				renderCategoryButtons_mobile();
+				renderTags(currentCategory);
+			} else {
+				renderCategoryButtons();
+				renderTags(currentCategory);
+			}
+			for (let i = 0; i < 3; i++) {
+				outputData.push([]);
+				createOutputBox(i);
+			}
+			renderTemplateList();
+			languageSelect.onchange = () => {
+				currentLang = languageSelect.value;
+
+				if (window.innerWidth <= 768) {
+					renderGroupButtons();
+					renderCategoryButtons_mobile();
+					renderTags(currentCategory);
+				} else {
+					renderCategoryButtons();
+					renderTags(currentCategory);
+				}
+				outputData.forEach((_, i) => renderTagDisplay(i));
+				updateOutputHighlight();
+			};
+		});
+
+
+
+	</script>
+</body>
+
+</html>

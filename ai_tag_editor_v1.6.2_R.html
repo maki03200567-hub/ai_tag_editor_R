@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title>Multi-column Tag Editor</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			margin: 0;
+			display: flex;
+			height: 100vh;
+			overflow: hidden;
+			background-color: #121212;
+			color: #e0e0e0;
+		}
+
+		.left,
+		.right {
+			padding: 10px;
+			overflow-y: auto;
+		}
+
+		.left {
+			width: 40%;
+			border-right: 1px solid #444;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.right {
+			width: 60%;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.topbar,
+		.template-box,
+		.footer-controls {
+			background-color: #1e1e1e;
+			padding: 10px;
+			border-radius: 6px;
+		}
+
+		.topbar select {
+			background-color: #2c2c2c;
+			color: #e0e0e0;
+			border: 1px solid #555;
+			padding: 4px;
+		}
+
+		.category-buttons button,
+		.template-box button {
+			margin: 2px;
+			background-color: #2c2c2c;
+			color: #e0e0e0;
+			border: 1px solid #555;
+			border-radius: 4px;
+			cursor: pointer;
+			padding: 5px 10px;
+		}
+
+		.tag-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 5px;
+			background-color: #1e1e1e;
+			padding: 10px;
+			border-radius: 6px;
+			margin-top: 10px;
+			overflow-y: auto;
+			scrollbar-gutter: stable;
+		}
+
+		.tag {
+			padding: 5px 8px;
+			background: #c2c2c2;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		.tag.selected {
+			background: #1fce62;
+			color: #000;
+		}
+
+		.tag-category h3 {
+			margin-top: 15px;
+			font-size: 18px;
+			font-weight: bold;
+			color: #ffcc00;
+		}
+
+		.tag-subcategory h4 {
+			margin: 8px 0 4px;
+			font-size: 14px;
+			font-weight: bold;
+			color: #66ccff;
+		}
+
+		.output-box {
+			border: 1px solid #555;
+			background-color: #1e1e1e;
+			padding: 5px;
+			position: relative;
+		}
+
+		.output-box.selected {
+			border: 2px solid #00BCD4;
+		}
+
+		.output-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 5px;
+			margin-bottom: 5px;
+		}
+
+		.output-tag {
+			background: #4caf50;
+			padding: 4px 6px;
+			border-radius: 4px;
+		}
+
+		.output-tag span {
+			margin-left: 4px;
+			cursor: pointer;
+			color: red;
+		}
+
+		.output-box textarea {
+			width: 100%;
+			/* 佔滿父容器 */
+			height: 60px;
+			/* 預設高度 */
+			resize: none;
+			background-color: #333;
+			color: #eee;
+			border: none;
+			border-radius: 4px;
+			padding: 5px;
+			font-size: 14px;
+			/* 桌機用小一點的字體 */
+		}
+
+
+		.output-controls button {
+			margin-left: 5px;
+		}
+
+		.template-box span {
+			cursor: pointer;
+			margin-left: 5px;
+			color: red;
+		}
+
+		.footer-controls {
+			margin-top: auto;
+			display: flex;
+			justify-content: space-between;
+			padding: 10px;
+			background: #1e1e1e;
+			border-radius: 6px;
+		}
+
+		.footer-controls>div {
+			display: flex;
+			gap: 10px;
+		}
+
+		#templateToggle {
+			display: none;
+		}
+
+		.group-buttons button.active,
+		.category-buttons button.active {
+			background-color: #00bcd4;
+			color: #000;
+			border: 1px solid #00bcd4;
+		}
+
+		/* 手機專用調整 */
+		@media (max-width: 768px) {
+
+			body {
+				flex-direction: column;
+				overflow-x: hidden;
+				/* 防止橫向滑動 */
+			}
+
+			/* 大類區塊固定兩行 */
+			.group-buttons {
+				display: flex;
+				flex-wrap: wrap;
+				overflow-y: auto;
+				line-height: 1.6em;
+				max-height: calc(1.6em * 2 + 12px);
+				min-height: calc(1.6em * 2 + 12px);
+				margin-bottom: 6px;
+				flex-shrink: 0;
+				background: #1e1e1e;
+				border-radius: 6px;
+				padding: 6px;
+			}
+
+			/* 分類區塊固定兩行 */
+			.category-buttons {
+				display: flex;
+				flex-wrap: wrap;
+				overflow-y: auto;
+				line-height: 1.6em;
+				max-height: calc(1.6em * 2 + 12px);
+				min-height: calc(1.6em * 2 + 12px);
+				margin-bottom: 6px;
+				flex-shrink: 0;
+				background: #1e1e1e;
+				border-radius: 6px;
+				padding: 6px;
+			}
+
+			/* 大類/分類按鈕 */
+			.group-buttons button,
+			.category-buttons button {
+				margin: 2px;
+				background-color: #2c2c2c;
+				color: #e0e0e0;
+				border: 1px solid #555;
+				border-radius: 4px;
+				cursor: pointer;
+				height: 32px;
+				/* 固定高度，跟 tag 一致 */
+				line-height: 22px;
+				padding: 0 8px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			/* 左側欄 */
+			.left {
+				width: 100% !important;
+				max-width: 100% !important;
+				box-sizing: border-box;
+				max-height: 40vh;
+				display: flex;
+				flex-direction: column;
+				flex-shrink: 0;
+				/* 防止被壓縮 */
+				min-height: 200px;
+				/* 保底高度 */
+			}
+
+			/* TAG 固定三行半 */
+			.tag-list {
+				display: flex;
+				flex-wrap: wrap;
+				overflow-y: auto;
+				line-height: 1.6em;
+				max-height: calc(1.6em * 6.9);
+				min-height: calc(1.6em * 6.9);
+				flex-shrink: 0;
+			}
+
+			/* 手機版模板鍵 */
+			#templateToggle.mobile-only {
+				display: block;
+				background-color: #2c2c2c;
+				color: #e0e0e0;
+				border: 1px solid #555;
+				border-radius: 4px;
+				padding: 6px 10px;
+				text-align: left;
+				height: 38px;
+			}
+
+			.template-box {
+				display: none;
+				position: fixed;
+				bottom: 70px;
+				left: 5%;
+				width: 90%;
+				max-height: 60vh;
+				overflow-y: auto;
+				background: #1e1e1e;
+				border: 1px solid #444;
+				border-radius: 8px;
+				padding: 10px;
+				z-index: 1000;
+			}
+
+			.template-box.show {
+				display: block;
+			}
+
+			.right {
+				width: 100% !important;
+				max-width: 100% !important;
+				box-sizing: border-box;
+				flex-grow: 1;
+				max-height: 43.2vh;
+				overflow-y: auto;
+				padding-right: 0;
+				padding-left: 0;
+				padding-bottom: 90px;
+			}
+
+			/* footer 改成上下兩列 */
+			.footer-controls {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				background: #1e1e1e;
+				display: flex;
+				flex-direction: column;
+				/* 上下排列 */
+				gap: 6px;
+				padding: 10px;
+				z-index: 999;
+			}
+
+			.footer-row1,
+			.footer-row2 {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				width: 100%;
+				box-sizing: border-box;
+				padding: 0 10px;
+				/* ✅ 左右都留 6px 內縮 */
+			}
+
+			/* 語言鍵與模板鍵固定寬度 */
+			#languageSelect,
+			#templateToggle.mobile-only {
+				width: 80px;
+				min-width: 80px;
+				max-width: 80px;
+				box-sizing: border-box;
+			}
+
+			/* 四個功能鍵固定寬度並置中 */
+			.footer-row1 .right-buttons button,
+			.footer-row2 .right-buttons button {
+				width: 120px;
+				min-width: 120px;
+				max-width: 120px;
+				text-align: center;
+				flex-shrink: 0;
+			}
+
+			/* 右側按鈕群組 */
+			.footer-row1 .right-buttons button,
+			.footer-row2 .right-buttons button {
+				flex: 1 1 45%;
+				/* ✅ 兩顆按鈕並排各佔約一半 */
+				max-width: 120px;
+				/* ✅ 保持上限 */
+				text-align: center;
+			}
+
+
+			/* 隱藏語言標籤文字 */
+			.topbar label[for="languageSelect"] {
+				display: none !important;
+			}
+
+			/* 調整語言選單樣式 */
+			.footer-controls #languageSelect {
+				-webkit-appearance: none;
+				appearance: none;
+				background-color: #2c2c2c;
+				color: #e0e0e0;
+				border: 1px solid #555;
+				padding: 6px 8px;
+				border-radius: 4px;
+				font-size: 14px;
+			}
+		}
+
+		/* 已儲存的模板 - 橫式排列 */
+		#templateList {
+			display: flex;
+			flex-wrap: wrap;
+			/* 自動換行 */
+			gap: 10px;
+			/* 間距 */
+			margin-top: 10px;
+		}
+
+		#templateList .template-item {
+			flex: 0 0 auto;
+			/* 固定大小，不要拉長 */
+			min-width: 150px;
+			/* 每個卡片最小寬度 */
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 8px;
+			background: #f9f9f9;
+			text-align: center;
+			cursor: pointer;
+			transition: background 0.2s;
+		}
+
+
+		#templateList .template-item:hover {
+			background: #eaeaea;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- 左邊欄 -->
+	<div class="left">
+		<div class="topbar">
+			<label for="languageSelect">介面語言:</label>
+			<select id="languageSelect">
+				<option value=zh>中文</option>
+				<option value=en>English</option>
+				<option value=jp>日本語</option>
+			</select>
+
+			<!-- 📂 模板鍵要放在這裡，緊貼語言選單下面 -->
+			<button id="templateToggle" class="mobile-only">📂 模板</button>
+		</div>
+
+		<!-- 新增大類按鈕列（僅手機版會顯示） -->
+		<div class="group-buttons" id="groupButtons"></div>
+		<div class="category-buttons" id="categories"></div>
+		<div class="tag-list" id="tagList"></div>
+
+
+		<div class="template-box">
+			<input type="text" id="templateName" placeholder="模板名稱">
+			<button onclick="saveTemplate()">💾 儲存模板</button>
+			<button onclick="downloadTemplates()">⬇ 下載模板</button>
+			<input type="file" id="uploadInput" onchange="uploadTemplates()" style="margin-top: 6px;">
+			<div id="templateList"></div>
+		</div>
+	</div>
+
+	<!-- 右邊欄 -->
+	<div class="right">
+		<div id="outputs"></div>
+		<div class="footer-controls">
+			<div class="left-buttons">
+				<button onclick="addOutput()">➕ Add Output</button>
+				<button onclick="removeLast()">➖ Remove Last</button>
+			</div>
+			<div class="right-buttons">
+				<button onclick="clearAll()">🗑️ Clear All</button>
+				<button onclick="copyAll()">📋 Copy All</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		const rawData = [
+			{
+				category: { key: "Common words", zh: "常用詞", en: "Common words", jp: "よく使われる単語" },
+				groups: [
+					{
+						subCategory: "戰場",
+						tags: [
+							{ zh: "正向詞1", en: "Positive word 1", jp: "ポジティブな言葉1", value: "nsfw, uncensored, unfiltered, no censorship, score_7_up, score_9, score_8_up, perfect proportions, perfect_eyes, source_anime, uncensored, concept art, (masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines), lustrous, dynamic pose,fair skin, smooth anime skin, soft shading" },
+							{ zh: "正向詞2", en: "Positive word 2", jp: "ポジティブな言葉2", value: "nsfw, uncensored, unfiltered, no censorship,, score_9, score_8_up, perfect proportions, perfect_eyes, source_anime, uncensored, concept art, (masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines), lustrous, dynamic pose" },
+							{ zh: "正向詞3", en: "Positive word 3", jp: "ポジティブな言葉3", value: "nsfw, uncensored, unfiltered, no censorship,, ,masterpiece,best quality,amazing quality,breasts, hiny skin,beautiful face,beautiful eyes,flawless,see_list,fair skin, smooth anime skin, soft shading" },
+							{ zh: "正向詞1改", en: "Positive word 1", jp: "ポジティブな言葉1", value: "nsfw, uncensored, no censorship, unfiltered, score_9, score_8_up, score_7_up, masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines, source_anime, concept art, perfect proportions, perfect_eyes, lustrous, fair skin, smooth anime skin, soft shading, dynamic pose" },
+							{ zh: "正向詞2改", en: "Positive word 2", jp: "ポジティブな言葉2", value: "nsfw, uncensored, no censorship, unfiltered, score_9, score_8_up, masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines, source_anime, concept art, perfect proportions, perfect_eyes, lustrous, dynamic pose" },
+							{ zh: "正向詞3改", en: "Positive word 3", jp: "ポジティブな言葉3", value: "nsfw, uncensored, no censorship, unfiltered, masterpiece, best quality, amazing quality, breasts, shiny skin, beautiful face, beautiful eyes, flawless, fair skin, smooth anime skin, soft shading" },
+							{ zh: "反向詞0", en: "Reverse word 1", jp: "逆引き単語1", value: "bad quality,worst quality,worst detail,sketch,censor,Extra Hands,EasyNegative, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, (worst quality:1.2), low quality, normal quality, jpeg artifacts, signature, watermark, username,lowres, bad anatomy, bad hands, text,error, missing fngers,extra digt ,fewer digits,cropped, wort quality ,low quality,normal quality, jpeg artifacts,signature,watermark, username, blurry, bad feet,poorly drawn hands,nipple rings, nipple decorations" },
+							{ zh: "反向詞1", en: "Reverse word 1", jp: "逆引き単語1", value: "bad quality,worst quality,worst detail,sketch,censor,Extra Hands,EasyNegative, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, (worst quality:1.2), low quality, normal quality, jpeg artifacts, signature, watermark, username,lowres, bad anatomy, bad hands, text,error, missing fngers,extra digt ,fewer digits,cropped, wort quality ,low quality,normal quality, jpeg artifacts,signature,watermark, username, blurry, bad feet,poorly drawn hands,man,(extra hands, extra fingers, missing fingers, deformed hands, bad anatomy, wrong proportions, extra limbs, Swollen belly, stomach bulge,multiple hands, disembodied hands, floating hands, multiple arms, mutation, fused limbs, fused fingers) nipple rings, nipple decorations,Swollen belly, stomach bulge, nipple rings, nipple decorations" },
+							{ zh: "反向詞2", en: "Reverse word 2", jp: "逆引き単語2", value: "bad quality,worst quality,worst detail,sketch,censor,Extra Hands,EasyNegative, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, (worst quality:1.2), low quality, normal quality, jpeg artifacts, signature, watermark, username,lowres, bad anatomy, bad hands, text,error, missing fngers,extra digt ,fewer digits,cropped, wort quality ,low quality,normal quality, jpeg artifacts,signature,watermark, username, blurry, bad feet,poorly drawn hands,man,(extra hands, extra fingers, missing fingers, deformed hands, bad anatomy, wrong proportions, extra limbs, Swollen belly, stomach bulge,multiple hands, disembodied hands, floating hands, multiple arms, mutation, fused limbs, fused fingers) nipple rings, nipple decorations,Swollen belly, stomach bulge, nipple rings, nipple decorations, (black panties, white panties, ) glowing skin, overly saturated skin" },
+							{ zh: "反向皮膚問題", en: "skin", jp: "スキン", value: "bad quality,worst quality,worst detail,sketch,censor,glowing skin, glowing tattoos, glowing patterns, discolored skin, multicolored skin, green skin, blue skin, purple skin, extra marks, body paint, unrealistic skin" },
+							{ zh: "反向詞_沒男人", en: "Reverse word_no man", jp: "逆引き単語_男性不要", value: "bad quality,worst quality,worst detail,sketch,censor,male, penis, futanari, dick, extra arms, fused body, duplicate body, bad anatomy, deformed hands, extra fingers glowing skin, glowing tattoos, discolored skin, multicolored skin, body paint, cyberpunk, neon lighting low quality, blurry, pixelated, watermark, signature, male, man, men, boy, yaoi, bl, shota, male character, male body, penis, testicles, muscular male, male face, male hands, male legs,Collar" },
+							{ zh: "角色用", en: "characters", jp: "キャラクター用", value: "(Little girl, Loli)" },
+							{ zh: "陰用", en: "characters2", jp: "まんこ用", value: "see_list" },
+							{ zh: "好身材", en: "good figure", jp: "ナイスバディ", value: "curvy, voluptuous, glowing skin, shiny skin" },
+						]
+					}
+				]
+			},
+			{
+				category: { key: "angle", zh: "視角", en: "Angle", jp: "視点" },
+				groups: [
+					{
+						subCategory: "基本角度",
+						tags: [
+							{ zh: "上方視角", en: "from above", jp: "上から", value: "from above" },
+							{ zh: "下方視角", en: "from below", jp: "下から", value: "from below" },
+							{ zh: "後方視角", en: "from behind", jp: "後ろから", value: "from behind" },
+							{ zh: "側面視角", en: "from side", jp: "横から", value: "from side" },
+							{ zh: "低角度", en: "low angle", jp: "ローアングル", value: "pov from below, low angle, from below, cameltoe focus, " },
+							{ zh: "前方低角度", en: "low front angle", jp: "前方ローアングル", value: "low front angle" },
+							{ zh: "前方高角度", en: "high front angle", jp: "前方ハイアングル", value: "high front angle" },
+							{ zh: "背後低角度", en: "low back angle", jp: "後方ローアングル", value: "low back angle" },
+							{ zh: "背後高角度", en: "high back angle", jp: "後方ハイアングル", value: "high back angle" },
+							{ zh: "斜側視角", en: "oblique side view", jp: "斜め横から", value: "oblique side view" },
+							{ zh: "側後視角", en: "side-back view", jp: "横後ろから", value: "side-back view" },
+							{ zh: "側前視角", en: "side-front view", jp: "横前から", value: "side-front view" },
+							{ zh: "傾斜視角", en: "tilted / dutch angle", jp: "傾き構図", value: "tilted / dutch angle" },
+							{ zh: "透視縮短", en: "foreshortening", jp: "小人視点（パースが強くなる）", value: "foreshortening" },
+							{ zh: "鳥瞰視角", en: "bird's eye view", jp: "俯瞰視点", value: "bird's eye view" },
+							{ zh: "蟲瞰視角", en: "worm's eye view", jp: "蟲の視点", value: "worm's eye view" },
+						]
+					},
+					{
+						subCategory: "遠近景",
+						tags: [
+							{ zh: "全景", en: "panorama", jp: "パノラマ", value: "panorama" },
+							{ zh: "全景視角", en: "wide shot", jp: "ワイドショット", value: "wide shot" },
+							{ zh: "中景視角", en: "medium shot", jp: "ミディアムショット", value: "medium shot" },
+							{ zh: "近景視角", en: "close-up", jp: "クローズアップ", value: "close-up" },
+							{ zh: "極近景", en: "extreme close-up", jp: "極端なクローズアップ", value: "extreme close-up" },
+							{ zh: "局部特寫", en: "detail focus", jp: "ディテールフォーカス", value: "detail focus" },
+							{ zh: "半身視角", en: "half-body shot", jp: "半身ショット", value: "half-body shot" },
+							{ zh: "全身像", en: "full body", jp: "全身", value: "full body" },
+							{ zh: "全身動態", en: "full body action shot", jp: "全身アクションショット", value: "full body action shot" },
+							{ zh: "後方全身", en: "full body from back", jp: "後方全身", value: "full body from back" },
+							{ zh: "後方半身", en: "half-body from back", jp: "後方半身", value: "half-body from back" },
+							{ zh: "上半身", en: "upper body", jp: "胸から頭まで", value: "upper body" },
+							{ zh: "肖像", en: "portrait", jp: "主に顔、たまに胸までのアップ", value: "portrait" },
+						]
+					},
+					{
+						subCategory: "聚焦 / 特寫",
+						tags: [
+							{ zh: "前景視角", en: "foreground focus", jp: "前景フォーカス", value: "foreground focus" },
+							{ zh: "背景視角", en: "background focus", jp: "背景フォーカス", value: "background focus" },
+							{ zh: "聚焦胸部", en: "breast focus", jp: "胸が強調されている", value: "breast focus" },
+							{ zh: "胸部視角", en: "chest-level view", jp: "胸元視点", value: "chest-level view" },
+							{ zh: "胸下仰視", en: "upward shot from chest", jp: "胸下アングル", value: "upward shot from chest" },
+							{ zh: "聚焦臀部", en: "ass focus", jp: "尻に焦点", value: "ass focus" },
+							{ zh: "臀部聚焦", en: "butt focus", jp: "尻に焦点", value: "butt focus" },
+							{ zh: "屁股特寫", en: "butt close-up", jp: "お尻クローズアップ", value: "butt close-up" },
+							{ zh: "屁股側面特寫", en: "side butt close-up", jp: "お尻の横側クローズアップ", value: "side butt close-up" },
+							{ zh: "屁股後方特寫", en: "rear butt close-up", jp: "お尻の後ろクローズアップ", value: "rear butt close-up" },
+							{ zh: "屁股抬高特寫", en: "upward shot from butt", jp: "下からお尻を強調", value: "upward shot from butt" },
+							{ zh: "側後臀部視角", en: "side-back butt focus", jp: "横後ろ尻フォーカス", value: "side-back butt focus" },
+							{ zh: "後方臀部特寫", en: "butt focus from back", jp: "後ろ尻フォーカス", value: "butt focus from back" },
+							{ zh: "後方腿部視角", en: "legs focus from back", jp: "後ろ足フォーカス", value: "legs focus from back" },
+							{ zh: "聚焦腿部", en: "foot focus", jp: "足に焦点", value: "foot focus" },
+							{ zh: "腳部視角", en: "foot-level view", jp: "足元視点", value: "foot-level view" },
+							{ zh: "聚焦臉部", en: "face focus", jp: "顔が強調されている", value: "face focus" },
+							{ zh: "聚焦雙人", en: "duo focus", jp: "二人に焦点", value: "duo focus" },
+							{ zh: "聚焦女性", en: "female focus", jp: "女性に焦点", value: "female focus" },
+							{ zh: "聚焦男性", en: "male focus", jp: "男性に焦点", value: "male focus" },
+							{ zh: "聚焦人類", en: "human focus", jp: "人間に焦点", value: "human focus" },
+							{ zh: "聚焦一人", en: "solo focus", jp: "他のキャラクターが存在しても主な焦点は一人", value: "solo focus" },
+						]
+					},
+					{
+						subCategory: "其他 / 特殊",
+						tags: [
+							{ zh: "主視角", en: "pov", jp: "主観視点", value: "pov" },
+							{ zh: "第一人稱視角", en: "first-person view", jp: "一人称視点", value: "first-person view" },
+							{ zh: "背面POV", en: "pov from back", jp: "後方視点", value: "pov from back" },
+							{ zh: "多角色視角", en: "multi-character view", jp: "複数キャラクター視点", value: "multi-character view" },
+							{ zh: "魚眼視角", en: "fisheye", jp: "魚眼", value: "fisheye" },
+							{ zh: "三分構圖", en: "rule of thirds", jp: "三分割構図", value: "rule of thirds" },
+							{ zh: "對角線構圖", en: "diagonal composition", jp: "対角線構図", value: "diagonal composition" },
+							{ zh: "後背視角", en: "back view", jp: "後ろ姿", value: "back view" },
+							{ zh: "臀部拉伸", en: "butt stretch", jp: "お尻ストレッチ", value: "butt stretch" },
+							{ zh: "鏡中映像", en: "mirror view", jp: "鏡の中の映像", value: "mirror view" },
+							{ zh: "CG圖像(橫圖)", en: "game cg, dutch angle", jp: "全体表示（横長）", value: "game cg, dutch angle" }
+						]
+					}
+				]
+			},
+			{
+				category: { key: "Pelope", zh: "人數", en: "Pelope", jp: "人数" },
+				groups: [
+					{
+						subCategory: " ",
+						tags: [
+							{ zh: "單人", en: "solo", jp: "単体", value: "solo" },
+							{ zh: "單人女", en: "1girl", jp: "女1人", value: "1girl" },
+							{ zh: "單人男", en: "1man", jp: "男1人", value: "1man" },
+							{ zh: "雙人女", en: "2girls", jp: "女2人", value: "2girls" },
+							{ zh: "雙人男", en: "2men", jp: "男2人", value: "2men" },
+							{ zh: "1 VS 2", en: "duo", jp: "デュオ", value: "duo" },
+							{ zh: "多人(也可指群交倫O)", en: "group", jp: "グループ", value: "group" },
+							{ zh: "女性多數", en: "many girls", jp: "女多数", value: "many girls" },
+							{ zh: "多數哥布林", en: "many goblins", jp: "ゴブリン多数", value: "many goblins" },
+							{ zh: "男性多數", en: "many men", jp: "男多数", value: "many men" },
+							{ zh: "1 VS 3", en: "trio", jp: "トリオ", value: "trio" },
+							{ zh: "男有X人", en: "xboy", jp: "男x人（xを数字に）", value: "xboy" },
+							{ zh: "女有X人", en: "xgirl", jp: "女x人（xを数字に）", value: "xgirl" },
+						]
+					}
+				]
+			},
+			{
+				category: { key: "Hololive", zh: "HOLO", en: "Hololive body", jp: "ホロライブ" },
+				groups: [
+					{
+						subCategory: "身體",
+						tags: [
+							{ zh: "白上吹雪", en: "Shirakami Fubuki", jp: "白上フブキ", value: "Shirakami_Fubuki, shirakami fubuki, (White hair), long hair, ahoge, animal ears, fox tail" },
+							{ zh: "AZKi", en: "AZKi", jp: "AZKi", value: "Azki, AzkiIdol, multicolored hair, long hair, hair ornament, Medium breasts" },
+							{ zh: "さくらみこ", en: "Sakura Miko", jp: "さくらみこ", value: "Sakura Miko, MikoBase, long hair, ahoge, one side up, hair bell, cherry blossom print" },
+							{ zh: "星街すいせい", en: "Hoshimachi Suisei", jp: "星街すいせい", value: "Hoshimachi Suisei, long hair, SuiseiBase, side ponytail" },
+							{ zh: "赤井はあと", en: "Akai Haato", jp: "赤井はあと", value: "akai haato, long hair, blonde hair, blue eyes, red bow, hair ornament" },
+							{ zh: "湊あくあ", en: "Minato Aqua", jp: "湊あくあ", value: "Minato_Aqua, mimaid, purple eyes, blue hair, pink hair, purple hair, ahoge, bangs, braid, french braid, twintails" },
+							{ zh: "紫咲シオン", en: "Murasaki Shion", jp: "紫咲シオン", value: "murasaki shion, long hair, glay purple hair, bangs, blunt bangs, hair bun, single side bun, hairband, hair ornament, yellow eyes" },
+							{ zh: "百鬼あやめ", en: "Nakiri Ayame", jp: "百鬼あやめ", value: "(Anya melfissa:1.3), (brown hair:1.3)" },
+							{ zh: "大神ミオ", en: "Ookami Mio", jp: "大神ミオ", value: "Ookami mio, mio_base, long hair, hair ornament" },
+							{ zh: "猫又おかゆ", en: "Nekomata Okayu", jp: "猫又おかゆ", value: "Nekomata Okayu, cat tail, ahoge" },
+							{ zh: "宝鐘マリン", en: "Houshou Marine", jp: "宝鐘マリン", value: "marine houshou, long hair, red hair, twintails, heterochromia, red eyes, yellow eyes, hair ribbon, earrings, x hair ornament, necklace" },
+							{ zh: "潤羽るしあ", en: "Uruha Rushia", jp: "潤羽るしあ", value: "uruha_rushia, rushia_default, green hair, medium hair, double bun, skull hair ornament, red eyes, small breasts, petite, virtual youtuber, hair ornament, hair bun" },
+							{ zh: "兔媽", en: "Pekora Mama", jp: "ぺこらママ", value: "pekomama, pekomamadef, thick eyebrows, bunny-shaped pupils, rabbit ears, animal ear fluff, detached sleeves, bow" },
+							{ zh: "角巻わため", en: "Tsunomaki Watame", jp: "角巻わため", value: "WatameBase, Tsunomaki Watame, sheep girl, sheep tail, hairclip" },
+							{ zh: "常闇トワ", en: "Tokoyami Towa", jp: "常闇トワ", value: "tokoyami towa, purple hair, gradient hair, multicolored hair, bbtowa, long hair, single hair bun, black headwear, demon tail, green eyes, ear piercing, streaked hair" },
+							{ zh: "姫森ルーナ", en: "Himemori Luna", jp: "姫森ルーナ", value: "Himemori Luna, LunaBase, heterochromia, long hair, single hair ring, candy hair ornament, earrings" },
+							{ zh: "雪花ラミィ", en: "Yukihana Lamy", jp: "雪花ラミィ", value: "yukihana lamy/(hololive/), blue hair, long hair, heart ahoge, hair flower" },
+							{ zh: "桃鈴ねね", en: "Momosuzu Nene", jp: "桃鈴ねね", value: "NeneBase, long hair, double bun, hair flower, orange dress, cleavage, clothing cutout, bowtie, multicolored bow, corset, sleeveless, arm garter, white thighhighs, single thighhigh" },
+							{ zh: "獅白ぼたん", en: "Shishiro Botan", jp: "獅白ぼたん", value: "Shishiro Botan, grey hair, lion ears, grey eyes, lion tail" },
+							{ zh: "博衣こより", en: "Hakui Koyori", jp: "博衣こより", value: "hakui koyori, purple eyes, pink hair, bangs, crossed bangs, hair between eyes, ahoge, braid, hair ornament, animal ears, animal ear fluff, tail, long hair, very long hair, hair bun, double bun, braided bun, crown braid" },
+							{ zh: "沙花叉クロヱ", en: "Sakamata Chloe", jp: "沙花叉クロヱ", value: "Sakamata Chloe, aachloe, medium hair, streaked hair, grey hair, x hair ornament, braided bangs, red eyes" },
+							{ zh: "風真いろは", en: "Kazama Iroha", jp: "風真いろは", value: "KazamaIroha, aairoha, chest sarashi, blonde hair, ponytail, hair ribbon, black hairband, aqua eyes" },
+							{ zh: "小鳥遊キアラ", en: "Takanashi Kiara", jp: "小鳥遊キアラ", value: "K1araDef, purple eyes, multicolored hair, orange hair, green hair, long hair, feather earrings" },
+							{ zh: "ハコス・ベールズ", en: "Hakos Baelz", jp: "ハコス・ベールズ", value: "READ DESCRIPTION, BaelzBase, baelz, twintails, red hair, mouse tail, tail bow" },
+							{ zh: "ワトソン・アメリア", en: "Watson Amelia", jp: "ワトソン・アメリア", value: "Amelia Watson, silver-haired, blue eyes" },
+							{ zh: "七詩ムメイ", en: "Nanashi Mumei", jp: "七詩ムメイ", value: "nanashi_mumei, nanashi mumei, long hair, very long hair, brown eyes, brown hair, streaked sidelocks, ahoge, hairclip" },
+							{ zh: "フワワ", en: "Fuwawa", jp: "フワワ", value: "fuwawa abyssgard, animal ear fluff, animal ears, blonde hair, bandaid, bandaid hair ornament, pink eyes, dog ears, dog girl, dog tail, double-parted bangs, blue hairband, fake horns, fangs, hair between eyes, hairband, hairclip, horns, long hair, multicolored hair, blue hair, streaked hair, two side up, crossed bangs" },
+							{ zh: "モココ", en: "Mococo", jp: "モココ", value: "mococo abyssgard, animal ear fluff, animal ears, blonde hair, bandaid, bandaid hair ornament, blue eyes, dog ears, dog girl, dog tail, double-parted bangs, pink hairband, fake horns, fangs, hair between eyes, hairband, hairclip, horns, short hair, medium breasts, multicolored hair, pink hair, streaked hair, crossed bangs, x hair ornament" },
+							{ zh: "ムーナ・ホシノヴァ", en: "Moona Hoshinova", jp: "ムーナ・ホシノヴァ", value: "MoonaHoshinova, purple hair, long hair, bangs, hair between eyes, multicolored hair, colored inner hair, purple eyes, yellow eyes, earrings, choker, collarbone, earrings, navel" },
+							{ zh: "アイラニ・イオフィフティーン", en: "Airani Iofifteen", jp: "アイラニ・イオフィフティーン", value: "(Anya melfissa:1.3), (brown hair:1.3)" },
+							{ zh: "一条莉々華", en: "Ichijou Ririka", jp: "一条莉々華", value: "Ichijou Ririka, RirikaBase, long hair, hairclip" },
+							{ zh: "儒烏風亭らでん", en: "Juufuutei Raden", jp: "儒烏風亭らでん", value: "jufuraiden, jufuraidengloss, multicolored hair, long hair, two-tone hair, streaked hair, blunt bangs, hime cut, jufuraidendef, multicolored hair" },
+							{ zh: "水宮樞", en: "Mizumiya Suu", jp: "水宮枢", value: "mizumiyasu, ahoge, thighs" },
+							{ zh: "綺綺羅羅薇薇", en: "Kikirara Vivi", jp: "綺々羅々ヴィヴィ", value: "kikirara_vivi, very long hair, pink hair, purple hair, gradient hair, hair ribbon, twintails, blue eyes" },
+							{ zh: "春先和香", en: "Harusaki nodoka", jp: "春先のどか", value: "nodokahaurusaki, brown hair, short hair, ahoge, hairclip, red eyes" },
+						]
+					},
+					{
+						subCategory: "衣服",
+						tags: [
+							{ zh: "白上吹雪衣服", en: "Shirakami Fubuki clothing", jp: "白上フブキ服", value: "blue neckerchief, white hoodie, detached sleeves, white sleeves, navel, short shorts, black shorts, thigh strap, single thighhigh, black thighhighs" },
+							{ zh: "白上吹雪衣服_裙", en: "Shirakami Fubuki clothing skirt", jp: "白上フブキ服ミニスカ", value: "blue neckerchief, white hoodie, detached sleeves, white sleeves, navel, miniskirt, black miniskirt, thigh strap, single thighhigh, black thighhighs" },
+							{ zh: "AZKi衣服", en: "AZKi clothing", jp: "AZKi服", value: "idol clothes, white dress, short dress, short sleeves, wrist cuffs, sash, blue corset, waist bow, blue shorts, layered skirt, frills, thigh strap, mini crown" },
+							{ zh: "さくらみこ衣服", en: "Sakura Miko clothing", jp: "さくらみこ服", value: "nontraditional miko, frills, single thighhigh, bridal garter" },
+							{ zh: "星街すいせい衣服", en: "Hoshimachi Suisei clothing", jp: "星街すいせい服", value: "plaid beret, crown, blue star choker, star earrings, blue ascot, grey plaid jacket, grey plaid skirt, layered skirt, partially fingerless gloves, star bracelet, uneven legwear, thigh strap" },
+							{ zh: "赤井はあと衣服", en: "Akai Haato clothing", jp: "赤井はあと服", value: "white shirt, blue dress, short sleeves, ribbon, thighhighs, thigh strap" },
+							{ zh: "紫咲シオン衣服", en: "Murasaki Shion clothing", jp: "紫咲シオン服", value: "black skirt, cropped shirt, pinstripe shirt, crop top, long sleeves, black capelet, pink bow tie, navel, midriff, stomach, miniskirt, black skirt, striped thighhighs, vertical stripes, black shoes" },
+							{ zh: "大神ミオ衣服", en: "Ookami Mio clothing", jp: "大神ミオ服", value: "sailor collar, red necktie, black shirt, black skirt, detached sleeves, midriff, kouhaku nawa, white thighhighs, tail wrap, tail around leg" },
+							{ zh: "猫又おかゆ衣服", en: "Nekomata Okayu clothing", jp: "猫又おかゆ服", value: "okayu school, black shirt, serafuku, long sleeves midriff, white shorts, black hairband, animal collar" },
+							{ zh: "宝鐘マリン衣服", en: "Houshou Marine clothing", jp: "宝鐘マリン服", value: "beret, sleeveless dress, black shirt, frills, black bloves, arm strap, white thighhighs, asymmetrical legwear, black garter straps" },
+							{ zh: "潤羽るしあ衣服", en: "Uruha Rushia clothing", jp: "潤羽るしあ服", value: "dress, jewelry, earrings, butterfly print, detached sleeves, butterfly dress, blue dress" },
+							{ zh: "兔媽衣服", en: "Pekora Mama clothing", jp: "ぺこらママ服", value: "apron, dress" },
+							{ zh: "角巻わため衣服", en: "Tsunomaki Watame clothing", jp: "角巻わため服", value: "fur-trimmed dress, short dress, red bowtie, detached sleeves, pouch, fur-trimmed cape, pink cape" },
+							{ zh: "常闇トワ衣服", en: "Tokoyami Towa clothing", jp: "常闇トワ服", value: "beret, hair ornament, piercing, black bowtie, white shirt, sleeveless" },
+							{ zh: "姫森ルーナ衣服", en: "Himemori Luna clothing", jp: "姫森ルーナ服", value: "detached collar, pink dress, bare shoulders, short sleeves, bracelet, striped thighhighs, crown" },
+							{ zh: "雪花ラミィ衣服", en: "Yukihana Lamy clothing", jp: "雪花ラミィ服", value: "necklace, brown dress, plaid dress, puffy short sleeves, black bow" },
+							{ zh: "博衣こより衣服", en: "Hakui Koyori clothing", jp: "博衣こより服", value: "hexagon, choker, black choker, necktie, pink necktie, shirt, white shirt, collared shirt, crop top, crop top overhang, fingernails, nail polish, pink nails, watch, pocket watch, midriff, navel, belt, skirt, miniskirt, black skirt, pleated skirt, frills, frilled skirt, test tube, pantyhose, black pantyhose, thigh strap, shoes, black footwear, high heels, coat, labcoat, white coat, open coat, open clothes, long sleeves, sleeves past wrists, pocket" },
+							{ zh: "沙花叉クロヱ衣服", en: "Sakamata Chloe clothing", jp: "沙花叉クロヱ服", value: "black collar, harness, cleavage, belt bra, white camisole, black jacket, off shoulder, long sleeves, fingerless gloves, black gloves, black belt, plaid skirt, red skirt, garter straps, torn thighhighs, black thighhighs" },
+							{ zh: "風真いろは衣服", en: "Kazama Iroha clothing", jp: "風真いろは服", value: "chest sarashi, cleavage, white haori, wide sleeves, fingerless gloves, black gloves, covered navel, green skirt, pleated skirt, white thighhighs" },
+							{ zh: "小鳥遊キアラ衣服", en: "Takanashi Kiara clothing", jp: "小鳥遊キアラ服", value: "orange beret, mini chef hat, ribbon choker, orange vest, detached sleeves, white sleeves, midriff, orange miniskirt, belt, white thighhighs" },
+							{ zh: "ハコス・ベールズ衣服", en: "Hakos Baelz clothing", jp: "ハコス・ベールズ服", value: "spiked collar, key necklace, bare shoulders, white shirt, clothes writing, asymmetrical sleeves, red and blue sleeve, yellow sleeve, black gloves, midriff, multicolored skirt, thigh strap" },
+							{ zh: "ムーナ・ホシノヴァ衣服", en: "Moona Hoshinova clothing", jp: "ムーナ・ホシノヴァ服", value: "jacket, open clothes, shorts, sleeveless, choker, midriff, bow ribbon, off shoulder, two-tone hair, crop top, black shirt, sleeveless shirt, gradient hair, black choker, black shorts, white jacket, bike shorts" },
+							{ zh: "一条莉々華衣服", en: "Ichijou Ririka clothing", jp: "一条莉々華服", value: "sunglasses on head, choker, sleeveless shirt, pink shirt, belt, skirt, white jacket, fur jacket, cropped jacket" },
+							{ zh: "儒烏風亭らでん衣服", en: "Juufuutei Raden clothing", jp: "儒烏風亭らでん服", value: "green dress, black dress, black hair, white crop top, bodystocking, white skirt, long skirt, side slit, white thigh boots" },
+							{ zh: "水宮樞衣服", en: "Mizumiya Suu clothing", jp: "水宮枢服", value: "hood up, hoodie, animal hood, mini skirt, o-ring thigh strap, jacket, shirt, leg warmers, blue white striped panties" },
+							{ zh: "綺綺羅羅薇薇衣服", en: "Kikirara Vivi clothing", jp: "綺々羅々ヴィヴィ服", value: "crop top, black thighhighs, black shorts, shoulder cutout" },
+							{ zh: "春先和香衣服", en: "Harusaki nodoka clothing", jp: "春先のどか服", value: "office lady, cardigan, green cardigan, white shirt, collared shirt, long sleeves, black skirt, pencil skirt, black pantyhose, lanyard" },
+						]
+					}
+				]
+			}
+
+		]
+
+		// 大類資料，對應 rawData 的 category.key
+		const groupData = [
+			{ group: { key: "Common", zh: "常用/汎用", en: "General", jp: "汎用" }, classification: ["Common words", "Pelope", "Hololive", "ren"] },
+			{ group: { key: "Body", zh: "身體", en: "Body", jp: "体" }, classification: ["color", "hair color", "Bangs(fringe)", "back of the head hair", "hitomi", "Eyes", "Ear", "Mouse", "body", "brisket", "pussy", "butt", "Physical", "effect（body）"] },
+			{ group: { key: "Clothes", zh: "衣服", en: "Clothes", jp: "服" }, classification: ["pattern", "Innerwear", "upper body clothing(tops)", "bottoms", "full outfit", "swimsuit", "clothes (option)", "sleeves", "ziraike", "head decoration/hat", "clothes", "boots"] },
+			{ group: { key: "Action", zh: "動作", en: "Action", jp: "動作" }, classification: ["pose（sample）", "pose（hand）", "pose（foot）", "pose", "pose（option）", "pose（sex）", "Sex"] },
+			{ group: { key: "Emotion", zh: "表情", en: "Expression", jp: "表情" }, classification: ["Emotions_General", "Emotions （Happy）", "Emotions （Sad）", "Emotions （Anger）", "Emotions （Fear）", "Emotions （Other）", "Emotions （Sex）", "Sightline"] },
+			{ group: { key: "Environment", zh: "環境", en: "Environment", jp: "環境" }, classification: ["time_weather", "Pleace", "item", "effect", "male_npc", "Ejaculation", "exposure"] },
+		];
+
+		let currentGroupKey = groupData[0].group.key;
+
+		// 🔧 自動轉換為 categories 與 jsonData（程式用）
+		const categories = {};
+		const jsonData = {};
+		rawData.forEach(group => {
+			const { key, zh, en, jp } = group.category;
+			categories[key] = { zh, en, jp };
+
+			// 🔽 扁平化所有子分類的 tags
+			const allTags = [];
+			if (group.groups) {
+				group.groups.forEach(sub => {
+					sub.tags.forEach(tag => {
+						allTags.push({
+							label: { zh: tag.zh, en: tag.en, jp: tag.jp },
+							value: tag.value
+						});
+					});
+				});
+			}
+
+			jsonData[key] = allTags;
+		});
+
+		let currentLang = 'zh';
+		let currentCategory = Object.keys(jsonData)[0];
+		let currentOutputIndex = 0;
+		let outputData = [];
+		let templateData = [];
+
+		function saveToLocal() {
+			localStorage.setItem("aitagTemplates", JSON.stringify(templateData));
+		}
+		function loadFromLocal() {
+			const saved = localStorage.getItem("aitagTemplates");
+			if (saved) {
+				try {
+					templateData = JSON.parse(saved);
+				} catch {
+					templateData = [];
+				}
+			}
+		}
+
+		function downloadTemplates() {
+			const checkboxes = document.querySelectorAll(".template-checkbox:checked");
+			if (!checkboxes.length) return alert("請勾選欲下載的模板");
+
+			const selected = Array.from(checkboxes).map(cb => templateData[parseInt(cb.dataset.index)]);
+			const blob = new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" });
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = "selected_templates.json";
+			a.click();
+			URL.revokeObjectURL(url);
+		}
+
+		function uploadTemplates() {
+			const input = document.getElementById("uploadInput");
+			const file = input.files[0];
+			if (!file) return;
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				try {
+					const newTemplates = JSON.parse(e.target.result);
+					if (!Array.isArray(newTemplates)) throw new Error("格式錯誤");
+					newTemplates.forEach(t => {
+						if (t.name && t.data) templateData.push(t);
+					});
+					saveToLocal();
+					renderTemplateList();
+					updateAllTagHighlight();
+				} catch {
+					alert("模板格式錯誤");
+				}
+			};
+			reader.readAsText(file);
+			input.value = "";
+		}
+
+		function renderTemplateList() {
+			const container = document.getElementById("templateList");
+			container.innerHTML = "";
+			templateData.forEach((tpl, idx) => {
+				const checkbox = document.createElement("input");
+				checkbox.type = "checkbox";
+				checkbox.className = "template-checkbox";
+				checkbox.dataset.index = idx;
+
+				const btn = document.createElement("button");
+				btn.textContent = tpl.name;
+				btn.onclick = () => {
+					applyTemplate(idx);
+					updateAllTagHighlight();
+				};
+
+				const del = document.createElement("span");
+				del.textContent = "✕";
+				del.onclick = () => {
+					templateData.splice(idx, 1);
+					saveToLocal();
+					renderTemplateList();
+				};
+
+				const wrapper = document.createElement("div");
+				wrapper.appendChild(checkbox);
+				wrapper.appendChild(btn);
+				wrapper.appendChild(del);
+				container.appendChild(wrapper);
+			});
+		}
+
+		function saveTemplate() {
+			const name = document.getElementById("templateName").value.trim();
+			if (!name) return alert("請輸入模板名稱！");
+			if (templateData.length >= 10) return alert("最多只能儲存 10 個模板！");
+			if (templateData.some(t => t.name === name)) return alert("名稱重複，請換一個名稱");
+			const template = {
+				name: name,
+				data: JSON.parse(JSON.stringify(outputData))
+			};
+			templateData.push(template);
+			saveToLocal();
+			renderTemplateList();
+			document.getElementById("templateName").value = "";
+		}
+		function applyTemplate(index) {
+			const t = templateData[index];
+			if (!t) return;
+			outputData = [];
+			outputsDiv.innerHTML = "";
+			outputData = JSON.parse(JSON.stringify(t.data));
+			outputData.forEach((_, i) => createOutputBox(i));
+		}
+		function renderCategoryButtons() {
+			categoriesDiv.innerHTML = '';
+			Object.keys(jsonData).forEach((key) => {
+				const btn = document.createElement('button');
+				btn.textContent = categories[key][currentLang] || key;
+				btn.onclick = () => {
+					currentCategory = key;
+					renderTags(key);
+				};
+				categoriesDiv.appendChild(btn);
+			});
+		}
+
+		function renderTags(categoryKey) {
+			tagListDiv.innerHTML = '';
+
+			const categoryData = rawData.find(c => c.category.key === categoryKey);
+			if (!categoryData) return;
+
+			const categoryEl = renderCategory(categoryData);
+			tagListDiv.appendChild(categoryEl);
+
+			updateAllTagHighlight();
+		}
+
+		function renderCategory(categoryData) {
+			const container = document.createElement("div");
+			container.className = "tag-category";
+
+			// 主分類標題
+			const mainTitle = document.createElement("h3");
+			mainTitle.textContent = categoryData.category.zh;
+			container.appendChild(mainTitle);
+
+			// 子分類
+			categoryData.groups.forEach(group => {
+				const groupDiv = document.createElement("div");
+				groupDiv.className = "tag-subcategory";
+
+				const subTitle = document.createElement("h4");
+				subTitle.textContent = group.subCategory;
+				groupDiv.appendChild(subTitle);
+
+				// tags
+				group.tags.forEach(tag => {
+					const btn = document.createElement("button");
+					btn.className = "tag";   // ✅ 統一用 .tag
+					btn.textContent = tag.zh;
+					btn.dataset.value = tag.value;  // ✅ 讓 updateAllTagHighlight 能找到對應值
+
+					//Add weight
+					const weight = document.createElement('span');
+					weight.className = 'weight-control';
+					weight.innerHTML = '<button class="wplus">+</button><button class="wminus">-</button>';
+					weight.querySelector('.wplus').onclick = e => {
+						e.stopPropagation();
+						const added = autoAdjustWeight(tag.value, 0.1);
+						if (!added) {
+							const match = tag;
+							match.weight = 1.0;
+							addTagToCurrent(match);
+						}
+						updateAllTagHighlight();
+					};
+					weight.querySelector('.wminus').onclick = e => {
+						e.stopPropagation();
+						autoAdjustWeight(tag.value, -0.1);
+						updateAllTagHighlight();
+					};
+					btn.appendChild(weight);
+
+					btn.addEventListener("click", () => {
+						toggleTag(btn, tag);   // ✅ 用 toggleTag 正確加入/刪除
+						updateAllTagHighlight();
+					});
+
+					groupDiv.appendChild(btn);
+				});
+
+
+				container.appendChild(groupDiv);
+			});
+
+			return container;
+		}
+
+
+
+		function autoAdjustWeight(value, delta) {
+			const found = outputData.findIndex(arr => arr.some(t => t.value === value || t.value.startsWith(`${value}:`)));
+			if (found !== -1) {
+				currentOutputIndex = found;
+				updateOutputHighlight();
+				adjustTagWeight(value, delta);
+				return true;
+			}
+			return false;
+		}
+
+		function adjustTagWeight(value, delta) {
+			const tag = outputData[currentOutputIndex].find(t => t.value === value || t.value.startsWith(`${value}:`));
+			if (!tag) return;
+			const currentWeight = tag.weight || parseFloat((tag.value.match(/:(\d+(\.\d+)?)\)$/) || [])[1]) || 1.0;
+			const newWeight = Math.max(0.1, Math.min(2.0, +(currentWeight + delta).toFixed(1)));
+			tag.weight = newWeight;
+			updateOutput(currentOutputIndex);
+			updateAllTagHighlight();
+		}
+
+		function toggleTag(el, tagObj) {
+			// 檢查這個 tag 在哪些 output 裡存在
+			const foundIndex = outputData.findIndex(arr =>
+				arr.some(t => t.value === tagObj.value)
+			);
+
+			if (foundIndex !== -1 && foundIndex !== currentOutputIndex) {
+				// 👉 如果已經存在於其他 Output
+				currentOutputIndex = foundIndex;       // 跳到該 Output
+				updateOutputHighlight();               // 更新高亮顯示
+				removeTag(foundIndex, tagObj.value);   // 並在該 Output 移除
+				return;
+			}
+
+			// 👉 原本流程：在當前 Output 做新增或刪除
+			const isSelected = el.classList.toggle('selected');
+			if (isSelected) {
+				addTagToCurrent(tagObj);
+			} else {
+				removeTag(currentOutputIndex, tagObj.value);
+			}
+		}
+
+
+
+		function createOutputBox(index) {
+			const box = document.createElement('div');
+			box.className = 'output-box';
+			box.onclick = () => {
+				currentOutputIndex = index;
+				updateOutputHighlight();
+			};
+
+			const tagDisplay = document.createElement('div');
+			tagDisplay.className = 'output-tags';
+			const textarea = document.createElement('textarea');
+			textarea.oninput = () => {
+				const values = textarea.value.split(',').map(t => t.trim()).filter(t => t);
+				outputData[index] = values.map(v => {
+					for (let cat in jsonData) {
+						const match = jsonData[cat].find(t => t.value === v);
+						if (match) return match;
+					}
+					return { label: { zh: v, en: v, jp: v }, value: v };
+				});
+				renderTagDisplay(index);
+				updateAllTagHighlight();
+			};
+			const controls = document.createElement('div');
+			controls.className = 'output-controls';
+			const copyBtn = document.createElement('button');
+			copyBtn.textContent = '📋';
+			copyBtn.onclick = (e) => {
+				e.stopPropagation();
+				navigator.clipboard.writeText(textarea.value);
+			};
+			const clearBtn = document.createElement('button');
+			clearBtn.textContent = '🗑️';
+			clearBtn.onclick = (e) => {
+				e.stopPropagation();
+				outputData[index] = [];
+				updateOutput(index);
+				updateAllTagHighlight();
+			};
+			controls.appendChild(copyBtn);
+			controls.appendChild(clearBtn);
+			box.appendChild(tagDisplay);
+			box.appendChild(textarea);
+			box.appendChild(controls);
+			outputsDiv.appendChild(box);
+			updateOutput(index);
+		}
+
+		function renderTagDisplay(index) {
+			const tagContainer = outputsDiv.children[index].querySelector('.output-tags');
+			tagContainer.innerHTML = '';
+			outputData[index].forEach(tag => {
+
+				// 先嘗試直接用既有 label
+				let displayText = (tag.label && tag.label[currentLang]) ? tag.label[currentLang] : null;
+
+				// 如果沒有 label，去 rawData 裡比對 value
+				if (!displayText) {
+					for (const group of rawData) {
+						for (const sub of group.groups) {
+							const match = sub.tags.find(t => t.value === tag.value);
+							if (match) {
+								displayText = match[currentLang]; // zh / en / jp
+								break;
+							}
+						}
+						if (displayText) break;
+					}
+				}
+
+				// 仍找不到就 fallback 為 value
+				if (!displayText) displayText = tag.value;
+
+				const tagEl = document.createElement('div');
+				tagEl.className = 'output-tag';
+				tagEl.innerHTML = `${displayText}<span onclick="removeTag(${index}, '${tag.value.replace(/'/g, "\\'")}')">✕</span>`;
+				tagContainer.appendChild(tagEl);
+			});
+		}
+
+
+		function removeTag(index, value) {
+			// 刪掉該 output 裡的 tag
+			outputData[index] = outputData[index].filter(t => t.value !== value);
+
+			// 更新 output 欄內容
+			updateOutput(index);
+
+			// 重新整理所有 TAG 高亮狀態
+			updateAllTagHighlight();
+		}
+
+
+		function updateOutput(index) {
+			const text = outputData[index].map(t => {
+				if (t.weight && t.weight !== 1.0) {
+					return `(${t.value}:${t.weight}), `;
+				}
+				return `${t.value}, `;
+			}).join('');
+			outputsDiv.children[index].querySelector('textarea').value = text;
+			renderTagDisplay(index);
+			updateOutputHighlight();
+		}
+
+		function updateOutputHighlight() {
+			document.querySelectorAll('.output-box').forEach((el, i) => {
+				el.classList.toggle('selected', i === currentOutputIndex);
+			});
+			updateAllTagHighlight();
+		}
+
+		function updateAllTagHighlight() {
+			// 收集所有 output 裡還存在的 tag
+			const selected = new Set(outputData.flat().map(t => t.value));
+
+			document.querySelectorAll('.tag').forEach(el => {
+				el.classList.toggle('selected', selected.has(el.dataset.value));
+			});
+		}
+
+
+
+		function addTagToCurrent(tagObj) {
+			const exists = outputData[currentOutputIndex].some(t => t.value === tagObj.value);
+			if (!exists) {
+				const cleanTag = JSON.parse(JSON.stringify(tagObj));
+				delete cleanTag.weight; // 確保重設為無權重
+				outputData[currentOutputIndex].push(cleanTag);
+				updateOutput(currentOutputIndex);
+				updateAllTagHighlight();
+			}
+		}
+		function copyAll() {
+			const allText = outputData.map(arr =>
+				arr.map(t => {
+					if (t.weight && t.weight !== 1) {
+						return `(${t.value}:${t.weight}), `;
+					} else {
+						return `${t.value}, `;
+					}
+				}).join('')
+			).join('\nBREAK\n');
+
+			// 嘗試用新 API
+			if (navigator.clipboard && window.isSecureContext) {
+				navigator.clipboard.writeText(allText).catch(err => {
+					console.error("Clipboard API 失敗:", err);
+				});
+			} else {
+				// fallback 方法（兼容 file:// 桌機）
+				const textarea = document.createElement("textarea");
+				textarea.value = allText;
+				document.body.appendChild(textarea);
+				textarea.select();
+				document.execCommand("copy");
+				document.body.removeChild(textarea);
+			}
+		}
+
+		function clearAll() {
+			for (let i = 0; i < outputData.length; i++) {
+				outputData[i] = [];
+				updateOutput(i);
+			}
+			updateAllTagHighlight();
+		}
+		function addOutput() {
+			const newIndex = outputData.length;
+			outputData.push([]);
+			createOutputBox(newIndex);
+		}
+		function removeLast() {
+			if (outputData.length > 1) {
+				outputsDiv.removeChild(outputsDiv.lastChild);
+				outputData.pop();
+				if (currentOutputIndex >= outputData.length) {
+					currentOutputIndex = outputData.length - 1;
+				}
+				updateAllTagHighlight();
+			}
+		}
+
+		// 手機寬度時把 #languageSelect 搬到 footer 的左按鈕區，桌機時還原
+		(function () {
+			function moveLanguageSelect() {
+				const select = document.getElementById('languageSelect');
+				const label = document.querySelector('label[for="languageSelect"]');
+				const templateToggle = document.getElementById('templateToggle');
+				const footerControls = document.querySelector('.footer-controls');
+				const topbar = document.querySelector('.topbar');
+
+				if (!select || !footerControls || !templateToggle || !topbar) return;
+
+				// 把原本 footer 裡的左右群組先抓出來（可能會 later 被移除）
+				const origLeft = footerControls.querySelector('.left-buttons');
+				const origRight = footerControls.querySelector('.right-buttons');
+
+				if (window.innerWidth <= 768) {
+					// 手機版：隱藏 label
+					if (label) label.style.display = 'none';
+
+					// 建立 row1、row2（如果還沒有）
+					let row1 = footerControls.querySelector('.footer-row1');
+					let row2 = footerControls.querySelector('.footer-row2');
+					if (!row1) {
+						row1 = document.createElement('div');
+						row1.className = 'footer-row1';
+						// 放在 footerControls 最前面
+						footerControls.insertBefore(row1, footerControls.firstChild);
+					}
+					if (!row2) {
+						row2 = document.createElement('div');
+						row2.className = 'footer-row2';
+						footerControls.appendChild(row2);
+					}
+
+					// 在 row1、row2 各自建立 .right-buttons （如果不存在）
+					let row1Right = row1.querySelector('.right-buttons');
+					if (!row1Right) {
+						row1Right = document.createElement('div');
+						row1Right.className = 'right-buttons';
+						row1.appendChild(row1Right);
+					}
+					let row2Right = row2.querySelector('.right-buttons');
+					if (!row2Right) {
+						row2Right = document.createElement('div');
+						row2Right.className = 'right-buttons';
+						row2.appendChild(row2Right);
+					}
+
+					// 把語言選單移到 row1 左側（若尚未移）
+					if (!row1.contains(select)) row1.insertBefore(select, row1.firstChild);
+
+					// 把原本 footer 的 left-buttons 裡面的按鈕（Add/Remove）搬到 row1Right
+					if (origLeft) {
+						while (origLeft.firstChild) {
+							row1Right.appendChild(origLeft.firstChild);
+						}
+						// 移完就刪掉空的 container，避免殘留
+						origLeft.remove();
+					} else {
+						// fallback：若找不到 origLeft，嘗試直接抓函式名稱來找按鈕
+						const btnAdd = footerControls.querySelector('button[onclick*="addOutput"]');
+						const btnRemove = footerControls.querySelector('button[onclick*="removeLast"]');
+						if (btnAdd && !row1Right.contains(btnAdd)) row1Right.appendChild(btnAdd);
+						if (btnRemove && !row1Right.contains(btnRemove)) row1Right.appendChild(btnRemove);
+					}
+
+					// 把模板鍵放到 row2 左側
+					if (!row2.contains(templateToggle)) row2.insertBefore(templateToggle, row2.firstChild);
+
+					// 把原本 footer 的 right-buttons（Clear/Copy）搬到 row2Right
+					if (origRight) {
+						// 注意：origRight 可能是我們剛剛新建的 row1Right/row2Right 的其中一個，只有在它不是剛剛建立的 container 才搬
+						if (origRight !== row1Right && origRight !== row2Right) {
+							while (origRight.firstChild) {
+								row2Right.appendChild(origRight.firstChild);
+							}
+							origRight.remove();
+						} else {
+							// fallback：找指定按鈕搬移
+							const btnClear = footerControls.querySelector('button[onclick*="clearAll"]');
+							const btnCopy = footerControls.querySelector('button[onclick*="copyAll"]');
+							if (btnClear && !row2Right.contains(btnClear)) row2Right.appendChild(btnClear);
+							if (btnCopy && !row2Right.contains(btnCopy)) row2Right.appendChild(btnCopy);
+						}
+					} else {
+						const btnClear = footerControls.querySelector('button[onclick*="clearAll"]');
+						const btnCopy = footerControls.querySelector('button[onclick*="copyAll"]');
+						if (btnClear && !row2Right.contains(btnClear)) row2Right.appendChild(btnClear);
+						if (btnCopy && !row2Right.contains(btnCopy)) row2Right.appendChild(btnCopy);
+					}
+
+				} else {
+					// 桌機版：還原
+
+					if (label) label.style.display = '';
+
+					// 建立 footer-level 的 left-buttons、right-buttons（如果不存在）
+					let newLeft = footerControls.querySelector('.left-buttons');
+					if (!newLeft) {
+						newLeft = document.createElement('div');
+						newLeft.className = 'left-buttons';
+						footerControls.insertBefore(newLeft, footerControls.firstChild);
+					}
+					// create a footer-level right-buttons at end if not exists
+					let newRight = null;
+					// 若 footerControls 最底已經有 .right-buttons 且不是 row container，拿來用
+					footerControls.querySelectorAll(':scope > .right-buttons').forEach(el => newRight = el);
+					if (!newRight) {
+						newRight = document.createElement('div');
+						newRight.className = 'right-buttons';
+						footerControls.appendChild(newRight);
+					}
+
+					// 如果我們之前建立了 row1/row2，從裡面把按鈕搬回新建的 left/right
+					const row1 = footerControls.querySelector('.footer-row1');
+					const row2 = footerControls.querySelector('.footer-row2');
+
+					if (row1) {
+						// row1 內可能有 select 與 row1Right
+						const r1Right = row1.querySelector('.right-buttons');
+						if (r1Right) {
+							while (r1Right.firstChild) {
+								newLeft.appendChild(r1Right.firstChild);
+							}
+						}
+						// 把 select 還原回 topbar（放在 label 後）
+						if (!topbar.contains(select)) {
+							if (label && label.parentNode) label.parentNode.insertBefore(select, label.nextSibling);
+							else topbar.appendChild(select);
+						}
+					}
+
+					if (row2) {
+						const r2Right = row2.querySelector('.right-buttons');
+						if (r2Right) {
+							while (r2Right.firstChild) {
+								newRight.appendChild(r2Right.firstChild);
+							}
+						}
+						// 把 templateToggle 還回 topbar（desktop CSS 會隱藏它）
+						if (!topbar.contains(templateToggle)) topbar.appendChild(templateToggle);
+					}
+
+					// 最後把 row1 / row2 刪掉（清乾淨）
+					if (row1) row1.remove();
+					if (row2) row2.remove();
+				}
+			}
+
+			// 綁定事件（已存在也沒關係）
+			window.addEventListener('DOMContentLoaded', moveLanguageSelect);
+			window.addEventListener('resize', moveLanguageSelect);
+			window.addEventListener('orientationchange', moveLanguageSelect);
+		})();
+
+		function renderGroupButtons() {
+			const container = document.getElementById("groupButtons");
+			if (!container) return;
+			container.innerHTML = "";
+			groupData.forEach(g => {
+				const btn = document.createElement("button");
+				btn.textContent = g.group[currentLang] || g.group.key;
+				if (g.group.key === currentGroupKey) btn.classList.add("active");
+				btn.onclick = () => {
+					currentGroupKey = g.group.key;
+					currentCategory = g.classification[0];
+					renderGroupButtons();              // 重新渲染 → 更新高亮
+					renderCategoryButtons_mobile();
+					renderTags(currentCategory);
+				};
+				container.appendChild(btn);
+			});
+		}
+
+		function renderCategoryButtons_mobile() {
+			categoriesDiv.innerHTML = '';
+			const group = groupData.find(g => g.group.key === currentGroupKey);
+			if (!group) return;
+			group.classification.forEach(key => {
+				const category = categories[key];
+				if (!category) return;
+				const btn = document.createElement('button');
+				btn.textContent = category[currentLang] || key;
+				if (key === currentCategory) btn.classList.add("active");
+				btn.onclick = () => {
+					currentCategory = key;
+					renderCategoryButtons_mobile();    // 重新渲染 → 更新高亮
+					renderTags(key);
+				};
+				categoriesDiv.appendChild(btn);
+			});
+		}
+
+		document.addEventListener("DOMContentLoaded", () => {
+			const toggleBtn = document.getElementById("templateToggle");
+			const templateBox = document.querySelector(".template-box");
+
+			if (toggleBtn && templateBox) {
+				toggleBtn.onclick = () => {
+					templateBox.classList.toggle("show");
+				};
+			}
+		});
+
+
+
+		window.addEventListener("DOMContentLoaded", () => {
+			categoriesDiv = document.getElementById('categories');
+			tagListDiv = document.getElementById('tagList');
+			outputsDiv = document.getElementById('outputs');
+			languageSelect = document.getElementById('languageSelect');
+			templateList = document.getElementById('templateList');
+
+			loadFromLocal();
+
+			if (window.innerWidth <= 768) {
+				renderGroupButtons();
+				renderCategoryButtons_mobile();
+				renderTags(currentCategory);
+			} else {
+				renderCategoryButtons();
+				renderTags(currentCategory);
+			}
+			for (let i = 0; i < 3; i++) {
+				outputData.push([]);
+				createOutputBox(i);
+			}
+			renderTemplateList();
+			languageSelect.onchange = () => {
+				currentLang = languageSelect.value;
+
+				if (window.innerWidth <= 768) {
+					renderGroupButtons();
+					renderCategoryButtons_mobile();
+					renderTags(currentCategory);
+				} else {
+					renderCategoryButtons();
+					renderTags(currentCategory);
+				}
+				outputData.forEach((_, i) => renderTagDisplay(i));
+				updateOutputHighlight();
+			};
+		});
+
+
+
+	</script>
+</body>
+
+</html>
