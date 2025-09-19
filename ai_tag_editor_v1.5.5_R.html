@@ -644,7 +644,7 @@
 					{ zh: "陷入的丁字褲", en: "Trapped in a thong", jp: "陷入的丁字褲", value: "micro lace thong, wedgie, cameltoe, visible labia outline, crotch bulge, tight crotch, skin-tight, fabric stretch lines, labia showing" },
 					{ zh: "陷入的陰部", en: "Trapped in", jp: "陷入", value: "visible labia outline, crotch bulge, tight crotch, skin-tight" },
 					{ zh: "修女", en: "NUN", jp: "修道女", value: "nun, deep blue and white outfit, transparent fabric, religious attire with sexy modifications, revealing, transparent religious attire , miniskirt" },
-					{ zh: "下乳修女", en: "underboob NUN", jp: "下乳修道女", value: "underboob nun, latex nun, underboob, nun, habit, detached sleeves, breast curtains, " },
+					{ zh: "下乳修女", en: "underboob NUN", jp: "下乳修道女", value: "underboob nun, underboob, nun, habit, detached sleeves, breast curtains" },
 				]
 			},
 			{
@@ -1090,6 +1090,7 @@
 			{
 				category: { key: "Bangs(fringe)", zh: "瀏海", en: "Bangs(fringe)", jp: "髪（前）" },
 				"tags": [
+					{ zh: "瀏海", en: "bangs", jp: "前髪", value: "bangs" },
 					{ zh: "齊瀏海", en: "blunt bangs", jp: "パッツン前髪", value: "blunt bangs" },
 					{ zh: "側分瀏海", en: "side bangs", jp: "サイドバング", value: "side bangs" },
 					{ zh: "斜瀏海", en: "swept bangs", jp: "片方分け", value: "swept bangs" },
@@ -1113,51 +1114,61 @@
 					{ zh: "厚瀏海", en: "thick bangs", jp: "厚め前髪", value: "thick bangs" },
 					{ zh: "尖角瀏海", en: "pointy bangs", jp: "とんがり前髪", value: "pointy bangs" },
 					{ zh: "心型瀏海", en: "heart bangs", jp: "ハートバング", value: "heart bangs" },
-					{ zh: "雙層瀏海", en: "layered bangs", jp: "レイヤード前髪", value: "layered bangs" }
+					{ zh: "雙層瀏海", en: "layered bangs", jp: "レイヤード前髪", value: "layered bangs" },
+					{ zh: "內捲瀏海", en: "inward curled bangs", jp: "内巻き前髪", value: "inward curled bangs" },
+					{ zh: "外翻瀏海", en: "outward flipped bangs", jp: "外ハネ前髪", value: "outward flipped bangs" },
+					{ zh: "半月瀏海", en: "half-moon bangs", jp: "半月前髪", value: "half-moon bangs" },
+					{ zh: "V字瀏海", en: "V-shaped bangs", jp: "V字前髪", value: "V-shaped bangs" },
+					{ zh: "漸層碎瀏海", en: "feathered bangs", jp: "フェザーバング", value: "feathered bangs" },
+					{ zh: "交錯瀏海", en: "crisscross bangs", jp: "クロスバング", value: "crisscross bangs" },
+					{ zh: "透明感瀏海", en: "transparent bangs", jp: "透明感前髪", value: "transparent bangs" },
+					{ zh: "微微分開的瀏海", en: "slightly parted bangs", jp: "軽く分けた前髪", value: "slightly parted bangs" }
+
 				]
 			},
 			{
 				category: { key: "back of the head hair", zh: "髮型(頭後方)", en: "back of the head hair", jp: "髪（後）" },
 				"tags": [
-					{ zh: "爆炸頭", en: "afro", jp: "アフロヘアー", value: "afro" },
-					{ zh: "非洲捲髮", en: "afro-textured hair", jp: "アフロヘアー", value: "afro-textured hair" },
-					{ zh: "睡亂頭", en: "bedhead", jp: "寝癖", value: "bedhead" },
-					{ zh: "鮑勃頭", en: "bob cut", jp: "ボブカット", value: "bob cut" },
-					{ zh: "碗型頭", en: "bowl cut", jp: "ボウルカット", value: "bowl cut" },
-					{ zh: "三股辮", en: "braid", jp: "三つ編み", value: "braid" },
-					{ zh: "辮子馬尾", en: "braided ponytail", jp: "編み込みポニーテール", value: "braided ponytail" },
-					{ zh: "包頭/丸子頭", en: "bun hair", jp: "お団子ヘア", value: "bun hair" },
-					{ zh: "寸頭", en: "buzz cut", jp: "坊主頭", value: "buzz cut" },
-					{ zh: "錐形髮髻", en: "cone hair bun", jp: "三角おだんご", value: "cone hair bun" },
-					{ zh: "內彎髮", en: "inward curls", jp: "内巻き髪", value: "inward curls" },
-					{ zh: "外翻髮尾", en: "flipped hair", jp: "外ハネ", value: "flipped hair" },
-					{ zh: "鬈髮", en: "curly hair", jp: "カーリーヘア", value: "curly hair" },
-					{ zh: "雷鬼頭", en: "dreadlocks", jp: "ドレッドヘア", value: "dreadlocks" },
-					{ zh: "荷蘭辮", en: "dutch braid", jp: "裏編み込み", value: "dutch braid" },
-					{ zh: "法式辮", en: "french braid", jp: "フレンチブレイド", value: "french braid" },
+					// 🐴 馬尾 Ponytail 系列
 					{ zh: "高馬尾", en: "high ponytail", jp: "ハイポニーテール", value: "high ponytail" },
 					{ zh: "低馬尾", en: "low ponytail", jp: "ローポニーテール", value: "low ponytail" },
-					{ zh: "側馬尾", en: "side ponytail", jp: "サイドテール", value: "side ponytail" },
+					{ zh: "側馬尾", en: "side ponytail", jp: "サイドポニーテール", value: "side ponytail" },
+					{ zh: "長直馬尾", en: "long straight ponytail", jp: "ロングストレートポニーテール", value: "long straight ponytail" },
+					{ zh: "泡泡馬尾", en: "bubble ponytail", jp: "バブルポニーテール", value: "bubble ponytail" },
+					{ zh: "低辮馬尾", en: "low braided ponytail", jp: "ローポニーテール編み", value: "low braided ponytail" },
+					{ zh: "高辮馬尾", en: "high braided ponytail", jp: "ハイポニーテール編み", value: "high braided ponytail" },
+					{ zh: "馬尾環", en: "ponytail loop", jp: "ポニーループ", value: "ponytail loop" },
+					// ✨ 雙馬尾 Twin Tails 系列
+					{ zh: "雙馬尾", en: "twin tails", jp: "ツインテール", value: "twin tails" },
+					{ zh: "高雙馬尾", en: "high twin tails", jp: "ハイツインテール", value: "high twin tails" },
+					{ zh: "低雙馬尾", en: "low twin tails", jp: "ローツインテール", value: "low twin tails" },
+					// 🌸 辮子 Braids 系列
+					{ zh: "三股辮", en: "braid", jp: "三つ編み", value: "braid" },
+					{ zh: "側辮", en: "side braid", jp: "サイド三つ編み", value: "side braid" },
+					{ zh: "雙側辮", en: "twin side braids", jp: "ツインサイド三つ編み", value: "twin side braids" },
+					{ zh: "高雙辮", en: "high twin braids", jp: "ハイツイン三つ編み", value: "high twin braids" },
+					{ zh: "低雙辮", en: "low twin braids", jp: "ローツイン三つ編み", value: "low twin braids" },
+					{ zh: "法式辮", en: "french braid", jp: "フレンチブレイド", value: "french braid" },
+					{ zh: "荷蘭辮", en: "dutch braid", jp: "ダッチブレイド", value: "dutch braid" },
+					{ zh: "瀑布辮", en: "waterfall braid", jp: "ウォーターフォールブレイド", value: "waterfall braid" },
+					{ zh: "蝎子辮", en: "scorpion braid", jp: "スコーピオンブレイド", value: "scorpion braid" },
+					{ zh: "吉普賽辮", en: "gypsy braid", jp: "ジプシーブレイド", value: "gypsy braid" },
+					// 🎀 盤髮 Updo / Bun 系列
+					{ zh: "髮髻", en: "bun", jp: "お団子", value: "bun" },
+					{ zh: "凌亂髮髻", en: "messy bun", jp: "ゆる団子", value: "messy bun" },
+					{ zh: "蓬鬆高髮髻", en: "messy high bun", jp: "ゆる高お団子", value: "messy high bun" },
+					{ zh: "雙髮髻", en: "twin buns", jp: "ツイン団子", value: "twin buns" },
+					{ zh: "高雙髮髻", en: "high twin buns", jp: "ハイツイン団子", value: "high twin buns" },
+					{ zh: "低雙髮髻", en: "low twin buns", jp: "ローツイン団子", value: "low twin buns" },
+					{ zh: "皇冠盤髮", en: "crown updo", jp: "クラウンアップ", value: "crown updo" },
+					{ zh: "法式盤髮", en: "french twist", jp: "フレンチツイスト", value: "french twist" },
+					{ zh: "螺旋盤髮", en: "spiral updo", jp: "スパイラルアップ", value: "spiral updo" },
+					// 💫 其他特徵
 					{ zh: "長髮", en: "long hair", jp: "ロングヘア", value: "long hair" },
-					{ zh: "凌亂長髮", en: "messy long hair", jp: "長い乱れ髪", value: "messy long hair" },
-					{ zh: "中長髮", en: "medium hair", jp: "セミロング", value: "medium hair" },
 					{ zh: "短髮", en: "short hair", jp: "ショートヘア", value: "short hair" },
-					{ zh: "短鮑勃頭", en: "short bob cut", jp: "ショートボブ", value: "short bob cut" },
-					{ zh: "雙辮", en: "twin braids", jp: "ツインブレイド", value: "twin braids" },
-					{ zh: "雙馬尾", en: "twin ponytail", jp: "ツインテール", value: "twin ponytail" },
-					{ zh: "短雙馬尾", en: "short twin ponytail", jp: "短いツインテール", value: "short twin ponytail" },
-					{ zh: "龐巴度", en: "pompadour", jp: "リーゼント", value: "pompadour" },
-					{ zh: "莫西干", en: "mohawk", jp: "モヒカン", value: "mohawk" },
-					{ zh: "背頭", en: "slicked back hair", jp: "オールバック", value: "slicked back hair" },
-					{ zh: "上盤髮", en: "updo hair", jp: "アップスタイル", value: "updo hair" },
-					{ zh: "蓬鬆捲髮", en: "wavy hair", jp: "ウェーブヘア", value: "wavy hair" },
-					{ zh: "垂落鬆捲", en: "loose curls", jp: "ゆるふわカール", value: "loose curls" },
-					{ zh: "凌亂丸子頭", en: "messy bun", jp: "ゆるおだんご", value: "messy bun" },
-					{ zh: "側削髮型", en: "shaved sides", jp: "ツーブロック", value: "shaved sides" },
-					{ zh: "短側削", en: "short shaved sides", jp: "短いツーブロック", value: "short shaved sides" },
-					{ zh: "後頸削短", en: "nape undercut", jp: "うなじ刈り上げ", value: "nape undercut" },
-					{ zh: "鑽頭捲髮", en: "drill curls", jp: "縦ロール", value: "drill curls" },
-					{ zh: "直髮", en: "straight hair", jp: "ストレートヘア", value: "straight hair" }
+					{ zh: "中長髮", en: "medium hair", jp: "ミディアムヘア", value: "medium hair" },
+					{ zh: "光頭", en: "bald", jp: "スキンヘッド", value: "bald" },
+					{ zh: "瀏海後梳", en: "hair pulled back", jp: "前髪を後ろにまとめる", value: "hair pulled back" }
 				]
 			},
 			{
@@ -2858,6 +2869,35 @@
 					{ zh: "神社", en: "shrine", jp: "神社", value: "shrine" },
 					{ zh: "寺廟", en: "temple", jp: "お寺", value: "temple" },
 					{ zh: "教堂", en: "church", jp: "教会", value: "church" },
+					// ⚔️ 戰場 Battlefield
+					{ zh: "戰場", en: "battlefield", jp: "戦場", value: "battlefield" },
+					{ zh: "廢墟戰場", en: "ruined battlefield", jp: "廃墟の戦場", value: "ruined battlefield" },
+					{ zh: "燃燒的戰場", en: "burning battlefield", jp: "燃える戦場", value: "burning battlefield" },
+					{ zh: "近戰廝殺", en: "close combat scene", jp: "接近戦シーン", value: "close combat scene" },
+					{ zh: "遠程交火", en: "ranged firefight", jp: "遠距離銃撃戦", value: "ranged firefight" },
+
+					// 💣 軍事設施 Military
+					{ zh: "戰壕", en: "trenches", jp: "塹壕", value: "trenches" },
+					{ zh: "碉堡", en: "bunker", jp: "バンカー", value: "bunker" },
+					{ zh: "軍事基地", en: "military base", jp: "軍事基地", value: "military base" },
+					{ zh: "廢棄軍營", en: "abandoned camp", jp: "廃棄されたキャンプ", value: "abandoned camp" },
+					{ zh: "機甲殘骸", en: "mecha wreckage", jp: "機甲の残骸", value: "mecha wreckage" },
+					{ zh: "坦克殘骸", en: "tank wreckage", jp: "戦車の残骸", value: "tank wreckage" },
+					{ zh: "戰機殘骸", en: "fighter wreckage", jp: "戦闘機の残骸", value: "fighter wreckage" },
+
+					// 🏚️ 廢墟 / 戰後 Aftermath
+					{ zh: "城市廢墟", en: "city ruins", jp: "都市の廃墟", value: "city ruins" },
+					{ zh: "炸毀的建築", en: "bombed buildings", jp: "爆撃された建物", value: "bombed buildings" },
+					{ zh: "焦黑大地", en: "scorched earth", jp: "焦土", value: "scorched earth" },
+					{ zh: "彈坑", en: "crater", jp: "弾痕", value: "crater" },
+					{ zh: "荒蕪戰場", en: "desolate battlefield", jp: "荒れ果てた戦場", value: "desolate battlefield" },
+
+					// 🌫️ 氛圍 Atmosphere
+					{ zh: "煙霧瀰漫", en: "battle smoke", jp: "戦闘の煙", value: "battle smoke" },
+					{ zh: "火光沖天", en: "blazing fire", jp: "燃え盛る炎", value: "blazing fire" },
+					{ zh: "血色天空", en: "crimson sky", jp: "血のような空", value: "crimson sky" },
+					{ zh: "黃昏戰場", en: "battlefield at dusk", jp: "夕暮れの戦場", value: "battlefield at dusk" },
+					{ zh: "風沙漫天", en: "dust storm battlefield", jp: "砂塵の戦場", value: "dust storm battlefield" },
 					// 🌌 幻想 / 科幻
 					{ zh: "賽博龐克都市", en: "cyberpunk city", jp: "サイバーパンク都市", value: "cyberpunk city" },
 					{ zh: "未來都市", en: "futuristic city", jp: "未来都市", value: "futuristic city" },
@@ -4238,6 +4278,7 @@
 				el.classList.toggle('selected', selected.has(el.dataset.value));
 			});
 		}
+
 		function addTagToCurrent(tagObj) {
 			const exists = outputData[currentOutputIndex].some(t => t.value === tagObj.value);
 			if (!exists) {
