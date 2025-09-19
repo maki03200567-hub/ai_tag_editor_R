@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>SubCategory 模板生成器</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  input, textarea { width: 100%; margin: 10px 0; font-size: 16px; }
+  button { padding: 10px 20px; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<h2>SubCategory 模板生成器</h2>
+<label>輸入 SubCategory 名稱：</label>
+<input type="text" id="inputName" placeholder="例如：其他 / 特殊">
+
+<button onclick="generateTemplate()">生成模板</button>
+
+<label>結果：</label>
+<textarea id="output" rows="6" readonly></textarea>
+
+<script>
+function generateTemplate() {
+  const name = document.getElementById("inputName").value.trim();
+  if (!name) {
+    alert("請輸入 SubCategory 名稱！");
+    return;
+  }
+
+  const template = `        ]
+    },
+    {
+        subCategory: "${name}",
+        tags: [`;
+
+  document.getElementById("output").value = template;
+}
+</script>
+
+</body>
+</html>
