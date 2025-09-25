@@ -1609,42 +1609,94 @@
 				]
 			},
 			{
-				category: { key: "Mouse", zh: "嘴", en: "Mouse", jp: "口" },
+				category: { key: "Mouth", zh: "嘴", en: "Mouth", jp: "口" },
 				groups: [
 					{
-						subCategory: " ",
+						subCategory: "基本嘴型",
+						tags: [
+							{ zh: "閉嘴", en: "mouth closed", jp: "口を閉じている", value: "mouth closed" },
+							{ zh: "張開嘴", en: "mouth open", jp: "口を開けている", value: "mouth open" },
+							{ zh: "舌頭吐出嘴", en: "tongue-out mouth", jp: "舌出し口", value: "tongue-out mouth" },
+							{ zh: "吐舌", en: "sticking out tongue", jp: "舌を出す", value: "sticking out tongue" }
+						]
+					},
+					{
+						subCategory: "嘴部動作",
 						tags: [
 							{ zh: "流口水", en: "drooling", jp: "よだれ", value: "drooling" },
-							{ zh: "閉嘴", en: "mouth closed", jp: "口を閉じている", value: "mouth closed" },
-							{ zh: "咬", en: "bite", jp: "（何かを）噛む, 噛まれる", value: "bite" },
+							{ zh: "咬", en: "bite", jp: "（何かを）噛む", value: "bite" },
+							{ zh: "咬自己", en: "self bite", jp: "自分の体の一部を噛む", value: "self bite" },
 							{ zh: "舔", en: "licking", jp: "（何かを）舐めている", value: "licking" },
 							{ zh: "舔嘴唇", en: "licking own lips", jp: "自分の唇を舐める", value: "licking own lips" },
-							{ zh: "張開嘴", en: "mouth open", jp: "口を開けている", value: "mouth open" },
-							{ zh: "咬自己", en: "self bite", jp: "自分の体の一部を噛む", value: "self bite" },
 							{ zh: "舔自己", en: "self lick", jp: "自分を舐める", value: "self lick" },
 							{ zh: "吸吮", en: "sucking", jp: "（何かを）吸う", value: "sucking" },
-							{ zh: "舌頭吐出嘴", en: "tongue-out mouth", jp: "舌出し口", value: "tongue-out mouth" },
+							{ zh: "吹氣", en: "blowing", jp: "息を吹く", value: "blowing" },
+							{ zh: "啜嘴", en: "smacking lips", jp: "唇をすする", value: "smacking lips" }
+						]
+					},
+					{
+						subCategory: "牙齒表現",
+						tags: [
 							{ zh: "露齒", en: "showing teeth", jp: "歯を見せる", value: "showing teeth" },
+							{ zh: "笑露牙齒", en: "toothy smile", jp: "歯を見せた笑顔", value: "toothy smile" },
 							{ zh: "咬牙", en: "clenched teeth", jp: "歯を食いしばる", value: "clenched teeth" },
-							{ zh: "咬緊嘴唇", en: "biting lip", jp: "唇を噛む", value: "biting lip" },
 							{ zh: "咬牙切齒", en: "gritted teeth", jp: "歯ぎしり", value: "gritted teeth" },
-							{ zh: "犬齒", en: "canine teeth", jp: "犬歯", value: "canine teeth" },
-							{ zh: "尖牙", en: "fangs", jp: "牙", value: "fangs" },
 							{ zh: "上齒外露", en: "upper teeth visible", jp: "上の歯が見える", value: "upper teeth visible" },
 							{ zh: "下齒外露", en: "lower teeth visible", jp: "下の歯が見える", value: "lower teeth visible" },
-							{ zh: "笑露牙齒", en: "toothy smile", jp: "歯を見せた笑顔", value: "toothy smile" },
+							{ zh: "犬齒", en: "canine teeth", jp: "犬歯", value: "canine teeth" },
+							{ zh: "尖牙", en: "fangs", jp: "牙", value: "fangs" },
 							{ zh: "獠牙", en: "sharp teeth", jp: "鋭い歯", value: "sharp teeth" },
-							{ zh: "鋸齒", en: "serrated teeth", jp: "ギザ歯", value: "serrated teeth" },
-							{ zh: "噘嘴", en: "pouting", jp: "口を尖らせる", value: "pouting" },
-							{ zh: "嘟嘴", en: "duck face", jp: "口をすぼめる", value: "duck face" },
-							{ zh: "吹氣", en: "blowing", jp: "息を吹く", value: "blowing" },
-							{ zh: "啜嘴", en: "smacking lips", jp: "唇をすする", value: "smacking lips" },
+							{ zh: "鋸齒", en: "serrated teeth", jp: "ギザ歯", value: "serrated teeth" }
+						]
+					},
+					{
+						subCategory: "情緒與表情",
+						tags: [
 							{ zh: "微笑", en: "smile", jp: "微笑む", value: "smile" },
 							{ zh: "閉眼微笑", en: "smiling with eyes closed", jp: "目を閉じて微笑む", value: "smiling with eyes closed" },
-							{ zh: "吐舌", en: "sticking out tongue", jp: "舌を出す", value: "sticking out tongue" }
+							{ zh: "噘嘴", en: "pouting", jp: "口を尖らせる", value: "pouting" },
+							{ zh: "嘟嘴", en: "duck face", jp: "口をすぼめる", value: "duck face" },
+							{ zh: "咬緊嘴唇", en: "biting lip", jp: "唇を噛む", value: "biting lip" },
+							{ zh: "張嘴驚訝", en: "open mouth surprised", jp: "驚いて口を開ける", value: "open mouth, surprised" },
+							{ zh: "緊閉嘴角", en: "tight-lipped", jp: "口を固く閉じる", value: "tight-lipped" },
+							{ zh: "奸笑", en: "smirk", jp: "ニヤリと笑う", value: "smirk" },
+							{ zh: "哭泣嘴型", en: "crying mouth", jp: "泣き顔の口", value: "crying mouth" },
+							{ zh: "大笑", en: "laughing mouth", jp: "笑い口", value: "laughing mouth" },
+							{ zh: "喘氣", en: "panting", jp: "あえぎ", value: "panting" },
+							{ zh: "咬下唇", en: "lip bite (lower)", jp: "下唇を噛む", value: "biting lower lip" }
+						]
+					},
+					{
+						subCategory: "含在口中 (食物類)",
+						tags: [
+							{ zh: "棒棒糖含在口中", en: "lollipop in mouth", jp: "口にロリポップ", value: "lollipop in mouth" },
+							{ zh: "棒棒糖棒子含在口中", en: "candy stick in mouth", jp: "口にキャンディスティック", value: "candy stick in mouth" },
+							{ zh: "冰棒含在口中", en: "popsicle in mouth", jp: "口にアイスキャンディー", value: "popsicle in mouth" },
+							{ zh: "花瓣含在口中", en: "flower in mouth", jp: "口に花びら", value: "flower in mouth" },
+							{ zh: "小樹枝含在口中", en: "twig in mouth", jp: "口に小枝", value: "twig in mouth" },
+							{ zh: "吸管含在口中", en: "straw in mouth", jp: "口にストロー", value: "straw in mouth" },
+							{ zh: "香煙含在口中", en: "cigarette in mouth", jp: "口にタバコ", value: "cigarette in mouth" },
+							{ zh: "紙張含在口中", en: "paper in mouth", jp: "口に紙", value: "paper in mouth" },
+							{ zh: "溫度計含在口中", en: "thermometer in mouth", jp: "口に体温計", value: "thermometer in mouth" },
+							{ zh: "牙刷含在口中", en: "toothbrush in mouth", jp: "口に歯ブラシ", value: "toothbrush in mouth" },
+							{ zh: "筆含在口中", en: "pen in mouth", jp: "口にペン", value: "pen in mouth" },
+							{ zh: "鉛筆含在口中", en: "pencil in mouth", jp: "口に鉛筆", value: "pencil in mouth" },
+							{ zh: "湯匙含在口中", en: "spoon in mouth", jp: "口にスプーン", value: "spoon in mouth" },
+							{ zh: "筷子含在口中", en: "chopsticks in mouth", jp: "口に箸", value: "chopsticks in mouth" },
+							{ zh: "叉子含在口中", en: "fork in mouth", jp: "口にフォーク", value: "fork in mouth" },
+							{ zh: "梳子含在口中", en: "comb in mouth", jp: "口にクシ", value: "comb in mouth" },
+							{ zh: "針線含在口中", en: "needle and thread in mouth", jp: "口に針と糸", value: "needle and thread in mouth" },
+							{ zh: "髮夾含在口中", en: "hairpin in mouth", jp: "口にヘアピン", value: "hairpin in mouth" },
+							{ zh: "口紅含在口中", en: "lipstick in mouth", jp: "口に口紅", value: "lipstick in mouth" },
+							{ zh: "藥片含在口中", en: "pill in mouth", jp: "口に薬", value: "pill in mouth" },
+							{ zh: "羽毛含在口中", en: "feather in mouth", jp: "口に羽", value: "feather in mouth" },
+							{ zh: "釘子含在口中", en: "nail in mouth", jp: "口に釘", value: "nail in mouth" },
+							{ zh: "刀刃含在口中", en: "blade in mouth", jp: "口に刃", value: "blade in mouth" },
+							{ zh: "子彈含在口中", en: "bullet in mouth", jp: "口に弾丸", value: "bullet in mouth" }
 						]
 					}
 				]
+
 			},
 			{
 				category: { key: "Emotions_General", zh: "汎用表情", en: "Emotions_General", jp: "感情・表情" },
@@ -3721,24 +3773,6 @@
 							{ zh: "橘子", en: "orange", jp: "オレンジ", value: "orange" },
 							{ zh: "香蕉", en: "banana", jp: "バナナ", value: "banana" },
 							{ zh: "茶壺", en: "teapot", jp: "ティーポット", value: "teapot" },
-						]
-					},
-					{
-						subCategory: "含在口中",
-						tags: [
-							{ zh: "棒棒糖含在口中", en: "lollipop in mouth", jp: "口にロリポップ", value: "lollipop in mouth" },
-							{ zh: "香煙含在口中", en: "cigarette in mouth", jp: "口にタバコ", value: "cigarette in mouth" },
-							{ zh: "棒棒糖棒子含在口中", en: "candy stick in mouth", jp: "口にキャンディスティック", value: "candy stick in mouth" },
-							{ zh: "冰棒含在口中", en: "popsicle in mouth", jp: "口にアイスキャンディー", value: "popsicle in mouth" },
-							{ zh: "吸管含在口中", en: "straw in mouth", jp: "口にストロー", value: "straw in mouth" },
-							{ zh: "花瓣含在口中", en: "flower in mouth", jp: "口に花びら", value: "flower in mouth" },
-							{ zh: "羽毛含在口中", en: "feather in mouth", jp: "口に羽", value: "feather in mouth" },
-							{ zh: "釘子含在口中", en: "nail in mouth", jp: "口に釘", value: "nail in mouth" },
-							{ zh: "刀刃含在口中", en: "blade in mouth", jp: "口に刃", value: "blade in mouth" },
-							{ zh: "紙張含在口中", en: "paper in mouth", jp: "口に紙", value: "paper in mouth" },
-							{ zh: "小樹枝含在口中", en: "twig in mouth", jp: "口に小枝", value: "twig in mouth" },
-							{ zh: "溫度計含在口中", en: "thermometer in mouth", jp: "口に体温計", value: "thermometer in mouth" },
-							{ zh: "子彈含在口中", en: "bullet in mouth", jp: "口に弾丸", value: "bullet in mouth" },
 						]
 					},
 					{
