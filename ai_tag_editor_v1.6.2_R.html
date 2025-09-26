@@ -1521,7 +1521,8 @@
 							{ zh: "害羞眼神", en: "shy eyes, bashful gaze, eyes looking down, side glance, blushing", jp: "恥ずかしそうな目、はにかむ視線、伏し目、横目、赤面", value: "shy eyes" },
 							{ zh: "憂鬱眼神", en: "sad eyes, melancholy gaze, teary eyes, downcast eyes", jp: "悲しげな目、憂鬱な視線、涙ぐんだ目、伏し目", value: "sad eyes" },
 							{ zh: "調皮眼神", en: "playful eyes, mischievous glance, eyes narrowed slightly, winking", jp: "いたずらっぽい目、茶目っ気のある視線、少し細めた目、ウィンク", value: "playful eyes" },
-							{ zh: "閃亮眼神", en: "sparkling eyes, shimmering eyes, glowing pupils, excited gaze", jp: "輝く目、きらめく目、光る瞳、興奮した視線", value: "sparkling eyes" }
+							{ zh: "閃亮眼神", en: "sparkling eyes, shimmering eyes, glowing pupils, excited gaze", jp: "輝く目、きらめく目、光る瞳、興奮した視線", value: "sparkling eyes" },
+							{ zh: "半睜眼 / 欲眠眼", en: "half-closed eyes", jp: "半目", value: "half-closed eyes" }
 						]
 					},
 					{
@@ -1670,6 +1671,7 @@
 					{
 						subCategory: "含在口中 (食物類)",
 						tags: [
+							{ zh: "含物（叼著東西）", en: "object in mouth", jp: "咥え物", value: "object in mouth" },
 							{ zh: "棒棒糖含在口中", en: "lollipop in mouth", jp: "口にロリポップ", value: "lollipop in mouth" },
 							{ zh: "棒棒糖棒子含在口中", en: "candy stick in mouth", jp: "口にキャンディスティック", value: "candy stick in mouth" },
 							{ zh: "冰棒含在口中", en: "popsicle in mouth", jp: "口にアイスキャンディー", value: "popsicle in mouth" },
@@ -1700,128 +1702,42 @@
 
 			},
 			{
-				category: { key: "Emotions_General", zh: "汎用表情", en: "Emotions_General", jp: "感情・表情" },
-				groups: [
-					{
-						subCategory: "微笑 / 笑容",
-						tags: [
-							{ zh: "微笑", en: "smile", jp: "笑顔", value: "smile" },
-							{ zh: "開口微笑", en: "open mouth smile", jp: "笑顔（口開け）", value: "open mouth smile" },
-							{ zh: "露齒笑", en: "grin", jp: "にやり", value: "grin" },
-							{ zh: "雌小鬼臉", en: "brat face", jp: "メスガキフェース", value: "brat face, smug, teasing smile" },
-							{ zh: "大笑", en: "laughing", jp: "笑い顔", value: "laughing" },
-							{ zh: "苦笑", en: "wry smile", jp: "苦笑", value: "wry smile" },
-							{ zh: "嘴角上揚", en: "smirk", jp: "含み笑い", value: "smirk" }
-						]
-					},
-					{
-						subCategory: "哭泣 / 負面",
-						tags: [
-							{ zh: "哭泣", en: "crying", jp: "泣き顔", value: "crying" },
-							{ zh: "哭喊", en: "sobbing", jp: "泣き叫び", value: "sobbing" },
-							{ zh: "快哭出來", en: "about to cry", jp: "泣きそう", value: "about to cry" },
-							{ zh: "強忍眼淚", en: "holding back tears", jp: "涙をこらえる", value: "holding back tears" },
-							{ zh: "流淚", en: "tears", jp: "涙", value: "tears" },
-							{ zh: "忍耐", en: "enduring", jp: "我慢", value: "enduring" },
-							{ zh: "難受", en: "pained", jp: "苦しそう", value: "pained" },
-							{ zh: "無奈", en: "helpless", jp: "仕方ない表情", value: "helpless" },
-							{ zh: "憂鬱", en: "depressed", jp: "憂鬱", value: "depressed" },
-							{ zh: "受傷痛苦", en: "hurt", jp: "痛み顔", value: "hurt" },
-							{ zh: "絕望", en: "despair", jp: "絶望", value: "despair" }
-						]
-					},
-					{
-						subCategory: "害羞 / 慌亂",
-						tags: [
-							{ zh: "臉紅", en: "blush", jp: "頬染め", value: "blush" },
-							{ zh: "害羞臉紅", en: "shy blush", jp: "赤面", value: "shy blush" },
-							{ zh: "慌張", en: "flustered", jp: "動揺", value: "flustered" },
-							{ zh: "尷尬", en: "embarrassed", jp: "気まずい", value: "embarrassed" },
-							{ zh: "困窘", en: "awkward", jp: "困った顔", value: "awkward" }
-						]
-					},
-					{
-						subCategory: "驚訝 / 恐懼",
-						tags: [
-							{ zh: "驚訝", en: "surprised", jp: "驚き", value: "surprised" },
-							{ zh: "張嘴驚訝", en: "surprised open mouth", jp: "驚き（口開け）", value: "surprised open mouth" },
-							{ zh: "驚呆", en: "shocked", jp: "ショック顔", value: "shocked" },
-							{ zh: "驚恐", en: "scared", jp: "怯え顔", value: "scared" },
-							{ zh: "極度害怕", en: "terrified", jp: "恐怖顔", value: "terrified" }
-						]
-					},
-					{
-						subCategory: "睡眠 / 疲憊",
-						tags: [
-							{ zh: "睏倦", en: "sleepy face", jp: "眠そう", value: "sleepy face" },
-							{ zh: "半睜眼", en: "half-closed eyes", jp: "半目", value: "half closed eyes" },
-							{ zh: "快睡著", en: "drowsy", jp: "うとうと", value: "drowsy" },
-							{ zh: "睡眼惺忪", en: "sleepy eyes", jp: "眠そうな目", value: "sleepy eyes" },
-							{ zh: "打呵欠", en: "yawning", jp: "あくび", value: "yawning" },
-							{ zh: "打瞌睡", en: "dozing off", jp: "居眠り", value: "dozing off" },
-							{ zh: "昏迷", en: "fainted", jp: "気絶", value: "fainted" },
-							{ zh: "睡著", en: "asleep", jp: "眠っている", value: "asleep" },
-							{ zh: "失神", en: "unconscious", jp: "意識喪失", value: "unconscious" },
-							{ zh: "醉酒", en: "drunk", jp: "酔っ払い", value: "drunk" },
-							{ zh: "黑眼圈", en: "dark circles under eyes", jp: "目の下のクマ", value: "dark circles under eyes" },
-							{ zh: "疲憊表情", en: "tired face", jp: "疲れた顔", value: "tired face, weary expression" },
-							{ zh: "熬夜狀態", en: "sleep deprived", jp: "寝不足", value: "sleep deprived" },
-							{ zh: "無精打采", en: "listless", jp: "生気のない目", value: "dull eyes, listless" }
-						]
-					},
-					{
-						subCategory: "情緒 / 個性",
-						tags: [
-							{ zh: "生氣", en: "angry face", jp: "怒り顔", value: "angry face" },
-							{ zh: "輕蔑", en: "contemptuous", jp: "軽蔑顔", value: "contemptuous" },
-							{ zh: "得意", en: "proud", jp: "得意顔", value: "proud" },
-							{ zh: "期待", en: "expectant", jp: "期待顔", value: "expectant" },
-							{ zh: "陶醉", en: "ecstatic", jp: "恍惚", value: "ecstatic" },
-							{ zh: "專注", en: "focused", jp: "集中顔", value: "focused" },
-							{ zh: "心不在焉", en: "absent-minded", jp: "上の空", value: "absent-minded" },
-							{ zh: "放鬆", en: "relieved", jp: "安心顔", value: "relieved" },
-							{ zh: "咬牙切齒", en: "gritted teeth angry", jp: "歯ぎしり怒り", value: "angry, gritted teeth" },
-							{ zh: "爆怒", en: "furious", jp: "激怒", value: "furious, enraged" },
-							{ zh: "冷怒", en: "cold anger", jp: "冷たい怒り", value: "cold angry expression" },
-							{ zh: "挑釁", en: "provoking look", jp: "挑発的な表情", value: "provoking expression" },
-							{ zh: "不耐煩", en: "annoyed", jp: "苛立ち", value: "annoyed, irritated" }
-						]
-					},
-					{
-						subCategory: "搞怪 / 特殊",
-						tags: [
-							{ zh: "無表情", en: "expressionless", jp: "無表情", value: "expressionless" },
-							{ zh: "鬼臉／吐舌頭", en: "tongue out", jp: "あかんべえ", value: "tongue out" },
-							{ zh: "含物（叼著東西）", en: "object in mouth", jp: "咥え物", value: "object in mouth" }
-						]
-					}
-				]
-
-			},
-			{
 				category: { key: "Emotions （Happy）", zh: "情緒（樂）", en: "Emotions （Happy）", jp: "感情・表情（喜）" },
 				groups: [
 					{
 						subCategory: " ",
 						tags: [
-							{ zh: "瘋狂", en: "crazy", jp: "病んでいる表情", value: "crazy" },
+							{ zh: "笑臉（微笑）", en: "smile", jp: "笑顔", value: "smile" },
+							{ zh: "開心", en: "happy", jp: "幸せな表情", value: "happy" },
+							{ zh: "開口微笑", en: "open mouth smile", jp: "笑顔（口開け）", value: "open mouth smile" },
+							{ zh: "露齒笑", en: "grin", jp: "にやり", value: "grin" },
+							{ zh: "雌小鬼臉", en: "Brat face", jp: "メスガキフェース", value: "mischievous smile, smug face, playful expression, teasing expression, naughty look, slightly open mouth, tongue visible, teasing smile, upturned corners of mouth" },
+							{ zh: "大笑", en: "laughing", jp: "笑い顔", value: "laughing" },
+							{ zh: "微笑", en: "smile", jp: "笑顔", value: "smile" },
+							{ zh: "開口微笑", en: "open mouth smile", jp: "笑顔（口開け）", value: "open mouth smile" },
+							{ zh: "露齒笑", en: "grin", jp: "にやり", value: "grin" },
+							{ zh: "雌小鬼臉", en: "brat face", jp: "メスガキフェース", value: "brat face" },
+							{ zh: "大笑", en: "laughing", jp: "笑い顔", value: "laughing" },
+							{ zh: "苦笑", en: "wry smile", jp: "苦笑", value: "wry smile" },
+							{ zh: "嘴角上揚", en: "smirk", jp: "含み笑い", value: "smirk" },
+							{ zh: "淡淡的微笑", en: "light smile", jp: "軽い笑顔（ほほえみ）", value: "light smile" },
+							{ zh: "誘人的微笑", en: "seductive smile", jp: "魅惑的な笑顔", value: "seductive smile" },
+							{ zh: "躊躇滿志", en: "smug", jp: "独善的な表情（ドヤ顔）", value: "smug" },
+							{ zh: "強忍笑意", en: "stifled laugh", jp: "押し殺した笑い", value: "stifled laugh" },
+							{ zh: "指微笑", en: "fingersmile", jp: "指で口角を上げる笑顔", value: "fingersmile" },
+							{ zh: "格拉斯笑容", en: "glasgow smile", jp: "口角が切り裂かれた笑顔", value: "glasgow smile" },
+							{ zh: "咧嘴大笑", en: "goblin smile", jp: "ニヤリとした笑み", value: "goblin smile" },
+							{ zh: "巨魔臉(嘲諷臉)", en: "troll face", jp: "嘲る顔", value: "troll face" },
+							{ zh: "反派/邪惡笑容合集", en: "evil grin / evil smile / evil variants", jp: "邪悪な笑顔類", value: "evil variants" },
+							{ zh: "鬼臉／吐舌頭", en: "tongue out", jp: "あかんべえ", value: "tongue out" },
 							{ zh: "瘋狂的微笑", en: "crazy smile", jp: "病んだ笑顔", value: "crazy smile" },
-							{ zh: "得意的表情", en: "doyagao, self-satisfaction, smugness", jp: "ドヤ顔", value: "doyagao, self-satisfaction, smugness" },
-							{ zh: "邪惡", en: "evil", jp: "邪悪な表情、悪だくみ", value: "evil" },
+							{ zh: "得意", en: "proud", jp: "得意顔", value: "proud" },
+							{ zh: "得意的表情 (ドヤ顔)", en: "doyagao", jp: "ドヤ顔", value: "doyagao" },
+							{ zh: "邪惡", en: "evil", jp: "邪悪な表情", value: "evil" },
 							{ zh: "反派笑容", en: "evil grin", jp: "邪悪なにやにや", value: "evil grin" },
 							{ zh: "惡意笑容", en: "evil smile", jp: "邪悪な笑顔", value: "evil smile" },
-							{ zh: "指微笑(手指置於微笑的嘴角)", en: "fingersmile", jp: "指で口角を上げる笑顔", value: "fingersmile" },
-							{ zh: "格拉斯笑容(嘴角裂至耳根的微笑)", en: "glasgow smile", jp: "口角が切り裂かれた笑顔", value: "glasgow smile" },
-							{ zh: "咧嘴大笑(露齒但無開口)", en: "goblin smile", jp: "ニヤリとした笑み", value: "goblin smile" },
-							{ zh: "咧嘴笑", en: "grin", jp: "にやにや", value: "grin" },
-							{ zh: "開心", en: "happy", jp: "幸せな表情", value: "happy" },
-							{ zh: "淡淡的微笑", en: "light smile", jp: "軽い笑顔（モナリザのような）ほほえみ", value: "light smile" },
-							{ zh: "誘人的微笑", en: "seductive smile", jp: "魅惑的な笑顔", value: "seductive smile" },
-							{ zh: "微笑", en: "smile", jp: "笑顔", value: "smile" },
-							{ zh: "傻呼呼地笑", en: "smirk", jp: "（独善的な）にやにや 片方の口角が上がっている", value: "smirk" },
-							{ zh: "躊躇滿志", en: "smug", jp: "独善的 前で腕を組むようなドヤ顔　お嬢様のような…", value: "smug" },
-							{ zh: "強忍笑意", en: "stifled laugh", jp: "押し殺した笑い、笑いをこらえる", value: "stifled laugh" },
-							{ zh: "巨魔臉(嘲諷臉)", en: "troll face", jp: "嘲る顔？　嘲笑？", value: "troll face" },
+							{ zh: "惡搞 / 嘲諷", en: "troll face (meme)", jp: "嘲る顔", value: "troll face meme" },
+							{ zh: "嘴角上揚", en: "smirk", jp: "含み笑い", value: "smirk" }
 						]
 					}
 				]
@@ -1832,22 +1748,51 @@
 					{
 						subCategory: " ",
 						tags: [
-							{ zh: "絕望的感覺", en: "color drain", jp: "ショックや絶望などでモノクロになること", value: "color drain" },
-							{ zh: "哭泣", en: "crying", jp: "泣く", value: "crying" },
-							{ zh: "睜眼哭泣", en: "crying with eyes open", jp: "泣く（目を開いて）", value: "crying with eyes open" },
-							{ zh: "憂鬱", en: "depressed", jp: "うつ", value: "depressed" },
+							{ zh: "哭泣", en: "crying", jp: "泣き顔", value: "crying" },
+							{ zh: "哭喊", en: "sobbing", jp: "泣き叫び", value: "sobbing" },
+							{ zh: "流淚", en: "tears", jp: "涙", value: "tears" },
+							{ zh: "快哭出來", en: "about to cry", jp: "泣きそう", value: "about to cry" },
+							{ zh: "強忍眼淚", en: "holding back tears", jp: "涙をこらえる", value: "holding back tears" },
+							{ zh: "流淚", en: "tears", jp: "涙", value: "tears" },
+							{ zh: "忍耐", en: "enduring", jp: "我慢", value: "enduring" },
+							{ zh: "難受", en: "pained", jp: "苦しそう", value: "pained" },
+							{ zh: "無奈", en: "helpless", jp: "仕方ない表情", value: "helpless" },
+							{ zh: "憂鬱", en: "depressed", jp: "憂鬱", value: "depressed" },
+							{ zh: "受傷痛苦", en: "hurt", jp: "痛み顔", value: "hurt" },
 							{ zh: "絕望", en: "despair", jp: "絶望", value: "despair" },
-							{ zh: "蹙眉", en: "frown", jp: "悲しみで眉をひそめる", value: "frown" },
-							{ zh: "表現憂鬱(沮喪)", en: "gloom （expression）", jp: "憂鬱な表情", value: "gloom （expression）" },
+							{ zh: "色彩流失(絕望效果)", en: "color drain", jp: "ショックや絶望でモノクロ化", value: "color drain" },
+							{ zh: "睜眼哭泣", en: "crying with eyes open", jp: "泣く（目を開いて）", value: "crying with eyes open" },
 							{ zh: "罪惡感", en: "guilt", jp: "罪悪感", value: "guilt" },
 							{ zh: "孤單", en: "lonely", jp: "寂しい、孤独", value: "lonely" },
 							{ zh: "悲傷", en: "sad", jp: "悲しい", value: "sad" },
 							{ zh: "悲傷的微笑", en: "sad smile", jp: "悲しみの笑顔", value: "sad smile" },
 							{ zh: "嘆氣", en: "sigh", jp: "ため息", value: "sigh" },
-							{ zh: "抽泣(啜泣)", en: "sobbing", jp: "すすり泣く", value: "sobbing" },
 							{ zh: "疲態", en: "tired", jp: "疲れた表情", value: "tired" },
 							{ zh: "雙眼盈淚", en: "water eye", jp: "涙目", value: "water eye" },
-							{ zh: "擔心", en: "worried", jp: "心配する", value: "worried" },
+							{ zh: "擔心", en: "worried", jp: "心配する顔", value: "worried" },
+							{ zh: "絕望", en: "despair", jp: "絶望", value: "despair" },
+							{ zh: "快哭出來", en: "about to cry", jp: "泣きそう", value: "about to cry" },
+							{ zh: "強忍眼淚", en: "holding back tears", jp: "涙をこらえる", value: "holding back tears" }
+						]
+					}
+				]
+			},
+			{
+				category: { key: "Emotions （shy）", zh: "害羞 / 慌亂", en: "Emotions （shy）", jp: "感情・表情（照れ）" },
+				groups: [
+					{
+						subCategory: " ",
+						tags: [
+							{ zh: "臉紅", en: "blush", jp: "頬染め", value: "blush" },
+							{ zh: "害羞臉紅", en: "shy blush", jp: "赤面", value: "shy blush" },
+							{ zh: "慌張", en: "flustered", jp: "動揺", value: "flustered" },
+							{ zh: "尷尬", en: "embarrassed", jp: "気まずい", value: "embarrassed" },
+							{ zh: "困窘", en: "awkward", jp: "困った顔", value: "awkward" },
+							{ zh: "害羞眼神", en: "shy eyes", jp: "恥ずかしそうな目", value: "shy eyes" },
+							{ zh: "慌張", en: "flustered", jp: "動揺", value: "flustered" },
+							{ zh: "驚訝", en: "surprised", jp: "驚き", value: "surprised" },
+							{ zh: "驚恐", en: "scared", jp: "怯え顔", value: "scared" },
+							{ zh: "張嘴驚訝", en: "surprised open mouth", jp: "驚き（口開け）", value: "surprised open mouth" }
 						]
 					}
 				]
@@ -1858,21 +1803,33 @@
 					{
 						subCategory: " ",
 						tags: [
+							{ zh: "生氣", en: "angry face", jp: "怒り顔", value: "angry face" },
+							{ zh: "輕蔑", en: "contemptuous", jp: "軽蔑顔", value: "contemptuous" },
+							{ zh: "得意", en: "proud", jp: "得意顔", value: "proud" },
+							{ zh: "期待", en: "expectant", jp: "期待顔", value: "expectant" },
+							{ zh: "陶醉", en: "ecstatic", jp: "恍惚", value: "ecstatic" },
+							{ zh: "專注", en: "focused", jp: "集中顔", value: "focused" },
+							{ zh: "心不在焉", en: "absent-minded", jp: "上の空", value: "absent-minded" },
+							{ zh: "放鬆", en: "relieved", jp: "安心顔", value: "relieved" },
+							{ zh: "咬牙切齒", en: "gritted teeth angry", jp: "歯ぎしり怒り", value: "gritted teeth" },
+							{ zh: "爆怒", en: "furious", jp: "激怒", value: "furious" },
+							{ zh: "冷怒", en: "cold anger", jp: "冷たい怒り", value: "cold anger" },
+							{ zh: "挑釁", en: "provoking look", jp: "挑発的な表情", value: "provoking look" },
+							{ zh: "不耐煩", en: "annoyed", jp: "苛立ち", value: "annoyed" },
 							{ zh: "生氣的井字符號", en: "anger vein", jp: "怒りマーク💢、青筋", value: "anger vein" },
-							{ zh: "生氣", en: "angry", jp: "怒り", value: "angry" },
 							{ zh: "惱怒", en: "annoyed", jp: "イライラ", value: "annoyed" },
 							{ zh: "緊咬牙關", en: "clenched teeth", jp: "歯を食いしばる", value: "clenched teeth" },
-							{ zh: "下定決心", en: "determined", jp: "決心した表情、決め顔", value: "determined" },
+							{ zh: "下定決心", en: "determined", jp: "決心した表情", value: "determined" },
 							{ zh: "蔑視", en: "disdain", jp: "軽蔑", value: "disdain" },
 							{ zh: "厭惡", en: "disgust", jp: "嫌悪", value: "disgust" },
-							{ zh: "嫉妒", en: "envy", jp: "妬みの表情、嫉妬", value: "envy" },
+							{ zh: "嫉妒", en: "envy", jp: "妬み", value: "envy" },
 							{ zh: "皺起眉頭", en: "furrowed brow", jp: "眉間にしわ", value: "furrowed brow" },
-							{ zh: "(因痛苦)表情扭曲", en: "grimace", jp: "（痛みや嫌悪、不快感で）眉をひそめる", value: "grimace" },
+							{ zh: "扭曲表情", en: "grimace", jp: "顔をゆがめる", value: "grimace" },
 							{ zh: "庫柏力克凝視", en: "kubrick stare", jp: "キューブリックの凝視", value: "kubrick stare" },
-							{ zh: "厥嘴(翹嘴)", en: "pout", jp: "ふくれっ面", value: "pout" },
-							{ zh: "嚴肅", en: "serious", jp: "シリアス、深刻な表情", value: "serious" },
+							{ zh: "撅嘴", en: "pout", jp: "ふくれっ面", value: "pout" },
+							{ zh: "嚴肅", en: "serious", jp: "シリアス", value: "serious" },
 							{ zh: "生悶氣", en: "sulking", jp: "拗ねた顔", value: "sulking" },
-							{ zh: "V字眉", en: "v-shaped eyebrows", jp: "V字眉（ ＼ ／ こういう眉）", value: "v-shaped eyebrows" },
+							{ zh: "V字眉", en: "v-shaped eyebrows", jp: "V字眉", value: "v-shaped eyebrows" }
 						]
 					}
 				]
@@ -1883,17 +1840,22 @@
 					{
 						subCategory: " ",
 						tags: [
+							{ zh: "驚訝", en: "surprised", jp: "驚き", value: "surprised" },
+							{ zh: "張嘴驚訝", en: "surprised open mouth", jp: "驚き（口開け）", value: "surprised open mouth" },
+							{ zh: "驚呆", en: "shocked", jp: "ショック顔", value: "shocked" },
+							{ zh: "驚恐", en: "scared", jp: "怯え顔", value: "scared" },
+							{ zh: "極度害怕", en: "terrified", jp: "恐怖顔", value: "terrified" },
+							{ zh: "驚訝眼神", en: "surprised eyes", jp: "見開いた目", value: "surprised eyes" },
 							{ zh: "困惑的", en: "confused", jp: "混乱した表情", value: "confused" },
 							{ zh: "驚恐的", en: "horrified", jp: "恐ろしい", value: "horrified" },
-							{ zh: "緊張", en: "nervous", jp: "ナーバス、緊張", value: "nervous" },
-							{ zh: "痛苦(可指心理)", en: "pain", jp: "痛みの表情", value: "pain" },
-							{ zh: "驚慌", en: "panicking", jp: "パニック、慌てる", value: "panicking" },
-							{ zh: "恐懼", en: "scared", jp: "怖がる", value: "scared" },
-							{ zh: "驚聲尖叫", en: "screaming", jp: "絶叫　叫ぶ", value: "screaming" },
-							{ zh: "驚訝的", en: "surprised", jp: "驚いた顔", value: "surprised" },
+							{ zh: "緊張", en: "nervous", jp: "ナーバス", value: "nervous" },
+							{ zh: "驚聲尖叫", en: "screaming", jp: "絶叫", value: "screaming" },
 							{ zh: "臉色蒼白", en: "turn pale", jp: "青ざめる", value: "turn pale" },
+							{ zh: "畏縮", en: "wince", jp: "ひるむ", value: "wince" },
+							{ zh: "痛苦", en: "pain", jp: "痛みの表情", value: "pain" },
+							{ zh: "驚慌", en: "panicking", jp: "パニック", value: "panicking" },
 							{ zh: "沮喪", en: "upset", jp: "動揺する", value: "upset" },
-							{ zh: "畏縮", en: "wince", jp: "恐怖、痛み、苦痛で眉をひそめる、ひるむ", value: "wince" },
+							{ zh: "驚呆", en: "shocked", jp: "ショック顔", value: "shocked" },
 						]
 					}
 				]
@@ -1904,7 +1866,18 @@
 					{
 						subCategory: " ",
 						tags: [
-							{ zh: "漫畫的驚訝號", en: "^^^", jp: "漫画的なびっくり表現", value: "^^^" },
+							{ zh: "無表情", en: "expressionless", jp: "無表情", value: "expressionless" },
+							{ zh: "尷尬", en: "embarrassed", jp: "気まずい", value: "embarrassed" },
+							{ zh: "期待", en: "expectant", jp: "期待顔", value: "expectant" },
+							{ zh: "陶醉", en: "ecstatic", jp: "恍惚", value: "ecstatic" },
+							{ zh: "輕蔑", en: "contemptuous", jp: "軽蔑顔", value: "contemptuous" },
+							{ zh: "專注", en: "focused", jp: "集中顔", value: "focused" },
+							{ zh: "心不在焉", en: "absent-minded", jp: "上の空", value: "absent-minded" },
+							{ zh: "困窘", en: "awkward", jp: "困った顔", value: "awkward" },
+							{ zh: "放鬆", en: "relieved", jp: "安心顔", value: "relieved" },
+							{ zh: "受傷痛苦", en: "hurt", jp: "痛み顔", value: "hurt" },
+							{ zh: "醉酒", en: "drunk", jp: "酔っ払い", value: "drunk" },
+							{ zh: "失神", en: "unconscious", jp: "意識喪失", value: "unconscious" },
 							{ zh: "雙性戀", en: "bisexual", jp: "両性愛", value: "bisexual" },
 							{ zh: "圓形腮紅", en: "blush stickers", jp: "楕円形の頬", value: "blush stickers" },
 							{ zh: "百無聊賴", en: "bored", jp: "退屈そうな表情", value: "bored" },
@@ -1925,19 +1898,51 @@
 							{ zh: "睡顏", en: "sleepy", jp: "眠い表情", value: "sleepy" },
 							{ zh: "正在思考的樣子", en: "thinking", jp: "考える顔", value: "thinking" },
 							{ zh: "W嘴", en: "wavy mouth", jp: "波状の口", value: "wavy mouth" },
+							{ zh: "無表情", en: "expressionless", jp: "無表情", value: "expressionless" },
+							{ zh: "鬼臉／吐舌頭", en: "tongue out", jp: "あかんべえ", value: "tongue out" },
+							{ zh: "含物（叼著東西）", en: "object in mouth", jp: "咥え物", value: "object in mouth" },
+							{ zh: "瘋狂", en: "crazy", jp: "病んでいる表情", value: "crazy" }
 						]
 					},
 					{
 						subCategory: "睡覺 / 疲勞",
 						tags: [
-							{ zh: "睡覺泡泡", en: "sleep bubble", jp: "眠りバブル", value: "sleep bubble" },
-							{ zh: "鼻泡", en: "snot bubble", jp: "鼻ちょうちん", value: "snot bubble" },
-							{ zh: "打鼾符號", en: "snoring symbol", jp: "いびき記号", value: "snoring symbol" },
-							{ zh: "暈圈", en: "dizzy swirls", jp: "目のぐるぐる", value: "dizzy swirls" },
-							{ zh: "冒汗滴", en: "sweat drop", jp: "汗マーク", value: "sweat drop" },
-							{ zh: "緊張冒汗", en: "nervous sweat drops", jp: "冷や汗", value: "nervous sweat" }
+							{ zh: "睏倦", en: "sleepy face", jp: "眠そう", value: "sleepy face" },
+							{ zh: "半睜眼", en: "half-closed eyes", jp: "半目", value: "half closed eyes" },
+							{ zh: "快睡著", en: "drowsy", jp: "うとうと", value: "drowsy" },
+							{ zh: "睡眼惺忪", en: "sleepy eyes", jp: "眠そうな目", value: "sleepy eyes" },
+							{ zh: "打呵欠", en: "yawning", jp: "あくび", value: "yawning" },
+							{ zh: "打瞌睡", en: "dozing off", jp: "居眠り", value: "dozing off" },
+							{ zh: "昏迷", en: "fainted", jp: "気絶", value: "fainted" },
+							{ zh: "睡著", en: "asleep", jp: "眠っている", value: "asleep" },
+							{ zh: "失神", en: "unconscious", jp: "意識喪失", value: "unconscious" },
+							{ zh: "醉酒", en: "drunk", jp: "酔っ払い", value: "drunk" },
+							{ zh: "黑眼圈", en: "dark circles under eyes", jp: "目の下のクマ", value: "dark circles under eyes" },
+							{ zh: "疲憊表情", en: "tired face", jp: "疲れた顔", value: "tired face" },
+							{ zh: "熬夜狀態", en: "sleep deprived", jp: "寝不足", value: "sleep deprived" },
+							{ zh: "無精打采", en: "listless", jp: "生気のない目", value: "listless" },
+							{ zh: "困惑", en: "puzzled", jp: "困惑", value: "puzzled" },
+							{ zh: "困倦", en: "sleepy", jp: "眠そう", value: "sleepy" },
+							{ zh: "打呵欠", en: "yawning", jp: "あくび", value: "yawn" },
+							{ zh: "半睜眼", en: "half-closed eyes", jp: "半目", value: "half closed eyes" },
+							{ zh: "快睡著", en: "drowsy", jp: "うとうと", value: "drowsy" },
+							{ zh: "睡眼惺忪", en: "sleepy eyes", jp: "眠そうな目", value: "sleepy eyes" },
+							{ zh: "黑眼圈", en: "dark circles under eyes", jp: "目の下のクマ", value: "dark circles, under eyes" },
+							{ zh: "疲憊表情", en: "tired face, weary expression", jp: "疲れた顔, 眠そうな表情", value: "tired face, weary expression" },
+							{ zh: "熬夜狀態", en: "sleep deprived, exhausted look", jp: "寝不足, 疲れた様子", value: "sleep deprived, exhausted" },
+							{ zh: "無精打采", en: "dull eyes, listless expression", jp: "生気のない目, ぼんやりした表情", value: "dull eyes, listless" },
+							{ zh: "哈欠", en: "yawning", jp: "あくび", value: "yawning" },
+							{ zh: "打瞌睡", en: "dozing off at desk", jp: "デスクで居眠り", value: "dozing off, desk" },
+							{ zh: "昏迷", en: "fainted", jp: "気絶", value: "fainted" },
+							{ zh: "睡著", en: "asleep", jp: "眠っている", value: "asleep" },
+							{ zh: "半夢半醒", en: "drowsy", jp: "うとうと", value: "drowsy" }
 						]
-					},
+					}
+				]
+			},
+			{
+				category: { key: "Emotions （manfu）", zh: "漫符", en: "Emotions （manfu）", jp: "漫符" },
+				groups: [
 					{
 						subCategory: "愛情 / 開心",
 						tags: [
@@ -1960,6 +1965,7 @@
 					{
 						subCategory: "驚訝 / 緊張",
 						tags: [
+							{ zh: "漫畫的驚訝號", en: "^^^", jp: "漫画的なびっくり表現", value: "^^^" },
 							{ zh: "驚嘆號", en: "exclamation mark", jp: "ビックリマーク", value: "exclamation mark symbol" },
 							{ zh: "問號", en: "question mark", jp: "はてなマーク", value: "question mark symbol" },
 							{ zh: "震驚符號", en: "shock symbol", jp: "ショックマーク", value: "shock symbol" },
@@ -5159,7 +5165,7 @@
 			{ group: { key: "Body", zh: "身體", en: "Body", jp: "体" }, classification: ["color", "hair color", "Bangs(fringe)", "back of the head hair", "hitomi", "Eyes", "Ear", "Mouse", "body", "brisket", "pussy", "butt", "Physical", "effect（body）"] },
 			{ group: { key: "Clothes", zh: "衣服", en: "Clothes", jp: "服" }, classification: ["pattern", "Innerwear", "upper body clothing(tops)", "bottoms", "full outfit", "swimsuit", "clothes (option)", "sleeves", "ziraike", "head decoration/hat", "clothes", "boots"] },
 			{ group: { key: "Action", zh: "動作", en: "Action", jp: "動作" }, classification: ["pose（sample）", "pose（hand）", "pose（foot）", "pose", "pose（option）", "pose（sex）", "Sex"] },
-			{ group: { key: "Emotion", zh: "表情", en: "Expression", jp: "表情" }, classification: ["Emotions_General", "Emotions （Happy）", "Emotions （Sad）", "Emotions （Anger）", "Emotions （Fear）", "Emotions （Other）", "Emotions （Sex）", "Sightline"] },
+			{ group: { key: "Emotion", zh: "表情", en: "Expression", jp: "表情" }, classification: ["Emotions_General", "Emotions （Happy）", "Emotions （Sad）", "Emotions （shy）", "Emotions （Anger）", "Emotions （Fear）", "Emotions （Other）", "Emotions （manfu）", "Emotions （Sex）", "Sightline"] },
 			{ group: { key: "Environment", zh: "環境", en: "Environment", jp: "環境" }, classification: ["time_weather", "Pleace", "item", "effect", "male_npc", "Ejaculation", "exposure"] },
 		];
 
