@@ -5844,7 +5844,7 @@
 		function saveTemplate() {
 			const name = document.getElementById("templateName").value.trim();
 			if (!name) return alert("請輸入模板名稱！");
-			if (templateData.length >= 10) return alert("最多只能儲存 10 個模板！");
+			if (templateData.length >= 30) return alert("最多只能儲存 30 個模板！");
 			if (templateData.some(t => t.name === name)) return alert("名稱重複，請換一個名稱");
 			const template = {
 				name: name,
