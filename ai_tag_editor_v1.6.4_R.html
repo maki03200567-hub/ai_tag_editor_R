@@ -8107,21 +8107,98 @@
 					{
 						subCategory: "強制觸發 / 暴露",
 						tags: [
+							// --- 通用走光情境 ---
 							{ zh: "走光", en: "wardrobe malfunction", jp: "衣装トラブル", value: "wardrobe malfunction" },
-							{ zh: "強制走光", en: "forced wardrobe malfunction", jp: "強制的な衣装トラブル", value: "clothes forcibly shifted to expose body" },
-							{ zh: "強制露出", en: "forced exposure", jp: "強制露出", value: "forced exposure" },
+							{ zh: "意外走光", en: "accidental exposure", jp: "うっかり露出", value: "accidental exposure" },
+							{ zh: "動作導致走光", en: "exposure from movement", jp: "動作で露出", value: "exposure from movement" },
+							{ zh: "風導致走光", en: "wind-blown exposure", jp: "風でスカートがめくれる", value: "wind-blown skirt" },
+							{ zh: "下蹲導致走光", en: "exposure while crouching", jp: "しゃがんで露出", value: "crouching exposure" },
+							{ zh: "坐姿走光", en: "exposure while sitting", jp: "座って露出", value: "sitting exposure" },
+							{ zh: "拍照走光", en: "camera flash exposure", jp: "フラッシュで透ける", value: "flash see-through" },
+							{ zh: "衣物透視", en: "see-through clothing", jp: "透ける衣服", value: "see-through clothes" },
+							{ zh: "溼透導致走光", en: "wet clothing exposure", jp: "濡れて透ける", value: "wet see-through" },
+							{ zh: "鬆垮導致走光", en: "loose clothing exposure", jp: "ゆるい服で露出", value: "loose clothes exposure" },
+							{ zh: "滑落導致走光", en: "slipping clothes exposure", jp: "ずり落ちて露出", value: "slipping clothes exposure" },
+
+							// --- 上半身 ---
+							{ zh: "胸口走光", en: "chest exposure", jp: "胸元の露出", value: "chest exposure" },
+							{ zh: "乳溝走光", en: "cleavage exposure", jp: "谷間の露出", value: "cleavage exposure" },
+							{ zh: "乳頭走光", en: "nipple peek", jp: "乳首の露出", value: "nipple peek" },
+							{ zh: "乳暈露出", en: "areola peek", jp: "乳輪の露出", value: "areola peek" },
+							{ zh: "腋下走光", en: "armpit exposure", jp: "腋の露出", value: "armpit exposure" },
+							{ zh: "背部走光", en: "back exposure", jp: "背中の露出", value: "back exposure" },
+							{ zh: "肩膀走光", en: "shoulder exposure", jp: "肩の露出", value: "shoulder exposure" },
+							{ zh: "胸罩露出", en: "bra showing", jp: "ブラが見える", value: "bra showing" },
+							{ zh: "半露胸罩", en: "bra peek", jp: "ブラチラ", value: "bra peek" },
+							{ zh: "內衣邊緣露出", en: "underwear edge showing", jp: "下着の縁が見える", value: "underwear edge showing" },
+
+							// --- 下半身 ---
+							{ zh: "裙底走光", en: "under skirt exposure", jp: "スカートの中が見える", value: "under skirt exposure" },
+							{ zh: "內褲露出", en: "panty peek", jp: "パンチラ", value: "panty peek" },
+							{ zh: "大腿根部走光", en: "inner thigh exposure", jp: "太ももの付け根露出", value: "inner thigh exposure" },
+							{ zh: "陰部走光", en: "pussy peek", jp: "まんこの露出", value: "pussy peek" },
+							{ zh: "胯部輪廓可見", en: "crotch outline visible", jp: "股間のラインが見える", value: "visible crotch line" },
+							{ zh: "陰部輪廓明顯", en: "visible labia outline", jp: "陰唇の輪郭が見える", value: "visible labia outline" },
+							{ zh: "褲子開口走光", en: "pants open exposure", jp: "ズボンの隙間露出", value: "pants open exposure" },
+							{ zh: "裙子滑落走光", en: "skirt slipping exposure", jp: "スカートがずり落ちる", value: "skirt slipping exposure" },
+							{ zh: "泳裝移位走光", en: "swimsuit shift exposure", jp: "水着のずれ露出", value: "swimsuit shift exposure" },
+							{ zh: "比基尼走光", en: "bikini slip exposure", jp: "ビキニのずれ露出", value: "bikini slip exposure" },
+							{ zh: "內褲邊露出", en: "panty edge showing", jp: "パンティの縁が見える", value: "panty edge showing" },
+							{ zh: "褲邊滑落", en: "pants slipping exposure", jp: "ズボンの裾が落ちる", value: "pants slipping exposure" },
+							{ zh: "臀部走光", en: "buttocks exposure", jp: "尻の露出", value: "buttocks exposure" },
+							{ zh: "下腹部走光", en: "lower belly exposure", jp: "下腹部の露出", value: "lower belly exposure" },
+							{ zh: "肛部走光", en: "butt crack peek", jp: "尻の割れ目見え", value: "butt crack peek" },
+
+							// --- 其他／局部 ---
+							{ zh: "腳踝走光", en: "ankle exposure", jp: "足首の露出", value: "ankle exposure" },
+							{ zh: "腿部走光", en: "leg exposure", jp: "脚の露出", value: "leg exposure" },
+							{ zh: "手臂走光", en: "arm exposure", jp: "腕の露出", value: "arm exposure" },
+							{ zh: "脖子走光", en: "neck exposure", jp: "首元の露出", value: "neck exposure" },
+							{ zh: "耳下走光", en: "neckline exposure", jp: "耳元の露出", value: "neckline exposure" },
+
+							// --- 特殊條件類 ---
+							{ zh: "被看見", en: "seen accidentally", jp: "見られてしまう", value: "seen accidentally" },
+							{ zh: "被拍下", en: "accidentally photographed", jp: "撮られてしまう", value: "accidentally photographed" },
+							{ zh: "鏡中走光", en: "mirror exposure", jp: "鏡越しの露出", value: "mirror exposure" },
+							{ zh: "倒影走光", en: "reflection exposure", jp: "反射で見える", value: "reflection exposure" },
+							{ zh: "光線穿透走光", en: "light-through exposure", jp: "光で透ける", value: "light-through exposure" },
+							{ zh: "服裝移位走光", en: "clothing shifted exposure", jp: "衣装のずれ露出", value: "clothing shifted exposure" },
+
+							// --- 下半身／內褲類 ---
 							{ zh: "內褲掀開", en: "panty pulled aside", jp: "パンティをめくる", value: "panty pulled aside" },
-							{ zh: "裙擺被掀", en: "skirt forcibly lifted", jp: "スカートを強制的にめくられる", value: "skirt forcibly lifted to expose panties" },
-							{ zh: "胸罩被拉下", en: "bra pulled down", jp: "ブラを引き下ろされる", value: "bra pulled down exposing breasts" },
-							{ zh: "內褲被扯下", en: "panties forcibly pulled", jp: "パンティを引き下ろされる", value: "panties forcibly pulled to expose pussy" },
-							{ zh: "褲子被拉下", en: "pants pulled down", jp: "ズボンを下ろされる", value: "pants pulled down exposing underwear" },
-							{ zh: "泳衣被拉開", en: "swimsuit pulled aside", jp: "水着をずらされる", value: "swimsuit forcibly pulled aside" },
-							{ zh: "乳頭被掀出", en: "nipple forcibly exposed", jp: "乳首をめくられる", value: "nipple forcibly revealed" },
-							{ zh: "胸部被壓出", en: "breasts squeezed out", jp: "胸をはみ出させる", value: "breasts squeezed out of clothing" },
-							{ zh: "胯部被掀開", en: "crotch uncovered", jp: "股間をめくられる", value: "crotch forcibly uncovered" },
-							{ zh: "肛門被掀出", en: "anus exposed", jp: "アナルを見せつけられる", value: "anus forcibly exposed" }
+							{ zh: "內褲被扯下", en: "panties forcibly pulled down", jp: "パンティを引き下ろされる", value: "panties forcibly pulled down" },
+							{ zh: "內褲被拉開", en: "panties forcibly stretched", jp: "パンティを引き伸ばされる", value: "panties forcibly stretched" },
+							{ zh: "褲子被拉下", en: "pants pulled down", jp: "ズボンを下ろされる", value: "pants pulled down" },
+							{ zh: "褲子被扯開", en: "pants forcibly opened", jp: "ズボンを無理やり開けられる", value: "pants forcibly opened" },
+							{ zh: "胯部被掀開", en: "crotch forcibly uncovered", jp: "股間をめくられる", value: "crotch forcibly uncovered" },
+							{ zh: "臀部被暴露", en: "buttocks forcibly exposed", jp: "尻を露出させられる", value: "buttocks forcibly exposed" },
+							{ zh: "肛門被掀出", en: "anus forcibly exposed", jp: "アナルを見せつけられる", value: "anus forcibly exposed" },
+
+							// --- 上半身／胸部類 ---
+							{ zh: "胸罩被拉下", en: "bra pulled down exposing breasts", jp: "ブラを引き下ろされる", value: "bra pulled down exposing breasts" },
+							{ zh: "胸罩被扯開", en: "bra forcibly opened", jp: "ブラを無理やり開けられる", value: "bra forcibly opened" },
+							{ zh: "乳頭被掀出", en: "nipple forcibly exposed", jp: "乳首をめくられる", value: "nipple forcibly exposed" },
+							{ zh: "胸部被壓出", en: "breasts squeezed out", jp: "胸をはみ出させる", value: "breasts squeezed out" },
+							{ zh: "胸口被扯開", en: "chest forcibly opened", jp: "胸元を引き裂かれる", value: "chest forcibly opened" },
+							{ zh: "胸部被掀開", en: "breasts forcibly uncovered", jp: "胸をめくられる", value: "breasts forcibly uncovered" },
+
+							// --- 衣物／其他部位 ---
+							{ zh: "裙擺被掀", en: "skirt forcibly lifted", jp: "スカートを強制的にめくられる", value: "skirt forcibly lifted" },
+							{ zh: "衣領被拉開", en: "collar forcibly opened", jp: "襟を引き開けられる", value: "collar forcibly opened" },
+							{ zh: "上衣被掀起", en: "shirt forcibly lifted", jp: "上着をめくられる", value: "shirt forcibly lifted" },
+							{ zh: "衣物被撕開", en: "clothes forcibly torn", jp: "服を引き裂かれる", value: "clothes forcibly torn" },
+							{ zh: "衣服被拉開", en: "clothes forcibly pulled open", jp: "服を無理やり開けられる", value: "clothes forcibly pulled open" },
+							{ zh: "衣服被扯掉", en: "clothes forcibly stripped off", jp: "服を引きはがされる", value: "clothes forcibly stripped off" },
+							{ zh: "泳衣被拉開", en: "swimsuit forcibly pulled aside", jp: "水着をずらされる", value: "swimsuit forcibly pulled aside" },
+							{ zh: "連褲襪被撕開", en: "tights forcibly torn open", jp: "タイツを破られる", value: "tights forcibly torn open" },
+							{ zh: "襪子被拉開", en: "socks forcibly pulled", jp: "靴下を引っ張られる", value: "socks forcibly pulled" },
+							{ zh: "手套被扯掉", en: "gloves forcibly removed", jp: "手袋を引きはがされる", value: "gloves forcibly removed" },
+							{ zh: "腰帶被解開", en: "belt forcibly unfastened", jp: "ベルトを無理やり外される", value: "belt forcibly unfastened" },
+							{ zh: "裙內被看見", en: "under skirt exposure", jp: "スカートの中を見せつけられる", value: "under skirt exposure" },
+							{ zh: "下裝被扯開", en: "bottom forcibly opened", jp: "下着やズボンを開けられる", value: "bottom forcibly opened" }
 						]
-					}, {
+					},
+					{
 						subCategory: "衣物破損狀態",
 						tags: [
 							// 上衣
