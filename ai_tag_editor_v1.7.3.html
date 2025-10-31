@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Multi-column Tag Editor v1.8.2 (Full)</title>
+  <style>
+    /* ---------- 基礎樣式 ---------- */
+    :root {
+      --bg: #121212;
+      --panel: #1e1e1e;
+      --muted: #2c2c2c;
+      --accent: #00bcd4;
+      --text: #e0e0e0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    .app {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .left,
+    .right {
+      padding: 12px;
+      overflow: auto;
+    }
+
+    .left {
+      width: 40%;
+      min-width: 320px;
+      border-right: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .topbar,
+    .template-box,
+    .footer-controls {
+      background: var(--panel);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .topbar {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    label {
+      font-size: 13px;
+      margin-right: 6px;
+    }
+
+    select,
+    input[type="text"] {
+      background: var(--muted);
+      color: var(--text);
+      border: 1px solid #444;
+      padding: 6px 8px;
+      border-radius: 6px;
+    }
+
+    #searchInput {
+      flex: 1;
+    }
+
+    .group-buttons,
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    button {
+      background: var(--muted);
+      color: var(--text);
+      border: 1px solid #444;
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .tag-list {
+      background: var(--panel);
+      padding: 10px;
+      border-radius: 8px;
+      overflow: auto;
+      flex: 1;
+    }
+
+    .tag-category h3 {
+      color: #ffcc00;
+      margin: 6px 0;
+    }
+
+    .tag-subcategory h4 {
+      color: #66ccff;
+      margin: 8px 0 6px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      background: #cfcfcf;
+      color: #000;
+      padding: 6px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag.selected {
+      background: #1fce62;
+      color: #000;
+    }
+
+    .weight-control button {
+      margin-left: 4px;
+      padding: 2px 6px;
+    }
+
+    .output-box {
+      background: var(--panel);
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 8px;
+    }
+
+    .output-box.selected {
+      outline: 3px solid rgba(0, 188, 212, 0.12);
+      border-color: var(--accent);
+    }
+
+    .output-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .output-tag {
+      background: #4caf50;
+      color: #000;
+      padding: 4px 6px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .output-tag span {
+      margin-left: 8px;
+      cursor: pointer;
+      color: #900;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 56px;
+      resize: none;
+      background: #222;
+      color: var(--text);
+      border-radius: 6px;
+      border: none;
+      padding: 8px;
+    }
+
+    .footer-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-controls .left-buttons,
+    .footer-controls .right-buttons {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* mobile footer 2x2 rows */
+    .footer-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-row-left,
+    .footer-row-right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      .app {
+        flex-direction: column;
+      }
+
+      .left {
+        width: 100%;
+        min-width: unset;
+        max-height: 50vh;
+        box-sizing: border-box;
+      }
+
+      .right {
+        width: 100%;
+        max-height: calc(50vh - 20px);
+        overflow: auto;
+      }
+
+      /* move search to full width */
+      #searchInput {
+        width: 100%;
+      }
+
+      /* footer mobile layout */
+      .footer-controls {
+        display: none;
+      }
+
+      .footer-mobile {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--panel);
+        padding: 8px;
+        border-top: 1px solid #333;
+        z-index: 999;
+      }
+
+      .group-buttons,
+      .category-buttons {
+        gap: 6px;
+      }
+
+      .template-box {
+        position: relative;
+        z-index: 1000;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="left">
+      <div class="topbar" id="topbar">
+        <label for="languageSelect">介面語言:</label>
+        <select id="languageSelect">
+          <option value="zh">中文</option>
+          <option value="en">English</option>
+          <option value="jp">日本語</option>
+        </select>
+
+        <input type="text" id="searchInput" placeholder="🔍 搜索 tag...">
+
+        <button id="templateToggle">📂 模板</button>
+      </div>
+
+      <!-- group buttons (mobile) -->
+      <div class="group-buttons" id="groupButtons"></div>
+      <div class="category-buttons" id="categories"></div>
+
+      <div class="tag-list" id="tagList"></div>
+
+      <div class="template-box" id="templateBox" style="display:none; margin-top:8px;">
+        <div style="display:flex; gap:8px; align-items:center;">
+          <input id="templateName" type="text" placeholder="模板名稱">
+          <button onclick="saveTemplate()">💾 儲存模板</button>
+          <button onclick="downloadTemplates()">⬇ 下載模板</button>
+          <input id="uploadInput" type="file" onchange="uploadTemplates()" style="margin-left:8px;">
+        </div>
+        <div id="templateList" style="margin-top:8px;"></div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div id="outputs"></div>
+
+      <!-- desktop footer -->
+      <div class="footer-controls" id="footerControlsDesktop">
+        <div class="left-buttons">
+          <button onclick="addOutput()">➕ Add Output</button>
+          <button onclick="removeLast()">➖ Remove Last</button>
+        </div>
+        <div class="right-buttons">
+          <button onclick="clearAll()">🗑️ Clear All</button>
+          <button onclick="copyAll()">📋 Copy All</button>
+        </div>
+      </div>
+
+      <!-- mobile footer 2x2 rows -->
+      <div class="footer-mobile" id="footerMobile">
+        <div class="footer-row" id="footerRow1">
+          <div class="footer-row-left" id="footerRow1Left">
+            <!-- language select will be moved here on mobile -->
+            <select id="mobileLanguageSelect" style="display:none;">
+              <option value="zh">中文</option>
+              <option value="en">English</option>
+              <option value="jp">日本語</option>
+            </select>
+          </div>
+          <div class="footer-row-right" id="footerRow1Right">
+            <button onclick="addOutput()">➕ Add</button>
+            <button onclick="removeLast()">➖ Remove</button>
+          </div>
+        </div>
+        <div class="footer-row" id="footerRow2">
+          <div class="footer-row-left" id="footerRow2Left">
+            <button id="mobileTemplateToggle" style="display:none;">📂 模板</button>
+          </div>
+          <div class="footer-row-right" id="footerRow2Right">
+            <button onclick="clearAll()">🗑️ Clear</button>
+            <button onclick="copyAll()">📋 Copy</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /* ============================================================
+       Full v1.8.2 - integrated: search (zh/en/jp/value), weights +/-, 
+       templates, outputs, responsive mobile footer 2x2, template toggle handler
+       Note: replace or extend rawData below with your full v1.7.0 content.
+       ============================================================ */
+
+    /* ----------------- rawData (example / include your full data) ----------------- */
+    const rawData = [
+      {
+        category: { key: "Common words", zh: "常用詞", en: "Common words", jp: "よく使われる単語" },
+        groups: [
+          {
+            subCategory: "常用",
+            tags: [
+              { zh: "正向詞1", en: "Positive word 1", jp: "ポジティブな言葉1", value: "nsfw, uncensored, unfiltered, no censorship, score_7_up" },
+              { zh: "反向詞0", en: "Reverse word 1", jp: "逆引き単語1", value: "bad quality, worst quality, lowres" },
+              { zh: "無修", en: "uncensored", jp: "無修正", value: "uncensored" }
+            ]
+          }
+        ]
+      },
+      {
+        category: { key: "angle", zh: "視角", en: "Angle", jp: "視点" },
+        groups: [
+          {
+            subCategory: "基本角度",
+            tags: [
+              { zh: "上方視角", en: "from above", jp: "上から", value: "from above" },
+              { zh: "下方視角", en: "from below", jp: "下から", value: "from below" },
+              { zh: "鳥瞰視角", en: "bird's eye view", jp: "俯瞰視点", value: "bird's eye view" }
+            ]
+          },
+          {
+            subCategory: "遠近景",
+            tags: [
+              { zh: "全景", en: "panorama", jp: "パノラマ", value: "panorama" },
+              { zh: "近景視角", en: "close-up", jp: "クローズアップ", value: "close-up" }
+            ]
+          }
+        ]
+      },
+      {
+        category: { key: "Pelope", zh: "人數", en: "Pelope", jp: "人数" },
+        groups: [
+          {
+            subCategory: "人數",
+            tags: [
+              { zh: "單人女", en: "1girl", jp: "女1人", value: "1girl" },
+              { zh: "雙人女", en: "2girls", jp: "女2人", value: "2girls" },
+              { zh: "多人", en: "group", jp: "グループ", value: "group" }
+            ]
+          }
+        ]
+      }
+      // --- (請把你完整的 rawData 放回這裡；上面只是示例片段) ---
+    ];
+
+    /* ----------------- internal state ----------------- */
+    const categories = {};        // derived names
+    const jsonData = {};          // flat mapping category -> tags (value/label)
+    rawData.forEach(g => {
+      const k = g.category.key;
+      categories[k] = { zh: g.category.zh, en: g.category.en, jp: g.category.jp };
+      const tags = [];
+      g.groups.forEach(sub => {
+        sub.tags.forEach(t => {
+          tags.push({ label: { zh: t.zh, en: t.en, jp: t.jp }, value: t.value });
+        });
+      });
+      jsonData[k] = tags;
+    });
+
+    let currentLang = 'zh';
+    let currentCategory = Object.keys(jsonData)[0] || (rawData[0] && rawData[0].category.key);
+    let outputData = []; // array of arrays of tag objects {label?, value, weight?}
+    let currentOutputIndex = 0;
+    let templateData = [];
+
+    /* ----------------- DOM refs ----------------- */
+    const tagList = document.getElementById('tagList');
+    const outputs = document.getElementById('outputs');
+    const languageSelect = document.getElementById('languageSelect');
+    const mobileLanguageSelect = document.getElementById('mobileLanguageSelect');
+    const templateBox = document.getElementById('templateBox');
+    const templateToggle = document.getElementById('templateToggle');
+    const mobileTemplateToggle = document.getElementById('mobileTemplateToggle');
+    const footerMobile = document.getElementById('footerMobile');
+    const footerControlsDesktop = document.getElementById('footerControlsDesktop');
+
+    /* ----------------- Templates: local storage ----------------- */
+    function saveToLocal() {
+      try { localStorage.setItem('ai_tag_templates', JSON.stringify(templateData)); } catch (e) { }
+    }
+    function loadFromLocal() {
+      try { const s = localStorage.getItem('ai_tag_templates'); if (s) templateData = JSON.parse(s); } catch (e) { }
+    }
+    function renderTemplateList() {
+      const list = document.getElementById('templateList'); list.innerHTML = '';
+      templateData.forEach((tpl, idx) => {
+        const wrapper = document.createElement('div');
+        wrapper.style.display = 'flex'; wrapper.style.alignItems = 'center'; wrapper.style.gap = '8px'; wrapper.style.marginTop = '6px';
+        const nameBtn = document.createElement('button'); nameBtn.textContent = tpl.name;
+        nameBtn.onclick = () => { applyTemplate(idx); };
+        const del = document.createElement('button'); del.textContent = '✕'; del.onclick = () => { templateData.splice(idx, 1); saveToLocal(); renderTemplateList(); };
+        const cb = document.createElement('input'); cb.type = 'checkbox'; cb.className = 'template-checkbox'; cb.dataset.index = idx;
+        wrapper.appendChild(cb); wrapper.appendChild(nameBtn); wrapper.appendChild(del);
+        list.appendChild(wrapper);
+      });
+    }
+    function saveTemplate() {
+      const name = document.getElementById('templateName').value.trim();
+      if (!name) return alert('請輸入模板名稱');
+      if (templateData.some(t => t.name === name)) return alert('名稱重複');
+      templateData.push({ name, data: JSON.parse(JSON.stringify(outputData)) });
+      saveToLocal();
+      renderTemplateList();
+      document.getElementById('templateName').value = '';
+    }
+    function applyTemplate(idx) {
+      const tpl = templateData[idx]; if (!tpl) return;
+      outputData = JSON.parse(JSON.stringify(tpl.data));
+      outputs.innerHTML = '';
+      outputData.forEach((_, i) => createOutputBox(i));
+      updateAllTagHighlight();
+    }
+    function downloadTemplates() {
+      const checked = document.querySelectorAll('.template-checkbox:checked');
+      if (!checked.length) return alert('請勾選模板');
+      const arr = Array.from(checked).map(c => templateData[parseInt(c.dataset.index)]);
+      const blob = new Blob([JSON.stringify(arr, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'templates.json'; a.click(); URL.revokeObjectURL(url);
+    }
+    function uploadTemplates() {
+      const input = document.getElementById('uploadInput'); const file = input.files && input.files[0]; if (!file) return;
+      const fr = new FileReader(); fr.onload = e => {
+        try {
+          const arr = JSON.parse(e.target.result);
+          if (!Array.isArray(arr)) throw new Error('格式錯誤');
+          arr.forEach(t => { if (t.name && t.data) templateData.push(t); });
+          saveToLocal(); renderTemplateList();
+        } catch (err) { alert('上傳模板格式錯誤'); }
+      }; fr.readAsText(file); input.value = '';
+    }
+
+    /* ----------------- Render category view ----------------- */
+    function renderTags(categoryKey) {
+      tagList.innerHTML = '';
+      const cat = rawData.find(c => c.category.key === categoryKey);
+      if (!cat) return;
+      const title = document.createElement('div'); title.className = 'tag-category';
+      const h = document.createElement('h3'); h.textContent = cat.category[currentLang] || cat.category.zh; title.appendChild(h);
+      tagList.appendChild(title);
+      cat.groups.forEach(group => {
+        const sub = document.createElement('div'); sub.className = 'tag-subcategory';
+        const sh = document.createElement('h4'); sh.textContent = group.subCategory || ''; sub.appendChild(sh);
+        const row = document.createElement('div'); row.className = 'tag-row';
+        group.tags.forEach(tag => {
+          const btn = document.createElement('button'); btn.className = 'tag';
+          btn.textContent = tag[currentLang] || tag.en || tag.zh || tag.value;
+          btn.dataset.value = tag.value;
+          // weight controls
+          const weightWrap = document.createElement('span'); weightWrap.className = 'weight-control';
+          const wplus = document.createElement('button'); wplus.textContent = '+';
+          const wminus = document.createElement('button'); wminus.textContent = '-';
+          wplus.onclick = (e) => { e.stopPropagation(); wplusHandler(tag.value, 0.1); };
+          wminus.onclick = (e) => { e.stopPropagation(); wplusHandler(tag.value, -0.1); };
+          weightWrap.appendChild(wplus); weightWrap.appendChild(wminus);
+          btn.appendChild(weightWrap);
+          btn.onclick = () => { toggleTag(btn, tag); updateAllTagHighlight(); };
+          row.appendChild(btn);
+        });
+        sub.appendChild(row); tagList.appendChild(sub);
+      });
+      updateAllTagHighlight();
+    }
+
+    /* ----------------- Search (zh/en/jp/value) ----------------- */
+    function doSearch(q) {
+      const s = (q || '').trim().toLowerCase();
+      if (!s) { renderTags(currentCategory); return; }
+      const results = [];
+      rawData.forEach(cat => {
+        cat.groups.forEach(group => {
+          group.tags.forEach(tag => {
+            const zh = (tag.zh || '').toString().toLowerCase();
+            const en = (tag.en || '').toString().toLowerCase();
+            const jp = (tag.jp || '').toString().toLowerCase();
+            const val = (tag.value || '').toString().toLowerCase();
+            if (zh.includes(s) || en.includes(s) || jp.includes(s) || val.includes(s)) {
+              results.push({ tag, sub: group.subCategory, cat: cat.category.key });
+            }
+          });
+        });
+      });
+      tagList.innerHTML = '';
+      const header = document.createElement('h3'); header.textContent = `搜尋結果 (${results.length})`; tagList.appendChild(header);
+      const grouped = {};
+      results.forEach(r => { const k = r.sub || 'Results'; (grouped[k] || (grouped[k] = [])).push(r.tag); });
+      Object.keys(grouped).forEach(sub => {
+        const subDiv = document.createElement('div'); subDiv.className = 'tag-subcategory';
+        const sh = document.createElement('h4'); sh.textContent = sub; subDiv.appendChild(sh);
+        const row = document.createElement('div'); row.className = 'tag-row';
+        grouped[sub].forEach(tag => {
+          const btn = document.createElement('button'); btn.className = 'tag'; btn.textContent = tag[currentLang] || tag.en || tag.zh || tag.value;
+          btn.dataset.value = tag.value;
+          const weightWrap = document.createElement('span'); weightWrap.className = 'weight-control';
+          const wplus = document.createElement('button'); wplus.textContent = '+';
+          const wminus = document.createElement('button'); wminus.textContent = '-';
+          wplus.onclick = (e) => { e.stopPropagation(); wplusHandler(tag.value, 0.1); };
+          wminus.onclick = (e) => { e.stopPropagation(); wplusHandler(tag.value, -0.1); };
+          weightWrap.appendChild(wplus); weightWrap.appendChild(wminus);
+          btn.appendChild(weightWrap);
+          btn.onclick = () => { toggleTag(btn, tag); updateAllTagHighlight(); };
+          row.appendChild(btn);
+        });
+        subDiv.appendChild(row); tagList.appendChild(subDiv);
+      });
+      updateAllTagHighlight();
+    }
+
+    /* ----------------- Tag add/remove & weight ----------------- */
+    function findTagInOutputs(value) {
+      for (let i = 0; i < outputData.length; i++) {
+        if (outputData[i].some(t => t.value === value)) return i;
+      }
+      return -1;
+    }
+    function toggleTag(btn, tagObj) {
+      // if exists in other output, jump to it and remove (per earlier logic)
+      const found = findTagInOutputs(tagObj.value);
+      if (found !== -1 && found !== currentOutputIndex) {
+        currentOutputIndex = found;
+        updateOutputHighlight();
+        removeTag(found, tagObj.value);
+        return;
+      }
+      // toggle on current output
+      const isSel = btn.classList.toggle('selected');
+      if (isSel) {
+        addTagToCurrent(tagObj);
+      } else {
+        removeTag(currentOutputIndex, tagObj.value);
+      }
+    }
+    function addTagToCurrent(tagObj) {
+      if (!outputData[currentOutputIndex]) outputData[currentOutputIndex] = [];
+      if (outputData[currentOutputIndex].some(t => t.value === tagObj.value)) return;
+      const clone = { label: { zh: tagObj.zh || tagObj.en || tagObj.value, en: tagObj.en || tagObj.zh || tagObj.value, jp: tagObj.jp || tagObj.zh || tagObj.en }, value: tagObj.value };
+      outputData[currentOutputIndex].push(clone);
+      updateOutput(currentOutputIndex);
+      updateAllTagHighlight();
+    }
+    function removeTag(index, value) {
+      if (!outputData[index]) return;
+      outputData[index] = outputData[index].filter(t => t.value !== value);
+      updateOutput(index);
+      updateAllTagHighlight();
+    }
+    function wplusHandler(value, delta) {
+      // if not yet in any output, add then set weight
+      let foundIdx = findTagInOutputs(value);
+      if (foundIdx === -1) {
+        // find tag object metadata to add
+        let tagMeta = null;
+        for (const cat of rawData) {
+          for (const g of cat.groups) {
+            const tt = g.tags.find(x => x.value === value);
+            if (tt) { tagMeta = tt; break; }
+          }
+          if (tagMeta) break;
+        }
+        if (!tagMeta) {
+          // create free text tag
+          tagMeta = { zh: value, en: value, jp: value, value };
+        }
+        // add to current output and set weight 1
+        addTagToCurrent(tagMeta);
+        foundIdx = currentOutputIndex;
+      }
+      // adjust weight
+      const t = outputData[foundIdx].find(x => x.value === value);
+      if (!t) return;
+      t.weight = Math.max(0.1, Math.min(5, (t.weight || 1) + delta));
+      updateOutput(foundIdx);
+      updateAllTagHighlight();
+    }
+
+    /* ----------------- Outputs UI ----------------- */
+    function createOutputBox(index) {
+      const wrapper = document.createElement('div'); wrapper.className = 'output-box';
+      wrapper.onclick = () => { currentOutputIndex = index; updateOutputHighlight(); };
+      const tagWrap = document.createElement('div'); tagWrap.className = 'output-tags';
+      const ta = document.createElement('textarea');
+      ta.oninput = () => {
+        const parts = ta.value.split(',').map(s => s.trim()).filter(Boolean);
+        outputData[index] = parts.map(v => {
+          // try to resolve to known tag
+          for (const catKey in jsonData) {
+            const match = jsonData[catKey].find(t => t.value === v);
+            if (match) return { label: match.label, value: match.value };
+          }
+          return { label: { zh: v, en: v, jp: v }, value: v };
+        });
+        renderTagDisplay(index);
+        updateAllTagHighlight();
+      };
+      const controls = document.createElement('div'); controls.style.marginTop = '6px';
+      const copyBtn = document.createElement('button'); copyBtn.textContent = '📋'; copyBtn.onclick = (e) => { e.stopPropagation(); navigator.clipboard.writeText(ta.value || ''); };
+      const clearBtn = document.createElement('button'); clearBtn.textContent = '🗑️'; clearBtn.onclick = (e) => { e.stopPropagation(); outputData[index] = []; updateOutput(index); updateAllTagHighlight(); };
+      controls.appendChild(copyBtn); controls.appendChild(clearBtn);
+      wrapper.appendChild(tagWrap); wrapper.appendChild(ta); wrapper.appendChild(controls);
+      outputs.appendChild(wrapper);
+      updateOutput(index);
+    }
+    function renderTagDisplay(index) {
+      const box = outputs.children[index];
+      if (!box) return;
+      const tagContainer = box.querySelector('.output-tags');
+      tagContainer.innerHTML = '';
+      (outputData[index] || []).forEach(t => {
+        const label = (t.label && t.label[currentLang]) ? t.label[currentLang] : t.value;
+        const tagEl = document.createElement('div'); tagEl.className = 'output-tag';
+        const weightPart = t.weight ? `:${t.weight}` : '';
+        tagEl.innerHTML = `${label}${weightPart} <span onclick="removeTag(${index}, '${t.value.replace(/'/g, "\\'")}')">✕</span>`;
+        tagContainer.appendChild(tagEl);
+      });
+    }
+    function updateOutput(index) {
+      const box = outputs.children[index]; if (!box) return;
+      const ta = box.querySelector('textarea');
+      ta.value = (outputData[index] || []).map(t => t.weight ? `(${t.value}:${t.weight}), ` : `${t.value}, `).join('');
+      renderTagDisplay(index);
+      updateOutputHighlight();
+    }
+    function updateOutputHighlight() {
+      Array.from(outputs.children).forEach((el, i) => el.classList.toggle('selected', i === currentOutputIndex));
+      updateAllTagHighlight();
+    }
+    function updateAllTagHighlight() {
+      const s = new Set(outputData.flat().map(t => t.value));
+      document.querySelectorAll('.tag').forEach(el => el.classList.toggle('selected', s.has(el.dataset.value)));
+    }
+
+    /* ----------------- controls ----------------- */
+    function addOutput() { const idx = outputData.length; outputData.push([]); createOutputBox(idx); }
+    function removeLast() { if (outputData.length > 1) { outputs.lastChild.remove(); outputData.pop(); if (currentOutputIndex >= outputData.length) currentOutputIndex = outputData.length - 1; updateAllTagHighlight(); } }
+    function clearAll() { for (let i = 0; i < outputData.length; i++) { outputData[i] = []; updateOutput(i); } updateAllTagHighlight(); }
+    function copyAll() {
+      const text = outputData.map(a => a.map(t => t.value + (t.weight ? `:${t.weight}` : '')).join(', ')).join('\n---\n');
+      navigator.clipboard.writeText(text);
+    }
+
+    /* ----------------- Search wiring ----------------- */
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => doSearch(e.target.value));
+
+    /* ----------------- Responsive: move language & template to mobile footer (2x2) ----------------- */
+    function arrangeFooterForViewport() {
+      const isMobile = window.innerWidth <= 768;
+      const footerMobileEl = document.getElementById('footerMobile');
+      const footerDesktopEl = document.getElementById('footerControlsDesktop');
+
+      // language select elements
+      const langDesktop = document.getElementById('languageSelect');
+      const langMobile = document.getElementById('mobileLanguageSelect');
+
+      // template toggle buttons
+      const desktopTemplateBtn = document.getElementById('templateToggle');
+      const mobileTemplateBtn = document.getElementById('mobileTemplateToggle');
+
+      if (isMobile) {
+        // show mobile footer, hide desktop footer
+        footerMobileEl.style.display = 'flex'; footerDesktopEl.style.display = 'none';
+
+        // move language into mobile left top row (show mobileLang)
+        langDesktop.style.display = 'none';
+        langMobile.style.display = 'inline-block';
+        // sync mobileLanguageSelect value to currentLang
+        langMobile.value = currentLang;
+
+        // show mobile template toggle and ensure it is wired
+        mobileTemplateBtn.style.display = 'inline-block';
+        // ensure mobile template toggle has handler
+        if (!mobileTemplateBtn._bind) {
+          mobileTemplateBtn.addEventListener('click', () => {
+            const showing = templateBox.style.display === 'block';
+            templateBox.style.display = showing ? 'none' : 'block';
+          });
+          mobileTemplateBtn._bind = true;
+        }
+
+        // ensure desktop template toggle remains present but hidden in topbar
+        if (desktopTemplateBtn) desktopTemplateBtn.style.display = 'none';
+        // ensure mobile language change reflects main languageSelect
+        langMobile.onchange = () => { currentLang = langMobile.value; languageSelect.value = currentLang; reRenderAll(); };
+      } else {
+        // desktop: show desktop footer, hide mobile footer
+        footerMobileEl.style.display = 'none'; footerDesktopEl.style.display = 'flex';
+
+        // language: show desktop select, hide mobile one
+        langDesktop.style.display = 'inline-block';
+        langMobile.style.display = 'none';
+
+        // show desktop template toggle
+        if (desktopTemplateBtn) desktopTemplateBtn.style.display = 'inline-block';
+        if (mobileTemplateBtn) mobileTemplateBtn.style.display = 'none';
+      }
+    }
+
+    /* ----------------- template toggle handlers (desktop always works) ----------------- */
+    function bindTemplateToggles() {
+      const desktopBtn = document.getElementById('templateToggle');
+      const mobileBtn = document.getElementById('mobileTemplateToggle');
+
+      function toggleTemplateBox(e) {
+        e && e.stopPropagation();
+        const cur = templateBox.style.display === 'block';
+        templateBox.style.display = cur ? 'none' : 'block';
+        // ensure desktop/mobile stay in sync (no-op if not visible)
+      }
+      if (desktopBtn && !desktopBtn._bound) {
+        desktopBtn.addEventListener('click', toggleTemplateBox);
+        desktopBtn._bound = true;
+      }
+      if (mobileBtn && !mobileBtn._bound) {
+        mobileBtn.addEventListener('click', toggleTemplateBox);
+        mobileBtn._bound = true;
+      }
+
+      // clicking outside template area should close it on mobile
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          if (templateBox.style.display === 'block') {
+            if (!templateBox.contains(e.target) && e.target !== desktopBtn && e.target !== mobileBtn) {
+              templateBox.style.display = 'none';
+            }
+          }
+        }
+      });
+    }
+
+    /* ----------------- groups & mobile categories (example/simple) ----------------- */
+    const groupData = [
+      { group: { key: "Common", zh: "常用/汎用", en: "Common", jp: "汎用" }, classification: ["Common words", "Pelope", "angle"] },
+      { group: { key: "Body", zh: "身體", en: "Body", jp: "体" }, classification: ["Pelope"] },
+      { group: { key: "Clothes", zh: "衣服", en: "Clothes", jp: "服" }, classification: ["angle"] }
+    ];
+    function renderGroupButtons() {
+      const container = document.getElementById('groupButtons'); container.innerHTML = '';
+      groupData.forEach(g => {
+        const btn = document.createElement('button'); btn.textContent = g.group[currentLang] || g.group.key;
+        btn.onclick = () => { currentCategory = g.classification[0]; renderCategoryButtons_mobile(g); renderTags(currentCategory); };
+        container.appendChild(btn);
+      });
+    }
+    function renderCategoryButtons_mobile(group) {
+      const cats = group.classification;
+      const container = document.getElementById('categories'); container.innerHTML = '';
+      cats.forEach(k => {
+        const lbl = categories[k] ? categories[k][currentLang] : (k);
+        const btn = document.createElement('button'); btn.textContent = lbl;
+        btn.onclick = () => { currentCategory = k; renderTags(k); };
+        container.appendChild(btn);
+      });
+    }
+
+    /* ----------------- re-render helper ----------------- */
+    function reRenderAll() {
+      // re-render tag list in either category or search state
+      const q = searchInput.value || '';
+      if (q.trim()) doSearch(q);
+      else renderTags(currentCategory);
+      // update outputs labels for language
+      for (let i = 0; i < outputData.length; i++) renderTagDisplay(i);
+    }
+
+    /* ----------------- language select wiring ----------------- */
+    languageSelect.onchange = () => {
+      currentLang = languageSelect.value;
+      // sync mobile select if visible
+      const m = document.getElementById('mobileLanguageSelect');
+      if (m) m.value = currentLang;
+      reRenderAll();
+    };
+
+    /* ----------------- initial bootstrap ----------------- */
+    function init() {
+      loadFromLocal();
+      // initial outputs (3)
+      for (let i = 0; i < 3; i++) { outputData.push([]); createOutputBox(i); }
+      renderTags(currentCategory);
+      renderGroupButtons();
+      renderCategoryButtons_mobile(groupData[0]);
+      renderTemplateList();
+      bindTemplateToggles();
+      arrangeFooterForViewport();
+
+      // wire desktop template toggle (already bound in bindTemplateToggles)
+      // wire search input already done above
+      // respond to resize
+      window.addEventListener('resize', () => {
+        arrangeFooterForViewport();
+      });
+    }
+
+    // wire search input (already)
+    searchInput.addEventListener('input', () => { const q = searchInput.value; doSearch(q); });
+
+    // small helper: clicking tagList area shouldn't close templateBox on mobile
+    tagList.addEventListener('click', (e) => e.stopPropagation());
+
+    document.addEventListener('DOMContentLoaded', () => { init(); });
+
+  </script>
+</body>
+
+</html>
