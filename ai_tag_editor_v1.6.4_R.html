@@ -4927,6 +4927,33 @@
 						]
 					},
 					{
+						subCategory: "覆體服裝（幽靈裝 / 布覆造型）",
+						tags: [
+							{ zh: "白布覆體", en: "white cloth over body", jp: "体を覆う白布", value: "white cloth over body" },
+							{ zh: "幽靈造型", en: "ghost costume", jp: "幽霊コスチューム", value: "ghost costume" },
+							{ zh: "床單幽靈", en: "sheet ghost", jp: "シーツ幽霊", value: "sheet ghost" },
+							{ zh: "布覆全身", en: "body covered in fabric", jp: "布で体を覆う", value: "body covered in fabric" },
+							{ zh: "貼身布料", en: "tight fabric", jp: "体に密着した布", value: "tight fabric" },
+							{ zh: "布料貼合身體輪廓", en: "fabric stretched over body", jp: "体に張り付く布", value: "fabric stretched over body" },
+							{ zh: "頭部覆蓋", en: "covered head", jp: "頭を覆う", value: "covered head" },
+							{ zh: "眼孔開口", en: "eyes cutout holes", jp: "目の穴を開ける", value: "eyes cutout holes" },
+							{ zh: "柔軟垂墜布料", en: "soft draped fabric", jp: "柔らかく垂れた布", value: "soft draped fabric" },
+							{ zh: "覆面造型", en: "covered face", jp: "顔を覆う", value: "covered face" },
+
+							// 透明與透視感
+							{ zh: "半透明布料", en: "semi-transparent fabric", jp: "半透明の布", value: "semi-transparent fabric" },
+							{ zh: "透明布料", en: "transparent fabric", jp: "透明な布", value: "transparent fabric" },
+							{ zh: "薄布貼膚", en: "thin fabric against skin", jp: "薄布が肌に密着", value: "thin fabric against skin" },
+							{ zh: "身體輪廓可見", en: "body outline visible", jp: "体の輪郭が見える", value: "body outline visible" },
+							{ zh: "乳頭輪廓可見", en: "nipple outline visible", jp: "乳首の輪郭が見える", value: "nipple outline visible" },
+							{ zh: "透膚布料", en: "see-through cloth", jp: "透ける布", value: "see-through cloth" },
+							{ zh: "透明貼膚布料", en: "transparent skin-tight cloth", jp: "透明で体に密着する布", value: "transparent skin-tight cloth" },
+							{ zh: "薄紗布料", en: "sheer fabric", jp: "シアー素材の布", value: "sheer fabric" },
+							{ zh: "透亮材質", en: "translucent material", jp: "透き通る素材", value: "translucent material" },
+							{ zh: "柔光透膚效果", en: "soft translucent glow", jp: "柔らかい透け感の光", value: "soft translucent glow" }
+						]
+					},
+					{
 						subCategory: "地雷系",
 						tags: [
 							{ zh: "地雷系洋裝", en: "jirai-kei onepiece dress", jp: "地雷系ワンピース", value: "jirai-kei dress, pastel gothic onepiece, lace hem dress" },
@@ -9172,75 +9199,75 @@
 			updateOutput(index);
 		}
 
-function normalizeValue(v) {
-  if (v === null || v === undefined) return '';
-  // 轉成字串、去首尾空白、去除常見尾逗號與括號、小寫化
-  return String(v).trim().replace(/^,+|,+$/g, '').replace(/^[\(\[]+|[\)\]]+$/g, '').toLowerCase();
-}
+		function normalizeValue(v) {
+			if (v === null || v === undefined) return '';
+			// 轉成字串、去首尾空白、去除常見尾逗號與括號、小寫化
+			return String(v).trim().replace(/^,+|,+$/g, '').replace(/^[\(\[]+|[\)\]]+$/g, '').toLowerCase();
+		}
 
-function renderTagDisplay(index) {
-  const tagContainer = outputsDiv.children[index].querySelector('.output-tags');
-  tagContainer.innerHTML = '';
+		function renderTagDisplay(index) {
+			const tagContainer = outputsDiv.children[index].querySelector('.output-tags');
+			tagContainer.innerHTML = '';
 
-  outputData[index].forEach((tag, i) => {
-    // 防護：tag 應該是物件 { label: {...}, value: '...' }，但有時可能被錯誤設為字串
-    if (!tag || (typeof tag !== 'object' && typeof tag !== 'string')) {
-      console.warn(`[renderTagDisplay] 異常 tag 位置 ${index}[${i}] type:`, typeof tag, tag);
-    }
+			outputData[index].forEach((tag, i) => {
+				// 防護：tag 應該是物件 { label: {...}, value: '...' }，但有時可能被錯誤設為字串
+				if (!tag || (typeof tag !== 'object' && typeof tag !== 'string')) {
+					console.warn(`[renderTagDisplay] 異常 tag 位置 ${index}[${i}] type:`, typeof tag, tag);
+				}
 
-    const tagValueRaw = (tag && typeof tag === 'object') ? tag.value : tag; // fallback
-    if (typeof tagValueRaw === 'undefined') {
-      console.warn(`[renderTagDisplay] tag.value undefined at output ${index} pos ${i}`, tag);
-    }
+				const tagValueRaw = (tag && typeof tag === 'object') ? tag.value : tag; // fallback
+				if (typeof tagValueRaw === 'undefined') {
+					console.warn(`[renderTagDisplay] tag.value undefined at output ${index} pos ${i}`, tag);
+				}
 
-    const normValue = normalizeValue(tagValueRaw);
+				const normValue = normalizeValue(tagValueRaw);
 
-    // 嘗試在 rawData 中找到對應的 tag 物件（更寬鬆的比對）
-    let displayText = null;
-    let foundTagObj = null;
+				// 嘗試在 rawData 中找到對應的 tag 物件（更寬鬆的比對）
+				let displayText = null;
+				let foundTagObj = null;
 
-    outer:
-    for (const group of rawData) {
-      if (!group || !group.groups) continue;
-      for (const sub of group.groups) {
-        if (!sub || !Array.isArray(sub.tags)) continue;
-        for (const t of sub.tags) {
-          if (!t) continue;
-          const normT = normalizeValue(t.value);
-          if (normT === normValue) {
-            foundTagObj = t;
-            break outer;
-          }
-        }
-      }
-    }
+				outer:
+				for (const group of rawData) {
+					if (!group || !group.groups) continue;
+					for (const sub of group.groups) {
+						if (!sub || !Array.isArray(sub.tags)) continue;
+						for (const t of sub.tags) {
+							if (!t) continue;
+							const normT = normalizeValue(t.value);
+							if (normT === normValue) {
+								foundTagObj = t;
+								break outer;
+							}
+						}
+					}
+				}
 
-    // 如果 outputData 裡已有 label（例如在 addTagToCurrent 時 push 了整個 object）
-    if (tag && typeof tag === 'object' && tag.label && tag.label[currentLang]) {
-      displayText = tag.label[currentLang];
-    } else if (foundTagObj && foundTagObj[currentLang]) {
-      displayText = foundTagObj[currentLang];
-    } else if (tagValueRaw != null) {
-      // fallback 為原始 value（顯示原字串）
-      displayText = String(tagValueRaw);
-    } else {
-      displayText = '';
-    }
+				// 如果 outputData 裡已有 label（例如在 addTagToCurrent 時 push 了整個 object）
+				if (tag && typeof tag === 'object' && tag.label && tag.label[currentLang]) {
+					displayText = tag.label[currentLang];
+				} else if (foundTagObj && foundTagObj[currentLang]) {
+					displayText = foundTagObj[currentLang];
+				} else if (tagValueRaw != null) {
+					// fallback 為原始 value（顯示原字串）
+					displayText = String(tagValueRaw);
+				} else {
+					displayText = '';
+				}
 
-    // 如果找不到對應的 tag 物件，記錄一次（但不阻斷 UI）
-    if (!foundTagObj) {
-      console.warn(`[renderTagDisplay] 未在 rawData 找到對應 tag (normalized='${normValue}') for output[${index}] pos ${i}`, { tagValueRaw, tag });
-    }
+				// 如果找不到對應的 tag 物件，記錄一次（但不阻斷 UI）
+				if (!foundTagObj) {
+					console.warn(`[renderTagDisplay] 未在 rawData 找到對應 tag (normalized='${normValue}') for output[${index}] pos ${i}`, { tagValueRaw, tag });
+				}
 
-    // 建立 DOM（保持原本的 output-tag 結構）
-    const tagEl = document.createElement('div');
-    tagEl.className = 'output-tag';
-    // escape 單引號以免 inline onclick 跳錯
-    const safeValue = String(tagValueRaw).replace(/'/g, "\\'");
-    tagEl.innerHTML = `${displayText}<span onclick="removeTag(${index}, '${safeValue}')">✕</span>`;
-    tagContainer.appendChild(tagEl);
-  });
-}
+				// 建立 DOM（保持原本的 output-tag 結構）
+				const tagEl = document.createElement('div');
+				tagEl.className = 'output-tag';
+				// escape 單引號以免 inline onclick 跳錯
+				const safeValue = String(tagValueRaw).replace(/'/g, "\\'");
+				tagEl.innerHTML = `${displayText}<span onclick="removeTag(${index}, '${safeValue}')">✕</span>`;
+				tagContainer.appendChild(tagEl);
+			});
+		}
 
 
 
