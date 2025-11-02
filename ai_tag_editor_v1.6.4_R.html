@@ -9172,37 +9172,76 @@
 			updateOutput(index);
 		}
 
-		function renderTagDisplay(index) {
-			const tagContainer = outputsDiv.children[index].querySelector('.output-tags');
-			tagContainer.innerHTML = '';
-			outputData[index].forEach(tag => {
+function normalizeValue(v) {
+  if (v === null || v === undefined) return '';
+  // 轉成字串、去首尾空白、去除常見尾逗號與括號、小寫化
+  return String(v).trim().replace(/^,+|,+$/g, '').replace(/^[\(\[]+|[\)\]]+$/g, '').toLowerCase();
+}
 
-				// 先嘗試直接用既有 label
-				let displayText = (tag.label && tag.label[currentLang]) ? tag.label[currentLang] : null;
+function renderTagDisplay(index) {
+  const tagContainer = outputsDiv.children[index].querySelector('.output-tags');
+  tagContainer.innerHTML = '';
 
-				// 如果沒有 label，去 rawData 裡比對 value
-				if (!displayText) {
-					for (const group of rawData) {
-						for (const sub of group.groups) {
-							const match = sub.tags.find(t => t.value === tag.value);
-							if (match) {
-								displayText = match[currentLang]; // zh / en / jp
-								break;
-							}
-						}
-						if (displayText) break;
-					}
-				}
+  outputData[index].forEach((tag, i) => {
+    // 防護：tag 應該是物件 { label: {...}, value: '...' }，但有時可能被錯誤設為字串
+    if (!tag || (typeof tag !== 'object' && typeof tag !== 'string')) {
+      console.warn(`[renderTagDisplay] 異常 tag 位置 ${index}[${i}] type:`, typeof tag, tag);
+    }
 
-				// 仍找不到就 fallback 為 value
-				if (!displayText) displayText = tag.value;
+    const tagValueRaw = (tag && typeof tag === 'object') ? tag.value : tag; // fallback
+    if (typeof tagValueRaw === 'undefined') {
+      console.warn(`[renderTagDisplay] tag.value undefined at output ${index} pos ${i}`, tag);
+    }
 
-				const tagEl = document.createElement('div');
-				tagEl.className = 'output-tag';
-				tagEl.innerHTML = `${displayText}<span onclick="removeTag(${index}, '${tag.value.replace(/'/g, "\\'")}')">✕</span>`;
-				tagContainer.appendChild(tagEl);
-			});
-		}
+    const normValue = normalizeValue(tagValueRaw);
+
+    // 嘗試在 rawData 中找到對應的 tag 物件（更寬鬆的比對）
+    let displayText = null;
+    let foundTagObj = null;
+
+    outer:
+    for (const group of rawData) {
+      if (!group || !group.groups) continue;
+      for (const sub of group.groups) {
+        if (!sub || !Array.isArray(sub.tags)) continue;
+        for (const t of sub.tags) {
+          if (!t) continue;
+          const normT = normalizeValue(t.value);
+          if (normT === normValue) {
+            foundTagObj = t;
+            break outer;
+          }
+        }
+      }
+    }
+
+    // 如果 outputData 裡已有 label（例如在 addTagToCurrent 時 push 了整個 object）
+    if (tag && typeof tag === 'object' && tag.label && tag.label[currentLang]) {
+      displayText = tag.label[currentLang];
+    } else if (foundTagObj && foundTagObj[currentLang]) {
+      displayText = foundTagObj[currentLang];
+    } else if (tagValueRaw != null) {
+      // fallback 為原始 value（顯示原字串）
+      displayText = String(tagValueRaw);
+    } else {
+      displayText = '';
+    }
+
+    // 如果找不到對應的 tag 物件，記錄一次（但不阻斷 UI）
+    if (!foundTagObj) {
+      console.warn(`[renderTagDisplay] 未在 rawData 找到對應 tag (normalized='${normValue}') for output[${index}] pos ${i}`, { tagValueRaw, tag });
+    }
+
+    // 建立 DOM（保持原本的 output-tag 結構）
+    const tagEl = document.createElement('div');
+    tagEl.className = 'output-tag';
+    // escape 單引號以免 inline onclick 跳錯
+    const safeValue = String(tagValueRaw).replace(/'/g, "\\'");
+    tagEl.innerHTML = `${displayText}<span onclick="removeTag(${index}, '${safeValue}')">✕</span>`;
+    tagContainer.appendChild(tagEl);
+  });
+}
+
 
 
 		function removeTag(index, value) {
