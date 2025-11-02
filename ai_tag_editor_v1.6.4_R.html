@@ -9258,6 +9258,22 @@
 				updateAllTagHighlight();
 			}
 		}
+
+		function toggleTag(el, tagObj) {
+			const isSelected = el.classList.toggle('selected');
+
+			if (isSelected) {
+				// 加入目前 output
+				addTagToCurrent(tagObj);
+			} else {
+				// 從目前 output 移除
+				removeTag(currentOutputIndex, tagObj.value);
+			}
+
+			updateAllTagHighlight();
+		}
+
+
 		function copyAll() {
 			const allText = outputData.map(arr =>
 				arr.map(t => {
