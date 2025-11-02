@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Multi-column Tag Editor (with Search)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .left,
+        .right {
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .left {
+            width: 40%;
+            border-right: 1px solid #444;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .topbar,
+        .template-box,
+        .footer-controls {
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .topbar select {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            padding: 4px;
+        }
+
+        .category-buttons button,
+        .template-box button {
+            margin: 2px;
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            overflow-y: auto;
+            scrollbar-gutter: stable;
+        }
+
+        .tag {
+            padding: 5px 8px;
+            background: #c2c2c2;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .tag.selected {
+            background: #1fce62;
+            color: #000;
+        }
+
+        .tag-category h3 {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        .tag-subcategory h4 {
+            margin: 8px 0 4px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #66ccff;
+        }
+
+        .output-box {
+            border: 1px solid #555;
+            background-color: #1e1e1e;
+            padding: 5px;
+            position: relative;
+        }
+
+        .output-box.selected {
+            border: 2px solid #00BCD4;
+        }
+
+        .output-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .output-tag {
+            background: #4caf50;
+            padding: 4px 6px;
+            border-radius: 4px;
+        }
+
+        .output-tag span {
+            margin-left: 4px;
+            cursor: pointer;
+            color: red;
+        }
+
+        .output-box textarea {
+            width: 100%;
+            height: 60px;
+            resize: none;
+            background-color: #333;
+            color: #eee;
+            border: none;
+            border-radius: 4px;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+
+        .output-controls button {
+            margin-left: 5px;
+        }
+
+        .template-box span {
+            cursor: pointer;
+            margin-left: 5px;
+            color: red;
+        }
+
+        .footer-controls {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #1e1e1e;
+            border-radius: 6px;
+        }
+
+        .footer-controls>div {
+            display: flex;
+            gap: 10px;
+        }
+
+        #templateToggle {
+            display: none;
+        }
+
+        .group-buttons button.active,
+        .category-buttons button.active {
+            background-color: #00bcd4;
+            color: #000;
+            border: 1px solid #00bcd4;
+        }
+
+        /* 搜尋輸入樣式 (保守、跟現有 UI 一致) */
+        .search-input {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            padding: 6px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            min-width: 160px;
+        }
+
+        /* 手機專用調整 */
+        @media (max-width: 768px) {
+
+            body {
+                flex-direction: column;
+                overflow-x: hidden;
+            }
+
+            .group-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                overflow-y: auto;
+                line-height: 1.6em;
+                max-height: calc(1.6em * 2 + 12px);
+                min-height: calc(1.6em * 2 + 12px);
+                margin-bottom: 6px;
+                flex-shrink: 0;
+                background: #1e1e1e;
+                border-radius: 6px;
+                padding: 6px;
+            }
+
+            .category-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                overflow-y: auto;
+                line-height: 1.6em;
+                max-height: calc(1.6em * 2 + 12px);
+                min-height: calc(1.6em * 2 + 12px);
+                margin-bottom: 6px;
+                flex-shrink: 0;
+                background: #1e1e1e;
+                border-radius: 6px;
+                padding: 6px;
+            }
+
+            .group-buttons button,
+            .category-buttons button {
+                margin: 2px;
+                background-color: #2c2c2c;
+                color: #e0e0e0;
+                border: 1px solid #555;
+                border-radius: 4px;
+                cursor: pointer;
+                height: 32px;
+                line-height: 22px;
+                padding: 0 8px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .left {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box;
+                max-height: 40vh;
+                display: flex;
+                flex-direction: column;
+                flex-shrink: 0;
+                min-height: 200px;
+            }
+
+            .tag-list {
+                display: flex;
+                flex-wrap: wrap;
+                overflow-y: auto;
+                line-height: 1.6em;
+                max-height: calc(1.6em * 6.9);
+                min-height: calc(1.6em * 6.9);
+                flex-shrink: 0;
+            }
+
+            #templateToggle.mobile-only {
+                display: block;
+                background-color: #2c2c2c;
+                color: #e0e0e0;
+                border: 1px solid #555;
+                border-radius: 4px;
+                padding: 6px 10px;
+                text-align: left;
+                height: 38px;
+            }
+
+            .template-box {
+                display: none;
+                position: fixed;
+                bottom: 70px;
+                left: 5%;
+                width: 90%;
+                max-height: 60vh;
+                overflow-y: auto;
+                background: #1e1e1e;
+                border: 1px solid #444;
+                border-radius: 8px;
+                padding: 10px;
+                z-index: 1000;
+            }
+
+            .template-box.show {
+                display: block;
+            }
+
+            .right {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box;
+                flex-grow: 1;
+                max-height: 43.2vh;
+                overflow-y: auto;
+                padding-right: 0;
+                padding-left: 0;
+                padding-bottom: 90px;
+            }
+
+            .footer-controls {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: #1e1e1e;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                padding: 10px;
+                z-index: 999;
+            }
+
+            .footer-row1,
+            .footer-row2 {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0 10px;
+            }
+
+            #languageSelect,
+            #templateToggle.mobile-only {
+                width: 80px;
+                min-width: 80px;
+                max-width: 80px;
+                box-sizing: border-box;
+            }
+
+            .footer-row1 .right-buttons button,
+            .footer-row2 .right-buttons button {
+                width: 120px;
+                min-width: 120px;
+                max-width: 120px;
+                text-align: center;
+                flex-shrink: 0;
+            }
+
+            .footer-row1 .right-buttons button,
+            .footer-row2 .right-buttons button {
+                flex: 1 1 45%;
+                max-width: 120px;
+                text-align: center;
+            }
+
+            .topbar label[for="languageSelect"] {
+                display: none !important;
+            }
+
+            .footer-controls #languageSelect {
+                -webkit-appearance: none;
+                appearance: none;
+                background-color: #2c2c2c;
+                color: #e0e0e0;
+                border: 1px solid #555;
+                padding: 6px 8px;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+
+            /* 手機時 search input 放在 groupButtons 上方：用 .mobile-search 區塊 */
+            .topbar .search-input {
+                display: none;
+            }
+
+            .mobile-search {
+                display: block;
+                margin-bottom: 6px;
+            }
+
+        }
+
+        /* 已儲存的模板 - 橫式排列 */
+        #templateList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        #templateList .template-item {
+            flex: 0 0 auto;
+            min-width: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #f9f9f9;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #templateList .template-item:hover {
+            background: #eaeaea;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左邊欄 -->
+    <div class="left">
+        <div class="topbar">
+            <label for="languageSelect">介面語言:</label>
+            <select id="languageSelect">
+                <option value=zh>中文</option>
+                <option value=en>English</option>
+                <option value=jp>日本語</option>
+            </select>
+
+            <!-- 搜尋輸入（桌機 / 預設放在語言選單旁） -->
+            <input id="searchInput" class="search-input" placeholder="搜尋 tag 或 value（按 Enter）" />
+
+            <!-- 📂 模板鍵要放在這裡，緊貼語言選單下面 -->
+            <button id="templateToggle" class="mobile-only">📂 模板</button>
+        </div>
+
+        <!-- 手機時：把搜尋放在大類上方（這個區塊只在手機時顯示） -->
+        <div id="mobileSearchContainer" class="mobile-search" style="display:none;">
+            <input id="mobileSearchInput" class="search-input" placeholder="搜尋 tag 或 value（按 Enter）" />
+        </div>
+
+        <!-- 新增大類按鈕列（僅手機版會顯示） -->
+        <div class="group-buttons" id="groupButtons"></div>
+        <div class="category-buttons" id="categories"></div>
+        <div class="tag-list" id="tagList"></div>
+
+
+        <div class="template-box">
+            <input type="text" id="templateName" placeholder="模板名稱">
+            <button onclick="saveTemplate()">💾 儲存模板</button>
+            <button onclick="downloadTemplates()">⬇ 下載模板</button>
+            <input type="file" id="uploadInput" onchange="uploadTemplates()" style="margin-top: 6px;">
+            <div id="templateList"></div>
+        </div>
+    </div>
+
+    <!-- 右邊欄 -->
+    <div class="right">
+        <div id="outputs"></div>
+        <div class="footer-controls">
+            <div class="left-buttons">
+                <button onclick="addOutput()">➕ Add Output</button>
+                <button onclick="removeLast()">➖ Remove Last</button>
+            </div>
+            <div class="right-buttons">
+                <button onclick="clearAll()">🗑️ Clear All</button>
+                <button onclick="copyAll()">📋 Copy All</button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const rawData = [
+
+            {
+                category: { key: "angle", zh: "視角", en: "Angle", jp: "視点" },
+                groups: [
+                    {
+                        subCategory: "基本角度",
+                        tags: [
+                            { zh: "正面視角", en: "front view", jp: "正面から", value: "front view" },
+                            { zh: "上方視角", en: "from above", jp: "上から", value: "from above" },
+                            { zh: "下方視角", en: "from below", jp: "下から", value: "from below" },
+                            { zh: "後方視角", en: "from behind", jp: "後ろから", value: "from behind" },
+                            { zh: "側面視角", en: "from side", jp: "横から", value: "from side" },
+                        ]
+                    },
+                    {
+                        subCategory: "前方視角",
+                        tags: [
+                            { zh: "正面視角", en: "front view", jp: "正面から", value: "front view, facing viewer" },
+                            { zh: "正面上方視角", en: "front high angle", jp: "前方ハイアングル", value: "front high angle, from above" },
+                            { zh: "正面下方視角", en: "front low angle", jp: "前方ローアングル", value: "front low angle, from below" },
+                            { zh: "左前視角", en: "front-left view", jp: "左前から", value: "front-left view" },
+                            { zh: "右前視角", en: "front-right view", jp: "右前から", value: "front-right view" },
+
+                        ]
+                    }
+                ]
+            },
+            {
+                category: { key: "Pelope", zh: "人數", en: "Pelope", jp: "人数" },
+                groups: [
+                    {
+                        subCategory: " ",
+                        tags: [
+                            { zh: "單人", en: "solo", jp: "単体", value: "solo" },
+                            { zh: "單人女", en: "1girl", jp: "女1人", value: "1girl" },
+                            { zh: "單人男", en: "1man", jp: "男1人", value: "1man" },
+                            { zh: "雙人女", en: "2girls", jp: "女2人", value: "2girls" },
+                            { zh: "雙人男", en: "2men", jp: "男2人", value: "2men" },
+                            { zh: "1 VS 2", en: "duo", jp: "デュオ", value: "duo" },
+                            { zh: "多人(也可指群交倫O)", en: "group", jp: "グループ", value: "group" },
+                            { zh: "女性多數", en: "many girls", jp: "女多数", value: "many girls" },
+                            { zh: "男性多數", en: "many men", jp: "男多数", value: "many men" },
+                            { zh: "1 VS 3", en: "trio", jp: "トリオ", value: "trio" },
+                            { zh: "男有X人", en: "xboy", jp: "男x人（xを数字に）", value: "xboy" },
+                            { zh: "女有X人", en: "xgirl", jp: "女x人（xを数字に）", value: "xgirl" },
+                        ]
+                    }
+
+                ]
+            }
+        ]
+
+        // 大類資料，對應 rawData 的 category.key
+        const groupData = [
+            { group: { key: "Common", zh: "常用/汎用", en: "General", jp: "汎用" }, classification: ["Common words", "Pelope", "Hololive", "ren", "angle", "color"] },
+            { group: { key: "Body", zh: "身體", en: "Body", jp: "体" }, classification: ["hair color", "Bangs(fringe)", "back of the head hair", "hitomi", "Eyes", "Ear", "Mouse", "body", "brisket", "pussy", "butt", "Physical", "effect（body）"] },
+            { group: { key: "Clothes", zh: "衣服", en: "Clothes", jp: "服" }, classification: ["pattern", "Innerwear", "upper body clothing(tops)", "bottoms", "full outfit", "swimsuit", "clothes (option)", "sleeves", "ziraike", "head decoration/hat", "clothes", "boots"] },
+            { group: { key: "Action", zh: "動作", en: "Action", jp: "動作" }, classification: ["pose（sample）", "pose（hand）", "pose（foot）", "pose", "pose（option）", "pose（sex）", "Sex", "Sightline"] },
+            { group: { key: "Emotion", zh: "表情", en: "Expression", jp: "表情" }, classification: ["Emotions_General", "Emotions （Happy）", "Emotions （Sad）", "Emotions （shy）", "Emotions （Anger）", "Emotions （Fear）", "Emotions （Other）", "Emotions （manfu）", "Emotions （Sex）"] },
+            { group: { key: "Environment", zh: "環境", en: "Environment", jp: "環境" }, classification: ["time_weather", "Pleace", "item", "effect", "male", "Ejaculation", "exposure"] },
+        ];
+
+        let currentGroupKey = groupData[0].group.key;
+
+        // 🔧 自動轉換為 categories 與 jsonData（程式用）
+        const categories = {};
+        const jsonData = {};
+        rawData.forEach(group => {
+            const { key, zh, en, jp } = group.category;
+            categories[key] = { zh, en, jp };
+
+            // 🔽 扁平化所有子分類的 tags
+            const allTags = [];
+            if (group.groups) {
+                group.groups.forEach(sub => {
+                    sub.tags.forEach(tag => {
+                        allTags.push({
+                            label: { zh: tag.zh, en: tag.en, jp: tag.jp },
+                            value: tag.value
+                        });
+                    });
+                });
+            }
+
+            jsonData[key] = allTags;
+        });
+
+        let currentLang = 'zh';
+        let currentCategory = Object.keys(jsonData)[0];
+        let currentOutputIndex = 0;
+        let outputData = [];
+        let templateData = [];
+
+        function saveToLocal() {
+            localStorage.setItem("aitagTemplates", JSON.stringify(templateData));
+        }
+        function loadFromLocal() {
+            const saved = localStorage.getItem("aitagTemplates");
+            if (saved) {
+                try {
+                    templateData = JSON.parse(saved);
+                } catch {
+                    templateData = [];
+                }
+            }
+        }
+
+        function downloadTemplates() {
+            const checkboxes = document.querySelectorAll(".template-checkbox:checked");
+            if (!checkboxes.length) return alert("請勾選欲下載的模板");
+
+            const selected = Array.from(checkboxes).map(cb => templateData[parseInt(cb.dataset.index)]);
+            const blob = new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "selected_templates.json";
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function uploadTemplates() {
+            const input = document.getElementById("uploadInput");
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const newTemplates = JSON.parse(e.target.result);
+                    if (!Array.isArray(newTemplates)) throw new Error("格式錯誤");
+                    newTemplates.forEach(t => {
+                        if (t.name && t.data) templateData.push(t);
+                    });
+                    saveToLocal();
+                    renderTemplateList();
+                    updateAllTagHighlight();
+                } catch {
+                    alert("模板格式錯誤");
+                }
+            };
+            reader.readAsText(file);
+            input.value = "";
+        }
+
+        function renderTemplateList() {
+            const container = document.getElementById("templateList");
+            container.innerHTML = "";
+            templateData.forEach((tpl, idx) => {
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "template-checkbox";
+                checkbox.dataset.index = idx;
+
+                const btn = document.createElement("button");
+                btn.textContent = tpl.name;
+                btn.onclick = () => {
+                    applyTemplate(idx);
+                    updateAllTagHighlight();
+                };
+
+                const del = document.createElement("span");
+                del.textContent = "✕";
+                del.onclick = () => {
+                    templateData.splice(idx, 1);
+                    saveToLocal();
+                    renderTemplateList();
+                };
+
+                const wrapper = document.createElement("div");
+                wrapper.appendChild(checkbox);
+                wrapper.appendChild(btn);
+                wrapper.appendChild(del);
+                container.appendChild(wrapper);
+            });
+        }
+
+        function saveTemplate() {
+            const name = document.getElementById("templateName").value.trim();
+            if (!name) return alert("請輸入模板名稱！");
+            if (templateData.length >= 30) return alert("最多只能儲存 30 個模板！");
+            if (templateData.some(t => t.name === name)) return alert("名稱重複，請換一個名稱");
+            const template = {
+                name: name,
+                data: JSON.parse(JSON.stringify(outputData))
+            };
+            templateData.push(template);
+            saveToLocal();
+            renderTemplateList();
+            document.getElementById("templateName").value = "";
+        }
+        function applyTemplate(index) {
+            const t = templateData[index];
+            if (!t) return;
+            outputData = [];
+            outputsDiv.innerHTML = "";
+            outputData = JSON.parse(JSON.stringify(t.data));
+            outputData.forEach((_, i) => createOutputBox(i));
+        }
+        function renderCategoryButtons() {
+            categoriesDiv.innerHTML = '';
+            Object.keys(jsonData).forEach((key) => {
+                const btn = document.createElement('button');
+                btn.textContent = categories[key][currentLang] || key;
+                btn.onclick = () => {
+                    currentCategory = key;
+                    renderTags(key);
+                };
+                categoriesDiv.appendChild(btn);
+            });
+        }
+
+        // renderTags 支援 filter 參數（搜尋文字）
+        function renderTags(categoryKey, filter) {
+            tagListDiv.innerHTML = '';
+            const categoryData = rawData.find(c => c.category.key === categoryKey);
+            if (!categoryData) return;
+            const categoryEl = renderCategory(categoryData, filter);
+            tagListDiv.appendChild(categoryEl);
+            updateAllTagHighlight();
+        }
+
+        // 判斷 tag 是否符合 filter（檢查 zh/en/jp/value 小寫）
+        function tagMatchesFilter(tag, filter) {
+            if (!filter) return true;
+            const f = String(filter).trim().toLowerCase();
+            if (!f) return true;
+            return (String(tag.zh || '').toLowerCase().includes(f) ||
+                String(tag.en || '').toLowerCase().includes(f) ||
+                String(tag.jp || '').toLowerCase().includes(f) ||
+                String(tag.value || '').toLowerCase().includes(f));
+        }
+
+        function renderCategory(categoryData, filter) {
+            const container = document.createElement("div");
+            container.className = "tag-category";
+
+            // 主分類標題
+            const mainTitle = document.createElement("h3");
+            mainTitle.textContent = categoryData.category[currentLang] || categoryData.category.zh;
+            container.appendChild(mainTitle);
+
+            // 子分類
+            categoryData.groups.forEach(group => {
+                // 檢查此子分類是否有任何 tag 符合 filter
+                const matchedTags = group.tags.filter(t => tagMatchesFilter(t, filter));
+                if (matchedTags.length === 0) return; // 若無符合，整個子分類不顯示
+
+                const groupDiv = document.createElement("div");
+                groupDiv.className = "tag-subcategory";
+
+                const subTitle = document.createElement("h4");
+                subTitle.textContent = group.subCategory;
+                groupDiv.appendChild(subTitle);
+
+                // tags（只渲染 matchedTags）
+                matchedTags.forEach(tag => {
+                    const btn = document.createElement("button");
+                    btn.className = "tag";
+                    btn.textContent = tag[currentLang] || tag.en || tag.zh || tag.value;
+                    btn.dataset.value = tag.value;
+
+                    //Add weight
+                    const weight = document.createElement('span');
+                    weight.className = 'weight-control';
+                    weight.innerHTML = '<button class="wplus">+</button><button class="wminus">-</button>';
+                    weight.querySelector('.wplus').onclick = e => {
+                        e.stopPropagation();
+                        const added = autoAdjustWeight(tag.value, 0.1);
+                        if (!added) {
+                            const match = tag;
+                            match.weight = 1.0;
+                            addTagToCurrent(match);
+                        }
+                        updateAllTagHighlight();
+                    };
+                    weight.querySelector('.wminus').onclick = e => {
+                        e.stopPropagation();
+                        autoAdjustWeight(tag.value, -0.1);
+                        updateAllTagHighlight();
+                    };
+                    btn.appendChild(weight);
+
+                    btn.addEventListener("click", () => {
+                        toggleTag(btn, tag);
+                        updateAllTagHighlight();
+                    });
+
+                    groupDiv.appendChild(btn);
+                });
+
+                container.appendChild(groupDiv);
+            });
+
+            return container;
+        }
+
+
+
+        function autoAdjustWeight(value, delta) {
+            const found = outputData.findIndex(arr => arr.some(t => t.value === value || t.value.startsWith(`${value}:`)));
+            if (found !== -1) {
+                currentOutputIndex = found;
+                updateOutputHighlight();
+                adjustTagWeight(value, delta);
+                return true;
+            }
+            return false;
+        }
+
+        function adjustTagWeight(value, delta) {
+            const tag = outputData[currentOutputIndex].find(t => t.value === value || t.value.startsWith(`${value}:`));
+            if (!tag) return;
+            const currentWeight = tag.weight || parseFloat((tag.value.match(/:(\d+(\.\d+)?)\)$/) || [])[1]) || 1.0;
+            const newWeight = Math.max(0.1, Math.min(2.0, +(currentWeight + delta).toFixed(1)));
+            tag.weight = newWeight;
+            updateOutput(currentOutputIndex);
+            updateAllTagHighlight();
+        }
+
+        function toggleTag(el, tagObj) {
+            const foundIndex = outputData.findIndex(arr =>
+                arr.some(t => t.value === tagObj.value)
+            );
+
+            if (foundIndex !== -1 && foundIndex !== currentOutputIndex) {
+                currentOutputIndex = foundIndex;
+                updateOutputHighlight();
+                removeTag(foundIndex, tagObj.value);
+                return;
+            }
+
+            const isSelected = el.classList.toggle('selected');
+            if (isSelected) {
+                addTagToCurrent(tagObj);
+            } else {
+                removeTag(currentOutputIndex, tagObj.value);
+            }
+        }
+
+
+
+        function createOutputBox(index) {
+            const box = document.createElement('div');
+            box.className = 'output-box';
+            box.onclick = () => {
+                currentOutputIndex = index;
+                updateOutputHighlight();
+            };
+
+            const tagDisplay = document.createElement('div');
+            tagDisplay.className = 'output-tags';
+            const textarea = document.createElement('textarea');
+            textarea.oninput = () => {
+                const values = textarea.value.split(',').map(t => t.trim()).filter(t => t);
+                outputData[index] = values.map(v => {
+                    for (let cat in jsonData) {
+                        const match = jsonData[cat].find(t => t.value === v);
+                        if (match) return match;
+                    }
+                    return { label: { zh: v, en: v, jp: v }, value: v };
+                });
+                renderTagDisplay(index);
+                updateAllTagHighlight();
+            };
+            const controls = document.createElement('div');
+            controls.className = 'output-controls';
+            const copyBtn = document.createElement('button');
+            copyBtn.textContent = '📋';
+            copyBtn.onclick = (e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(textarea.value);
+            };
+            const clearBtn = document.createElement('button');
+            clearBtn.textContent = '🗑️';
+            clearBtn.onclick = (e) => {
+                e.stopPropagation();
+                outputData[index] = [];
+                updateOutput(index);
+                updateAllTagHighlight();
+            };
+            controls.appendChild(copyBtn);
+            controls.appendChild(clearBtn);
+            box.appendChild(tagDisplay);
+            box.appendChild(textarea);
+            box.appendChild(controls);
+            outputsDiv.appendChild(box);
+            updateOutput(index);
+        }
+
+        function normalizeValue(v) {
+            if (v === null || v === undefined) return '';
+            return String(v).trim().replace(/^,+|,+$/g, '').replace(/^[\(\[]+|[\)\]]+$/g, '').toLowerCase();
+        }
+
+        function renderTagDisplay(index) {
+            const tagContainer = outputsDiv.children[index].querySelector('.output-tags');
+            tagContainer.innerHTML = '';
+
+            outputData[index].forEach((tag, i) => {
+                if (!tag || (typeof tag !== 'object' && typeof tag !== 'string')) {
+                    console.warn(`[renderTagDisplay] 異常 tag 位置 ${index}[${i}] type:`, typeof tag, tag);
+                }
+
+                const tagValueRaw = (tag && typeof tag === 'object') ? tag.value : tag;
+                if (typeof tagValueRaw === 'undefined') {
+                    console.warn(`[renderTagDisplay] tag.value undefined at output ${index} pos ${i}`, tag);
+                }
+
+                const normValue = normalizeValue(tagValueRaw);
+
+                let displayText = null;
+                let foundTagObj = null;
+
+                outer:
+                for (const group of rawData) {
+                    if (!group || !group.groups) continue;
+                    for (const sub of group.groups) {
+                        if (!sub || !Array.isArray(sub.tags)) continue;
+                        for (const t of sub.tags) {
+                            if (!t) continue;
+                            const normT = normalizeValue(t.value);
+                            if (normT === normValue) {
+                                foundTagObj = t;
+                                break outer;
+                            }
+                        }
+                    }
+                }
+
+                if (tag && typeof tag === 'object' && tag.label && tag.label[currentLang]) {
+                    displayText = tag.label[currentLang];
+                } else if (foundTagObj && foundTagObj[currentLang]) {
+                    displayText = foundTagObj[currentLang];
+                } else if (tagValueRaw != null) {
+                    displayText = String(tagValueRaw);
+                } else {
+                    displayText = '';
+                }
+
+                if (!foundTagObj) {
+                    console.warn(`[renderTagDisplay] 未在 rawData 找到對應 tag (normalized='${normValue}') for output[${index}] pos ${i}`, { tagValueRaw, tag });
+                }
+
+                const tagEl = document.createElement('div');
+                tagEl.className = 'output-tag';
+                const safeValue = String(tagValueRaw).replace(/'/g, "\\'");
+                tagEl.innerHTML = `${displayText}<span onclick="removeTag(${index}, '${safeValue}')">✕</span>`;
+                tagContainer.appendChild(tagEl);
+            });
+        }
+
+
+
+        function removeTag(index, value) {
+            outputData[index] = outputData[index].filter(t => t.value !== value);
+            updateOutput(index);
+            updateAllTagHighlight();
+        }
+
+
+        function updateOutput(index) {
+            const text = outputData[index].map(t => {
+                if (t.weight && t.weight !== 1.0) {
+                    return `(${t.value}:${t.weight}), `;
+                }
+                return `${t.value}, `;
+            }).join('');
+            outputsDiv.children[index].querySelector('textarea').value = text;
+            renderTagDisplay(index);
+            updateOutputHighlight();
+        }
+
+        function updateOutputHighlight() {
+            document.querySelectorAll('.output-box').forEach((el, i) => {
+                el.classList.toggle('selected', i === currentOutputIndex);
+            });
+            updateAllTagHighlight();
+        }
+
+        function updateAllTagHighlight() {
+            const selected = new Set(outputData.flat().map(t => t.value));
+
+            document.querySelectorAll('.tag').forEach(el => {
+                el.classList.toggle('selected', selected.has(el.dataset.value));
+            });
+        }
+
+
+        function addTagToCurrent(tagObj) {
+            const exists = outputData[currentOutputIndex].some(t => t.value === tagObj.value);
+            if (!exists) {
+                const cleanTag = JSON.parse(JSON.stringify(tagObj));
+                delete cleanTag.weight;
+                outputData[currentOutputIndex].push(cleanTag);
+                updateOutput(currentOutputIndex);
+                updateAllTagHighlight();
+            }
+        }
+
+        function copyAll() {
+            const allText = outputData.map(arr =>
+                arr.map(t => {
+                    if (t.weight && t.weight !== 1) {
+                        return `(${t.value}:${t.weight}), `;
+                    } else {
+                        return `${t.value}, `;
+                    }
+                }).join('')
+            ).join('\nBREAK\n');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(allText).catch(err => {
+                    console.error("Clipboard API 失敗:", err);
+                });
+            } else {
+                const textarea = document.createElement("textarea");
+                textarea.value = allText;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function clearAll() {
+            for (let i = 0; i < outputData.length; i++) {
+                outputData[i] = [];
+                updateOutput(i);
+            }
+            updateAllTagHighlight();
+        }
+        function addOutput() {
+            const newIndex = outputData.length;
+            outputData.push([]);
+            createOutputBox(newIndex);
+        }
+        function removeLast() {
+            if (outputData.length > 1) {
+                outputsDiv.removeChild(outputsDiv.lastChild);
+                outputData.pop();
+                if (currentOutputIndex >= outputData.length) {
+                    currentOutputIndex = outputData.length - 1;
+                }
+                updateAllTagHighlight();
+            }
+        }
+
+        // 手機寬度時把 #languageSelect 與 search 移動到 footer 的左按鈕區/上方
+        (function () {
+            function moveLanguageSelect() {
+                const select = document.getElementById('languageSelect');
+                const label = document.querySelector('label[for="languageSelect"]');
+                const templateToggle = document.getElementById('templateToggle');
+                const footerControls = document.querySelector('.footer-controls');
+                const topbar = document.querySelector('.topbar');
+                const searchInput = document.getElementById('searchInput');
+                const mobileSearchContainer = document.getElementById('mobileSearchContainer');
+                const mobileSearchInput = document.getElementById('mobileSearchInput');
+
+                if (!select || !footerControls || !templateToggle || !topbar || !searchInput || !mobileSearchContainer) return;
+
+                const origLeft = footerControls.querySelector('.left-buttons');
+                const origRight = footerControls.querySelector('.right-buttons');
+
+                if (window.innerWidth <= 768) {
+                    if (label) label.style.display = 'none';
+
+                    let row1 = footerControls.querySelector('.footer-row1');
+                    let row2 = footerControls.querySelector('.footer-row2');
+                    if (!row1) {
+                        row1 = document.createElement('div');
+                        row1.className = 'footer-row1';
+                        footerControls.insertBefore(row1, footerControls.firstChild);
+                    }
+                    if (!row2) {
+                        row2 = document.createElement('div');
+                        row2.className = 'footer-row2';
+                        footerControls.appendChild(row2);
+                    }
+
+                    let row1Right = row1.querySelector('.right-buttons');
+                    if (!row1Right) {
+                        row1Right = document.createElement('div');
+                        row1Right.className = 'right-buttons';
+                        row1.appendChild(row1Right);
+                    }
+                    let row2Right = row2.querySelector('.right-buttons');
+                    if (!row2Right) {
+                        row2Right = document.createElement('div');
+                        row2Right.className = 'right-buttons';
+                        row2.appendChild(row2Right);
+                    }
+
+                    if (!row1.contains(select)) row1.insertBefore(select, row1.firstChild);
+
+                    if (origLeft) {
+                        while (origLeft.firstChild) {
+                            row1Right.appendChild(origLeft.firstChild);
+                        }
+                        origLeft.remove();
+                    } else {
+                        const btnAdd = footerControls.querySelector('button[onclick*="addOutput"]');
+                        const btnRemove = footerControls.querySelector('button[onclick*="removeLast"]');
+                        if (btnAdd && !row1Right.contains(btnAdd)) row1Right.appendChild(btnAdd);
+                        if (btnRemove && !row1Right.contains(btnRemove)) row1Right.appendChild(btnRemove);
+                    }
+
+                    if (!row2.contains(templateToggle)) row2.insertBefore(templateToggle, row2.firstChild);
+
+                    if (origRight) {
+                        if (origRight !== row1Right && origRight !== row2Right) {
+                            while (origRight.firstChild) {
+                                row2Right.appendChild(origRight.firstChild);
+                            }
+                            origRight.remove();
+                        } else {
+                            const btnClear = footerControls.querySelector('button[onclick*="clearAll"]');
+                            const btnCopy = footerControls.querySelector('button[onclick*="copyAll"]');
+                            if (btnClear && !row2Right.contains(btnClear)) row2Right.appendChild(btnClear);
+                            if (btnCopy && !row2Right.contains(btnCopy)) row2Right.appendChild(btnCopy);
+                        }
+                    } else {
+                        const btnClear = footerControls.querySelector('button[onclick*="clearAll"]');
+                        const btnCopy = footerControls.querySelector('button[onclick*="copyAll"]');
+                        if (btnClear && !row2Right.contains(btnClear)) row2Right.appendChild(btnClear);
+                        if (btnCopy && !row2Right.contains(btnCopy)) row2Right.appendChild(btnCopy);
+                    }
+
+                    // 手機版：把 searchInput 隱藏（topbar），把 mobileSearchInput 放到 mobileSearchContainer 顯示
+                    searchInput.style.display = 'none';
+                    if (!mobileSearchContainer.contains(mobileSearchInput)) mobileSearchContainer.appendChild(mobileSearchInput);
+                    mobileSearchContainer.style.display = 'block';
+
+                } else {
+                    if (label) label.style.display = '';
+
+                    let newLeft = footerControls.querySelector('.left-buttons');
+                    if (!newLeft) {
+                        newLeft = document.createElement('div');
+                        newLeft.className = 'left-buttons';
+                        footerControls.insertBefore(newLeft, footerControls.firstChild);
+                    }
+                    let newRight = null;
+                    footerControls.querySelectorAll(':scope > .right-buttons').forEach(el => newRight = el);
+                    if (!newRight) {
+                        newRight = document.createElement('div');
+                        newRight.className = 'right-buttons';
+                        footerControls.appendChild(newRight);
+                    }
+
+                    const row1 = footerControls.querySelector('.footer-row1');
+                    const row2 = footerControls.querySelector('.footer-row2');
+
+                    if (row1) {
+                        const r1Right = row1.querySelector('.right-buttons');
+                        if (r1Right) {
+                            while (r1Right.firstChild) {
+                                newLeft.appendChild(r1Right.firstChild);
+                            }
+                        }
+                        if (!topbar.contains(select)) {
+                            if (label && label.parentNode) label.parentNode.insertBefore(select, label.nextSibling);
+                            else topbar.appendChild(select);
+                        }
+                    }
+
+                    if (row2) {
+                        const r2Right = row2.querySelector('.right-buttons');
+                        if (r2Right) {
+                            while (r2Right.firstChild) {
+                                newRight.appendChild(r2Right.firstChild);
+                            }
+                        }
+                        if (!topbar.contains(templateToggle)) topbar.appendChild(templateToggle);
+                    }
+
+                    if (row1) row1.remove();
+                    if (row2) row2.remove();
+
+                    // 桌機版：把 mobileSearchInput 還回 topbar 的 searchInput 位置
+                    mobileSearchContainer.style.display = 'none';
+                    if (mobileSearchInput && mobileSearchInput.parentNode) mobileSearchInput.parentNode.removeChild(mobileSearchInput);
+                    searchInput.style.display = '';
+                }
+            }
+
+            window.addEventListener('DOMContentLoaded', moveLanguageSelect);
+            window.addEventListener('resize', moveLanguageSelect);
+            window.addEventListener('orientationchange', moveLanguageSelect);
+        })();
+
+        function renderGroupButtons() {
+            const container = document.getElementById("groupButtons");
+            if (!container) return;
+            container.innerHTML = "";
+            groupData.forEach(g => {
+                const btn = document.createElement("button");
+                btn.textContent = g.group[currentLang] || g.group.key;
+                if (g.group.key === currentGroupKey) btn.classList.add("active");
+                btn.onclick = () => {
+                    currentGroupKey = g.group.key;
+                    currentCategory = g.classification[0];
+                    renderGroupButtons();
+                    renderCategoryButtons_mobile();
+                    renderTags(currentCategory);
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function renderCategoryButtons_mobile() {
+            categoriesDiv.innerHTML = '';
+            const group = groupData.find(g => g.group.key === currentGroupKey);
+            if (!group) return;
+            group.classification.forEach(key => {
+                const category = categories[key];
+                if (!category) return;
+                const btn = document.createElement('button');
+                btn.textContent = category[currentLang] || key;
+                if (key === currentCategory) btn.classList.add("active");
+                btn.onclick = () => {
+                    currentCategory = key;
+                    renderCategoryButtons_mobile();
+                    renderTags(key);
+                };
+                categoriesDiv.appendChild(btn);
+            });
+        }
+
+        // 搜尋控制：支援桌機與手機上同一邏輯（mobileInput 會同步更新）
+        function handleSearchSubmit(e) {
+            if (e && e.key && e.key !== 'Enter') return;
+            const desktopInput = document.getElementById('searchInput');
+            const mobileInput = document.getElementById('mobileSearchInput');
+            const q = (desktopInput && desktopInput.value) ? desktopInput.value.trim() : (mobileInput && mobileInput.value ? mobileInput.value.trim() : '');
+            // 對目前 category 做 filter
+            renderTags(currentCategory, q);
+        }
+
+        // 同步兩個輸入框的內容
+        function syncSearchInputs() {
+            const desktopInput = document.getElementById('searchInput');
+            const mobileInput = document.getElementById('mobileSearchInput');
+            if (!desktopInput || !mobileInput) return;
+            desktopInput.addEventListener('input', () => {
+                mobileInput.value = desktopInput.value;
+            });
+            mobileInput.addEventListener('input', () => {
+                desktopInput.value = mobileInput.value;
+            });
+            desktopInput.addEventListener('keydown', handleSearchSubmit);
+            mobileInput.addEventListener('keydown', handleSearchSubmit);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const desktopInput = document.getElementById('searchInput');
+            const mobileInput = document.getElementById('mobileSearchInput');
+            // 加個按下 ESC 清除搜索的便捷鍵
+            desktopInput.addEventListener('keydown', (e) => { if (e.key === 'Escape') { desktopInput.value=''; mobileInput.value=''; handleSearchSubmit(); } });
+            mobileInput.addEventListener('keydown', (e) => { if (e.key === 'Escape') { desktopInput.value=''; mobileInput.value=''; handleSearchSubmit(); } });
+            syncSearchInputs();
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            categoriesDiv = document.getElementById('categories');
+            tagListDiv = document.getElementById('tagList');
+            outputsDiv = document.getElementById('outputs');
+            languageSelect = document.getElementById('languageSelect');
+            templateList = document.getElementById('templateList');
+
+            loadFromLocal();
+
+            if (window.innerWidth <= 768) {
+                renderGroupButtons();
+                renderCategoryButtons_mobile();
+                renderTags(currentCategory);
+            } else {
+                renderCategoryButtons();
+                renderTags(currentCategory);
+            }
+            for (let i = 0; i < 3; i++) {
+                outputData.push([]);
+                createOutputBox(i);
+            }
+            renderTemplateList();
+            languageSelect.onchange = () => {
+                currentLang = languageSelect.value;
+
+                if (window.innerWidth <= 768) {
+                    renderGroupButtons();
+                    renderCategoryButtons_mobile();
+                    renderTags(currentCategory);
+                } else {
+                    renderCategoryButtons();
+                    renderTags(currentCategory);
+                }
+                outputData.forEach((_, i) => renderTagDisplay(i));
+                updateOutputHighlight();
+            };
+
+            // 點擊搜尋旁空白或切換 category 時若 search 有內容則保留（不自動清）
+            const desktopInput = document.getElementById('searchInput');
+            const mobileInput = document.getElementById('mobileSearchInput');
+            if (desktopInput) desktopInput.addEventListener('input', () => { /* 不做自動清除 */ });
+            if (mobileInput) mobileInput.addEventListener('input', () => { /* 不做自動清除 */ });
+        });
+
+
+    </script>
+</body>
+
+</html>
