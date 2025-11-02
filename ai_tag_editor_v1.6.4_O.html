@@ -458,71 +458,29 @@
 	<script>
 
 		const rawData = [
-			{
-				category: { key: "Common words", zh: "常用詞", en: "Common words", jp: "よく使われる単語" },
-				groups: [
-					{
-						subCategory: "常用",
-						tags: [
-							{ zh: "正向詞1", en: "Positive word 1", jp: "ポジティブな言葉1", value: "nsfw, uncensored, unfiltered, no censorship, score_7_up, score_9, score_8_up, perfect proportions, perfect_eyes, source_anime, uncensored, concept art, (masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines), lustrous, dynamic pose,fair skin, smooth anime skin, soft shading" },
-							{ zh: "正向詞2", en: "Positive word 2", jp: "ポジティブな言葉2", value: "nsfw, uncensored, unfiltered, no censorship,, score_9, score_8_up, perfect proportions, perfect_eyes, source_anime, uncensored, concept art, (masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines), lustrous, dynamic pose" },
-							{ zh: "正向詞3", en: "Positive word 3", jp: "ポジティブな言葉3", value: "nsfw, uncensored, unfiltered, no censorship,, ,masterpiece,best quality,amazing quality,breasts, hiny skin,beautiful face,beautiful eyes,flawless,see_list,fair skin, smooth anime skin, soft shading" },
-							{ zh: "正向詞1改", en: "Positive word 1", jp: "ポジティブな言葉1", value: "nsfw, uncensored, no censorship, unfiltered, score_9, score_8_up, score_7_up, masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines, source_anime, concept art, perfect proportions, perfect_eyes, lustrous, fair skin, smooth anime skin, soft shading, dynamic pose" },
-							{ zh: "正向詞2改", en: "Positive word 2", jp: "ポジティブな言葉2", value: "nsfw, uncensored, no censorship, unfiltered, score_9, score_8_up, masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines, source_anime, concept art, perfect proportions, perfect_eyes, lustrous, dynamic pose" },
-							{ zh: "正向詞3改", en: "Positive word 3", jp: "ポジティブな言葉3", value: "nsfw, uncensored, no censorship, unfiltered, masterpiece, best quality, amazing quality, breasts, shiny skin, beautiful face, beautiful eyes, flawless, fair skin, smooth anime skin, soft shading" },
-							{ zh: "反向詞0", en: "Reverse word 1", jp: "逆引き単語1", value: "bad quality,worst quality,worst detail,sketch,censor,Extra Hands,EasyNegative, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, (worst quality:1.2), low quality, normal quality, jpeg artifacts, signature, watermark, username,lowres, bad anatomy, bad hands, text,error, missing fngers,extra digt ,fewer digits,cropped, wort quality ,low quality,normal quality, jpeg artifacts,signature,watermark, username, blurry, bad feet,poorly drawn hands,nipple rings, nipple decorations" },
-							{ zh: "反向詞1", en: "Reverse word 1", jp: "逆引き単語1", value: "bad quality,worst quality,worst detail,sketch,censor,Extra Hands,EasyNegative, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, (worst quality:1.2), low quality, normal quality, jpeg artifacts, signature, watermark, username,lowres, bad anatomy, bad hands, text,error, missing fngers,extra digt ,fewer digits,cropped, wort quality ,low quality,normal quality, jpeg artifacts,signature,watermark, username, blurry, bad feet,poorly drawn hands,man,(extra hands, extra fingers, missing fingers, deformed hands, bad anatomy, wrong proportions, extra limbs, Swollen belly, stomach bulge,multiple hands, disembodied hands, floating hands, multiple arms, mutation, fused limbs, fused fingers) nipple rings, nipple decorations,Swollen belly, stomach bulge, nipple rings, nipple decorations" },
-							{ zh: "反向詞2", en: "Reverse word 2", jp: "逆引き単語2", value: "bad quality,worst quality,worst detail,sketch,censor,Extra Hands,EasyNegative, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, (worst quality:1.2), low quality, normal quality, jpeg artifacts, signature, watermark, username,lowres, bad anatomy, bad hands, text,error, missing fngers,extra digt ,fewer digits,cropped, wort quality ,low quality,normal quality, jpeg artifacts,signature,watermark, username, blurry, bad feet,poorly drawn hands,man,(extra hands, extra fingers, missing fingers, deformed hands, bad anatomy, wrong proportions, extra limbs, Swollen belly, stomach bulge,multiple hands, disembodied hands, floating hands, multiple arms, mutation, fused limbs, fused fingers) nipple rings, nipple decorations,Swollen belly, stomach bulge, nipple rings, nipple decorations, (black panties, white panties, ) glowing skin, overly saturated skin" },
-							{ zh: "反向皮膚問題", en: "skin", jp: "スキン", value: "bad quality,worst quality,worst detail,sketch,censor,glowing skin, glowing tattoos, glowing patterns, discolored skin, multicolored skin, green skin, blue skin, purple skin, extra marks, body paint, unrealistic skin" },
-							{ zh: "反向詞_沒男人", en: "Reverse word_no man", jp: "逆引き単語_男性不要", value: "bad quality,worst quality,worst detail,sketch,censor,male, penis, futanari, dick, extra arms, fused body, duplicate body, bad anatomy, deformed hands, extra fingers glowing skin, glowing tattoos, discolored skin, multicolored skin, body paint, cyberpunk, neon lighting low quality, blurry, pixelated, watermark, signature, male, man, men, boy, yaoi, bl, shota, male character, male body, penis, testicles, muscular male, male face, male hands, male legs,Collar" },
-							{ zh: "無修", en: "uncensored", jp: "無修正", value: "uncensored" },
-							{ zh: "角色用", en: "characters", jp: "キャラクター用", value: "(Little girl, Loli)" },
-							{ zh: "陰用", en: "characters2", jp: "まんこ用", value: "see_list" },
-							{ zh: "好身材", en: "good figure", jp: "ナイスバディ", value: "curvy, voluptuous, glowing skin, shiny skin" },
-						]
-					}
-				]
-			},
+
 			{
 				category: { key: "angle", zh: "視角", en: "Angle", jp: "視点" },
 				groups: [
 					{
 						subCategory: "基本角度",
 						tags: [
+							{ zh: "正面視角", en: "front view", jp: "正面から", value: "front view" },
 							{ zh: "上方視角", en: "from above", jp: "上から", value: "from above" },
 							{ zh: "下方視角", en: "from below", jp: "下から", value: "from below" },
 							{ zh: "後方視角", en: "from behind", jp: "後ろから", value: "from behind" },
 							{ zh: "側面視角", en: "from side", jp: "横から", value: "from side" },
-							{ zh: "低角度", en: "low angle", jp: "ローアングル", value: "pov from below, low angle, from below, cameltoe focus, " },
-							{ zh: "前方低角度", en: "low front angle", jp: "前方ローアングル", value: "low front angle" },
-							{ zh: "前方高角度", en: "high front angle", jp: "前方ハイアングル", value: "high front angle" },
-							{ zh: "背後低角度", en: "low back angle", jp: "後方ローアングル", value: "low back angle" },
-							{ zh: "背後高角度", en: "high back angle", jp: "後方ハイアングル", value: "high back angle" },
-							{ zh: "斜側視角", en: "oblique side view", jp: "斜め横から", value: "oblique side view" },
-							{ zh: "側後視角", en: "side-back view", jp: "横後ろから", value: "side-back view" },
-							{ zh: "側前視角", en: "side-front view", jp: "横前から", value: "side-front view" },
-							{ zh: "傾斜視角", en: "tilted / dutch angle", jp: "傾き構図", value: "tilted / dutch angle" },
-							{ zh: "透視縮短", en: "foreshortening", jp: "小人視点（パースが強くなる）", value: "foreshortening" },
-							{ zh: "鳥瞰視角", en: "bird's eye view", jp: "俯瞰視点", value: "bird's eye view" },
-							{ zh: "蟲瞰視角", en: "worm's eye view", jp: "蟲の視点", value: "worm's eye view" },
 						]
 					},
 					{
-						subCategory: "遠近景",
+						subCategory: "前方視角",
 						tags: [
-							{ zh: "全景", en: "panorama", jp: "パノラマ", value: "panorama" },
-							{ zh: "全景視角", en: "wide shot", jp: "ワイドショット", value: "wide shot" },
-							{ zh: "中景視角", en: "medium shot", jp: "ミディアムショット", value: "medium shot" },
-							{ zh: "近景視角", en: "close-up", jp: "クローズアップ", value: "close-up" },
-							{ zh: "極近景", en: "extreme close-up", jp: "極端なクローズアップ", value: "extreme close-up" },
-							{ zh: "局部特寫", en: "detail focus", jp: "ディテールフォーカス", value: "detail focus" },
-							{ zh: "半身視角", en: "half-body shot", jp: "半身ショット", value: "half-body shot" },
-							{ zh: "全身像", en: "full body", jp: "全身", value: "full body" },
-							{ zh: "全身動態", en: "full body action shot", jp: "全身アクションショット", value: "full body action shot" },
-							{ zh: "後方全身", en: "full body from back", jp: "後方全身", value: "full body from back" },
-							{ zh: "後方半身", en: "half-body from back", jp: "後方半身", value: "half-body from back" },
-							{ zh: "上半身", en: "upper body", jp: "胸から頭まで", value: "upper body" },
-							{ zh: "肖像", en: "portrait", jp: "主に顔、たまに胸までのアップ", value: "portrait" },
+							{ zh: "正面視角", en: "front view", jp: "正面から", value: "front view, facing viewer" },
+							{ zh: "正面上方視角", en: "front high angle", jp: "前方ハイアングル", value: "front high angle, from above" },
+							{ zh: "正面下方視角", en: "front low angle", jp: "前方ローアングル", value: "front low angle, from below" },
+							{ zh: "左前視角", en: "front-left view", jp: "左前から", value: "front-left view" },
+							{ zh: "右前視角", en: "front-right view", jp: "右前から", value: "front-right view" },
+
 						]
 					}
 				]
@@ -541,26 +499,25 @@
 							{ zh: "1 VS 2", en: "duo", jp: "デュオ", value: "duo" },
 							{ zh: "多人(也可指群交倫O)", en: "group", jp: "グループ", value: "group" },
 							{ zh: "女性多數", en: "many girls", jp: "女多数", value: "many girls" },
-							{ zh: "多數哥布林", en: "many goblins", jp: "ゴブリン多数", value: "many goblins" },
 							{ zh: "男性多數", en: "many men", jp: "男多数", value: "many men" },
 							{ zh: "1 VS 3", en: "trio", jp: "トリオ", value: "trio" },
 							{ zh: "男有X人", en: "xboy", jp: "男x人（xを数字に）", value: "xboy" },
 							{ zh: "女有X人", en: "xgirl", jp: "女x人（xを数字に）", value: "xgirl" },
 						]
 					}
+
 				]
 			}
-
 		]
 
 		// 大類資料，對應 rawData 的 category.key
 		const groupData = [
-			{ group: { key: "Common", zh: "常用/汎用", en: "General", jp: "汎用" }, classification: ["Common words", "Pelope", "Hololive", "ren"] },
-			{ group: { key: "Body", zh: "身體", en: "Body", jp: "体" }, classification: ["color", "hair color", "Bangs(fringe)", "back of the head hair", "hitomi", "Eyes", "Ear", "Mouse", "body", "brisket", "pussy", "butt", "Physical", "effect（body）"] },
+			{ group: { key: "Common", zh: "常用/汎用", en: "General", jp: "汎用" }, classification: ["Common words", "Pelope", "Hololive", "ren", "angle", "color"] },
+			{ group: { key: "Body", zh: "身體", en: "Body", jp: "体" }, classification: ["hair color", "Bangs(fringe)", "back of the head hair", "hitomi", "Eyes", "Ear", "Mouse", "body", "brisket", "pussy", "butt", "Physical", "effect（body）"] },
 			{ group: { key: "Clothes", zh: "衣服", en: "Clothes", jp: "服" }, classification: ["pattern", "Innerwear", "upper body clothing(tops)", "bottoms", "full outfit", "swimsuit", "clothes (option)", "sleeves", "ziraike", "head decoration/hat", "clothes", "boots"] },
-			{ group: { key: "Action", zh: "動作", en: "Action", jp: "動作" }, classification: ["pose（sample）", "pose（hand）", "pose（foot）", "pose", "pose（option）", "pose（sex）", "Sex", "angle"] },
-			{ group: { key: "Emotion", zh: "表情", en: "Expression", jp: "表情" }, classification: ["Emotions_General", "Emotions （Happy）", "Emotions （Sad）", "Emotions （shy）", "Emotions （Anger）", "Emotions （Fear）", "Emotions （Other）", "Emotions （manfu）", "Emotions （Sex）", "Sightline"] },
-			{ group: { key: "Environment", zh: "環境", en: "Environment", jp: "環境" }, classification: ["time_weather", "Pleace", "item", "effect", "male_npc", "Ejaculation", "exposure"] },
+			{ group: { key: "Action", zh: "動作", en: "Action", jp: "動作" }, classification: ["pose（sample）", "pose（hand）", "pose（foot）", "pose", "pose（option）", "pose（sex）", "Sex", "Sightline"] },
+			{ group: { key: "Emotion", zh: "表情", en: "Expression", jp: "表情" }, classification: ["Emotions_General", "Emotions （Happy）", "Emotions （Sad）", "Emotions （shy）", "Emotions （Anger）", "Emotions （Fear）", "Emotions （Other）", "Emotions （manfu）", "Emotions （Sex）"] },
+			{ group: { key: "Environment", zh: "環境", en: "Environment", jp: "環境" }, classification: ["time_weather", "Pleace", "item", "effect", "male", "Ejaculation", "exposure"] },
 		];
 
 		let currentGroupKey = groupData[0].group.key;
@@ -680,7 +637,7 @@
 		function saveTemplate() {
 			const name = document.getElementById("templateName").value.trim();
 			if (!name) return alert("請輸入模板名稱！");
-			if (templateData.length >= 10) return alert("最多只能儲存 10 個模板！");
+			if (templateData.length >= 30) return alert("最多只能儲存 30 個模板！");
 			if (templateData.some(t => t.name === name)) return alert("名稱重複，請換一個名稱");
 			const template = {
 				name: name,
@@ -714,13 +671,11 @@
 
 		function renderTags(categoryKey) {
 			tagListDiv.innerHTML = '';
-
 			const categoryData = rawData.find(c => c.category.key === categoryKey);
+			console.log(categoryData); // 👈 加在這裡
 			if (!categoryData) return;
-
 			const categoryEl = renderCategory(categoryData);
 			tagListDiv.appendChild(categoryEl);
-
 			updateAllTagHighlight();
 		}
 
@@ -881,37 +836,76 @@
 			updateOutput(index);
 		}
 
+		function normalizeValue(v) {
+			if (v === null || v === undefined) return '';
+			// 轉成字串、去首尾空白、去除常見尾逗號與括號、小寫化
+			return String(v).trim().replace(/^,+|,+$/g, '').replace(/^[\(\[]+|[\)\]]+$/g, '').toLowerCase();
+		}
+
 		function renderTagDisplay(index) {
 			const tagContainer = outputsDiv.children[index].querySelector('.output-tags');
 			tagContainer.innerHTML = '';
-			outputData[index].forEach(tag => {
 
-				// 先嘗試直接用既有 label
-				let displayText = (tag.label && tag.label[currentLang]) ? tag.label[currentLang] : null;
+			outputData[index].forEach((tag, i) => {
+				// 防護：tag 應該是物件 { label: {...}, value: '...' }，但有時可能被錯誤設為字串
+				if (!tag || (typeof tag !== 'object' && typeof tag !== 'string')) {
+					console.warn(`[renderTagDisplay] 異常 tag 位置 ${index}[${i}] type:`, typeof tag, tag);
+				}
 
-				// 如果沒有 label，去 rawData 裡比對 value
-				if (!displayText) {
-					for (const group of rawData) {
-						for (const sub of group.groups) {
-							const match = sub.tags.find(t => t.value === tag.value);
-							if (match) {
-								displayText = match[currentLang]; // zh / en / jp
-								break;
+				const tagValueRaw = (tag && typeof tag === 'object') ? tag.value : tag; // fallback
+				if (typeof tagValueRaw === 'undefined') {
+					console.warn(`[renderTagDisplay] tag.value undefined at output ${index} pos ${i}`, tag);
+				}
+
+				const normValue = normalizeValue(tagValueRaw);
+
+				// 嘗試在 rawData 中找到對應的 tag 物件（更寬鬆的比對）
+				let displayText = null;
+				let foundTagObj = null;
+
+				outer:
+				for (const group of rawData) {
+					if (!group || !group.groups) continue;
+					for (const sub of group.groups) {
+						if (!sub || !Array.isArray(sub.tags)) continue;
+						for (const t of sub.tags) {
+							if (!t) continue;
+							const normT = normalizeValue(t.value);
+							if (normT === normValue) {
+								foundTagObj = t;
+								break outer;
 							}
 						}
-						if (displayText) break;
 					}
 				}
 
-				// 仍找不到就 fallback 為 value
-				if (!displayText) displayText = tag.value;
+				// 如果 outputData 裡已有 label（例如在 addTagToCurrent 時 push 了整個 object）
+				if (tag && typeof tag === 'object' && tag.label && tag.label[currentLang]) {
+					displayText = tag.label[currentLang];
+				} else if (foundTagObj && foundTagObj[currentLang]) {
+					displayText = foundTagObj[currentLang];
+				} else if (tagValueRaw != null) {
+					// fallback 為原始 value（顯示原字串）
+					displayText = String(tagValueRaw);
+				} else {
+					displayText = '';
+				}
 
+				// 如果找不到對應的 tag 物件，記錄一次（但不阻斷 UI）
+				if (!foundTagObj) {
+					console.warn(`[renderTagDisplay] 未在 rawData 找到對應 tag (normalized='${normValue}') for output[${index}] pos ${i}`, { tagValueRaw, tag });
+				}
+
+				// 建立 DOM（保持原本的 output-tag 結構）
 				const tagEl = document.createElement('div');
 				tagEl.className = 'output-tag';
-				tagEl.innerHTML = `${displayText}<span onclick="removeTag(${index}, '${tag.value.replace(/'/g, "\\'")}')">✕</span>`;
+				// escape 單引號以免 inline onclick 跳錯
+				const safeValue = String(tagValueRaw).replace(/'/g, "\\'");
+				tagEl.innerHTML = `${displayText}<span onclick="removeTag(${index}, '${safeValue}')">✕</span>`;
 				tagContainer.appendChild(tagEl);
 			});
 		}
+
 
 
 		function removeTag(index, value) {
@@ -966,6 +960,7 @@
 				updateAllTagHighlight();
 			}
 		}
+
 		function copyAll() {
 			const allText = outputData.map(arr =>
 				arr.map(t => {
