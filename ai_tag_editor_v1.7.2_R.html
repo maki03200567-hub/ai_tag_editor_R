@@ -199,49 +199,54 @@
         }
 
         /* === 修正搜尋框擠到下一行問題 === */
-.topbar {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 6px; /* 控制語言選單與搜尋欄間距 */
-}
+        .topbar {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 6px;
+            /* 控制語言選單與搜尋欄間距 */
+        }
 
-.topbar label,
-.topbar select {
-    flex-shrink: 0;
-}
+        .topbar label,
+        .topbar select {
+            flex-shrink: 0;
+        }
 
-.topbar .search-wrapper {
-    display: flex;
-    align-items: center;
-    flex: 1; /* 讓搜尋欄可自動壓縮而不換行 */
-    min-width: 0; /* 關鍵：允許 flex 收縮 */
-    position: relative;
-}
+        .topbar .search-wrapper {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            /* 讓搜尋欄可自動壓縮而不換行 */
+            min-width: 0;
+            /* 關鍵：允許 flex 收縮 */
+            position: relative;
+        }
 
-.topbar .search-wrapper input[type="text"] {
-    width: 100%;
-    min-width: 180px;
-    padding-right: 24px; /* 給右側✕留空 */
-    box-sizing: border-box;
-}
+        .topbar .search-wrapper input[type="text"] {
+            width: 100%;
+            min-width: 180px;
+            padding-right: 24px;
+            /* 給右側✕留空 */
+            box-sizing: border-box;
+        }
 
-.topbar .search-wrapper button {
-    position: absolute;
-    right: 6px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 14px;
-    color: #666;
-    opacity: 0.6;
-    transition: opacity 0.2s;
-}
-.topbar .search-wrapper button:hover {
-    opacity: 1;
-}
+        .topbar .search-wrapper button {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .topbar .search-wrapper button:hover {
+            opacity: 1;
+        }
 
 
 
@@ -1443,6 +1448,19 @@
                             { zh: "彎曲(扭曲)", en: "flexing", jp: "筋肉を緊張させる", value: "flexing" },
                             { zh: "肚子餓到出聲", en: "rumbling stomach", jp: "鳴る胃", value: "rumbling stomach" },
                             { zh: "發抖", en: "shaking", jp: "震える", value: "shaking" },
+                            { zh: "痙攣", en: "twitching", jp: "痙攣する", value: "twitching" },
+                            { zh: "身體顫抖", en: "body trembling", jp: "体が震える", value: "body trembling" },
+                            { zh: "微顫", en: "slight trembling", jp: "小さく震える", value: "slight trembling" },
+                            { zh: "手指發抖", en: "fingers trembling", jp: "指が震える", value: "trembling fingers" },
+                            { zh: "肩膀顫抖", en: "shoulders trembling", jp: "肩が震える", value: "trembling shoulders" },
+                            { zh: "呼吸顫抖", en: "breathing trembling", jp: "呼吸が震える", value: "trembling breath" },
+                            { zh: "胸口起伏快速", en: "chest rising and falling fast", jp: "胸が速く上下する", value: "fast chest movement" },
+                            { zh: "背部抽動", en: "back twitching", jp: "背中が痙攣する", value: "back twitch" },
+                            { zh: "抽一口氣", en: "sharp inhale twitch", jp: "息を吸い込んで痙攣する", value: "sharp inhale twitch" },
+                            { zh: "力氣消失顫抖", en: "trembling while losing strength", jp: "力が抜けて震える", value: "weak trembling" },
+                            { zh: "失力倒下顫抖", en: "collapsing while trembling", jp: "崩れ落ちながら震える", value: "collapse trembling" },
+                            { zh: "快感顫抖", en: "pleasure trembling", jp: "快感で震える", value: "pleasure trembling" },
+
                         ]
                     },
                     {
@@ -7101,21 +7119,27 @@
                         tags: [
                             { zh: "開腿（汎用）", en: "open legs", jp: "脚を開く", value: "open legs" },
                             { zh: "輕微開腿", en: "slightly open legs", jp: "やや脚を開く", value: "slightly open legs" },
-                            { zh: "M字開腿", en: "m legs", jp: "M字開き", value: "m legs" },
-                            { zh: "V字開腿", en: "v legs", jp: "V字開き", value: "v legs" },
-                            { zh: "單腿開", en: "one leg open", jp: "片脚を開く", value: "one leg open" },
-                            { zh: "坐姿張腿", en: "sitting spread legs", jp: "足を広げる", value: "sitting spread legs" },
+                            { zh: "腿張開", en: "spread legs", jp: "脚を広げる", value: "spread legs" },
                             { zh: "大幅開腿", en: "wide legs", jp: "大きく脚を開く", value: "wide legs" },
-                            { zh: "蝴蝶式", en: "butterfly legs", jp: "バタフライポーズ", value: "butterfly legs" },
-                            { zh: "蓮花坐", en: "lotus legs", jp: "蓮華座", value: "lotus legs" },
-                            { zh: "側躺開腿", en: "side-lying legs", jp: "横向きで脚を開く", value: "side-lying legs" },
-                            { zh: "坐姿劈腿", en: "seated split", jp: "座ったまま前開脚", value: "seated split" },
-                            { zh: "蹲踞開腿", en: "squatting legs", jp: "しゃがんで開脚", value: "squatting legs" },
-                            { zh: "大字型開腿", en: "spread eagle", jp: "大の字開脚", value: "spread eagle" },
-                            { zh: "單腿抬高開腿", en: "single leg high spread", jp: "片足高く上げて開脚", value: "single leg high spread" },
+                            { zh: "極限大開腿", en: "legs widely spread", jp: "限界まで脚を開く", value: "extreme spread" },
+                            { zh: "M字開腿", en: "M-shape legs", jp: "M字開き", value: "m-shape legs" },
+                            { zh: "V字開腿", en: "V-shape legs", jp: "V字開き", value: "v-shape legs" },
+                            { zh: "大字型開腿", en: "spread eagle", jp: "大の字開き", value: "spread eagle" },
+                            { zh: "單腿開", en: "one leg open", jp: "片脚を開く", value: "one leg open" },
+                            { zh: "單腿抬高開腿", en: "single leg high spread", jp: "片脚を高く上げて開く", value: "high one-leg spread" },
+                            { zh: "一腳抬起張開", en: "one leg raised and spread", jp: "片脚を上げて開く", value: "one leg up spread" },
+                            { zh: "坐姿開腿", en: "sitting spread legs", jp: "座って脚を開く", value: "sitting spread legs" },
+                            { zh: "坐姿劈腿", en: "seated split", jp: "座ったまま開脚", value: "seated split" },
+                            { zh: "蝴蝶式開腿", en: "butterfly legs", jp: "バタフライポーズ", value: "butterfly pose" },
+                            { zh: "蓮花坐", en: "lotus pose", jp: "蓮華座", value: "lotus pose" },
+                            { zh: "站立開腿", en: "standing legs apart", jp: "立って脚を開く", value: "standing legs apart" },
+                            { zh: "跪姿開腿", en: "kneeling spread legs", jp: "跪いて脚を開く", value: "kneeling spread legs" },
+                            { zh: "蹲姿開腿", en: "squatting legs spread", jp: "しゃがんで開脚", value: "squatting legs" },
+                            { zh: "側躺開腿", en: "side-lying spread legs", jp: "横になって脚を開く", value: "side spread legs" },
                             { zh: "側劈腿", en: "side split", jp: "横開脚", value: "side split" },
                             { zh: "前劈腿", en: "front split", jp: "前開脚", value: "front split" },
                             { zh: "半劈腿", en: "half split", jp: "ハーフスプリット", value: "half split" },
+                            { zh: "抬腿張開", en: "lifted and spread legs", jp: "脚を上げて広げる", value: "legs up spread" },
                             // ---- 情境/互動補充 ----
                             { zh: "腿被拉開", en: "legs pulled apart", jp: "脚を引き開かれる", value: "legs pulled apart" },
                             { zh: "腿被按開", en: "legs forced open", jp: "脚を押し開かれる", value: "legs forced open" },
