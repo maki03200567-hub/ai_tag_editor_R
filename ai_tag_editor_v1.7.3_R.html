@@ -258,13 +258,18 @@
                 overflow-x: hidden;
             }
 
+            #mobileSearchContainer {
+                margin-top: 2px !important;
+                padding-top: 0 !important;
+            }
+
             .group-buttons {
                 display: flex;
                 flex-wrap: wrap;
                 overflow-y: auto;
                 line-height: 1.6em;
-                max-height: calc(1.6em * 2 + 12px);
-                min-height: calc(1.6em * 2 + 12px);
+                max-height: calc(1.6em * 1 + 12px);
+                min-height: calc(1.6em * 1 + 12px);
                 margin-bottom: 6px;
                 flex-shrink: 0;
                 background: #1e1e1e;
@@ -9138,35 +9143,35 @@
         /* -------------------------
            category / tags rendering
         ------------------------- */
-function renderCategoryButtons() {
-    categoriesDiv.innerHTML = '';
-    Object.keys(jsonData).forEach((key) => {
-        const btn = document.createElement('button');
-        btn.textContent = categories[key][currentLang] || key;
-        btn.onclick = () => {
-            currentCategory = key;
+        function renderCategoryButtons() {
+            categoriesDiv.innerHTML = '';
+            Object.keys(jsonData).forEach((key) => {
+                const btn = document.createElement('button');
+                btn.textContent = categories[key][currentLang] || key;
+                btn.onclick = () => {
+                    currentCategory = key;
 
-            // 🔹 偵測搜尋欄是否有內容
-            const desktopInput = document.getElementById('searchInput');
-            const mobileInput = document.getElementById('mobileSearchInput');
-            const hasSearch =
-                (desktopInput && desktopInput.value.trim()) ||
-                (mobileInput && mobileInput.value.trim());
+                    // 🔹 偵測搜尋欄是否有內容
+                    const desktopInput = document.getElementById('searchInput');
+                    const mobileInput = document.getElementById('mobileSearchInput');
+                    const hasSearch =
+                        (desktopInput && desktopInput.value.trim()) ||
+                        (mobileInput && mobileInput.value.trim());
 
-            if (hasSearch) {
-                // 清空搜尋欄並回復該分類完整 TAG
-                if (desktopInput) desktopInput.value = '';
-                if (mobileInput) mobileInput.value = '';
-                renderTags(key, null);
-            } else {
-                // 若原本就沒有搜尋文字，保持現有邏輯
-                const q = (desktopInput || { value: '' }).value.trim();
-                renderTags(key, q || null);
-            }
-        };
-        categoriesDiv.appendChild(btn);
-    });
-}
+                    if (hasSearch) {
+                        // 清空搜尋欄並回復該分類完整 TAG
+                        if (desktopInput) desktopInput.value = '';
+                        if (mobileInput) mobileInput.value = '';
+                        renderTags(key, null);
+                    } else {
+                        // 若原本就沒有搜尋文字，保持現有邏輯
+                        const q = (desktopInput || { value: '' }).value.trim();
+                        renderTags(key, q || null);
+                    }
+                };
+                categoriesDiv.appendChild(btn);
+            });
+        }
 
 
         // helper to decide match (zh/en/jp/value)
@@ -9749,37 +9754,37 @@ function renderCategoryButtons() {
             });
         }
 
-function renderCategoryButtons_mobile() {
-    categoriesDiv.innerHTML = '';
-    const group = groupData.find(g => g.group.key === currentGroupKey);
-    if (!group) return;
-    group.classification.forEach(key => {
-        const category = categories[key];
-        if (!category) return;
-        const btn = document.createElement('button');
-        btn.textContent = category[currentLang] || key;
-        if (key === currentCategory) btn.classList.add("active");
-        btn.onclick = () => {
-            currentCategory = key;
+        function renderCategoryButtons_mobile() {
+            categoriesDiv.innerHTML = '';
+            const group = groupData.find(g => g.group.key === currentGroupKey);
+            if (!group) return;
+            group.classification.forEach(key => {
+                const category = categories[key];
+                if (!category) return;
+                const btn = document.createElement('button');
+                btn.textContent = category[currentLang] || key;
+                if (key === currentCategory) btn.classList.add("active");
+                btn.onclick = () => {
+                    currentCategory = key;
 
-            const desktopInput = document.getElementById('searchInput');
-            const mobileInput = document.getElementById('mobileSearchInput');
-            const hasSearch =
-                (desktopInput && desktopInput.value.trim()) ||
-                (mobileInput && mobileInput.value.trim());
+                    const desktopInput = document.getElementById('searchInput');
+                    const mobileInput = document.getElementById('mobileSearchInput');
+                    const hasSearch =
+                        (desktopInput && desktopInput.value.trim()) ||
+                        (mobileInput && mobileInput.value.trim());
 
-            if (hasSearch) {
-                // 清空搜尋並回復完整分類
-                if (desktopInput) desktopInput.value = '';
-                if (mobileInput) mobileInput.value = '';
-            }
+                    if (hasSearch) {
+                        // 清空搜尋並回復完整分類
+                        if (desktopInput) desktopInput.value = '';
+                        if (mobileInput) mobileInput.value = '';
+                    }
 
-            renderCategoryButtons_mobile();
-            renderTags(key, null);
-        };
-        categoriesDiv.appendChild(btn);
-    });
-}
+                    renderCategoryButtons_mobile();
+                    renderTags(key, null);
+                };
+                categoriesDiv.appendChild(btn);
+            });
+        }
 
 
         // === 🔍 即時搜尋系統（桌機與手機共用） ===
