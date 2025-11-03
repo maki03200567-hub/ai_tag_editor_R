@@ -6766,6 +6766,28 @@
                             { zh: "抬頭仰望", en: "looking upward from behind", jp: "背面から見上げる", value: "looking up back view" }
 
                         ]
+                    },
+                    {
+                        subCategory: "貼牆",
+                        tags: [
+                            { zh: "扶牆（未指定手數）", en: "leaning on wall", jp: "壁に寄りかかる", value: "lean on wall" },
+                            { zh: "手扶牆（未指定）", en: "hand on wall", jp: "手を壁につける", value: "hand on wall" },
+                            { zh: "單手扶牆", en: "placing one hand on the wall", jp: "片手を壁につける", value: "one hand on wall" },
+                            { zh: "單手靠牆休息姿勢", en: "resting against wall with one hand", jp: "片手で壁にもたれて休む", value: "one hand rest wall" },
+                            { zh: "單手撐牆伸展", en: "stretching with one hand on the wall", jp: "片手で壁に手をついてストレッチ", value: "one hand wall stretch" },
+                            { zh: "雙手扶牆", en: "placing both hands on the wall", jp: "両手を壁につける", value: "both hands on wall" },
+                            { zh: "雙手貼牆向前傾", en: "leaning forward with both hands on wall", jp: "両手を壁につけて前傾する", value: "lean forward wall" },
+                            { zh: "雙手按牆固定", en: "pressing both hands against wall", jp: "両手で壁を押さえる", value: "hands press wall" },
+                            { zh: "胸部貼牆", en: "breasts pressed against the wall", jp: "胸を壁に押し付ける", value: "breasts press wall" },
+                            { zh: "腹部貼牆", en: "abdomen pressed to wall", jp: "腹を壁に押し付ける", value: "belly press wall" },
+                            { zh: "胯部貼牆", en: "crotch pressed to wall", jp: "股間を壁に押し付ける", value: "crotch press wall" },
+                            { zh: "扶牆抬腿伸展", en: "leg lift stretch with hand on wall", jp: "壁に手をついて脚を上げてストレッチ", value: "wall leg raise stretch" },
+                            { zh: "扶牆側身伸展", en: "side body stretch with hand on wall", jp: "壁に手をついて横に伸ばす", value: "wall side stretch" },
+                            { zh: "扶牆臀腿後伸", en: "glute and leg extension with wall support", jp: "壁に手をついて脚を後ろに伸ばす", value: "wall back leg stretch" },
+                            { zh: "扶牆喘息", en: "panting against wall", jp: "壁にもたれて息を切らす", value: "panting wall" },
+                            { zh: "扶牆羞怯/躲避", en: "shy against wall", jp: "壁に手をついて恥じらう", value: "shy wall pose" },
+                            { zh: "扶牆回頭看", en: "looking back while hand on wall", jp: "壁に手をつけながら振り返る", value: "wall look back" }
+                        ]
                     }
                 ]
             },
@@ -7154,6 +7176,12 @@
                     {
                         subCategory: "開腿姿勢",
                         tags: [
+                            // ---- 泛用觸發詞（方便模型理解「開腿」） ----
+                            { zh: "開腿（觸發詞）", en: "open legs, spread, open thighs", jp: "開脚, 脚を開く, 太ももを開く", value: "open legs, spread, open thighs" },
+                            { zh: "大腿分開（觸發詞）", en: "thighs apart, legs apart", jp: "太ももを開く, 脚を広げる", value: "thighs apart, legs apart" },
+                            { zh: "張腿特寫", en: "legs spread closeup", jp: "脚を広げたクローズアップ", value: "legs spread closeup" },
+                            { zh: "開腿視角（POV）", en: "pov open legs", jp: "主観で開脚", value: "pov open legs" },
+
                             { zh: "開腿（汎用）", en: "open legs", jp: "脚を開く", value: "open legs" },
                             { zh: "輕微開腿", en: "slightly open legs", jp: "やや脚を開く", value: "slightly open legs" },
                             { zh: "腿張開", en: "spread legs", jp: "脚を広げる", value: "spread legs" },
@@ -7185,12 +7213,24 @@
                             { zh: "用器具撐開雙腿", en: "legs spread with spreader", jp: "器具で脚を開く", value: "spreader device legs" },
                             { zh: "膝部被壓開", en: "knees pressed apart", jp: "膝を押し開かれる", value: "knees pressed apart" },
                             { zh: "腳被固定張開", en: "legs immobilized open", jp: "脚が固定されて開かれる", value: "legs immobilized open" },
-
-                            // ---- 泛用觸發詞（方便模型理解「開腿」） ----
-                            { zh: "開腿（觸發詞）", en: "open legs, spread, open thighs", jp: "開脚, 脚を開く, 太ももを開く", value: "open legs, spread, open thighs" },
-                            { zh: "大腿分開（觸發詞）", en: "thighs apart, legs apart", jp: "太ももを開く, 脚を広げる", value: "thighs apart, legs apart" },
-                            { zh: "張腿特寫", en: "legs spread closeup", jp: "脚を広げたクローズアップ", value: "legs spread closeup" },
-                            { zh: "開腿視角（POV）", en: "pov open legs", jp: "主観で開脚", value: "pov open legs" }
+                            // 基礎站立劈腿
+                            { zh: "站立劈腿", en: "standing split", jp: "立ったまま開脚する", value: "standing split" },
+                            { zh: "單腿高舉（站立）", en: "lifting one leg high while standing", jp: "立ったまま片脚を高く上げる", value: "high leg raise standing" },
+                            { zh: "正面站立劈腿", en: "front standing split", jp: "前方向に立ったまま開脚", value: "front standing split" },
+                            { zh: "側向站立劈腿", en: "side standing split", jp: "横方向に立ったまま開脚", value: "side standing split" },
+                            // 極限姿勢
+                            { zh: "腳過頭（站立）", en: "leg raised beyond head while standing", jp: "立ったまま脚が頭を超える", value: "overhead leg standing" },
+                            { zh: "腳貼耳（站立）", en: "leg pressed to ear while standing", jp: "立ったまま脚を耳につける", value: "leg to ear standing" },
+                            { zh: "腳壓肩（站立）", en: "leg resting on shoulder while standing", jp: "立ったまま脚を肩にのせる", value: "leg on shoulder standing" },
+                            // 支撐與拉伸
+                            { zh: "扶牆站立劈腿", en: "standing split with hand on wall", jp: "壁に手をついて立ったまま開脚", value: "wall supported standing split" },
+                            { zh: "扶椅伸腿", en: "leg up on chair while standing", jp: "椅子に脚を乗せて立つ", value: "leg on chair stretch" },
+                            { zh: "抓腳站立拉伸", en: "holding foot while standing stretch", jp: "立ったまま足を掴んで伸ばす", value: "standing hold leg" },
+                            // 性感版 / 壓迫版
+                            { zh: "站立劈腿露出胯部曲線", en: "standing split exposing crotch line", jp: "立ったまま股間のラインが強調される開脚", value: "standing split crotch line" },
+                            { zh: "站立劈腿內褲繃緊", en: "standing split with panties stretched tight", jp: "立ったままパンツが張り詰める開脚", value: "standing split tight panties" },
+                            { zh: "腿抬高造成胯部壓迫", en: "raised leg causing crotch compression", jp: "脚を高く上げて股間が圧迫される", value: "high leg crotch press" },
+                            { zh: "站立腿分開造成布料深陷", en: "standing with legs spread causing fabric indentation", jp: "立ったまま脚を開き布地が食い込む", value: "standing spread fabric bite" }
                         ]
                     },
                     {
