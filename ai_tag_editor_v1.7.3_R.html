@@ -5764,6 +5764,16 @@
                             { zh: "毛絨短襪", en: "fuzzy ankle socks", jp: "モコモコアンクルソックス", value: "fuzzy_ankle_socks" },
                             { zh: "運動短襪", en: "sporty ankle socks", jp: "スポーツアンクルソックス", value: "sporty_ankle_socks" },
                             { zh: "膝上襪", en: "over-knee socks", jp: "オーバーニーソックス", value: "over_knee_socks" },
+                            { zh: "過膝襪", en: "overknee socks", jp: "ニーハイソックス", value: "overknee socks" },
+                            { zh: "長筒襪", en: "thighhigh socks", jp: "絶対領域ソックス", value: "thighhigh socks" },
+                            { zh: "膝上襪", en: "knee high socks", jp: "膝上ソックス", value: "knee high socks" },
+                            { zh: "膝下襪", en: "below knee socks", jp: "膝下ソックス", value: "below knee socks" },
+                            { zh: "短襪", en: "ankle socks", jp: "ショートソックス", value: "ankle socks" },
+                            { zh: "無襪", en: "barefoot", jp: "裸足", value: "barefoot" },
+                            { zh: "條紋襪", en: "striped socks", jp: "ボーダーソックス", value: "striped socks" },
+                            { zh: "透明襪", en: "sheer socks", jp: "シースルーソックス", value: "sheer socks" },
+                            { zh: "蕾絲襪", en: "lace socks", jp: "レースソックス", value: "lace socks" },
+                            { zh: "破洞襪", en: "torn socks", jp: "破れたソックス", value: "torn socks" },
                             { zh: "棉質膝上襪", en: "cotton over-knee socks", jp: "コットンオーバーニーソックス", value: "cotton_over_knee_socks" },
                             { zh: "毛絨膝上襪", en: "fuzzy over-knee socks", jp: "モコモコオーバーニーソックス", value: "fuzzy_over_knee_socks" },
                             { zh: "長筒襪", en: "long socks", jp: "ロングソックス", value: "long_socks" },
@@ -8734,7 +8744,8 @@
                             { zh: "沒扣鈕扣", en: "unbuttoned clothes", jp: "ボタンを外した服", value: "unbuttoned clothes" },
                             { zh: "衣扣拉鍊敞開", en: "unzipped clothes", jp: "ジッパーを開けた服", value: "unzipped clothes" }
                         ]
-                    }, {
+                    },
+                    {
                         subCategory: "滑落 / 鬆散",
                         tags: [
                             { zh: "衣服滑落", en: "slipping clothes", jp: "ずり落ちる服", value: "slipping clothes" },
@@ -8788,6 +8799,31 @@
                             { zh: "褲縫走光", en: "pants seam exposure", jp: "ズボンの縫い目の露出", value: "pants seam exposure" },
                             { zh: "衣料拉扯變形", en: "fabric tension gap", jp: "引っ張られてできた隙間", value: "fabric tension gap" },
                             { zh: "自然走光", en: "natural exposure", jp: "自然な露出", value: "natural exposure" }
+                        ]
+                    },
+                    {
+                        subCategory: "露出狀態延伸",
+                        tags: [
+                            { zh: "若隱若現", en: "barely visible", jp: "うっすら見える", value: "barely visible" },
+                            { zh: "滑落中", en: "slipping off", jp: "ずり落ちる", value: "slipping off" },
+                            { zh: "遮掩中", en: "partially covered", jp: "一部隠れている", value: "partially covered" },
+                            { zh: "掀起中", en: "being lifted", jp: "めくれ上がる", value: "being lifted" },
+                            { zh: "敞開", en: "open exposure", jp: "開いた露出", value: "open exposure" },
+                            { zh: "外翻", en: "flipped outward", jp: "外にめくれた", value: "flipped outward" },
+                            { zh: "滑下", en: "sliding down", jp: "滑り落ちる", value: "sliding down" },
+                            { zh: "微掀", en: "slightly lifted", jp: "少しめくれた", value: "slightly lifted" },
+                            { zh: "掀開", en: "lifted up", jp: "めくり上げた", value: "lifted up" },
+                            { zh: "拉開", en: "pulled aside", jp: "引き下げられた", value: "pulled aside" },
+                            { zh: "被撥開", en: "parted", jp: "かき分けられた", value: "parted" },
+                            { zh: "邊緣滑落", en: "edge slipping", jp: "縁がずり落ちる", value: "edge slipping" },
+                            { zh: "衣縫張開", en: "seam opening", jp: "縫い目が開く", value: "seam opening" },
+                            { zh: "因姿勢走光", en: "exposure by pose", jp: "姿勢で見える", value: "exposure by pose" },
+                            { zh: "被風吹開", en: "blown open", jp: "風でめくれた", value: "blown open" },
+                            { zh: "緊繃貼合", en: "tight fit outline", jp: "ぴったり張り付く", value: "tight fit outline" },
+                            { zh: "貼著肌膚", en: "clinging to skin", jp: "肌に張り付く", value: "clinging to skin" },
+                            { zh: "衣料濕透", en: "wet see-through", jp: "濡れて透ける", value: "wet see-through" },
+                            { zh: "濕貼", en: "wet cling", jp: "濡れて張り付く", value: "wet cling" },
+                            { zh: "裂開", en: "torn open", jp: "裂けた", value: "torn open" }
                         ]
                     },
                     {
@@ -9034,6 +9070,25 @@
                         ]
                     },
                     {
+                        subCategory: "下裝專屬狀態",
+                        tags: [
+                            { zh: "沒穿下裝", en: "no bottoms", jp: "下着なし", value: "no bottoms" },
+                            { zh: "半脫下裝", en: "bottoms half removed", jp: "ボトムス半脱ぎ", value: "bottoms half removed" },
+                            { zh: "拉下裙子", en: "pulling down skirt", jp: "スカートを引き下げる", value: "pulling down skirt" },
+                            { zh: "掀起裙子", en: "lifting skirt", jp: "スカートをめくる", value: "lifting skirt" },
+                            { zh: "裙子被風吹起", en: "skirt lifted by wind", jp: "風でめくれたスカート", value: "skirt lifted by wind" },
+                            { zh: "裙擺捲起", en: "rolled up skirt", jp: "巻き上がったスカート", value: "rolled up skirt" },
+                            { zh: "短褲滑落", en: "shorts slipping down", jp: "ずり落ちるショートパンツ", value: "shorts slipping down" },
+                            { zh: "褲子半脫", en: "pants half removed", jp: "ズボン半脱ぎ", value: "pants half removed" },
+                            { zh: "拉開褲頭", en: "unbuttoning pants", jp: "ズボンのボタンを外す", value: "unbuttoning pants" },
+                            { zh: "褲頭敞開", en: "pants unzipped", jp: "開いたズボンのファスナー", value: "pants unzipped" },
+                            { zh: "褲頭鬆開", en: "loose waistband", jp: "緩んだウエスト", value: "loose waistband" },
+                            { zh: "褲縫開口", en: "pants seam opening", jp: "裂けたズボン", value: "pants seam opening" },
+                            { zh: "衣縫走光", en: "wardrobe malfunction", jp: "衣装トラブル", value: "wardrobe malfunction" },
+                            { zh: "裙縫裂開", en: "skirt seam ripped", jp: "スカートの縫い目が裂ける", value: "skirt seam ripped" }
+                        ]
+                    },
+                    {
                         subCategory: "裙子專屬狀態",
                         tags: [
                             // 穿著與脫著狀態
@@ -9139,6 +9194,19 @@
                             { zh: "褲子皺褶", en: "wrinkled pants", jp: "しわのあるズボン", value: "wrinkled pants" },
                             { zh: "褲子破損", en: "torn pants", jp: "破れたズボン", value: "torn pants" },
                             { zh: "透明褲子", en: "see-through pants", jp: "透けたズボン", value: "see-through pants" }
+                        ]
+                    },
+                    {
+                        subCategory: "連衣裙與洋裝狀態",
+                        tags: [
+                            { zh: "洋裝滑落", en: "dress slipping", jp: "ずり落ちるドレス", value: "dress slipping" },
+                            { zh: "洋裝半脫", en: "dress half removed", jp: "ドレス半脱ぎ", value: "dress half removed" },
+                            { zh: "拉開洋裝拉鍊", en: "unzipping dress", jp: "ドレスのジッパーを下ろす", value: "unzipping dress" },
+                            { zh: "洋裝拉鍊半開", en: "half unzipped dress", jp: "半分開いたドレス", value: "half unzipped dress" },
+                            { zh: "吊帶滑落", en: "slipping shoulder strap", jp: "落ちる肩ひも", value: "slipping shoulder strap" },
+                            { zh: "胸口開口過大", en: "wide neckline", jp: "開いた胸元", value: "wide neckline" },
+                            { zh: "布料貼身顯形", en: "tight clinging fabric", jp: "体に張り付く布", value: "tight clinging fabric" },
+                            { zh: "衣縫裂開走光", en: "seam burst exposure", jp: "縫い目が裂けた露出", value: "seam burst exposure" }
                         ]
                     },
                     {
@@ -9255,6 +9323,19 @@
                             { zh: "薄布顯形", en: "thin fabric showing body outline", jp: "薄布 + 体に密着した服 + 布越しに形が見える", value: "thin fabric, body-hugging outfit, fabric outline visible" },
                             { zh: "背光透膚衣", en: "backlit see-through clothing", jp: "逆光で透ける + 透けた服 + 下着のラインが見える", value: "backlit translucence, see-through clothes, underwear outline visible" },
                             { zh: "貼膚顯形衣", en: "skin-tight visible outline clothing", jp: "ピッタリした服 + 体に密着した服 + 乳首の形がうっすら見える", value: "tight clothes, body-hugging outfit, faint nipple outline" }
+                        ]
+                    },
+                    {
+                        subCategory: "濕潤與透視狀態",
+                        tags: [
+                            { zh: "衣物濕透", en: "wet clothes", jp: "濡れた服", value: "wet clothes" },
+                            { zh: "衣物緊貼肌膚", en: "clothes clinging to skin", jp: "肌に張り付く服", value: "clothes clinging to skin" },
+                            { zh: "透視衣物", en: "see-through clothes", jp: "透ける服", value: "see-through clothes" },
+                            { zh: "部分透視", en: "partially see-through", jp: "部分的に透ける", value: "partially see-through" },
+                            { zh: "布料半透明", en: "semi-transparent fabric", jp: "半透明の布地", value: "semi-transparent fabric" },
+                            { zh: "濕潤貼身", en: "wet tight fit", jp: "濡れて張り付く", value: "wet tight fit" },
+                            { zh: "乳頭透出於布料下", en: "nipple visible through fabric", jp: "布越しに見える乳首", value: "nipple visible through fabric" },
+                            { zh: "布料貼合陰部", en: "fabric clinging to crotch", jp: "股間に張り付く布", value: "fabric clinging to crotch" }
                         ]
                     },
                     {
