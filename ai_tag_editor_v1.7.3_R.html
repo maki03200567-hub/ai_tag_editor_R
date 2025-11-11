@@ -3947,6 +3947,555 @@
                 ]
             },
             {
+                category: { key: "head decoration/hat", zh: "配件飾品", en: "Accessories and Jewelry", jp: "アクセサリーとジュエリー" },
+                groups: [
+                    {
+                        subCategory: "基本髮飾",
+                        tags: [
+                            { zh: "呆毛", en: "ahoge", jp: "アホ毛", value: "ahoge" },
+                            { zh: "髮夾(長條式)", en: "barrette", jp: "髪留め", value: "barrette" },
+                            { zh: "髮辮", en: "braid", jp: "編み込み", value: "braid" },
+                            { zh: "髮飾", en: "hair ornament", jp: "髪飾り", value: "hair ornament" },
+                            { zh: "髮夾", en: "hairclip", jp: "ヘアクリップ", value: "hairclip" },
+                            { zh: "髮圈", en: "hair tie", jp: "ヘアゴム", value: "hair tie" },
+                            { zh: "髮帶", en: "hairband", jp: "ヘアバンド", value: "hairband" },
+                            { zh: "髮帶", en: "hair ribbon", jp: "ヘアリボン", value: "hair ribbon" },
+                            { zh: "絲帶", en: "ribbon", jp: "リボン", value: "ribbon" },
+                            { zh: "蝴蝶結", en: "bow", jp: "リボン結び", value: "bow" },
+                            { zh: "髮簪", en: "hairpin", jp: "かんざし", value: "hairpin" },
+                            { zh: "花飾", en: "flower ornament", jp: "花飾り", value: "flower ornament" }
+                        ]
+                    },
+                    {
+                        subCategory: "帽子",
+                        tags: [
+                            { zh: "帽子", en: "hat", jp: "帽子", value: "hat" },
+                            { zh: "軍帽", en: "military hat", jp: "ミリタリーハット", value: "military hat" },
+                            { zh: "官帽", en: "peaked cap", jp: "官帽", value: "peaked cap" },
+                            { zh: "蘇聯軍帽", en: "soviet ushanka hat", jp: "コサック帽", value: "soviet ushanka hat" },
+                            { zh: "遮陽帽", en: "sun hat", jp: "サンハット", value: "sun hat" },
+                            { zh: "貝雷帽", en: "beret", jp: "ベレー帽", value: "beret" },
+                            { zh: "草帽", en: "straw hat", jp: "麦わら帽子", value: "straw hat" },
+                            { zh: "女僕頭飾", en: "maid headband", jp: "メイドカチューシャ", value: "maid headband" },
+                            { zh: "頭盔", en: "helmet", jp: "ヘルメット", value: "helmet" },
+                            { zh: "兜帽", en: "hood", jp: "フード", value: "hood" },
+                            { zh: "魔女帽", en: "witch hat", jp: "魔女帽子", value: "witch hat, wide brim hat, pointy hat" },
+                        ]
+                    },
+                    {
+                        subCategory: "頭飾/皇冠類",
+                        tags: [
+                            { zh: "后冠", en: "tiara", jp: "ティアラ", value: "tiara" },
+                            { zh: "皇冠", en: "crown", jp: "クラウン", value: "crown" },
+                            { zh: "王冠", en: "tiara", jp: "ティアラ", value: "tiara" },
+                            { zh: "花環", en: "flower crown", jp: "花冠", value: "flower crown" },
+                            { zh: "額環", en: "forehead ring", jp: "額リング", value: "forehead ring" },
+                            { zh: "面紗", en: "veil", jp: "ベール", value: "veil" },
+                            { zh: "結婚頭紗", en: "wedding veil", jp: "ウェディングヴェール", value: "wedding veil" },
+                            { zh: "髮箍耳機", en: "headphones", jp: "ヘッドホン", value: "headphones" },
+                            { zh: "耳掛式飾物", en: "ear accessory", jp: "耳飾り", value: "ear accessory" }
+                        ]
+                    },
+                    {
+                        subCategory: "眼部配件",
+                        tags: [
+                            { zh: "眼鏡", en: "glasses", jp: "眼鏡", value: "glasses" },
+                            { zh: "細框眼鏡", en: "thin frame glasses", jp: "細縁メガネ", value: "thin frame glasses" },
+                            { zh: "粗框眼鏡", en: "thick frame glasses", jp: "太縁メガネ", value: "thick frame glasses" },
+                            { zh: "圓框眼鏡", en: "round glasses", jp: "丸メガネ", value: "round glasses" },
+                            { zh: "方框眼鏡", en: "square glasses", jp: "四角メガネ", value: "square glasses" },
+                            { zh: "貓眼眼鏡", en: "cat eye glasses", jp: "キャットアイメガネ", value: "cat eye glasses" },
+                            { zh: "無框眼鏡", en: "rimless glasses", jp: "リムレスメガネ", value: "rimless glasses" },
+                            { zh: "太陽眼鏡", en: "sunglasses", jp: "サングラス", value: "sunglasses" },
+                            { zh: "圓形太陽眼鏡", en: "round sunglasses", jp: "丸サングラス", value: "round sunglasses" },
+                            { zh: "護目鏡", en: "goggles", jp: "ゴーグル", value: "goggles" },
+                            { zh: "泳鏡", en: "swimming goggles", jp: "水泳ゴーグル", value: "swimming goggles" },
+                            { zh: "風鏡", en: "aviator goggles", jp: "飛行ゴーグル", value: "aviator goggles" },
+                        ]
+                    },
+                    {
+                        subCategory: "頭部配件",
+                        tags: [
+                            { zh: "墨鏡戴在頭上", en: "sunglasses on head", jp: "頭にサングラス", value: "sunglasses on head" },
+                            { zh: "墨鏡戴在帽上", en: "sunglasses on hat", jp: "帽子にサングラス", value: "sunglasses on hat" },
+                            { zh: "眼鏡掛在胸前", en: "glasses hanging on chest", jp: "胸元にメガネ", value: "glasses hanging on chest" },
+                            { zh: "護目鏡戴在頭上", en: "goggles on head", jp: "頭にゴーグル", value: "goggles on head" },
+                            { zh: "護目鏡戴在帽上", en: "goggles on hat", jp: "帽子にゴーグル", value: "goggles on hat" },
+                            { zh: "戴在頭上的眼鏡", en: "glasses on head", jp: "頭にかけたメガネ", value: "glasses on head" },
+                            { zh: "掛在頭上的耳機", en: "headphones on head", jp: "頭にかけたヘッドホン", value: "headphones on head" },
+                            { zh: "掛在頭上的面罩", en: "mask on head", jp: "頭にかけたマスク", value: "mask on head" },
+                            { zh: "頭上掛著面紗", en: "veil on head", jp: "頭にかけたベール", value: "veil on head" },
+                            { zh: "戴在頭上的風鏡", en: "protective goggles on head", jp: "頭にかけた保護ゴーグル", value: "protective goggles on head" },
+                            { zh: "掛在頭上的防毒面具", en: "gas mask on head", jp: "頭にかけた防毒マスク", value: "gas mask on head" },
+                            { zh: "掛在頭上的防護眼鏡", en: "safety glasses on head", jp: "頭にかけたセーフティグラス", value: "safety glasses on head" },
+                            { zh: "運動頭帶", en: "sports headband", jp: "スポーツヘッドバンド", value: "sports headband" },
+                            { zh: "頭巾", en: "bandana", jp: "バンダナ", value: "bandana" },
+                            { zh: "頭巾綁額頭", en: "bandana on forehead", jp: "額にバンダナ", value: "bandana on forehead" },
+                            { zh: "耳罩", en: "earmuffs", jp: "イヤーマフ", value: "earmuffs" },
+                            { zh: "耳掛式耳機", en: "ear hook headphones", jp: "耳掛けヘッドホン", value: "ear hook headphones" },
+                            { zh: "頭戴式耳機麥克風", en: "headset", jp: "ヘッドセット", value: "headset" },
+                            { zh: "頭燈", en: "headlamp", jp: "ヘッドランプ", value: "headlamp" },
+                            { zh: "額帶飾品", en: "forehead accessory", jp: "額飾り", value: "forehead accessory" },
+                            { zh: "額頭寶石", en: "forehead jewel", jp: "額の宝石", value: "forehead jewel" },
+                            { zh: "護額", en: "forehead protector", jp: "額当て", value: "forehead protector" },
+                            { zh: "忍者護額", en: "ninja forehead protector", jp: "忍者の額当て", value: "ninja forehead protector" }
+                        ]
+                    },
+                    {
+                        subCategory: "臉部配件",
+                        tags: [
+                            { zh: "面罩", en: "mask", jp: "マスク", value: "mask" },
+                            { zh: "口罩", en: "face mask", jp: "フェイスマスク", value: "face mask" },
+                            { zh: "醫用口罩", en: "surgical mask", jp: "医療マスク", value: "surgical mask" },
+                            { zh: "防毒面具", en: "gas mask", jp: "防毒マスク", value: "gas mask" },
+                            { zh: "小丑面具", en: "clown mask", jp: "ピエロマスク", value: "clown mask" },
+                            { zh: "面紗", en: "veil", jp: "ベール", value: "veil" },
+                            { zh: "眼罩", en: "eyepatch", jp: "眼帯", value: "eyepatch" },
+                            { zh: "單邊眼罩", en: "single eyepatch", jp: "片眼帯", value: "single eyepatch" },
+                            { zh: "高科技眼罩", en: "tech eyepiece", jp: "ハイテク眼帯", value: "tech eyepiece" },
+                            { zh: "高科技面罩", en: "tech mask", jp: "ハイテクマスク", value: "tech mask" },
+                            { zh: "護目面罩", en: "face shield", jp: "フェイスシールド", value: "face shield" },
+                            { zh: "透明面罩", en: "transparent face shield", jp: "透明フェイスシールド", value: "transparent face shield" },
+                        ]
+                    },
+                    {
+                        subCategory: "動物耳尾與角翅",
+                        tags: [
+                            { zh: "貓耳", en: "cat ears", jp: "猫耳", value: "cat ears" },
+                            { zh: "貓尾", en: "cat tail", jp: "猫尾", value: "cat tail" },
+                            { zh: "兔耳", en: "rabbit ears", jp: "ウサギ耳", value: "rabbit ears" },
+                            { zh: "兔尾", en: "rabbit tail", jp: "ウサギ尾", value: "rabbit tail" },
+                            { zh: "狐狸耳", en: "fox ears", jp: "狐耳", value: "fox ears" },
+                            { zh: "狐狸尾", en: "fox tail", jp: "狐尾", value: "fox tail" },
+                            { zh: "狼耳", en: "wolf ears", jp: "狼耳", value: "wolf ears" },
+                            { zh: "狼尾", en: "wolf tail", jp: "狼尾", value: "wolf tail" },
+                            { zh: "熊耳", en: "bear ears", jp: "熊耳", value: "bear ears" },
+                            { zh: "熊尾", en: "bear tail", jp: "熊尾", value: "bear tail" },
+                            { zh: "蝙蝠耳", en: "bat ears", jp: "コウモリ耳", value: "bat ears" },
+                            { zh: "蝙蝠尾", en: "bat tail", jp: "コウモリ尾", value: "bat tail" },
+                            { zh: "龍角", en: "dragon horns", jp: "竜の角", value: "dragon horns" },
+                            { zh: "龍尾", en: "dragon tail", jp: "竜の尾", value: "dragon tail" },
+                            { zh: "小角", en: "small horns", jp: "小角", value: "small horns" },
+                            { zh: "大角", en: "large horns", jp: "大角", value: "large horns" },
+                            { zh: "小羊角", en: "ram horns", jp: "羊角", value: "ram horns" },
+                            { zh: "蝴蝶翅膀", en: "butterfly wings", jp: "蝶の翼", value: "butterfly wings" },
+                            { zh: "天使翅膀", en: "angel wings", jp: "天使の翼", value: "angel wings" },
+                            { zh: "惡魔翅膀", en: "demon wings", jp: "悪魔の翼", value: "demon wings" },
+                            { zh: "惡魔角", en: "demon horns", jp: "悪魔の角", value: "demon horns" },
+                            { zh: "鳥耳", en: "bird feathers", jp: "鳥の羽", value: "bird feathers" },
+                            { zh: "獨角獸角", en: "unicorn horn", jp: "ユニコーンの角", value: "unicorn horn" },
+                            { zh: "魚尾", en: "mermaid tail", jp: "人魚の尾", value: "mermaid tail" },
+                            { zh: "狐狸尾扇", en: "fox tail fan", jp: "狐の尾扇", value: "fox tail fan" }
+                        ]
+                    },
+                    {
+                        subCategory: "身體裝備",
+                        tags: [
+                            { zh: "戰術背心", en: "tactical vest", jp: "タクティカルベスト", value: "tactical vest" },
+                            { zh: "防彈背心", en: "bulletproof vest", jp: "防弾ベスト", value: "bulletproof vest" },
+                            { zh: "戰術披肩", en: "tactical scarf", jp: "タクティカルスカーフ", value: "tactical scarf" },
+                            { zh: "迷彩披肩", en: "camouflage scarf", jp: "迷彩スカーフ", value: "camouflage scarf" },
+                            { zh: "戰術頭盔", en: "tactical helmet", jp: "タクティカルヘルメット", value: "tactical helmet" },
+                            { zh: "軍帽", en: "military cap", jp: "軍帽", value: "military cap" },
+                            { zh: "戰術眼鏡", en: "tactical goggles", jp: "タクティカルゴーグル", value: "tactical goggles" },
+                            { zh: "夜視鏡", en: "night vision goggles", jp: "ナイトビジョンゴーグル", value: "night vision goggles" },
+                            { zh: "防塵口罩", en: "dust mask", jp: "防塵マスク", value: "dust mask" },
+                            { zh: "戰場耳機", en: "tactical headset", jp: "タクティカルヘッドセット", value: "tactical headset" }
+                        ]
+                    },
+                    {
+                        subCategory: "腰部裝備",
+                        tags: [
+                            { zh: "戰術腰帶", en: "utility belt", jp: "ユーティリティベルト", value: "utility belt" },
+                            { zh: "多功能腰包", en: "tactical waist pouch", jp: "タクティカルウエストポーチ", value: "tactical waist pouch" },
+                            { zh: "彈藥帶", en: "ammo belt", jp: "弾薬ベルト", value: "ammo belt" },
+                            { zh: "護甲腰帶", en: "armored belt", jp: "アーマーベルト", value: "armored belt" },
+                            { zh: "掛滿裝備的腰帶", en: "gear-loaded belt", jp: "装備がたくさん付いたベルト", value: "gear loaded belt" },
+                            { zh: "手榴彈掛帶", en: "grenade belt", jp: "手榴弾ベルト", value: "grenade belt" },
+                            { zh: "工用腰帶", en: "tool belt", jp: "ツールベルト", value: "tool belt" },
+                            { zh: "戰鬥腰包", en: "battle pouch", jp: "バトルポーチ", value: "battle pouch" },
+                            { zh: "戰術小包", en: "tactical pouch", jp: "タクティカルポーチ", value: "tactical pouch" },
+                            { zh: "彈匣袋", en: "magazine pouch", jp: "マガジンポーチ", value: "magazine pouch" }
+                        ]
+                    },
+                    {
+                        subCategory: "腿部裝備",
+                        tags: [
+                            { zh: "腿部槍套", en: "thigh holster", jp: "太ももホルスター", value: "thigh holster" },
+                            { zh: "護膝", en: "knee pads", jp: "ニーパッド", value: "knee pads" },
+                            { zh: "護肘", en: "elbow pads", jp: "エルボーパッド", value: "elbow pads" },
+                            { zh: "綁腿帶", en: "leg straps", jp: "レッグストラップ", value: "leg straps" },
+                            { zh: "軍靴", en: "combat boots", jp: "コンバットブーツ", value: "combat boots" },
+                            { zh: "工裝靴", en: "work boots", jp: "ワークブーツ", value: "work boots" }
+                        ]
+                    },
+                    {
+                        subCategory: "攜行裝備",
+                        tags: [
+                            { zh: "戰鬥背包", en: "combat backpack", jp: "コンバットバックパック", value: "combat backpack" },
+                            { zh: "單肩背包", en: "shoulder sling bag", jp: "ショルダースリングバッグ", value: "shoulder sling bag" },
+                            { zh: "肩部槍套", en: "shoulder holster", jp: "ショルダーホルスター", value: "shoulder holster" },
+                            { zh: "頭帶", en: "headband", jp: "ヘッドバンド", value: "headband" }
+                        ]
+                    },
+
+                    {
+                        subCategory: "圍巾與頸部配件",
+                        tags: [
+                            { zh: "圍巾", en: "scarf", jp: "マフラー", value: "scarf" },
+                            { zh: "厚圍巾", en: "thick scarf", jp: "厚手のマフラー", value: "thick scarf" },
+                            { zh: "長圍巾", en: "long scarf", jp: "ロングマフラー", value: "long scarf" },
+                            { zh: "大圍巾", en: "large scarf", jp: "大きなマフラー", value: "large scarf" },
+                            { zh: "蓋口圍巾", en: "scarf covering mouth", jp: "口を覆うマフラー", value: "scarf covering mouth" },
+                            { zh: "蓋半臉圍巾", en: "scarf covering face", jp: "顔を覆うマフラー", value: "scarf covering face" },
+                            { zh: "毛絨圍巾", en: "fluffy scarf", jp: "ふわふわマフラー", value: "fluffy scarf" },
+                            { zh: "針織圍巾", en: "knit scarf", jp: "ニットマフラー", value: "knit scarf" },
+                            { zh: "羊毛圍巾", en: "wool scarf", jp: "ウールマフラー", value: "wool scarf" },
+                            { zh: "格紋圍巾", en: "plaid scarf", jp: "チェック柄マフラー", value: "plaid scarf" },
+                            { zh: "披肩式圍巾", en: "shawl scarf", jp: "ショールマフラー", value: "shawl scarf" },
+                            { zh: "雙層圍巾", en: "double layer scarf", jp: "二重マフラー", value: "double layer scarf" },
+                            { zh: "纏繞頸部的圍巾", en: "wrapped scarf", jp: "首に巻かれたマフラー", value: "wrapped scarf" },
+                            { zh: "飄動的圍巾", en: "flowing scarf", jp: "風にたなびくマフラー", value: "flowing scarf" },
+                            { zh: "口罩式圍巾", en: "mask scarf", jp: "マスクマフラー", value: "mask scarf" },
+                            { zh: "高領圍巾", en: "high neck scarf", jp: "ハイネックマフラー", value: "high neck scarf" },
+                            { zh: "戰術圍巾", en: "tactical scarf", jp: "タクティカルスカーフ", value: "tactical scarf" },
+                            { zh: "迷彩圍巾", en: "camouflage scarf", jp: "迷彩スカーフ", value: "camouflage scarf" },
+                            { zh: "圍在嘴上的毛巾", en: "towel covering mouth", jp: "口を覆うタオル", value: "towel covering mouth" }
+                        ]
+                    },
+                    {
+                        subCategory: "護甲與盔甲",
+                        tags: [
+                            { zh: "護甲", en: "armor", jp: "アーマー", value: "armor" },
+                            { zh: "胸甲", en: "breastplate", jp: "胸当て", value: "breastplate" },
+                            { zh: "護手", en: "bracers", jp: "腕当て", value: "bracers" },
+                            { zh: "胸甲簾", en: "breast curtains", jp: "胸当てカーテン", value: "breast curtains" },
+                            { zh: "半透明裝甲板", en: "translucent plates", jp: "半透明装甲プレート", value: "translucent plates" },
+                            { zh: "線圈護甲肋", en: "coil armor ribs", jp: "コイルアーマーリブ", value: "coil armor ribs" },
+                            { zh: "手臂裝甲板", en: "arm panels", jp: "アームパネル", value: "arm panels" }
+                        ]
+                    },
+                    {
+                        subCategory: "翅膀與披風",
+                        tags: [
+                            { zh: "翅膀", en: "wings", jp: "羽", value: "wings" },
+                            { zh: "天使翅膀", en: "angel wings", jp: "天使の羽", value: "angel wings" },
+                            { zh: "惡魔翅膀", en: "demon wings", jp: "悪魔の羽", value: "demon wings" },
+                            { zh: "紅色斗篷", en: "red cape", jp: "赤いマント", value: "red cape" },
+                            { zh: "斗篷", en: "cape", jp: "マント", value: "cape" },
+                            { zh: "披風", en: "cloak", jp: "クローク", value: "cloak" },
+                            { zh: "披肩", en: "shawl", jp: "ショール", value: "shawl" },
+                            { zh: "肩披風", en: "pauldron cape", jp: "ポールドロンマント", value: "pauldron cape" }
+                        ]
+                    },
+                    {
+                        subCategory: "圍裙",
+                        tags: [
+                            { zh: "围裙（一般·帶胸兜）", en: "bib apron", jp: "エプロン（胸当てあり）", value: "bib apron" },
+                            { zh: "女僕圍裙（裝飾性·腰系）", en: "maid apron", jp: "メイドエプロン（装飾性・腰巻き型）", value: "maid apron" },
+                            { zh: "前垂（實用型·腰系）", en: "waist apron", jp: "前掛け（職人用の腰巻き）", value: "waist apron" },
+                            { zh: "掛頸型圍裙", en: "apron, halterneck strap", jp: "首掛け型エプロン", value: "apron, halterneck strap" },
+                            { zh: "斜挎交叉式圍裙", en: "cross-laced apron", jp: "たすき掛けエプロン（クロスエプロン）", value: "cross-laced apron" },
+                            { zh: "H 型背帶圍裙", en: "apron with H-back straps", jp: "H型エプロン", value: "apron with H-back straps" }
+                        ]
+                    },
+                    {
+                        subCategory: "前垂布",
+                        tags: [
+                            { zh: "垂掛於服裝之上的前垂布（一般）", en: "tabard over clothes", jp: "タバード over clothes", value: "tabard over clothes" },
+                            { zh: "垂掛於連衣裙之上", en: "tabard over dress", jp: "タバード over dress", value: "tabard over dress" },
+                            { zh: "垂掛於褲裝之上", en: "tabard over pants", jp: "タバード over pants", value: "tabard over pants" },
+                            { zh: "垂掛於裙裝之上", en: "tabard over skirt", jp: "タバード over skirt", value: "tabard over skirt" },
+                            { zh: "僅穿前垂布（裸式）", en: "naked tabard", jp: "naked tabard", value: "naked tabard" },
+                            { zh: "帶有紋章的前垂布", en: "tabard with heraldry", jp: "紋章入りタバード", value: "tabard with heraldry" },
+                            { zh: "中世騎士風前垂布", en: "medieval knight tabard", jp: "中世風タバード", value: "medieval knight tabard" },
+                            { zh: "罩在盔甲上的前垂布", en: "tabard over armour", jp: "鎧の上のタバード", value: "tabard over armour" },
+                            { zh: "短版前垂布", en: "short tabard", jp: "ショート丈タバード", value: "short tabard" }
+                        ]
+                    },
+                    {
+                        subCategory: "光電 / 機械裝飾",
+                        tags: [
+                            { zh: "發光線條", en: "glowing lines", jp: "発光ライン", value: "glowing lines" },
+                            { zh: "LED 鉚釘", en: "LED studs", jp: "LEDリベット", value: "LED studs" },
+                            { zh: "光纖裝飾", en: "fiber optic accents", jp: "光ファイバー装飾", value: "fiber optic accents" },
+                            { zh: "奈米紋樣", en: "nanoscale patterns", jp: "ナノスケール模様", value: "nanoscale patterns" },
+                            { zh: "電路印花", en: "circuit print design", jp: "回路プリント", value: "circuit print design" },
+                            { zh: "全像投影機", en: "holographic projector", jp: "ホログラム投影機", value: "holographic projector" },
+                            { zh: "嵌入式介面", en: "embedded interface", jp: "埋め込みUIパネル", value: "embedded interface" },
+                            { zh: "數據端口", en: "data port connector", jp: "データポート付き", value: "data port connector" },
+                            { zh: "胸部能量核心", en: "chest energy core", jp: "エネルギーコア（胸部）", value: "chest energy core" },
+                            { zh: "迷你噴射推進器", en: "mini jet thrusters", jp: "ミニジェット推進器", value: "mini jet thrusters" },
+                            { zh: "脈衝護盾發射器", en: "pulse shield emitter", jp: "パルスシールド発生器", value: "pulse shield emitter" },
+                            { zh: "機械臂", en: "mechanical arms", jp: "機械式アーム", value: "mechanical arms" },
+                            { zh: "單機械臂", en: "single mechanical arm", jp: "片腕型機械式アーム", value: "single mechanical arm" },
+                            { zh: "機械關節", en: "robot joints", jp: "ロボット関節", value: "robot joints" },
+                            { zh: "機械光環", en: "mechanical halo", jp: "機械式の光輪（天使の輪）", value: "mechanical halo" },
+                            { zh: "裸露電纜", en: "exposed cables", jp: "ケーブル・チューブ", value: "exposed cables" },
+                            { zh: "微型無人機底座", en: "micro drone dock", jp: "小型ドローンホルダー", value: "micro drone dock" },
+                            { zh: "戰術 ID 徽章", en: "tactical ID badge", jp: "戦術IDバッジ", value: "tactical ID badge" },
+                            { zh: "磁力附件", en: "magnetic attachments", jp: "マグネットアタッチ", value: "magnetic attachments" }
+                        ]
+                    },
+                    {
+                        subCategory: "袖子",
+                        tags: [
+                            { zh: "無袖上衣", en: "sleeveless top", jp: "ノースリーブトップ", value: "sleeveless" },
+                            { zh: "無袖背心", en: "tank top", jp: "タンクトップ", value: "tank top, sleeveless" },
+                            { zh: "透明袖子", en: "see-through sleeves", jp: "シースルーの袖", value: "see-through sleeves" },
+                            { zh: "漸層袖子", en: "gradient sleeves", jp: "グラデーションの袖", value: "gradient sleeves" },
+                            { zh: "雙色袖子", en: "two-tone sleeves", jp: "ツートンの袖", value: "two-tone sleeves" },
+                            { zh: "多色袖子", en: "multicolored sleeves", jp: "マルチカラーの袖", value: "multicolored sleeves" },
+                            { zh: "格子袖子", en: "checkered sleeves", jp: "チェック柄の袖", value: "checkered sleeves" },
+                            { zh: "格紋袖子②", en: "plaid sleeves", jp: "チェック柄の袖②", value: "plaid sleeves" },
+                            { zh: "波點袖子", en: "polka dot sleeves", jp: "水玉模様の袖", value: "polka dot sleeves" },
+                            { zh: "印花袖子", en: "print sleeves", jp: "プリントの袖", value: "print sleeves" },
+                            { zh: "羅紋袖子", en: "ribbed sleeves", jp: "リブの袖", value: "ribbed sleeves" },
+                            { zh: "條紋袖子", en: "striped sleeves", jp: "ストライプの袖", value: "striped sleeves" },
+                            { zh: "短袖", en: "short sleeves", jp: "半袖", value: "short sleeves" },
+                            { zh: "長袖外套短袖", en: "short over long sleeves", jp: "長袖の上に半袖", value: "short over long sleeves" },
+                            { zh: "七分袖", en: "three-quarter sleeves", jp: "七分袖", value: "three-quarter sleeves" },
+                            { zh: "長袖", en: "long sleeves", jp: "長袖", value: "long sleeves" },
+                            { zh: "萌袖", en: "sleeves past wrists", jp: "萌え袖", value: "sleeves past wrists" },
+                            { zh: "萌袖②", en: "sleeves past fingers", jp: "萌え袖②", value: "sleeves past fingers" },
+                            { zh: "不對稱袖子", en: "uneven sleeves", jp: "不揃いな袖", value: "uneven sleeves" },
+                            { zh: "可拆卸袖子", en: "detached sleeves", jp: "取り外し可能な袖", value: "detached sleeves" },
+                            { zh: "單邊可拆卸袖子", en: "single detached sleeve", jp: "片側だけの取り外し可能な袖", value: "single detached sleeve" },
+                            { zh: "單袖", en: "single sleeve", jp: "片袖", value: "single sleeve" },
+                            { zh: "捲袖子", en: "sleeves pushed up", jp: "腕まくり", value: "sleeves pushed up" },
+                            { zh: "捲袖子②", en: "sleeves rolled up", jp: "腕まくり②", value: "sleeves rolled up" },
+                            { zh: "破袖", en: "torn sleeves", jp: "破れた袖", value: "torn sleeves" },
+                            { zh: "羽毛裝飾袖子", en: "feather-trimmed sleeves", jp: "羽根飾りの袖", value: "feather-trimmed sleeves" },
+                            { zh: "荷葉邊袖子", en: "frilled sleeves", jp: "フリルの袖", value: "frilled sleeves" },
+                            { zh: "毛絨邊袖子", en: "fur-trimmed sleeves", jp: "ファー付きの袖", value: "fur-trimmed sleeves" },
+                            { zh: "蕾絲邊袖子", en: "lace-trimmed sleeves", jp: "レース飾りの袖", value: "lace-trimmed sleeves" },
+                            { zh: "緞帶裝飾袖子", en: "ribbon-trimmed sleeves", jp: "リボンで縁取られた袖", value: "ribbon-trimmed sleeves" },
+                            { zh: "鐘型袖", en: "bell sleeves", jp: "ベルスリーブ", value: "bell sleeves" },
+                            { zh: "壓縮袖", en: "compression sleeve", jp: "コンプレッションスリーブ", value: "compression sleeve" },
+                            { zh: "交叉綁帶袖子", en: "cross-laced sleeves", jp: "交差するレースの袖", value: "cross-laced sleeves" },
+                            { zh: "護肘袖", en: "elbow sleeve", jp: "エルボーサポーター", value: "elbow sleeve" },
+                            { zh: "網袖", en: "fishnet sleeves", jp: "網タイツの袖", value: "fishnet sleeves" },
+                            { zh: "振袖", en: "furisode sleeves", jp: "振袖", value: "furisode sleeves" },
+                            { zh: "茱麗葉袖", en: "juliet sleeves", jp: "ジュリエットスリーブ", value: "juliet sleeves" },
+                            { zh: "綁帶袖子", en: "lace-up sleeves", jp: "レースアップの袖", value: "lace-up sleeves" },
+                            { zh: "層次袖子", en: "layered sleeves", jp: "レイヤードの袖", value: "layered sleeves" },
+                            { zh: "左右不對稱袖子", en: "mismatched sleeves", jp: "左右非対称の袖", value: "mismatched sleeves" },
+                            { zh: "開叉蓬袖", en: "puff and slash sleeves", jp: "膨らみにスリットが入った袖", value: "puff and slash sleeves" },
+                            { zh: "蓬袖", en: "puffy sleeves", jp: "膨らんだ袖", value: "puffy sleeves" },
+                            { zh: "可拆蓬袖", en: "puffy detached sleeves", jp: "膨らみが切り離された袖", value: "puffy detached sleeves" },
+                            { zh: "長蓬袖", en: "puffy long sleeves", jp: "膨らみ+長袖", value: "puffy long sleeves" },
+                            { zh: "短蓬袖", en: "puffy short sleeves", jp: "膨らみ+半袖", value: "puffy short sleeves" },
+                            { zh: "拉格蘭袖", en: "raglan sleeves", jp: "ラグラン袖", value: "raglan sleeves" },
+                            { zh: "寬袖", en: "wide sleeves", jp: "ワイドな袖", value: "wide sleeves" },
+                            { zh: "手臂露出袖外", en: "arm out of sleeve", jp: "腕が袖から出ている状態", value: "arm out of sleeve" },
+                            { zh: "雙手放入對側袖子", en: "hands in opposite sleeves", jp: "両手を反対の袖に入れた状態", value: "hands in opposite sleeves" },
+                            { zh: "掐袖子", en: "pinching sleeves", jp: "袖を掴む", value: "pinching sleeves" },
+                            { zh: "掐袖子②", en: "sleeve grab", jp: "袖を掴む②", value: "sleeve grab" },
+                            { zh: "無袖襯衫", en: "sleeveless shirt", jp: "ノースリーブシャツ", value: "sleeveless shirt" },
+                            { zh: "無袖洋裝", en: "sleeveless dress", jp: "ノースリーブドレス", value: "sleeveless dress" },
+                            { zh: "無袖帽T", en: "sleeveless hoodie", jp: "ノースリーブパーカー", value: "sleeveless hoodie" },
+                            { zh: "無袖外套", en: "sleeveless jacket", jp: "ノースリーブジャケット", value: "sleeveless jacket" },
+                            { zh: "無袖和服", en: "sleeveless kimono", jp: "袖なしの着物", value: "sleeveless kimono" },
+                            { zh: "無袖毛衣", en: "sleeveless sweater / sweater vest", jp: "ノースリーブセーター", value: "sleeveless sweater" },
+                            { zh: "背心", en: "vest", jp: "ベスト", value: "vest" },
+                            { zh: "西裝背心", en: "waistcoat", jp: "ウエストコート", value: "waistcoat" },
+                            { zh: "連袖緊身衣", en: "sleeved leotard", jp: "袖付きレオタード", value: "sleeved leotard" },
+                            { zh: "短袖大衣", en: "short-sleeved coat", jp: "半袖コート", value: "short-sleeved coat" },
+                            { zh: "短袖夾克", en: "short-sleeved jacket", jp: "半袖ジャケット", value: "short-sleeved jacket" },
+                            { zh: "短袖毛衣", en: "short-sleeved sweater", jp: "半袖セーター", value: "short-sleeved sweater" }
+                        ]
+                    }
+                ]
+            },
+            {
+                category: { key: "clothes", zh: "手套&襪", en: "gloves&socks", jp: "手袋&靴下" },
+                groups: [
+                    {
+                        subCategory: "手套",
+                        tags: [
+                            { zh: "手套", en: "gloves", jp: "手袋", value: "gloves" },
+                            { zh: "短手套", en: "short gloves", jp: "ショート手袋", value: "short_gloves" },
+                            { zh: "長手套", en: "long gloves", jp: "ロング手袋", value: "long_gloves" },
+                            { zh: "手腕套", en: "wrist cuffs", jp: "リストカフス", value: "wrist_cuffs" },
+                            { zh: "指尖手套", en: "fingerless gloves", jp: "指なし手袋", value: "fingerless_gloves" },
+                            { zh: "蕾絲手套", en: "lace gloves", jp: "レース手袋", value: "lace_gloves" },
+                            { zh: "絲質手套", en: "silk gloves", jp: "シルク手袋", value: "silk_gloves" },
+                            { zh: "網狀手套", en: "fishnet gloves", jp: "ネット手袋", value: "fishnet_gloves" },
+                            { zh: "皮革手套", en: "leather gloves", jp: "レザー手袋", value: "leather_gloves" },
+                            { zh: "露肩手套", en: "off-shoulder gloves", jp: "オフショルダー手袋", value: "off_shoulder_gloves" },
+                            { zh: "開指長手套", en: "open-finger long gloves", jp: "オープンフィンガーロング手袋", value: "open_finger_long_gloves" },
+                            { zh: "扣帶裝飾手套", en: "strapped gloves", jp: "ストラップ付き手袋", value: "strapped_gloves" },
+                            { zh: "緞面手套", en: "satin gloves", jp: "サテン手袋", value: "satin_gloves" },
+                            { zh: "刺繡手套", en: "embroidered gloves", jp: "刺繍手袋", value: "embroidered_gloves" },
+                            { zh: "半臂套手套", en: "elbow-length gloves", jp: "肘丈手袋", value: "elbow_gloves" },
+                            { zh: "無指手套", en: "fingerless gloves", jp: "指なし手袋", value: "fingerless_gloves" },
+                            { zh: "戰術手套", en: "tactical gloves", jp: "タクティカルグローブ", value: "tactical_gloves" },
+                            { zh: "皮手套", en: "leather gloves", jp: "レザーグローブ", value: "leather_gloves" },
+                            { zh: "金屬護手", en: "metal gauntlets", jp: "金属ガントレット", value: "metal_gauntlets" },
+                            { zh: "布護腕", en: "cloth arm guards", jp: "布製アームガード", value: "cloth_arm_guards" },
+                            { zh: "繃帶纏手", en: "bandaged hands", jp: "包帯を巻いた手", value: "bandaged_hands" }
+                        ]
+                    },
+                    {
+                        subCategory: "襪子",
+                        tags: [
+                            { zh: "襪子", en: "socks", jp: "靴下", value: "socks" },
+
+                            // 短襪 / ankle
+                            { zh: "短襪", en: "ankle socks", jp: "アンクルソックス", value: "ankle socks" },
+                            { zh: "棉質短襪", en: "cotton ankle socks", jp: "コットンアンクルソックス", value: "cotton ankle socks" },
+                            { zh: "毛絨短襪", en: "fuzzy ankle socks", jp: "モコモコアンクルソックス", value: "fuzzy ankle socks" },
+                            { zh: "運動短襪", en: "sporty ankle socks", jp: "スポーツアンクルソックス", value: "sporty ankle socks" },
+                            // 膝上 / knee-high
+                            { zh: "膝上襪", en: "knee-high socks", jp: "オーバーニーソックス", value: "knee-high socks" },
+                            { zh: "棉質膝上襪", en: "cotton knee-high socks", jp: "コットンオーバーニーソックス", value: "cotton knee-high socks" },
+                            { zh: "毛絨膝上襪", en: "fuzzy knee-high socks", jp: "モコモコオーバーニーソックス", value: "fuzzy knee-high socks" },
+                            { zh: "運動膝上襪", en: "sporty knee-high socks", jp: "スポーツオーバーニーソックス", value: "sporty knee-high socks" },
+                            // 過膝 / thigh-high (ニーソ)
+                            { zh: "過膝襪", en: "thigh high stockings", jp: "ニーソ", value: "thigh high stockings" },
+                            { zh: "棉質過膝襪", en: "cotton thigh high stockings", jp: "コットンニーソ", value: "cotton thigh high stockings" },
+                            { zh: "毛絨過膝襪", en: "fuzzy thigh high stockings", jp: "モコモコニーソ", value: "fuzzy thigh high stockings" },
+                            { zh: "絲質過膝襪", en: "silk thigh high stockings", jp: "シルクニーソ", value: "silk thigh high stockings" },
+                            { zh: "蕾絲過膝襪", en: "lace thigh high stockings", jp: "レースニーソ", value: "lace thigh high stockings" },
+                            // 長筒 / long socks（泛稱）
+                            { zh: "長筒襪", en: "long socks", jp: "ロングソックス", value: "long socks" },
+                            { zh: "棉質長筒襪", en: "cotton long socks", jp: "コットンロングソックス", value: "cotton long socks" },
+                            { zh: "毛絨長筒襪", en: "fuzzy long socks", jp: "モコモコロングソックス", value: "fuzzy long socks" },
+                            { zh: "運動長筒襪", en: "sporty long socks", jp: "スポーツロングソックス", value: "sporty long socks" },
+                            // 材質 / 花樣 / 特殊
+                            { zh: "條紋襪", en: "striped socks", jp: "ボーダーソックス", value: "striped socks" },
+                            { zh: "彩色條紋襪", en: "color striped socks", jp: "カラーボーダーソックス", value: "color striped socks" },
+                            { zh: "網狀絲襪", en: "fishnet stockings", jp: "網ストッキング", value: "fishnet stockings" },
+                            { zh: "花紋襪", en: "patterned socks", jp: "柄入りソックス", value: "patterned socks" },
+                            // 蕾絲 / 絲質（保留 ankle / long / thigh 分類）
+                            { zh: "蕾絲短襪", en: "lace ankle socks", jp: "レースアンクルソックス", value: "lace ankle socks" },
+                            { zh: "蕾絲長筒襪", en: "lace long socks", jp: "レースロングソックス", value: "lace long socks" },
+                            { zh: "絲質短襪", en: "silk ankle socks", jp: "シルクアンクルソックス", value: "silk ankle socks" },
+                            { zh: "絲質長筒襪", en: "silk long socks", jp: "シルクロングソックス", value: "silk long socks" },
+                            { zh: "蕾絲條紋襪", en: "lace striped socks", jp: "レース縞ソックス", value: "lace striped socks" },
+                            { zh: "絲質條紋襪", en: "silk striped socks", jp: "シルク縞ソックス", value: "silk striped socks" },
+                            { zh: "蕾絲花紋襪", en: "lace patterned socks", jp: "レース柄ソックス", value: "lace patterned socks" },
+                            { zh: "絲質花紋襪", en: "silk patterned socks", jp: "シルク柄ソックス", value: "silk patterned socks" },
+                            // 絕對領域（常用組合 tag）
+                            { zh: "絕對領域", en: "zettai ryouiki", jp: "絶対領域", value: "zettai ryouiki" }
+                        ]
+                    },
+                    {
+                        subCategory: "吊帶襪",
+                        tags: [
+                            { zh: "吊襪帶", en: "garter belt", jp: "ガーターベルト", value: "garter_belt" },
+                            { zh: "吊帶襪", en: "garter stockings", jp: "ガーター付きストッキング", value: "garter_stockings" },
+                            { zh: "吊帶襪（整套）", en: "garter belt with stockings", jp: "ガーターベルト付きストッキング", value: "garter_full_set" },
+                            { zh: "吊帶襪帶子（襪帶）", en: "garter straps", jp: "ガーター", value: "garter_straps" },
+                            { zh: "經典吊帶襪", en: "classic garter belt", jp: "クラシックガーターベルト", value: "classic_garter_belt" },
+                            { zh: "蕾絲吊帶襪", en: "lace garter belt", jp: "レースガーターベルト", value: "lace_garter_belt" },
+                            { zh: "吊帶式吊帶襪", en: "suspender garter", jp: "サスペンダーガーター", value: "suspender_garter" },
+                            { zh: "吊帶襪套裝（帶過膝襪）", en: "garter belt with thigh-high stockings", jp: "ガーターベルト付きニーソックス", value: "garter_with_thighhighs" },
+                            { zh: "皮革吊帶襪", en: "leather garter belt", jp: "レザーガーターベルト", value: "leather_garter_belt" },
+                            { zh: "束縛風吊帶襪", en: "harness garter belt", jp: "ハーネスガーターベルト", value: "harness_garter_belt" },
+                            { zh: "網狀吊帶襪", en: "fishnet garter belt", jp: "ネットガーターベルト", value: "fishnet_garter_belt" },
+                            { zh: "花紋吊帶襪", en: "patterned garter belt", jp: "柄入りガーターベルト", value: "patterned_garter_belt" },
+                            { zh: "蕾絲吊帶襪套裝", en: "lace garter set", jp: "レースガーターベルトセット", value: "lace_garter_set" },
+                            { zh: "吊帶襪滑落", en: "garter slipping", jp: "ガーターベルト落ちる", value: "garter_slipping" }
+                        ]
+                    },
+                    {
+                        subCategory: "連褲襪／透膚類",
+                        tags: [
+                            { zh: "褲襪", en: "pantyhose", jp: "パンティストッキング", value: "pantyhose" },
+                            { zh: "連褲襪", en: "tights", jp: "タイツ", value: "tights" },
+                            { zh: "連體襪", en: "bodystocking", jp: "ボディストッキング", value: "bodystocking" },
+                            { zh: "半透明絲襪", en: "sheer pantyhose", jp: "シースルーストッキング", value: "sheer_stockings" },
+                            { zh: "透膚絲襪", en: "transparent pantyhose", jp: "シースルーパンスト", value: "transparent_stockings" },
+                            { zh: "開檔絲襪", en: "crotchless pantyhose", jp: "クロッチレスストッキング", value: "crotchless_stockings" },
+                            { zh: "白絲襪", en: "white pantyhose", jp: "白ストッキング", value: "white_stockings" },
+                            { zh: "黑絲襪", en: "black pantyhose", jp: "黒ストッキング", value: "black_stockings" },
+                            { zh: "膚色絲襪", en: "nude pantyhose", jp: "肌色ストッキング", value: "skin_tone_stockings" },
+                            { zh: "破洞絲襪", en: "ripped pantyhose", jp: "破れパンスト", value: "ripped_stockings" },
+                            { zh: "網狀絲襪", en: "fishnet stockings", jp: "ネットストッキング", value: "fishnet_stockings" },
+                            { zh: "花紋絲襪", en: "patterned stockings", jp: "柄入りストッキング", value: "patterned_stockings" },
+                            { zh: "蕾絲絲襪", en: "lace stockings", jp: "レースストッキング", value: "lace_stockings" },
+                            { zh: "縱向條紋絲襪", en: "striped stockings", jp: "縦縞ストッキング", value: "striped_stockings" },
+                            { zh: "絲質絲襪", en: "silk stockings", jp: "シルクストッキング", value: "silk_stockings" },
+                            { zh: "絲襪滑落", en: "stockings slipping", jp: "ストッキングが落ちる", value: "slipping_stockings" },
+                            { zh: "絲襪半脫", en: "stockings half off", jp: "ストッキング半脱ぎ", value: "half_off_stockings" },
+                            { zh: "絲襪全脫", en: "stockings fully off", jp: "ストッキング完全脱ぎ", value: "fully_off_stockings" }
+                        ]
+                    }
+                ]
+
+            },
+            {
+                category: { key: "boots", zh: "鞋類", en: "Shoes", jp: "靴" },
+                groups: [
+                    {
+                        subCategory: "休閒 / 日常",
+                        tags: [
+                            { zh: "鞋子", en: "shoes", jp: "靴", value: "shoes" },
+                            { zh: "運動鞋", en: "sneakers", jp: "スニーカー", value: "sneakers" },
+                            { zh: "帆布鞋", en: "canvas shoes", jp: "キャンバスシューズ", value: "canvas shoes" },
+                            { zh: "樂福鞋", en: "loafers", jp: "ローファー", value: "loafers" },
+                            { zh: "拖鞋", en: "slippers", jp: "スリッパ", value: "slippers" },
+                            { zh: "涼鞋", en: "sandals", jp: "サンダル", value: "sandals" },
+                            { zh: "人字拖", en: "flip-flops", jp: "ビーチサンダル", value: "flip-flops" },
+                            { zh: "草鞋", en: "waraji / straw sandals", jp: "草鞋", value: "waraji, straw sandals" }
+                        ]
+                    },
+                    {
+                        subCategory: "正裝 / 時尚",
+                        tags: [
+                            { zh: "高跟鞋", en: "high heels", jp: "ハイヒール", value: "high heels" },
+                            { zh: "細跟高跟鞋", en: "stiletto heels", jp: "スティレットヒール", value: "stiletto heels" },
+                            { zh: "厚底鞋", en: "platform shoes", jp: "厚底靴", value: "platform shoes" },
+                            { zh: "涼高跟鞋", en: "heeled sandals", jp: "ヒールサンダル", value: "heeled sandals" },
+                            { zh: "綁帶高跟鞋", en: "strappy heels", jp: "ストラップヒール", value: "strappy heels" },
+                            { zh: "楔形鞋", en: "wedge heels", jp: "ウェッジヒール", value: "wedge heels" },
+                            { zh: "踝帶鞋", en: "ankle strap shoes", jp: "アンクルストラップシューズ", value: "ankle strap shoes" },
+                            { zh: "瑪莉珍鞋", en: "mary janes", jp: "メリージェーン", value: "mary janes" },
+                            { zh: "舞鞋", en: "ballet shoes", jp: "バレエシューズ", value: "ballet shoes" }
+                        ]
+                    },
+                    {
+                        subCategory: "運動 / 功能",
+                        tags: [
+                            { zh: "跑鞋", en: "running shoes", jp: "ランニングシューズ", value: "running shoes" },
+                            { zh: "籃球鞋", en: "basketball shoes", jp: "バスケットシューズ", value: "basketball shoes" },
+                            { zh: "足球鞋", en: "soccer shoes / cleats", jp: "サッカーシューズ", value: "soccer shoes" },
+                            { zh: "登山鞋", en: "hiking shoes", jp: "ハイキングシューズ", value: "hiking shoes" },
+                            { zh: "滑板鞋", en: "skate shoes", jp: "スケートシューズ", value: "skate shoes" }
+                        ]
+                    },
+                    {
+                        subCategory: "靴類",
+                        tags: [
+                            { zh: "靴子", en: "boots", jp: "ブーツ", value: "boots" },
+                            { zh: "短靴", en: "ankle boots", jp: "アンクルブーツ", value: "ankle boots" },
+                            { zh: "及膝靴", en: "knee boots", jp: "膝ブーツ", value: "knee boots" },
+                            { zh: "過膝長靴", en: "thigh-high boots", jp: "ニーハイブーツ", value: "thigh-high boots" },
+                            { zh: "軍靴", en: "combat boots", jp: "コンバットブーツ", value: "combat boots" },
+                            { zh: "馬靴", en: "riding boots", jp: "乗馬ブーツ", value: "riding boots" },
+                            { zh: "工裝靴", en: "work boots", jp: "ワークブーツ", value: "work boots" },
+                            { zh: "鋼頭靴", en: "steel-toe boots", jp: "スチールトゥブーツ", value: "steel-toe boots" },
+                            { zh: "金屬靴", en: "armored boots", jp: "鎧ブーツ", value: "armored boots" },
+                            { zh: "厚底涼鞋", en: "platform sandals", jp: "厚底サンダル", value: "platform sandals" }
+                        ]
+                    },
+                    {
+                        subCategory: "傳統 / 特殊",
+                        tags: [
+                            { zh: "木屐", en: "geta", jp: "下駄", value: "geta" },
+                            { zh: "足袋鞋", en: "tabi shoes", jp: "足袋靴", value: "tabi shoes" },
+                            { zh: "舞鞋", en: "dance shoes", jp: "舞踏シューズ", value: "dance shoes" },
+                            { zh: "長筒雨靴", en: "rain boots", jp: "レインブーツ", value: "rain boots" },
+                            { zh: "雪靴", en: "snow boots", jp: "スノーブーツ", value: "snow boots" },
+                            { zh: "毛靴", en: "fur boots", jp: "毛皮ブーツ", value: "fur boots" },
+                            { zh: "雨鞋", en: "rain boots", jp: "レインブーツ", value: "rain boots" }
+                        ]
+                    }
+                ]
+
+            },
+            {
                 category: { key: "ziraike", zh: "套裝風格", en: "ziraike", jp: "地雷系服" },
                 groups: [
                     {
@@ -5349,7 +5898,6 @@
                             { zh: "量產型裝甲少女", en: "Mass-Production Armor Girl", jp: "量産型アーマー少女", value: "standard combat exosuit, simple plating, modular weapons, helmet visor, factory-grade armor" },
                             { zh: "實驗型裝甲少女", en: "Prototype Armor Girl", jp: "試作型アーマー少女", value: "experimental exosuit, glowing energy circuits, unstable thrusters, prototype plasma rifle, partial armor gaps" },
                             { zh: "異能裝甲少女", en: "Psionic Armor Girl", jp: "超能力アーマー少女", value: "combat armor suit with psychic amplifiers, glowing armor runes, floating exo-shields, mental energy cannons" },
-
                             { zh: "突擊劍裝甲少女", en: "Blade Assault Armor Girl", jp: "斬撃強襲アーマー少女", value: "reinforced exosuit, mechanical shoulder plating, arm-mounted energy blades, hydraulic leg boosters, heavy chest armor" },
                             { zh: "雙刃裝甲少女", en: "Dual Blade Armor Girl", jp: "双剣アーマー少女", value: "mechanical twin arm blades, reinforced gauntlets, segmented chest armor, booster wing binders for dashes" },
                             { zh: "巨錘裝甲少女", en: "Hammer Armor Girl", jp: "重槌アーマー少女", value: "massive mechanical hammer, thick shoulder plating, heavy knee armor, glowing piston-driven gauntlets" },
@@ -5363,557 +5911,48 @@
                             { zh: "變形裝甲少女", en: "Transformable Armor Girl", jp: "変形アーマー少女", value: "mechanical armor with transformable wing binders, foldable thrusters, arm blasters, partial mecha mode" },
                             { zh: "機動偵察裝甲少女", en: "Recon Armor Girl", jp: "偵察アーマー少女", value: "light exosuit with sensor antennae, modular drone launchers, leg boosters, mechanical visor scanner" }
                         ]
-                    }
-                ]
-            },
-            {
-                category: { key: "head decoration/hat", zh: "配件飾品", en: "Accessories and Jewelry", jp: "アクセサリーとジュエリー" },
-                groups: [
+                    },
                     {
-                        subCategory: "基本髮飾",
+                        subCategory: "文靜的插畫師",
                         tags: [
-                            { zh: "呆毛", en: "ahoge", jp: "アホ毛", value: "ahoge" },
-                            { zh: "髮夾(長條式)", en: "barrette", jp: "髪留め", value: "barrette" },
-                            { zh: "髮辮", en: "braid", jp: "編み込み", value: "braid" },
-                            { zh: "髮飾", en: "hair ornament", jp: "髪飾り", value: "hair ornament" },
-                            { zh: "髮夾", en: "hairclip", jp: "ヘアクリップ", value: "hairclip" },
-                            { zh: "髮圈", en: "hair tie", jp: "ヘアゴム", value: "hair tie" },
-                            { zh: "髮帶", en: "hairband", jp: "ヘアバンド", value: "hairband" },
-                            { zh: "髮帶", en: "hair ribbon", jp: "ヘアリボン", value: "hair ribbon" },
-                            { zh: "絲帶", en: "ribbon", jp: "リボン", value: "ribbon" },
-                            { zh: "蝴蝶結", en: "bow", jp: "リボン結び", value: "bow" },
-                            { zh: "髮簪", en: "hairpin", jp: "かんざし", value: "hairpin" },
-                            { zh: "花飾", en: "flower ornament", jp: "花飾り", value: "flower ornament" }
+                            { zh: "文靜的插畫師", en: "calm illustrator", jp: "物静かなイラストレーター", value: "calm illustrator" },
+                            { zh: "長髮微亂", en: "slightly messy long hair", jp: "少し乱れた長髪", value: "messy long hair" },
+                            { zh: "披散長髮", en: "loose long hair", jp: "髪を下ろした", value: "loose hair" },
+                            { zh: "淡妝", en: "light makeup", jp: "薄いメイク", value: "light makeup" },
+                            { zh: "細框眼鏡", en: "thin rim glasses", jp: "細縁メガネ", value: "thin rim glasses" },
+                            { zh: "針織外套", en: "knit cardigan", jp: "ニットカーディガン", value: "knit cardigan" },
+                            { zh: "寬鬆上衣", en: "loose top", jp: "ゆるいトップス", value: "loose top" },
+                            { zh: "家居服", en: "loungewear", jp: "ルームウェア", value: "loungewear" },
+                            { zh: "坐在沙發上", en: "sitting on sofa", jp: "ソファに座っている", value: "sit on sofa" },
+                            { zh: "拿著畫板", en: "holding sketchboard", jp: "スケッチボードを持つ", value: "holding sketchboard" },
+                            { zh: "專注表情", en: "focused expression", jp: "集中した表情", value: "focused face" },
+                            { zh: "微笑", en: "gentle smile", jp: "穏やかな微笑み", value: "gentle smile" },
+                            { zh: "頭靠著對方肩膀", en: "head resting on partner shoulder", jp: "相手の肩にもたれる", value: "lean on shoulder" },
+                            { zh: "柔和室內光", en: "soft indoor lighting", jp: "柔らかい室内光", value: "soft indoor light" },
+                            { zh: "午後氛圍", en: "afternoon atmosphere", jp: "午後の雰囲気", value: "afternoon light" }
                         ]
                     },
                     {
-                        subCategory: "帽子",
+                        subCategory: "重度宅女",
                         tags: [
-                            { zh: "帽子", en: "hat", jp: "帽子", value: "hat" },
-                            { zh: "軍帽", en: "military hat", jp: "ミリタリーハット", value: "military hat" },
-                            { zh: "官帽", en: "peaked cap", jp: "官帽", value: "peaked cap" },
-                            { zh: "蘇聯軍帽", en: "soviet ushanka hat", jp: "コサック帽", value: "soviet ushanka hat" },
-                            { zh: "遮陽帽", en: "sun hat", jp: "サンハット", value: "sun hat" },
-                            { zh: "貝雷帽", en: "beret", jp: "ベレー帽", value: "beret" },
-                            { zh: "草帽", en: "straw hat", jp: "麦わら帽子", value: "straw hat" },
-                            { zh: "女僕頭飾", en: "maid headband", jp: "メイドカチューシャ", value: "maid headband" },
-                            { zh: "頭盔", en: "helmet", jp: "ヘルメット", value: "helmet" },
-                            { zh: "兜帽", en: "hood", jp: "フード", value: "hood" },
-                            { zh: "魔女帽", en: "witch hat", jp: "魔女帽子", value: "witch hat, wide brim hat, pointy hat" },
-                        ]
-                    },
-                    {
-                        subCategory: "頭飾/皇冠類",
-                        tags: [
-                            { zh: "后冠", en: "tiara", jp: "ティアラ", value: "tiara" },
-                            { zh: "皇冠", en: "crown", jp: "クラウン", value: "crown" },
-                            { zh: "王冠", en: "tiara", jp: "ティアラ", value: "tiara" },
-                            { zh: "花環", en: "flower crown", jp: "花冠", value: "flower crown" },
-                            { zh: "額環", en: "forehead ring", jp: "額リング", value: "forehead ring" },
-                            { zh: "面紗", en: "veil", jp: "ベール", value: "veil" },
-                            { zh: "結婚頭紗", en: "wedding veil", jp: "ウェディングヴェール", value: "wedding veil" },
-                            { zh: "髮箍耳機", en: "headphones", jp: "ヘッドホン", value: "headphones" },
-                            { zh: "耳掛式飾物", en: "ear accessory", jp: "耳飾り", value: "ear accessory" }
-                        ]
-                    },
-                    {
-                        subCategory: "眼部配件",
-                        tags: [
-                            { zh: "眼鏡", en: "glasses", jp: "眼鏡", value: "glasses" },
-                            { zh: "細框眼鏡", en: "thin frame glasses", jp: "細縁メガネ", value: "thin frame glasses" },
-                            { zh: "粗框眼鏡", en: "thick frame glasses", jp: "太縁メガネ", value: "thick frame glasses" },
-                            { zh: "圓框眼鏡", en: "round glasses", jp: "丸メガネ", value: "round glasses" },
-                            { zh: "方框眼鏡", en: "square glasses", jp: "四角メガネ", value: "square glasses" },
-                            { zh: "貓眼眼鏡", en: "cat eye glasses", jp: "キャットアイメガネ", value: "cat eye glasses" },
-                            { zh: "無框眼鏡", en: "rimless glasses", jp: "リムレスメガネ", value: "rimless glasses" },
-                            { zh: "太陽眼鏡", en: "sunglasses", jp: "サングラス", value: "sunglasses" },
-                            { zh: "圓形太陽眼鏡", en: "round sunglasses", jp: "丸サングラス", value: "round sunglasses" },
-                            { zh: "護目鏡", en: "goggles", jp: "ゴーグル", value: "goggles" },
-                            { zh: "泳鏡", en: "swimming goggles", jp: "水泳ゴーグル", value: "swimming goggles" },
-                            { zh: "風鏡", en: "aviator goggles", jp: "飛行ゴーグル", value: "aviator goggles" },
-                        ]
-                    },
-                    {
-                        subCategory: "頭部配件",
-                        tags: [
-                            { zh: "墨鏡戴在頭上", en: "sunglasses on head", jp: "頭にサングラス", value: "sunglasses on head" },
-                            { zh: "墨鏡戴在帽上", en: "sunglasses on hat", jp: "帽子にサングラス", value: "sunglasses on hat" },
-                            { zh: "眼鏡掛在胸前", en: "glasses hanging on chest", jp: "胸元にメガネ", value: "glasses hanging on chest" },
-                            { zh: "護目鏡戴在頭上", en: "goggles on head", jp: "頭にゴーグル", value: "goggles on head" },
-                            { zh: "護目鏡戴在帽上", en: "goggles on hat", jp: "帽子にゴーグル", value: "goggles on hat" },
-                            { zh: "戴在頭上的眼鏡", en: "glasses on head", jp: "頭にかけたメガネ", value: "glasses on head" },
-                            { zh: "掛在頭上的耳機", en: "headphones on head", jp: "頭にかけたヘッドホン", value: "headphones on head" },
-                            { zh: "掛在頭上的面罩", en: "mask on head", jp: "頭にかけたマスク", value: "mask on head" },
-                            { zh: "頭上掛著面紗", en: "veil on head", jp: "頭にかけたベール", value: "veil on head" },
-                            { zh: "戴在頭上的風鏡", en: "protective goggles on head", jp: "頭にかけた保護ゴーグル", value: "protective goggles on head" },
-                            { zh: "掛在頭上的防毒面具", en: "gas mask on head", jp: "頭にかけた防毒マスク", value: "gas mask on head" },
-                            { zh: "掛在頭上的防護眼鏡", en: "safety glasses on head", jp: "頭にかけたセーフティグラス", value: "safety glasses on head" },
-                            { zh: "運動頭帶", en: "sports headband", jp: "スポーツヘッドバンド", value: "sports headband" },
-                            { zh: "頭巾", en: "bandana", jp: "バンダナ", value: "bandana" },
-                            { zh: "頭巾綁額頭", en: "bandana on forehead", jp: "額にバンダナ", value: "bandana on forehead" },
-                            { zh: "耳罩", en: "earmuffs", jp: "イヤーマフ", value: "earmuffs" },
-                            { zh: "耳掛式耳機", en: "ear hook headphones", jp: "耳掛けヘッドホン", value: "ear hook headphones" },
-                            { zh: "頭戴式耳機麥克風", en: "headset", jp: "ヘッドセット", value: "headset" },
-                            { zh: "頭燈", en: "headlamp", jp: "ヘッドランプ", value: "headlamp" },
-                            { zh: "額帶飾品", en: "forehead accessory", jp: "額飾り", value: "forehead accessory" },
-                            { zh: "額頭寶石", en: "forehead jewel", jp: "額の宝石", value: "forehead jewel" },
-                            { zh: "護額", en: "forehead protector", jp: "額当て", value: "forehead protector" },
-                            { zh: "忍者護額", en: "ninja forehead protector", jp: "忍者の額当て", value: "ninja forehead protector" }
-                        ]
-                    },
-                    {
-                        subCategory: "臉部配件",
-                        tags: [
-                            { zh: "面罩", en: "mask", jp: "マスク", value: "mask" },
-                            { zh: "口罩", en: "face mask", jp: "フェイスマスク", value: "face mask" },
-                            { zh: "醫用口罩", en: "surgical mask", jp: "医療マスク", value: "surgical mask" },
-                            { zh: "防毒面具", en: "gas mask", jp: "防毒マスク", value: "gas mask" },
-                            { zh: "小丑面具", en: "clown mask", jp: "ピエロマスク", value: "clown mask" },
-                            { zh: "面紗", en: "veil", jp: "ベール", value: "veil" },
-                            { zh: "眼罩", en: "eyepatch", jp: "眼帯", value: "eyepatch" },
-                            { zh: "單邊眼罩", en: "single eyepatch", jp: "片眼帯", value: "single eyepatch" },
-                            { zh: "高科技眼罩", en: "tech eyepiece", jp: "ハイテク眼帯", value: "tech eyepiece" },
-                            { zh: "高科技面罩", en: "tech mask", jp: "ハイテクマスク", value: "tech mask" },
-                            { zh: "護目面罩", en: "face shield", jp: "フェイスシールド", value: "face shield" },
-                            { zh: "透明面罩", en: "transparent face shield", jp: "透明フェイスシールド", value: "transparent face shield" },
-                        ]
-                    },
-                    {
-                        subCategory: "動物耳尾與角翅",
-                        tags: [
-                            { zh: "貓耳", en: "cat ears", jp: "猫耳", value: "cat ears" },
-                            { zh: "貓尾", en: "cat tail", jp: "猫尾", value: "cat tail" },
-                            { zh: "兔耳", en: "rabbit ears", jp: "ウサギ耳", value: "rabbit ears" },
-                            { zh: "兔尾", en: "rabbit tail", jp: "ウサギ尾", value: "rabbit tail" },
-                            { zh: "狐狸耳", en: "fox ears", jp: "狐耳", value: "fox ears" },
-                            { zh: "狐狸尾", en: "fox tail", jp: "狐尾", value: "fox tail" },
-                            { zh: "狼耳", en: "wolf ears", jp: "狼耳", value: "wolf ears" },
-                            { zh: "狼尾", en: "wolf tail", jp: "狼尾", value: "wolf tail" },
-                            { zh: "熊耳", en: "bear ears", jp: "熊耳", value: "bear ears" },
-                            { zh: "熊尾", en: "bear tail", jp: "熊尾", value: "bear tail" },
-                            { zh: "蝙蝠耳", en: "bat ears", jp: "コウモリ耳", value: "bat ears" },
-                            { zh: "蝙蝠尾", en: "bat tail", jp: "コウモリ尾", value: "bat tail" },
-                            { zh: "龍角", en: "dragon horns", jp: "竜の角", value: "dragon horns" },
-                            { zh: "龍尾", en: "dragon tail", jp: "竜の尾", value: "dragon tail" },
-                            { zh: "小角", en: "small horns", jp: "小角", value: "small horns" },
-                            { zh: "大角", en: "large horns", jp: "大角", value: "large horns" },
-                            { zh: "小羊角", en: "ram horns", jp: "羊角", value: "ram horns" },
-                            { zh: "蝴蝶翅膀", en: "butterfly wings", jp: "蝶の翼", value: "butterfly wings" },
-                            { zh: "天使翅膀", en: "angel wings", jp: "天使の翼", value: "angel wings" },
-                            { zh: "惡魔翅膀", en: "demon wings", jp: "悪魔の翼", value: "demon wings" },
-                            { zh: "惡魔角", en: "demon horns", jp: "悪魔の角", value: "demon horns" },
-                            { zh: "鳥耳", en: "bird feathers", jp: "鳥の羽", value: "bird feathers" },
-                            { zh: "獨角獸角", en: "unicorn horn", jp: "ユニコーンの角", value: "unicorn horn" },
-                            { zh: "魚尾", en: "mermaid tail", jp: "人魚の尾", value: "mermaid tail" },
-                            { zh: "狐狸尾扇", en: "fox tail fan", jp: "狐の尾扇", value: "fox tail fan" }
-                        ]
-                    },
-                    {
-                        subCategory: "身體裝備",
-                        tags: [
-                            { zh: "戰術背心", en: "tactical vest", jp: "タクティカルベスト", value: "tactical vest" },
-                            { zh: "防彈背心", en: "bulletproof vest", jp: "防弾ベスト", value: "bulletproof vest" },
-                            { zh: "戰術披肩", en: "tactical scarf", jp: "タクティカルスカーフ", value: "tactical scarf" },
-                            { zh: "迷彩披肩", en: "camouflage scarf", jp: "迷彩スカーフ", value: "camouflage scarf" },
-                            { zh: "戰術頭盔", en: "tactical helmet", jp: "タクティカルヘルメット", value: "tactical helmet" },
-                            { zh: "軍帽", en: "military cap", jp: "軍帽", value: "military cap" },
-                            { zh: "戰術眼鏡", en: "tactical goggles", jp: "タクティカルゴーグル", value: "tactical goggles" },
-                            { zh: "夜視鏡", en: "night vision goggles", jp: "ナイトビジョンゴーグル", value: "night vision goggles" },
-                            { zh: "防塵口罩", en: "dust mask", jp: "防塵マスク", value: "dust mask" },
-                            { zh: "戰場耳機", en: "tactical headset", jp: "タクティカルヘッドセット", value: "tactical headset" }
-                        ]
-                    },
-                    {
-                        subCategory: "腰部裝備",
-                        tags: [
-                            { zh: "戰術腰帶", en: "utility belt", jp: "ユーティリティベルト", value: "utility belt" },
-                            { zh: "多功能腰包", en: "tactical waist pouch", jp: "タクティカルウエストポーチ", value: "tactical waist pouch" },
-                            { zh: "彈藥帶", en: "ammo belt", jp: "弾薬ベルト", value: "ammo belt" },
-                            { zh: "護甲腰帶", en: "armored belt", jp: "アーマーベルト", value: "armored belt" },
-                            { zh: "掛滿裝備的腰帶", en: "gear-loaded belt", jp: "装備がたくさん付いたベルト", value: "gear loaded belt" },
-                            { zh: "手榴彈掛帶", en: "grenade belt", jp: "手榴弾ベルト", value: "grenade belt" },
-                            { zh: "工用腰帶", en: "tool belt", jp: "ツールベルト", value: "tool belt" },
-                            { zh: "戰鬥腰包", en: "battle pouch", jp: "バトルポーチ", value: "battle pouch" },
-                            { zh: "戰術小包", en: "tactical pouch", jp: "タクティカルポーチ", value: "tactical pouch" },
-                            { zh: "彈匣袋", en: "magazine pouch", jp: "マガジンポーチ", value: "magazine pouch" }
-                        ]
-                    },
-                    {
-                        subCategory: "腿部裝備",
-                        tags: [
-                            { zh: "腿部槍套", en: "thigh holster", jp: "太ももホルスター", value: "thigh holster" },
-                            { zh: "護膝", en: "knee pads", jp: "ニーパッド", value: "knee pads" },
-                            { zh: "護肘", en: "elbow pads", jp: "エルボーパッド", value: "elbow pads" },
-                            { zh: "綁腿帶", en: "leg straps", jp: "レッグストラップ", value: "leg straps" },
-                            { zh: "軍靴", en: "combat boots", jp: "コンバットブーツ", value: "combat boots" },
-                            { zh: "工裝靴", en: "work boots", jp: "ワークブーツ", value: "work boots" }
-                        ]
-                    },
-                    {
-                        subCategory: "攜行裝備",
-                        tags: [
-                            { zh: "戰鬥背包", en: "combat backpack", jp: "コンバットバックパック", value: "combat backpack" },
-                            { zh: "單肩背包", en: "shoulder sling bag", jp: "ショルダースリングバッグ", value: "shoulder sling bag" },
-                            { zh: "肩部槍套", en: "shoulder holster", jp: "ショルダーホルスター", value: "shoulder holster" },
-                            { zh: "頭帶", en: "headband", jp: "ヘッドバンド", value: "headband" }
-                        ]
-                    },
-
-                    {
-                        subCategory: "圍巾與頸部配件",
-                        tags: [
-                            { zh: "圍巾", en: "scarf", jp: "マフラー", value: "scarf" },
-                            { zh: "厚圍巾", en: "thick scarf", jp: "厚手のマフラー", value: "thick scarf" },
-                            { zh: "長圍巾", en: "long scarf", jp: "ロングマフラー", value: "long scarf" },
-                            { zh: "大圍巾", en: "large scarf", jp: "大きなマフラー", value: "large scarf" },
-                            { zh: "蓋口圍巾", en: "scarf covering mouth", jp: "口を覆うマフラー", value: "scarf covering mouth" },
-                            { zh: "蓋半臉圍巾", en: "scarf covering face", jp: "顔を覆うマフラー", value: "scarf covering face" },
-                            { zh: "毛絨圍巾", en: "fluffy scarf", jp: "ふわふわマフラー", value: "fluffy scarf" },
-                            { zh: "針織圍巾", en: "knit scarf", jp: "ニットマフラー", value: "knit scarf" },
-                            { zh: "羊毛圍巾", en: "wool scarf", jp: "ウールマフラー", value: "wool scarf" },
-                            { zh: "格紋圍巾", en: "plaid scarf", jp: "チェック柄マフラー", value: "plaid scarf" },
-                            { zh: "披肩式圍巾", en: "shawl scarf", jp: "ショールマフラー", value: "shawl scarf" },
-                            { zh: "雙層圍巾", en: "double layer scarf", jp: "二重マフラー", value: "double layer scarf" },
-                            { zh: "纏繞頸部的圍巾", en: "wrapped scarf", jp: "首に巻かれたマフラー", value: "wrapped scarf" },
-                            { zh: "飄動的圍巾", en: "flowing scarf", jp: "風にたなびくマフラー", value: "flowing scarf" },
-                            { zh: "口罩式圍巾", en: "mask scarf", jp: "マスクマフラー", value: "mask scarf" },
-                            { zh: "高領圍巾", en: "high neck scarf", jp: "ハイネックマフラー", value: "high neck scarf" },
-                            { zh: "戰術圍巾", en: "tactical scarf", jp: "タクティカルスカーフ", value: "tactical scarf" },
-                            { zh: "迷彩圍巾", en: "camouflage scarf", jp: "迷彩スカーフ", value: "camouflage scarf" },
-                            { zh: "圍在嘴上的毛巾", en: "towel covering mouth", jp: "口を覆うタオル", value: "towel covering mouth" }
-                        ]
-                    },
-                    {
-                        subCategory: "護甲與盔甲",
-                        tags: [
-                            { zh: "護甲", en: "armor", jp: "アーマー", value: "armor" },
-                            { zh: "胸甲", en: "breastplate", jp: "胸当て", value: "breastplate" },
-                            { zh: "護手", en: "bracers", jp: "腕当て", value: "bracers" },
-                            { zh: "胸甲簾", en: "breast curtains", jp: "胸当てカーテン", value: "breast curtains" },
-                            { zh: "半透明裝甲板", en: "translucent plates", jp: "半透明装甲プレート", value: "translucent plates" },
-                            { zh: "線圈護甲肋", en: "coil armor ribs", jp: "コイルアーマーリブ", value: "coil armor ribs" },
-                            { zh: "手臂裝甲板", en: "arm panels", jp: "アームパネル", value: "arm panels" }
-                        ]
-                    },
-                    {
-                        subCategory: "翅膀與披風",
-                        tags: [
-                            { zh: "翅膀", en: "wings", jp: "羽", value: "wings" },
-                            { zh: "天使翅膀", en: "angel wings", jp: "天使の羽", value: "angel wings" },
-                            { zh: "惡魔翅膀", en: "demon wings", jp: "悪魔の羽", value: "demon wings" },
-                            { zh: "紅色斗篷", en: "red cape", jp: "赤いマント", value: "red cape" },
-                            { zh: "斗篷", en: "cape", jp: "マント", value: "cape" },
-                            { zh: "披風", en: "cloak", jp: "クローク", value: "cloak" },
-                            { zh: "披肩", en: "shawl", jp: "ショール", value: "shawl" },
-                            { zh: "肩披風", en: "pauldron cape", jp: "ポールドロンマント", value: "pauldron cape" }
-                        ]
-                    },
-                    {
-                        subCategory: "圍裙",
-                        tags: [
-                            { zh: "围裙（一般·帶胸兜）", en: "bib apron", jp: "エプロン（胸当てあり）", value: "bib apron" },
-                            { zh: "女僕圍裙（裝飾性·腰系）", en: "maid apron", jp: "メイドエプロン（装飾性・腰巻き型）", value: "maid apron" },
-                            { zh: "前垂（實用型·腰系）", en: "waist apron", jp: "前掛け（職人用の腰巻き）", value: "waist apron" },
-                            { zh: "掛頸型圍裙", en: "apron, halterneck strap", jp: "首掛け型エプロン", value: "apron, halterneck strap" },
-                            { zh: "斜挎交叉式圍裙", en: "cross-laced apron", jp: "たすき掛けエプロン（クロスエプロン）", value: "cross-laced apron" },
-                            { zh: "H 型背帶圍裙", en: "apron with H-back straps", jp: "H型エプロン", value: "apron with H-back straps" }
-                        ]
-                    },
-                    {
-                        subCategory: "前垂布",
-                        tags: [
-                            { zh: "垂掛於服裝之上的前垂布（一般）", en: "tabard over clothes", jp: "タバード over clothes", value: "tabard over clothes" },
-                            { zh: "垂掛於連衣裙之上", en: "tabard over dress", jp: "タバード over dress", value: "tabard over dress" },
-                            { zh: "垂掛於褲裝之上", en: "tabard over pants", jp: "タバード over pants", value: "tabard over pants" },
-                            { zh: "垂掛於裙裝之上", en: "tabard over skirt", jp: "タバード over skirt", value: "tabard over skirt" },
-                            { zh: "僅穿前垂布（裸式）", en: "naked tabard", jp: "naked tabard", value: "naked tabard" },
-                            { zh: "帶有紋章的前垂布", en: "tabard with heraldry", jp: "紋章入りタバード", value: "tabard with heraldry" },
-                            { zh: "中世騎士風前垂布", en: "medieval knight tabard", jp: "中世風タバード", value: "medieval knight tabard" },
-                            { zh: "罩在盔甲上的前垂布", en: "tabard over armour", jp: "鎧の上のタバード", value: "tabard over armour" },
-                            { zh: "短版前垂布", en: "short tabard", jp: "ショート丈タバード", value: "short tabard" }
-                        ]
-                    },
-                    {
-                        subCategory: "光電 / 機械裝飾",
-                        tags: [
-                            { zh: "發光線條", en: "glowing lines", jp: "発光ライン", value: "glowing lines" },
-                            { zh: "LED 鉚釘", en: "LED studs", jp: "LEDリベット", value: "LED studs" },
-                            { zh: "光纖裝飾", en: "fiber optic accents", jp: "光ファイバー装飾", value: "fiber optic accents" },
-                            { zh: "奈米紋樣", en: "nanoscale patterns", jp: "ナノスケール模様", value: "nanoscale patterns" },
-                            { zh: "電路印花", en: "circuit print design", jp: "回路プリント", value: "circuit print design" },
-                            { zh: "全像投影機", en: "holographic projector", jp: "ホログラム投影機", value: "holographic projector" },
-                            { zh: "嵌入式介面", en: "embedded interface", jp: "埋め込みUIパネル", value: "embedded interface" },
-                            { zh: "數據端口", en: "data port connector", jp: "データポート付き", value: "data port connector" },
-                            { zh: "胸部能量核心", en: "chest energy core", jp: "エネルギーコア（胸部）", value: "chest energy core" },
-                            { zh: "迷你噴射推進器", en: "mini jet thrusters", jp: "ミニジェット推進器", value: "mini jet thrusters" },
-                            { zh: "脈衝護盾發射器", en: "pulse shield emitter", jp: "パルスシールド発生器", value: "pulse shield emitter" },
-                            { zh: "機械臂", en: "mechanical arms", jp: "機械式アーム", value: "mechanical arms" },
-                            { zh: "單機械臂", en: "single mechanical arm", jp: "片腕型機械式アーム", value: "single mechanical arm" },
-                            { zh: "機械關節", en: "robot joints", jp: "ロボット関節", value: "robot joints" },
-                            { zh: "機械光環", en: "mechanical halo", jp: "機械式の光輪（天使の輪）", value: "mechanical halo" },
-                            { zh: "裸露電纜", en: "exposed cables", jp: "ケーブル・チューブ", value: "exposed cables" },
-                            { zh: "微型無人機底座", en: "micro drone dock", jp: "小型ドローンホルダー", value: "micro drone dock" },
-                            { zh: "戰術 ID 徽章", en: "tactical ID badge", jp: "戦術IDバッジ", value: "tactical ID badge" },
-                            { zh: "磁力附件", en: "magnetic attachments", jp: "マグネットアタッチ", value: "magnetic attachments" }
-                        ]
-                    },
-                    {
-                        subCategory: "袖子",
-                        tags: [
-                            { zh: "無袖上衣", en: "sleeveless top", jp: "ノースリーブトップ", value: "sleeveless" },
-                            { zh: "無袖背心", en: "tank top", jp: "タンクトップ", value: "tank top, sleeveless" },
-                            { zh: "透明袖子", en: "see-through sleeves", jp: "シースルーの袖", value: "see-through sleeves" },
-                            { zh: "漸層袖子", en: "gradient sleeves", jp: "グラデーションの袖", value: "gradient sleeves" },
-                            { zh: "雙色袖子", en: "two-tone sleeves", jp: "ツートンの袖", value: "two-tone sleeves" },
-                            { zh: "多色袖子", en: "multicolored sleeves", jp: "マルチカラーの袖", value: "multicolored sleeves" },
-                            { zh: "格子袖子", en: "checkered sleeves", jp: "チェック柄の袖", value: "checkered sleeves" },
-                            { zh: "格紋袖子②", en: "plaid sleeves", jp: "チェック柄の袖②", value: "plaid sleeves" },
-                            { zh: "波點袖子", en: "polka dot sleeves", jp: "水玉模様の袖", value: "polka dot sleeves" },
-                            { zh: "印花袖子", en: "print sleeves", jp: "プリントの袖", value: "print sleeves" },
-                            { zh: "羅紋袖子", en: "ribbed sleeves", jp: "リブの袖", value: "ribbed sleeves" },
-                            { zh: "條紋袖子", en: "striped sleeves", jp: "ストライプの袖", value: "striped sleeves" },
-                            { zh: "短袖", en: "short sleeves", jp: "半袖", value: "short sleeves" },
-                            { zh: "長袖外套短袖", en: "short over long sleeves", jp: "長袖の上に半袖", value: "short over long sleeves" },
-                            { zh: "七分袖", en: "three-quarter sleeves", jp: "七分袖", value: "three-quarter sleeves" },
-                            { zh: "長袖", en: "long sleeves", jp: "長袖", value: "long sleeves" },
-                            { zh: "萌袖", en: "sleeves past wrists", jp: "萌え袖", value: "sleeves past wrists" },
-                            { zh: "萌袖②", en: "sleeves past fingers", jp: "萌え袖②", value: "sleeves past fingers" },
-                            { zh: "不對稱袖子", en: "uneven sleeves", jp: "不揃いな袖", value: "uneven sleeves" },
-                            { zh: "可拆卸袖子", en: "detached sleeves", jp: "取り外し可能な袖", value: "detached sleeves" },
-                            { zh: "單邊可拆卸袖子", en: "single detached sleeve", jp: "片側だけの取り外し可能な袖", value: "single detached sleeve" },
-                            { zh: "單袖", en: "single sleeve", jp: "片袖", value: "single sleeve" },
-                            { zh: "捲袖子", en: "sleeves pushed up", jp: "腕まくり", value: "sleeves pushed up" },
-                            { zh: "捲袖子②", en: "sleeves rolled up", jp: "腕まくり②", value: "sleeves rolled up" },
-                            { zh: "破袖", en: "torn sleeves", jp: "破れた袖", value: "torn sleeves" },
-                            { zh: "羽毛裝飾袖子", en: "feather-trimmed sleeves", jp: "羽根飾りの袖", value: "feather-trimmed sleeves" },
-                            { zh: "荷葉邊袖子", en: "frilled sleeves", jp: "フリルの袖", value: "frilled sleeves" },
-                            { zh: "毛絨邊袖子", en: "fur-trimmed sleeves", jp: "ファー付きの袖", value: "fur-trimmed sleeves" },
-                            { zh: "蕾絲邊袖子", en: "lace-trimmed sleeves", jp: "レース飾りの袖", value: "lace-trimmed sleeves" },
-                            { zh: "緞帶裝飾袖子", en: "ribbon-trimmed sleeves", jp: "リボンで縁取られた袖", value: "ribbon-trimmed sleeves" },
-                            { zh: "鐘型袖", en: "bell sleeves", jp: "ベルスリーブ", value: "bell sleeves" },
-                            { zh: "壓縮袖", en: "compression sleeve", jp: "コンプレッションスリーブ", value: "compression sleeve" },
-                            { zh: "交叉綁帶袖子", en: "cross-laced sleeves", jp: "交差するレースの袖", value: "cross-laced sleeves" },
-                            { zh: "護肘袖", en: "elbow sleeve", jp: "エルボーサポーター", value: "elbow sleeve" },
-                            { zh: "網袖", en: "fishnet sleeves", jp: "網タイツの袖", value: "fishnet sleeves" },
-                            { zh: "振袖", en: "furisode sleeves", jp: "振袖", value: "furisode sleeves" },
-                            { zh: "茱麗葉袖", en: "juliet sleeves", jp: "ジュリエットスリーブ", value: "juliet sleeves" },
-                            { zh: "綁帶袖子", en: "lace-up sleeves", jp: "レースアップの袖", value: "lace-up sleeves" },
-                            { zh: "層次袖子", en: "layered sleeves", jp: "レイヤードの袖", value: "layered sleeves" },
-                            { zh: "左右不對稱袖子", en: "mismatched sleeves", jp: "左右非対称の袖", value: "mismatched sleeves" },
-                            { zh: "開叉蓬袖", en: "puff and slash sleeves", jp: "膨らみにスリットが入った袖", value: "puff and slash sleeves" },
-                            { zh: "蓬袖", en: "puffy sleeves", jp: "膨らんだ袖", value: "puffy sleeves" },
-                            { zh: "可拆蓬袖", en: "puffy detached sleeves", jp: "膨らみが切り離された袖", value: "puffy detached sleeves" },
-                            { zh: "長蓬袖", en: "puffy long sleeves", jp: "膨らみ+長袖", value: "puffy long sleeves" },
-                            { zh: "短蓬袖", en: "puffy short sleeves", jp: "膨らみ+半袖", value: "puffy short sleeves" },
-                            { zh: "拉格蘭袖", en: "raglan sleeves", jp: "ラグラン袖", value: "raglan sleeves" },
-                            { zh: "寬袖", en: "wide sleeves", jp: "ワイドな袖", value: "wide sleeves" },
-                            { zh: "手臂露出袖外", en: "arm out of sleeve", jp: "腕が袖から出ている状態", value: "arm out of sleeve" },
-                            { zh: "雙手放入對側袖子", en: "hands in opposite sleeves", jp: "両手を反対の袖に入れた状態", value: "hands in opposite sleeves" },
-                            { zh: "掐袖子", en: "pinching sleeves", jp: "袖を掴む", value: "pinching sleeves" },
-                            { zh: "掐袖子②", en: "sleeve grab", jp: "袖を掴む②", value: "sleeve grab" },
-                            { zh: "無袖襯衫", en: "sleeveless shirt", jp: "ノースリーブシャツ", value: "sleeveless shirt" },
-                            { zh: "無袖洋裝", en: "sleeveless dress", jp: "ノースリーブドレス", value: "sleeveless dress" },
-                            { zh: "無袖帽T", en: "sleeveless hoodie", jp: "ノースリーブパーカー", value: "sleeveless hoodie" },
-                            { zh: "無袖外套", en: "sleeveless jacket", jp: "ノースリーブジャケット", value: "sleeveless jacket" },
-                            { zh: "無袖和服", en: "sleeveless kimono", jp: "袖なしの着物", value: "sleeveless kimono" },
-                            { zh: "無袖毛衣", en: "sleeveless sweater / sweater vest", jp: "ノースリーブセーター", value: "sleeveless sweater" },
-                            { zh: "背心", en: "vest", jp: "ベスト", value: "vest" },
-                            { zh: "西裝背心", en: "waistcoat", jp: "ウエストコート", value: "waistcoat" },
-                            { zh: "連袖緊身衣", en: "sleeved leotard", jp: "袖付きレオタード", value: "sleeved leotard" },
-                            { zh: "短袖大衣", en: "short-sleeved coat", jp: "半袖コート", value: "short-sleeved coat" },
-                            { zh: "短袖夾克", en: "short-sleeved jacket", jp: "半袖ジャケット", value: "short-sleeved jacket" },
-                            { zh: "短袖毛衣", en: "short-sleeved sweater", jp: "半袖セーター", value: "short-sleeved sweater" }
+                            { zh: "重度宅女", en: "hardcore otaku girl", jp: "重度オタク女子", value: "hardcore otaku girl" },
+                            { zh: "凌亂馬尾", en: "messy ponytail", jp: "乱れたポニーテール", value: "messy ponytail" },
+                            { zh: "寬大T恤", en: "oversized t-shirt", jp: "大きめのTシャツ", value: "oversized t shirt" },
+                            { zh: "短褲", en: "shorts", jp: "ショートパンツ", value: "shorts" },
+                            { zh: "裸足", en: "barefoot", jp: "裸足", value: "barefoot" },
+                            { zh: "坐在地上", en: "sitting on floor", jp: "床に座っている", value: "sit on floor" },
+                            { zh: "懶散姿勢", en: "slouching posture", jp: "だらけた姿勢", value: "slouching" },
+                            { zh: "拿著遊戲手把", en: "holding game controller", jp: "ゲームコントローラーを持つ", value: "holding controller" },
+                            { zh: "嘴角含笑", en: "slight smile at corner", jp: "口元に微笑み", value: "slight smile" },
+                            { zh: "雙腿交疊", en: "legs crossed", jp: "脚を組む", value: "crossed legs" },
+                            { zh: "亂糟糟的房間", en: "messy room", jp: "散らかった部屋", value: "messy room" },
+                            { zh: "能量飲料罐散落", en: "energy drink cans scattered", jp: "エナジードリンクの缶が散らばる", value: "energy cans scattered" },
+                            { zh: "電腦螢幕光映臉", en: "monitor glow on face", jp: "モニターの光が顔に映る", value: "monitor glow" },
+                            { zh: "微紅的臉頰", en: "blushing cheeks", jp: "頬が少し赤い", value: "blushing cheeks" },
+                            { zh: "沉浸在遊戲中", en: "immersed in game", jp: "ゲームに夢中", value: "immersed in game" }
                         ]
                     }
                 ]
-            },
-            {
-                category: { key: "clothes", zh: "手套&襪", en: "gloves&socks", jp: "手袋&靴下" },
-                groups: [
-                    {
-                        subCategory: "手套",
-                        tags: [
-                            { zh: "手套", en: "gloves", jp: "手袋", value: "gloves" },
-                            { zh: "短手套", en: "short gloves", jp: "ショート手袋", value: "short_gloves" },
-                            { zh: "長手套", en: "long gloves", jp: "ロング手袋", value: "long_gloves" },
-                            { zh: "手腕套", en: "wrist cuffs", jp: "リストカフス", value: "wrist_cuffs" },
-                            { zh: "指尖手套", en: "fingerless gloves", jp: "指なし手袋", value: "fingerless_gloves" },
-                            { zh: "蕾絲手套", en: "lace gloves", jp: "レース手袋", value: "lace_gloves" },
-                            { zh: "絲質手套", en: "silk gloves", jp: "シルク手袋", value: "silk_gloves" },
-                            { zh: "網狀手套", en: "fishnet gloves", jp: "ネット手袋", value: "fishnet_gloves" },
-                            { zh: "皮革手套", en: "leather gloves", jp: "レザー手袋", value: "leather_gloves" },
-                            { zh: "露肩手套", en: "off-shoulder gloves", jp: "オフショルダー手袋", value: "off_shoulder_gloves" },
-                            { zh: "開指長手套", en: "open-finger long gloves", jp: "オープンフィンガーロング手袋", value: "open_finger_long_gloves" },
-                            { zh: "扣帶裝飾手套", en: "strapped gloves", jp: "ストラップ付き手袋", value: "strapped_gloves" },
-                            { zh: "緞面手套", en: "satin gloves", jp: "サテン手袋", value: "satin_gloves" },
-                            { zh: "刺繡手套", en: "embroidered gloves", jp: "刺繍手袋", value: "embroidered_gloves" },
-                            { zh: "半臂套手套", en: "elbow-length gloves", jp: "肘丈手袋", value: "elbow_gloves" },
-                            { zh: "無指手套", en: "fingerless gloves", jp: "指なし手袋", value: "fingerless_gloves" },
-                            { zh: "戰術手套", en: "tactical gloves", jp: "タクティカルグローブ", value: "tactical_gloves" },
-                            { zh: "皮手套", en: "leather gloves", jp: "レザーグローブ", value: "leather_gloves" },
-                            { zh: "金屬護手", en: "metal gauntlets", jp: "金属ガントレット", value: "metal_gauntlets" },
-                            { zh: "布護腕", en: "cloth arm guards", jp: "布製アームガード", value: "cloth_arm_guards" },
-                            { zh: "繃帶纏手", en: "bandaged hands", jp: "包帯を巻いた手", value: "bandaged_hands" }
-                        ]
-                    },
-                    {
-                        subCategory: "襪子",
-                        tags: [
-                            { zh: "襪子", en: "socks", jp: "靴下", value: "socks" },
-
-                            // 短襪 / ankle
-                            { zh: "短襪", en: "ankle socks", jp: "アンクルソックス", value: "ankle socks" },
-                            { zh: "棉質短襪", en: "cotton ankle socks", jp: "コットンアンクルソックス", value: "cotton ankle socks" },
-                            { zh: "毛絨短襪", en: "fuzzy ankle socks", jp: "モコモコアンクルソックス", value: "fuzzy ankle socks" },
-                            { zh: "運動短襪", en: "sporty ankle socks", jp: "スポーツアンクルソックス", value: "sporty ankle socks" },
-                            // 膝上 / knee-high
-                            { zh: "膝上襪", en: "knee-high socks", jp: "オーバーニーソックス", value: "knee-high socks" },
-                            { zh: "棉質膝上襪", en: "cotton knee-high socks", jp: "コットンオーバーニーソックス", value: "cotton knee-high socks" },
-                            { zh: "毛絨膝上襪", en: "fuzzy knee-high socks", jp: "モコモコオーバーニーソックス", value: "fuzzy knee-high socks" },
-                            { zh: "運動膝上襪", en: "sporty knee-high socks", jp: "スポーツオーバーニーソックス", value: "sporty knee-high socks" },
-                            // 過膝 / thigh-high (ニーソ)
-                            { zh: "過膝襪", en: "thigh high stockings", jp: "ニーソ", value: "thigh high stockings" },
-                            { zh: "棉質過膝襪", en: "cotton thigh high stockings", jp: "コットンニーソ", value: "cotton thigh high stockings" },
-                            { zh: "毛絨過膝襪", en: "fuzzy thigh high stockings", jp: "モコモコニーソ", value: "fuzzy thigh high stockings" },
-                            { zh: "絲質過膝襪", en: "silk thigh high stockings", jp: "シルクニーソ", value: "silk thigh high stockings" },
-                            { zh: "蕾絲過膝襪", en: "lace thigh high stockings", jp: "レースニーソ", value: "lace thigh high stockings" },
-                            // 長筒 / long socks（泛稱）
-                            { zh: "長筒襪", en: "long socks", jp: "ロングソックス", value: "long socks" },
-                            { zh: "棉質長筒襪", en: "cotton long socks", jp: "コットンロングソックス", value: "cotton long socks" },
-                            { zh: "毛絨長筒襪", en: "fuzzy long socks", jp: "モコモコロングソックス", value: "fuzzy long socks" },
-                            { zh: "運動長筒襪", en: "sporty long socks", jp: "スポーツロングソックス", value: "sporty long socks" },
-                            // 材質 / 花樣 / 特殊
-                            { zh: "條紋襪", en: "striped socks", jp: "ボーダーソックス", value: "striped socks" },
-                            { zh: "彩色條紋襪", en: "color striped socks", jp: "カラーボーダーソックス", value: "color striped socks" },
-                            { zh: "網狀絲襪", en: "fishnet stockings", jp: "網ストッキング", value: "fishnet stockings" },
-                            { zh: "花紋襪", en: "patterned socks", jp: "柄入りソックス", value: "patterned socks" },
-                            // 蕾絲 / 絲質（保留 ankle / long / thigh 分類）
-                            { zh: "蕾絲短襪", en: "lace ankle socks", jp: "レースアンクルソックス", value: "lace ankle socks" },
-                            { zh: "蕾絲長筒襪", en: "lace long socks", jp: "レースロングソックス", value: "lace long socks" },
-                            { zh: "絲質短襪", en: "silk ankle socks", jp: "シルクアンクルソックス", value: "silk ankle socks" },
-                            { zh: "絲質長筒襪", en: "silk long socks", jp: "シルクロングソックス", value: "silk long socks" },
-                            { zh: "蕾絲條紋襪", en: "lace striped socks", jp: "レース縞ソックス", value: "lace striped socks" },
-                            { zh: "絲質條紋襪", en: "silk striped socks", jp: "シルク縞ソックス", value: "silk striped socks" },
-                            { zh: "蕾絲花紋襪", en: "lace patterned socks", jp: "レース柄ソックス", value: "lace patterned socks" },
-                            { zh: "絲質花紋襪", en: "silk patterned socks", jp: "シルク柄ソックス", value: "silk patterned socks" },
-                            // 絕對領域（常用組合 tag）
-                            { zh: "絕對領域", en: "zettai ryouiki", jp: "絶対領域", value: "zettai ryouiki" }
-                        ]
-                    },
-                    {
-                        subCategory: "吊帶襪",
-                        tags: [
-                            { zh: "吊襪帶", en: "garter belt", jp: "ガーターベルト", value: "garter_belt" },
-                            { zh: "吊帶襪", en: "garter stockings", jp: "ガーター付きストッキング", value: "garter_stockings" },
-                            { zh: "吊帶襪（整套）", en: "garter belt with stockings", jp: "ガーターベルト付きストッキング", value: "garter_full_set" },
-                            { zh: "吊帶襪帶子（襪帶）", en: "garter straps", jp: "ガーター", value: "garter_straps" },
-                            { zh: "經典吊帶襪", en: "classic garter belt", jp: "クラシックガーターベルト", value: "classic_garter_belt" },
-                            { zh: "蕾絲吊帶襪", en: "lace garter belt", jp: "レースガーターベルト", value: "lace_garter_belt" },
-                            { zh: "吊帶式吊帶襪", en: "suspender garter", jp: "サスペンダーガーター", value: "suspender_garter" },
-                            { zh: "吊帶襪套裝（帶過膝襪）", en: "garter belt with thigh-high stockings", jp: "ガーターベルト付きニーソックス", value: "garter_with_thighhighs" },
-                            { zh: "皮革吊帶襪", en: "leather garter belt", jp: "レザーガーターベルト", value: "leather_garter_belt" },
-                            { zh: "束縛風吊帶襪", en: "harness garter belt", jp: "ハーネスガーターベルト", value: "harness_garter_belt" },
-                            { zh: "網狀吊帶襪", en: "fishnet garter belt", jp: "ネットガーターベルト", value: "fishnet_garter_belt" },
-                            { zh: "花紋吊帶襪", en: "patterned garter belt", jp: "柄入りガーターベルト", value: "patterned_garter_belt" },
-                            { zh: "蕾絲吊帶襪套裝", en: "lace garter set", jp: "レースガーターベルトセット", value: "lace_garter_set" },
-                            { zh: "吊帶襪滑落", en: "garter slipping", jp: "ガーターベルト落ちる", value: "garter_slipping" }
-                        ]
-                    },
-                    {
-                        subCategory: "連褲襪／透膚類",
-                        tags: [
-                            { zh: "褲襪", en: "pantyhose", jp: "パンティストッキング", value: "pantyhose" },
-                            { zh: "連褲襪", en: "tights", jp: "タイツ", value: "tights" },
-                            { zh: "連體襪", en: "bodystocking", jp: "ボディストッキング", value: "bodystocking" },
-                            { zh: "半透明絲襪", en: "sheer pantyhose", jp: "シースルーストッキング", value: "sheer_stockings" },
-                            { zh: "透膚絲襪", en: "transparent pantyhose", jp: "シースルーパンスト", value: "transparent_stockings" },
-                            { zh: "開檔絲襪", en: "crotchless pantyhose", jp: "クロッチレスストッキング", value: "crotchless_stockings" },
-                            { zh: "白絲襪", en: "white pantyhose", jp: "白ストッキング", value: "white_stockings" },
-                            { zh: "黑絲襪", en: "black pantyhose", jp: "黒ストッキング", value: "black_stockings" },
-                            { zh: "膚色絲襪", en: "nude pantyhose", jp: "肌色ストッキング", value: "skin_tone_stockings" },
-                            { zh: "破洞絲襪", en: "ripped pantyhose", jp: "破れパンスト", value: "ripped_stockings" },
-                            { zh: "網狀絲襪", en: "fishnet stockings", jp: "ネットストッキング", value: "fishnet_stockings" },
-                            { zh: "花紋絲襪", en: "patterned stockings", jp: "柄入りストッキング", value: "patterned_stockings" },
-                            { zh: "蕾絲絲襪", en: "lace stockings", jp: "レースストッキング", value: "lace_stockings" },
-                            { zh: "縱向條紋絲襪", en: "striped stockings", jp: "縦縞ストッキング", value: "striped_stockings" },
-                            { zh: "絲質絲襪", en: "silk stockings", jp: "シルクストッキング", value: "silk_stockings" },
-                            { zh: "絲襪滑落", en: "stockings slipping", jp: "ストッキングが落ちる", value: "slipping_stockings" },
-                            { zh: "絲襪半脫", en: "stockings half off", jp: "ストッキング半脱ぎ", value: "half_off_stockings" },
-                            { zh: "絲襪全脫", en: "stockings fully off", jp: "ストッキング完全脱ぎ", value: "fully_off_stockings" }
-                        ]
-                    }
-                ]
-
-            },
-            {
-                category: { key: "boots", zh: "鞋類", en: "Shoes", jp: "靴" },
-                groups: [
-                    {
-                        subCategory: "休閒 / 日常",
-                        tags: [
-                            { zh: "鞋子", en: "shoes", jp: "靴", value: "shoes" },
-                            { zh: "運動鞋", en: "sneakers", jp: "スニーカー", value: "sneakers" },
-                            { zh: "帆布鞋", en: "canvas shoes", jp: "キャンバスシューズ", value: "canvas shoes" },
-                            { zh: "樂福鞋", en: "loafers", jp: "ローファー", value: "loafers" },
-                            { zh: "拖鞋", en: "slippers", jp: "スリッパ", value: "slippers" },
-                            { zh: "涼鞋", en: "sandals", jp: "サンダル", value: "sandals" },
-                            { zh: "人字拖", en: "flip-flops", jp: "ビーチサンダル", value: "flip-flops" },
-                            { zh: "草鞋", en: "waraji / straw sandals", jp: "草鞋", value: "waraji, straw sandals" }
-                        ]
-                    },
-                    {
-                        subCategory: "正裝 / 時尚",
-                        tags: [
-                            { zh: "高跟鞋", en: "high heels", jp: "ハイヒール", value: "high heels" },
-                            { zh: "細跟高跟鞋", en: "stiletto heels", jp: "スティレットヒール", value: "stiletto heels" },
-                            { zh: "厚底鞋", en: "platform shoes", jp: "厚底靴", value: "platform shoes" },
-                            { zh: "涼高跟鞋", en: "heeled sandals", jp: "ヒールサンダル", value: "heeled sandals" },
-                            { zh: "綁帶高跟鞋", en: "strappy heels", jp: "ストラップヒール", value: "strappy heels" },
-                            { zh: "楔形鞋", en: "wedge heels", jp: "ウェッジヒール", value: "wedge heels" },
-                            { zh: "踝帶鞋", en: "ankle strap shoes", jp: "アンクルストラップシューズ", value: "ankle strap shoes" },
-                            { zh: "瑪莉珍鞋", en: "mary janes", jp: "メリージェーン", value: "mary janes" },
-                            { zh: "舞鞋", en: "ballet shoes", jp: "バレエシューズ", value: "ballet shoes" }
-                        ]
-                    },
-                    {
-                        subCategory: "運動 / 功能",
-                        tags: [
-                            { zh: "跑鞋", en: "running shoes", jp: "ランニングシューズ", value: "running shoes" },
-                            { zh: "籃球鞋", en: "basketball shoes", jp: "バスケットシューズ", value: "basketball shoes" },
-                            { zh: "足球鞋", en: "soccer shoes / cleats", jp: "サッカーシューズ", value: "soccer shoes" },
-                            { zh: "登山鞋", en: "hiking shoes", jp: "ハイキングシューズ", value: "hiking shoes" },
-                            { zh: "滑板鞋", en: "skate shoes", jp: "スケートシューズ", value: "skate shoes" }
-                        ]
-                    },
-                    {
-                        subCategory: "靴類",
-                        tags: [
-                            { zh: "靴子", en: "boots", jp: "ブーツ", value: "boots" },
-                            { zh: "短靴", en: "ankle boots", jp: "アンクルブーツ", value: "ankle boots" },
-                            { zh: "及膝靴", en: "knee boots", jp: "膝ブーツ", value: "knee boots" },
-                            { zh: "過膝長靴", en: "thigh-high boots", jp: "ニーハイブーツ", value: "thigh-high boots" },
-                            { zh: "軍靴", en: "combat boots", jp: "コンバットブーツ", value: "combat boots" },
-                            { zh: "馬靴", en: "riding boots", jp: "乗馬ブーツ", value: "riding boots" },
-                            { zh: "工裝靴", en: "work boots", jp: "ワークブーツ", value: "work boots" },
-                            { zh: "鋼頭靴", en: "steel-toe boots", jp: "スチールトゥブーツ", value: "steel-toe boots" },
-                            { zh: "金屬靴", en: "armored boots", jp: "鎧ブーツ", value: "armored boots" },
-                            { zh: "厚底涼鞋", en: "platform sandals", jp: "厚底サンダル", value: "platform sandals" }
-                        ]
-                    },
-                    {
-                        subCategory: "傳統 / 特殊",
-                        tags: [
-                            { zh: "木屐", en: "geta", jp: "下駄", value: "geta" },
-                            { zh: "足袋鞋", en: "tabi shoes", jp: "足袋靴", value: "tabi shoes" },
-                            { zh: "舞鞋", en: "dance shoes", jp: "舞踏シューズ", value: "dance shoes" },
-                            { zh: "長筒雨靴", en: "rain boots", jp: "レインブーツ", value: "rain boots" },
-                            { zh: "雪靴", en: "snow boots", jp: "スノーブーツ", value: "snow boots" },
-                            { zh: "毛靴", en: "fur boots", jp: "毛皮ブーツ", value: "fur boots" },
-                            { zh: "雨鞋", en: "rain boots", jp: "レインブーツ", value: "rain boots" }
-                        ]
-                    }
-                ]
-
             },
             {
                 category: { key: "time_weather", zh: "時間與天氣", en: "Time & Weather", jp: "時間・天気" },
@@ -7423,6 +7462,7 @@
                             { zh: "手拿餐具", en: "holding utensils", jp: "食器を持つ", value: "holding utensils" },
                             { zh: "拿飲料", en: "holding drink", jp: "飲み物を持つ", value: "holding drink" },
                             { zh: "拿書本", en: "holding book", jp: "本を持つ", value: "holding book" },
+                            { zh: "拿著遊戲手把", en: "holding game controller", jp: "ゲームコントローラーを持つ", value: "holding controller" },
                             { zh: "抓著吊環", en: "holding strap", jp: "つり革を掴む", value: "holding strap" }
                         ]
                     },
