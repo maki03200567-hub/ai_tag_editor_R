@@ -1542,6 +1542,7 @@
                         tags: [
                             { zh: "流汗", en: "perspired", jp: "汗をかく", value: "perspired" },
                             { zh: "大量流汗", en: "sweaty", jp: "汗を大量にかく", value: "sweaty" },
+                            { zh: "大量出汗", en: "heavily perspired", jp: "大量発汗", value: "heavily perspired" },
                             { zh: "滿身是汗", en: "sweat covered", jp: "汗まみれ", value: "sweat covered" },
                             { zh: "汗水滴落", en: "sweat dripping", jp: "汗が滴る", value: "sweat dripping" },
                             { zh: "汗濕衣物", en: "clothes soaked in sweat", jp: "汗で濡れた服", value: "sweaty clothes" },
@@ -3689,6 +3690,7 @@
                         tags: [
                             { zh: "沒穿下半身衣服", en: "bottomless", jp: "下半身裸", value: "bottomless, no pants, no skirt" },
                             { zh: "下衣失蹤（有內褲）", en: "no pants but wearing panties", jp: "ノーパンツではないパンティ着用", value: "no skirt no pants, panties visible" },
+                            { zh:"無外褲", en:"no outer pants", jp:"外ズボンなし", value:"no pants" },
                             { zh: "裙子", en: "skirt", jp: "スカート", value: "skirt" },
                             { zh: "短裙", en: "short skirt", jp: "ミニスカート", value: "short skirt" },
                             { zh: "迷你裙", en: "miniskirt", jp: "ミニスカート", value: "miniskirt" },
@@ -4836,6 +4838,8 @@
                     {
                         subCategory: "奇幻・戰鬥・冒險",
                         tags: [
+                            { zh: "殭屍套裝", en: "jiangshi outfit", jp: "キョンシー服", value: "jiangshi, long robe, mandarin collar, frog buttons, sash, black shoes, traditional hat" },
+                            { zh: "性感殭屍套裝", en: "sexy jiangshi outfit", jp: "セクシーキョンシー服", value: "jiangshi, torn short robe, bare chest, mandarin collar, frog buttons, sash, heels, traditional hat" },
                             { zh: "盜賊套裝", en: "thief outfit", jp: "盗賊服", value: "thief, hooded tunic, arm wraps, belt, long skirt, boots, daggers" },
                             { zh: "盜賊性感套裝", en: "sexy thief outfit", jp: "セクシー盗賊服", value: "thief, open chest tunic, arm wraps, belt, thong skirt, boots, daggers" },
                             { zh: "刺客套裝", en: "assassin outfit", jp: "暗殺者服", value: "assassin, assassin top, arm guards, belt, long skirt, soft boots, throwing knives" },
@@ -4864,9 +4868,34 @@
                             { zh: "性感魔女套裝", en: "sexy witch outfit", jp: "セクシー魔女服", value: "witch, wide brim witch hat, open chest robe, bare midriff, gloves, belt, mini skirt, heels, staff" },
                             { zh: "超級女英雄套裝", en: "superhero outfit", jp: "スーパーヒロイン服", value: "superhero, bodysuit, cape, gloves, boots, mask" },
                             { zh: "性感超級女英雄套裝", en: "sexy superhero outfit", jp: "セクシースーパーヒロイン服", value: "superhero, low cut bodysuit, bare chest, cape, gloves, thigh high boots, mask" },
-                            { zh: "殭屍套裝", en: "jiangshi outfit", jp: "キョンシー服", value: "jiangshi, long robe, mandarin collar, frog buttons, sash, black shoes, traditional hat" },
-                            { zh: "性感殭屍套裝", en: "sexy jiangshi outfit", jp: "セクシーキョンシー服", value: "jiangshi, torn short robe, bare chest, mandarin collar, frog buttons, sash, heels, traditional hat" }
-
+                            { zh: "精靈弓手服", en: "elf archer outfit", jp: "エルフ弓使い服", value: "elf archer, tunic, boots, bow, quiver" },
+                            { zh: "性感精靈弓手服", en: "sexy elf archer outfit", jp: "セクシーエルフ弓使い服", value: "elf archer, crop tunic, mini skirt, thigh highs, bow, quiver" },
+                            { zh: "矮人戰士服", en: "dwarf warrior outfit", jp: "ドワーフ戦士服", value: "dwarf warrior, armor, gauntlets, boots, sword" },
+                            { zh: "性感矮人戰士服", en: "sexy dwarf warrior outfit", jp: "セクシードワーフ戦士服", value: "dwarf warrior, open armor, bra top, mini skirt, thigh highs, sword" },
+                            { zh: "吸血鬼貴族服", en: "vampire noble outfit", jp: "吸血鬼貴族服", value: "vampire noble, cloak, vest, gloves, boots" },
+                            { zh: "性感吸血鬼貴族服", en: "sexy vampire noble outfit", jp: "セクシー吸血鬼貴族服", value: "vampire noble, open vest, corset, mini skirt, stockings, gloves" },
+                            { zh: "女巫服", en: "witch outfit", jp: "魔女服", value: "witch, dress, hat, broom, boots" },
+                            { zh: "性感女巫服", en: "sexy witch outfit", jp: "セクシー魔女服", value: "witch, low cut dress, corset, mini skirt, thigh highs, broom" },
+                            { zh: "龍騎士服", en: "dragon knight outfit", jp: "ドラゴンナイト服", value: "dragon knight, armor skirt, cape, gauntlets, boots, sword" },
+                            { zh: "性感龍騎士服", en: "sexy dragon knight outfit", jp: "セクシードラゴンナイト服", value: "dragon knight, open armor, bra top, mini skirt, thigh highs, sword" },
+                            { zh: "妖精服", en: "fairy outfit", jp: "妖精服", value: "fairy, dress, wings, boots, accessories" },
+                            { zh: "性感妖精服", en: "sexy fairy outfit", jp: "セクシー妖精服", value: "fairy, short dress, crop top, thigh highs, wings" },
+                            { zh: "女戰士服", en: "female warrior outfit", jp: "女戦士服", value: "female warrior, armor skirt, cape, gauntlets, boots" },
+                            { zh: "性感女戰士服", en: "sexy female warrior outfit", jp: "セクシー女戦士服", value: "female warrior, open armor, bra top, mini skirt, thigh highs" },
+                            { zh: "暗夜刺客服", en: "night assassin outfit", jp: "夜の暗殺者服", value: "night assassin, tunic, boots, gloves, hood" },
+                            { zh: "性感暗夜刺客服", en: "sexy night assassin outfit", jp: "セクシー夜の暗殺者服", value: "night assassin, crop tunic, mini skirt, thigh highs, hood" },
+                            { zh: "元素使者服", en: "elementalist outfit", jp: "エレメンタリスト服", value: "elementalist, robe, gloves, boots, staff" },
+                            { zh: "性感元素使者服", en: "sexy elementalist outfit", jp: "セクシーエレメンタリスト服", value: "elementalist, open robe, corset, mini skirt, thigh highs, staff" },
+                            { zh: "聖騎士服", en: "paladin outfit", jp: "聖騎士服", value: "paladin, armor skirt, cape, gauntlets, boots" },
+                            { zh: "性感聖騎士服", en: "sexy paladin outfit", jp: "セクシー聖騎士服", value: "paladin, open armor, bra top, mini skirt, thigh highs" },
+                            { zh: "幻獸馴獸師服", en: "beast tamer outfit", jp: "幻獣使い服", value: "beast tamer, tunic, boots, gloves, accessories" },
+                            { zh: "性感幻獸馴獸師服", en: "sexy beast tamer outfit", jp: "セクシー幻獣使い服", value: "beast tamer, crop tunic, mini skirt, thigh highs, gloves" },
+                            { zh: "吟遊詩人服", en: "bard outfit", jp: "吟遊詩人服", value: "bard, tunic, boots, cape, lute" },
+                            { zh: "性感吟遊詩人服", en: "sexy bard outfit", jp: "セクシー吟遊詩人服", value: "bard, crop tunic, mini skirt, thigh highs, lute" },
+                            { zh: "占卜師服", en: "fortune teller outfit", jp: "占い師服", value: "fortune teller, robe, shawl, boots, accessories" },
+                            { zh: "性感占卜師服", en: "sexy fortune teller outfit", jp: "セクシー占い師服", value: "fortune teller, low cut robe, corset, mini skirt, thigh highs" },
+                            { zh: "龍女祭司服", en: "dragon priestess outfit", jp: "ドラゴン女祭司服", value: "dragon priestess, robe, cloak, boots, staff" },
+                            { zh: "性感龍女祭司服", en: "sexy dragon priestess outfit", jp: "セクシードラゴン女祭司服", value: "dragon priestess, open robe, corset, mini skirt, thigh highs, staff" },
 
                         ]
                     },
@@ -6709,9 +6738,9 @@
                     {
                         subCategory: "持有物件",
                         tags: [
+                            { zh: "拿著某物", en: "holding object", jp: "物を持っている", value: "holding object" },
                             { zh: "拿著容器", en: "holding container", jp: "容器を持つ", value: "holding container" },
                             { zh: "拿著食物", en: "holding food", jp: "食べ物を持つ", value: "holding food" },
-                            { zh: "拿著某物", en: "holding object", jp: "物を持っている", value: "holding object" },
                             { zh: "拿著電話", en: "holding phone", jp: "電話を持つ", value: "holding phone" },
                             { zh: "使用手機", en: "using smartphone", jp: "スマホを操作する", value: "using smartphone" },
                             { zh: "展示內褲", en: "Show underwear", jp: "下着を見せる", value: "presenting removed panties, holding panties, holding underwear, holding unworn clothes, stained panties, unworn panties, panties, outstretched arms" },
@@ -7219,7 +7248,42 @@
                             { zh: "觸摸頭髮", en: "touching hair", jp: "髪に触れる", value: "touching hair" },
                             { zh: "轉身", en: "turning around", jp: "振り向き", value: "turning around" },
                         ]
-                    }
+                    },
+                    {
+                        subCategory: "身體動作",
+                        tags: [
+                            { zh: "在工作", en: "at work", jp: "仕事中", value: "at work" },
+                            { zh: "坐著工作", en: "working seated", jp: "座って作業中", value: "sitting, at work" },
+                            { zh: "站著工作", en: "working standing", jp: "立って作業中", value: "standing, at work" },
+                            { zh: "手拿工具", en: "holding tools", jp: "道具を持つ", value: "holding tool, working" },
+                            { zh: "手拿文件", en: "holding documents", jp: "書類を持つ", value: "holding documents, working" },
+                            { zh: "使用電腦", en: "using computer", jp: "コンピューター操作", value: "typing, computer, working" },
+                            { zh: "操作機械", en: "operating machinery", jp: "機械操作", value: "operating machinery, working" },
+                            { zh: "整理物品", en: "organizing items", jp: "物を整理", value: "organizing, tidying, working" },
+                            { zh: "搬運物品", en: "carrying items", jp: "物を運ぶ", value: "carrying items, working" },
+                            { zh: "端盤子", en: "serving food", jp: "料理を運ぶ", value: "serving food, working" },
+                            { zh: "打掃", en: "cleaning", jp: "掃除中", value: "cleaning, working" },
+                            { zh: "講解指導", en: "explaining or instructing", jp: "説明中", value: "explaining, instructing, working" },
+                            { zh: "接待客人", en: "receiving guests", jp: "接客中", value: "receiving guests, working" },
+                            { zh: "閱讀文件", en: "reading documents", jp: "書類を読む", value: "reading, documents, working" },
+                            { zh: "寫字", en: "writing", jp: "書く", value: "writing, working" },
+                            { zh: "拍照", en: "taking photos", jp: "写真撮影中", value: "taking photos, working" },
+                            { zh: "調配飲品", en: "mixing drinks", jp: "ドリンクを作る", value: "mixing drinks, working" },
+                            { zh: "操作儀器", en: "operating instruments", jp: "器具操作", value: "operating instruments, working" },
+                            { zh: "維修設備", en: "repairing equipment", jp: "修理中", value: "repairing equipment, working" },
+                            { zh: "打電話", en: "making phone calls", jp: "電話中", value: "making phone calls, working" },
+                            { zh: "微笑服務", en: "smiling while serving", jp: "笑顔で接客", value: "smiling, serving, working" },
+                            { zh: "檢查物品", en: "inspecting items", jp: "物をチェック", value: "inspecting, working" },
+                            { zh: "調整設備", en: "adjusting equipment", jp: "設備を調整", value: "adjusting, working" },
+                            { zh: "教學演示", en: "demonstrating teaching", jp: "教える", value: "demonstrating, teaching, working" },
+                            { zh: "整理書籍", en: "organizing books", jp: "本を整理", value: "organizing books, working" },
+                            { zh: "檢查病人", en: "checking patients", jp: "患者チェック", value: "checking patients, working" },
+                            { zh: "烹飪", en: "cooking", jp: "料理中", value: "cooking, working" },
+                            { zh: "指揮操作", en: "directing operations", jp: "指揮中", value: "directing, working" },
+                            { zh: "搬運貨物", en: "moving cargo", jp: "荷物運搬中", value: "moving cargo, working" },
+                            { zh: "擺放商品", en: "arranging products", jp: "商品を並べる", value: "arranging products, working" }
+                        ]
+                    },
                 ]
 
             },
