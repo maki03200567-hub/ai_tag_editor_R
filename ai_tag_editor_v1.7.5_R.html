@@ -2836,7 +2836,18 @@
                             { zh: "慌亂表情", en: "flustered", jp: "（不意にロマンチックな状況になって）慌てる顔", value: "flustered" },
                             { zh: "苦笑(假笑)", en: "forced smile", jp: "強制的な笑顔（作り笑い？）", value: "forced smile" },
                             { zh: "全臉發紅", en: "full-face blush", jp: "顔全体の赤面", value: "full-face blush" },
-                            { zh: "已婚伴侶(夫妻)", en: "married couple", jp: "既婚カップル", value: "married couple" },
+                            { zh: "慵懶", en: "lazy", jp: "怠惰", value: "lazy" },
+                            { zh: "性感慵懶", en: "sexy lazy", jp: "セクシーで気だるい", value: "sexy lazy" },
+                            { zh: "頹廢", en: "languid", jp: "気だるい", value: "languid" },
+                            { zh: "迷離", en: "dazed", jp: "ぼんやりした", value: "dazed" },
+                            { zh: "夢幻", en: "dreamy", jp: "夢見心地", value: "dreamy" },
+                            { zh: "半夢半醒", en: "half awake", jp: "半分寝ている", value: "half awake" },
+                            { zh: "疲倦", en: "tired", jp: "疲れ", value: "tired" },
+                            { zh: "散漫姿勢氛圍", en: "loose posture mood", jp: "緩い姿勢の雰囲気", value: "loose posture mood" },
+                            { zh: "性感散漫", en: "sensual languid", jp: "官能的な気だるさ", value: "sensual languid" },
+                            { zh: "慵懶表情", en: "lazy expression", jp: "気だるい表情", value: "lazy expression" },
+                            { zh: "睡意眼神", en: "sleepy eyes", jp: "眠そうな目", value: "sleepy eyes" },
+                            { zh: "半閉雙眼", en: "half closed eyes", jp: "半目", value: "half closed eyes" },
                             { zh: "鼻頭發紅", en: "nose blush", jp: "鼻の上を赤らめる", value: "nose blush" },
                             { zh: "單邊眨眼", en: "one eye closed （winking）", jp: "片目を閉じる（ウインク）", value: "one eye closed （winking）" },
                             { zh: "沉思的樣子", en: "pensive", jp: "物思いに耽る", value: "pensive" },
@@ -9493,41 +9504,41 @@
             mainTitle.textContent = categoryData.category[currentLang] || categoryData.category.zh || categoryData.category.key;
             container.appendChild(mainTitle);
 
-// === 🎲 Category 隨機按鈕 ===
-const catRandom = document.createElement("button");
-catRandom.textContent = "🎲";
-catRandom.style.marginLeft = "8px";
-catRandom.style.padding = "2px 6px";
-catRandom.style.fontSize = "12px";
-catRandom.style.cursor = "pointer";
+            // === 🎲 Category 隨機按鈕 ===
+            const catRandom = document.createElement("button");
+            catRandom.textContent = "🎲";
+            catRandom.style.marginLeft = "8px";
+            catRandom.style.padding = "2px 6px";
+            catRandom.style.fontSize = "12px";
+            catRandom.style.cursor = "pointer";
 
-catRandom.onclick = (e) => {
-    e.stopPropagation();
+            catRandom.onclick = (e) => {
+                e.stopPropagation();
 
-    // 收集整個 category 所有 tag
-    let allTags = [];
-    categoryData.groups.forEach(sub => {
-        if (sub.tags && sub.tags.length) {
-            allTags = allTags.concat(sub.tags);
-        }
-    });
+                // 收集整個 category 所有 tag
+                let allTags = [];
+                categoryData.groups.forEach(sub => {
+                    if (sub.tags && sub.tags.length) {
+                        allTags = allTags.concat(sub.tags);
+                    }
+                });
 
-    if (allTags.length === 0) return;
+                if (allTags.length === 0) return;
 
-    // 隨機抽一個
-    const rnd = allTags[Math.floor(Math.random() * allTags.length)];
+                // 隨機抽一個
+                const rnd = allTags[Math.floor(Math.random() * allTags.length)];
 
-    // 加到當前 output
-    addTagToCurrent(rnd);
+                // 加到當前 output
+                addTagToCurrent(rnd);
 
-    updateOutput(currentOutputIndex);
-    updateAllTagHighlight();
-};
+                updateOutput(currentOutputIndex);
+                updateAllTagHighlight();
+            };
 
-// 放到標題後面
-mainTitle.appendChild(catRandom);
+            // 放到標題後面
+            mainTitle.appendChild(catRandom);
 
-            
+
             // 子分類
             categoryData.groups.forEach(group => {
                 // 檢查此子分類是否有任何 tag 符合 filter
@@ -9542,32 +9553,32 @@ mainTitle.appendChild(catRandom);
                 groupDiv.appendChild(subTitle);
 
                 // === 🎲 隨機按鈕 ===
-const randomBtn = document.createElement("button");
-randomBtn.textContent = "🎲";
-randomBtn.style.marginLeft = "6px";
-randomBtn.style.padding = "2px 6px";
-randomBtn.style.fontSize = "12px";
-randomBtn.style.cursor = "pointer";
+                const randomBtn = document.createElement("button");
+                randomBtn.textContent = "🎲";
+                randomBtn.style.marginLeft = "6px";
+                randomBtn.style.padding = "2px 6px";
+                randomBtn.style.fontSize = "12px";
+                randomBtn.style.cursor = "pointer";
 
-randomBtn.onclick = (e) => {
-    e.stopPropagation();
+                randomBtn.onclick = (e) => {
+                    e.stopPropagation();
 
-    // 取出此 subCategory 的 tags 陣列
-    const tags = group.tags;
-    if (!tags || tags.length === 0) return;
+                    // 取出此 subCategory 的 tags 陣列
+                    const tags = group.tags;
+                    if (!tags || tags.length === 0) return;
 
-    // 隨機選一個
-    const rnd = tags[Math.floor(Math.random() * tags.length)];
+                    // 隨機選一個
+                    const rnd = tags[Math.floor(Math.random() * tags.length)];
 
-    // 加進目前 Output
-    addTagToCurrent(rnd);
+                    // 加進目前 Output
+                    addTagToCurrent(rnd);
 
-    // 更新顯示 & 高亮
-    updateOutput(currentOutputIndex);
-    updateAllTagHighlight();
-};
+                    // 更新顯示 & 高亮
+                    updateOutput(currentOutputIndex);
+                    updateAllTagHighlight();
+                };
 
-subTitle.appendChild(randomBtn);
+                subTitle.appendChild(randomBtn);
 
 
                 // tags（只渲染 matchedTags）
@@ -9662,24 +9673,24 @@ subTitle.appendChild(randomBtn);
                     sub.textContent = group.subCategory || '';
                     groupDiv.appendChild(sub);
 
-// === 🎲 隨機按鈕 ===
-const randomBtn = document.createElement("button");
-randomBtn.textContent = "🎲";
-randomBtn.style.marginLeft = "6px";
-randomBtn.style.padding = "2px 6px";
-randomBtn.style.fontSize = "12px";
-randomBtn.style.cursor = "pointer";
+                    // === 🎲 隨機按鈕 ===
+                    const randomBtn = document.createElement("button");
+                    randomBtn.textContent = "🎲";
+                    randomBtn.style.marginLeft = "6px";
+                    randomBtn.style.padding = "2px 6px";
+                    randomBtn.style.fontSize = "12px";
+                    randomBtn.style.cursor = "pointer";
 
-randomBtn.onclick = (e) => {
-    e.stopPropagation();
-    const tags = group.tags;
-    if (!tags || tags.length === 0) return;
-    const rnd = tags[Math.floor(Math.random() * tags.length)];
-    addTagToCurrent(rnd);
-    updateOutput(currentOutputIndex);
-    updateAllTagHighlight();
-};
-sub.appendChild(randomBtn);
+                    randomBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        const tags = group.tags;
+                        if (!tags || tags.length === 0) return;
+                        const rnd = tags[Math.floor(Math.random() * tags.length)];
+                        addTagToCurrent(rnd);
+                        updateOutput(currentOutputIndex);
+                        updateAllTagHighlight();
+                    };
+                    sub.appendChild(randomBtn);
 
 
 
