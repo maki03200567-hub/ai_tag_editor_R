@@ -528,7 +528,8 @@
                         tags: [
                             { zh: "汎用正向詞", en: "Safe Positive word", jp: "汎用ポジティブな言葉", value: "nsfw, uncensored,anime style, (masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines),concept art, source anime, perfect proportions, perfect_eyes, dynamic pose, lustrous, fair skin, smooth anime skin, soft shading" },
                             { zh: "一般向正向詞", en: "Safe Positive word", jp: "一般向ポジティブな言葉", value: "anime style, (masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines), concept art, source anime, perfect proportions, perfect_eyes, dynamic pose, lustrous, fair skin, smooth anime skin, soft shading" },
-                            { zh: "正向詞", en: "Positive word 1", jp: "ポジティブな言葉1", value: "nsfw, uncensored, no censorship, unfiltered, anime style, score_9, score_8_up, masterpiece, best quality, amazing quality, breasts, shiny skin, beautiful face, beautiful eyes, flawless, fair skin, smooth anime skin, soft shading" },
+                            { zh: "正向詞1", en: "Positive word 1", jp: "ポジティブな言葉1", value: "nsfw, uncensored, no censorship, unfiltered, anime style, score_9, score_8_up, masterpiece, best quality, amazing quality, breasts, shiny skin, beautiful face, beautiful eyes, flawless, fair skin, smooth anime skin, soft shading" },
+                            { zh: "正向詞0", en: "Positive word 0", jp: "ポジティブな言葉0", value: "(masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines),concept art, source_anime, perfect proportions, perfect_eyes, dynamic pose, lustrous, fair skin, smooth anime skin, soft shading, uncensored" },
                             { zh: "反向詞0", en: "Reverse word 0", jp: "逆引き単語0", value: "bad anatomy, bad hands, missing fingers, extra fingers, fused fingers, deformed hands, malformed limbs, wrong proportions, extra limbs, mutated hands, poorly drawn hands, malformed body, distorted body, long neck, multiple arms, multiple hands, asymmetrical eyes, deformed face, distorted face, extra nipples, misplaced limbs, deformed legs, malformed feet, glitch, noisy, artifact, blurry, overexposure, oversaturated, flat shading, dull skin, monochrome skin, jpeg artifacts, watermark, signature, text, cropped body, cut off, duplicated body, cloned body" },
                             { zh: "反向詞1", en: "Reverse word 1", jp: "逆引き単語1", value: "bad quality,worst quality,worst detail,sketch,censor,glowing skin, glowing tattoos, glowing patterns, discolored skin, multicolored skin, green skin, blue skin, purple skin, extra marks, body paint, unrealistic skin, swollen belly, stomach bulge, nipple rings, nipple decorations" },
                             { zh: "反向詞2", en: "Reverse word 2", jp: "逆引き単語2", value: "bad quality, worst quality, worst detail, lowres, sketch, censor, extra hands, extra fingers, missing fingers, extra digit, fewer digits, deformed hands, wrong proportions, bad anatomy, bad hands, bad feet, mutation, fused limbs, fused fingers, multiple hands, floating hands, disembodied hands, multiple arms, swollen belly, stomach bulge, low quality, normal quality, jpeg artifacts, blurry, text, signature, watermark, username, logos, subtitles, handwriting, lettering, ui elements, error, cropped, glowing skin, overly saturated skin, nipple rings, nipple decorations, black panties, white panties" },
@@ -1003,7 +1004,7 @@
                     {
                         subCategory: "套裝角色-暫",
                         tags: [
-                        
+
                         ]
                     },
                     {
@@ -3580,7 +3581,19 @@
                         subCategory: "常見上衣",
                         tags: [
                             { zh: "沒穿上衣", en: "topless", jp: "上半身裸", value: "topless, no shirt, bare chest" },
+                            { zh: "抹胸(類胸罩)", en: "Bandeau top", jp: "バンドゥトップ", value: "bandeau top" },
                             { zh: "抹胸", en: "tube top", jp: "チューブトップ", value: "tube top" },
+                            { zh: "長版抹胸", en: "Longline bandeau top", jp: "ロングラインバンドゥトップ", value: "longline bandeau" },
+                            { zh: "蕾絲抹胸", en: "Lace bandeau top", jp: "レースバンドゥトップ", value: "lace bandeau" },
+                            { zh: "透明抹胸", en: "Sheer bandeau top", jp: "シアーバンドゥトップ", value: "sheer bandeau" },
+                            { zh: "半透明抹胸", en: "Semi-sheer bandeau top", jp: "半透明バンドゥトップ", value: "semi sheer bandeau" },
+                            { zh: "無縫抹胸", en: "Seamless bandeau top", jp: "シームレスバンドゥトップ", value: "seamless bandeau" },
+                            { zh: "壓紋抹胸", en: "Ribbed bandeau top", jp: "リブバンドゥトップ", value: "ribbed bandeau" },
+                            { zh: "荷葉邊抹胸", en: "Ruffled bandeau top", jp: "フリルバンドゥトップ", value: "ruffled bandeau" },
+                            { zh: "皮革抹胸", en: "Leather bandeau top", jp: "レザーバンドゥトップ", value: "leather bandeau" },
+                            { zh: "透網抹胸", en: "Mesh bandeau top", jp: "メッシュバンドゥトップ", value: "mesh bandeau" },
+                            { zh: "緊身抹胸", en: "Tight bandeau top", jp: "タイトバンドゥトップ", value: "tight bandeau" },
+                            { zh: "極小抹胸", en: "Micro bandeau top", jp: "マイクロバンドゥトップ", value: "micro bandeau" },
                             { zh: "短版上衣", en: "crop top", jp: "クロップトップ", value: "crop top" },
                             { zh: "緊身上衣", en: "tight top", jp: "ぴったりトップス", value: "tight top" },
                             { zh: "吊帶背心", en: "camisole", jp: "キャミソール", value: "camisole" },
@@ -4360,63 +4373,116 @@
                 category: { key: "clothes (style)", zh: "服裝風格", en: "clothes (style)", jp: "服（スタイル）" },
                 groups: [
                     {
-                        subCategory: "服裝風格",
+                        subCategory: "暴露度・遮蔽程度",
                         tags: [
-
                             { zh: "幾乎沒有遮蔽", en: "almost no cover", jp: "ほぼ無覆い", value: "almost no cover" },
                             { zh: "薄透", en: "sheer", jp: "シアー", value: "sheer" },
-                            { zh: "超微型", en: "micro", jp: "マイクロ", value: "micro" },
-                            { zh: "極小", en: "tiny", jp: "極小", value: "tiny" },
-                            { zh: "極度暴露", en: "ultra revealing", jp: "超露出", value: "ultra revealing" },
-                            { zh: "細肩帶", en: "thin straps", jp: "細ストラップ", value: "thin straps" },
                             { zh: "透視", en: "see through", jp: "シースルー", value: "see through" },
                             { zh: "透明布料", en: "transparent fabric", jp: "透明生地", value: "transparent fabric" },
-                            { zh: "超緊身勒入", en: "ultra tight wedgie", jp: "超タイト食い込み", value: "ultra tight, wedgie" },
-                            { zh: "高衩勒入", en: "high-cut wedgie", jp: "ハイレグ食い込み", value: "high-cut, wedgie" },
-                            { zh: "極端勒入", en: "extreme wedgie", jp: "極端な食い込み", value: "extreme wedgie" },
-                            { zh: "衣物破損", en: "broken clothes", jp: "破れた服", value: "broken clothes" },
-                            { zh: "衣物敞開", en: "open clothes", jp: "はだけている状態", value: "open clothes" },
-                            { zh: "尺寸過大的服裝", en: "oversized clothes", jp: "ぶかぶかの服", value: "oversized clothes" },
-                            { zh: "解開的扣子", en: "unbuttoned", jp: "ボタンを外す", value: "unbuttoned" },
-                            { zh: "露肩", en: "bare shoulders", jp: "肩出し", value: "bare shoulders" },
-                            { zh: "掉肩 / 露肩", en: "off the shoulder", jp: "オフショルダー", value: "off the shoulder" },
-                            { zh: "短版", en: "cropped", jp: "クロップド", value: "cropped" },
-                            { zh: "高腰", en: "high-waisted", jp: "ハイウエスト", value: "high-waisted" },
-                            { zh: "收腰", en: "cinched waist", jp: "ウエストを絞った", value: "cinched waist" },
-                            { zh: "腰間打結", en: "tied at the waist", jp: "ウエストで結ぶ", value: "tied at the waist" },
-                            { zh: "層次穿搭", en: "layered look", jp: "レイヤードスタイル", value: "layered look" },
-                            { zh: "長袖", en: "long sleeves", jp: "長袖", value: "long sleeves" },
-                            { zh: "下襬散開 / A字裙襬", en: "flared hem", jp: "フレアヘム", value: "flared hem" },
-                            { zh: "不對稱下襬", en: "asymmetrical hem", jp: "アシンメトリーヘム", value: "asymmetrical hem" },
-                            { zh: "摺邊", en: "frilled", jp: "フリル", value: "frilled" },
-                            { zh: "吊帶", en: "suspenders", jp: "サスペンダー", value: "suspenders" },
-                            { zh: "維多利亞風格", en: "victorian", jp: "ヴィクトリア調", value: "victorian" },
-                            { zh: "絕對領域", en: "zettai ryouiki", jp: "絶対領域（ニーハイ＋あふれる太もも）", value: "zettai ryouiki" },
-                            { zh: "寬鬆", en: "loose fit", jp: "ゆるい", value: "loose fit" },
-                            { zh: "貼身", en: "tight fit", jp: "ぴったり", value: "tight fit" },
-                            { zh: "懶散風", en: "slouchy", jp: "だぼっと", value: "slouchy" },
-                            { zh: "超大件", en: "oversized", jp: "オーバーサイズ", value: "oversized" },
-                            { zh: "自然垂墜", en: "draped", jp: "ドレープ", value: "draped" },
+                            { zh: "極度暴露", en: "ultra revealing", jp: "超露出", value: "ultra revealing" },
                             { zh: "濕透", en: "wet", jp: "濡れ", value: "wet" },
                             { zh: "透明", en: "see-through", jp: "シースルー", value: "see-through" },
-                            { zh: "低腰", en: "low rise", jp: "ローライズ", value: "low rise" },
-                            { zh: "深V領", en: "deep-v neckline", jp: "深Vネックライン", value: "deep-v neckline" },
+                            { zh: "衣物敞開", en: "open clothes", jp: "はだけている状態", value: "open clothes" },
+                            { zh: "衣物破損", en: "broken clothes", jp: "破れた服", value: "broken clothes" },
+                        ]
+                    },
+                    {
+                        subCategory: "尺寸・貼合度",
+                        tags: [
+                            { zh: "超微型", en: "micro", jp: "マイクロ", value: "micro" },
+                            { zh: "極小", en: "tiny", jp: "極小", value: "tiny" },
+                            { zh: "貼身", en: "tight fit", jp: "ぴったり", value: "tight fit" },
+                            { zh: "緊身", en: "skin-tight", jp: "タイトフィット", value: "skin-tight" },
+                            { zh: "寬鬆", en: "loose fit", jp: "ゆるい", value: "loose fit" },
+                            { zh: "懶散風", en: "slouchy", jp: "だぼっと", value: "slouchy" },
+                            { zh: "超大件", en: "oversized", jp: "オーバーサイズ", value: "oversized" },
+                            { zh: "尺寸過大的服裝", en: "oversized clothes", jp: "ぶかぶかの服", value: "oversized clothes" },
+                        ]
+                    },
+                    {
+                        subCategory: "束縛・勒入類",
+                        tags: [
+                            { zh: "超緊身勒入", en: "ultra tight wedgie", jp: "超タイト食い込み", value: "ultra tight, wedgie" },
+                            { zh: "高衩勒入", en: "high-cut wedgie", jp: "ハイレグ食い込み", value: "high-cut, wedgie" },
+                            { zh: "極端勒入", en: "extreme wedgie", jp: "極端な食い込み", value: "extreme wedgie" }
+                        ]
+                    },
+                    {
+                        subCategory: "肩帶・繫帶類",
+                        tags: [
+                            { zh: "細肩帶", en: "thin straps", jp: "細ストラップ", value: "thin straps" },
+                            { zh: "吊帶", en: "suspenders", jp: "サスペンダー", value: "suspenders" },
+                            { zh: "交叉肩帶", en: "crisscross straps", jp: "クロスストラップ", value: "crisscross straps" },
                             { zh: "如繩子般的", en: "rope-like", jp: "縄のような", value: "rope like" },
                             { zh: "如細線般的", en: "thread-like", jp: "糸のような", value: "thread like" },
                             { zh: "如細帶般的", en: "string-like", jp: "ストリングのような", value: "string like" },
-                            { zh: "如極細繩般的", en: "micro-string-like", jp: "極細ストリングのような", value: "micro string like" },
-                            { zh: "地雷系", en: "jirai kei", jp: "地雷系", value: "jirai kei, " },
-                            { zh: "地雷系1", en: "jirai kei 1", jp: "地雷系1", value: "jirai kei, mental health fashion, girly emo style" },
-                            { zh: "地雷系女友", en: "jirai kei girlfriend", jp: "地雷系彼女", value: "jirai kei girlfriend" },
-                            { zh: "半戴帽子", en: "half hood up", jp: "半分被ったフード", value: "half hood up" },
-                            { zh: "帽子遮臉", en: "hood covering face", jp: "顔を覆うフード", value: "hood covering face" },
-                            { zh: "戴上帽子", en: "hood up", jp: "フードを被った", value: "hood up" },
-                            { zh: "帽子放下", en: "hood down", jp: "フードを下ろす", value: "hood down" },
+                            { zh: "如極細繩般的", en: "micro-string-like", jp: "極細ストリングのような", value: "micro string like" }
+                        ]
+                    },
+                    {
+                        subCategory: "領口・胸口",
+                        tags: [
+                            { zh: "深V領", en: "deep-v neckline", jp: "深Vネックライン", value: "deep-v neckline" },
+                            { zh: "高領", en: "turtleneck", jp: "タートルネック", value: "turtleneck" },
+                            { zh: "無領", en: "no collar", jp: "ノーカラー", value: "no collar" },
+                            { zh: "立領", en: "stand collar", jp: "スタンドカラー", value: "stand collar" },
+                            { zh: "荷葉領", en: "ruffled collar", jp: "フリルカラー", value: "ruffled collar" },
+                            { zh: "蝴蝶結領", en: "bow collar", jp: "リボンカラー", value: "bow collar" },
+                            { zh: "蕾絲領", en: "lace collar", jp: "レースカラー", value: "lace collar" },
+                            { zh: "露胸口", en: "open chest", jp: "胸開き", value: "open chest" },
+                            { zh: "心形領口", en: "heart-shaped neckline", jp: "ハート型ネックライン", value: "heart-shaped neckline" },
+                            { zh: "綁帶綁胸", en: "lace-up chest", jp: "レースアップ胸元", value: "lace-up chest" },
                             { zh: "乳袋", en: "breast pouch", jp: "バストポーチ", value: "breast pouch" },
                             { zh: "乳帳篷", en: "breast tent", jp: "バストテント", value: "breast tent" },
                             { zh: "乳簾", en: "breast curtains", jp: "バストカーテン", value: "breast curtains" },
                         ]
                     },
+                    {
+                        subCategory: "背部露出",
+                        tags: [
+                            { zh: "露背", en: "backless", jp: "背中開き", value: "backless" }
+                        ]
+                    },
+                    {
+                        subCategory: "腰・腹剪裁",
+                        tags: [
+                            { zh: "露臍", en: "bare midriff", jp: "へそ出し", value: "bare midriff" },
+                            { zh: "露腰側", en: "side cut-out waist", jp: "サイドカットアウトウエスト", value: "side cut-out waist" },
+                            { zh: "胸下剪裁", en: "underbust cut", jp: "アンダーバストカット", value: "underbust cut" },
+                            { zh: "解開的扣子", en: "unbuttoned", jp: "ボタンを外す", value: "unbuttoned" },
+                        ]
+                    },
+                    {
+                        subCategory: "下擺・裙型",
+                        tags: [
+                            { zh: "下襬散開 / A字裙襬", en: "flared hem", jp: "フレアヘム", value: "flared hem" },
+                            { zh: "不對稱下襬", en: "asymmetrical hem", jp: "アシンメトリーヘム", value: "asymmetrical hem" },
+                            { zh: "下擺開衩", en: "slit hem", jp: "スリット裾", value: "slit hem" },
+                            { zh: "極高側開衩", en: "ultra high slit", jp: "超ハイスリット", value: "ultra high slit" },
+                        ]
+                    },
+                    {
+                        subCategory: "穿搭風格",
+                        tags: [
+                            { zh: "層次穿搭", en: "layered look", jp: "レイヤードスタイル", value: "layered look" },
+                            { zh: "維多利亞風格", en: "victorian", jp: "ヴィクトリア調", value: "victorian" },
+                            { zh: "絕對領域", en: "zettai ryouiki", jp: "絶対領域（ニーハイ＋あふれる太もも）", value: "zettai ryouiki" },
+
+                            { zh: "地雷系", en: "jirai kei", jp: "地雷系", value: "jirai kei, " },
+                            { zh: "地雷系1", en: "jirai kei 1", jp: "地雷系1", value: "jirai kei, mental health fashion, girly emo style" },
+                            { zh: "地雷系女友", en: "jirai kei girlfriend", jp: "地雷系彼女", value: "jirai kei girlfriend" }
+                        ]
+                    },
+                    {
+                        subCategory: "帽子・頭罩",
+                        tags: [
+                            { zh: "半戴帽子", en: "half hood up", jp: "半分被ったフード", value: "half hood up" },
+                            { zh: "帽子遮臉", en: "hood covering face", jp: "顔を覆うフード", value: "hood covering face" },
+                            { zh: "戴上帽子", en: "hood up", jp: "フードを被った", value: "hood up" },
+                            { zh: "帽子放下", en: "hood down", jp: "フードを下ろす", value: "hood down" }
+                        ]
+                    },
+
                     {
                         subCategory: "內衣設計",
                         tags: [
@@ -4869,7 +4935,29 @@
                             { zh: "胸甲簾", en: "breast curtains", jp: "胸当てカーテン", value: "breast curtains" },
                             { zh: "半透明裝甲板", en: "translucent plates", jp: "半透明装甲プレート", value: "translucent plates" },
                             { zh: "線圈護甲肋", en: "coil armor ribs", jp: "コイルアーマーリブ", value: "coil armor ribs" },
-                            { zh: "手臂裝甲板", en: "arm panels", jp: "アームパネル", value: "arm panels" }
+                            { zh: "手臂裝甲板", en: "arm panels", jp: "アームパネル", value: "arm panels" },
+                            { zh: "頭盔", en: "helmet", jp: "ヘルメット", value: "helmet" },
+                            { zh: "面罩", en: "faceplate", jp: "フェイスプレート", value: "faceplate" },
+                            { zh: "護目", en: "goggles", jp: "ゴーグル", value: "goggles" },
+                            { zh: "護頸", en: "neck guard", jp: "ネックガード", value: "neck guard" },
+                            { zh: "肩甲", en: "shoulder armor", jp: "ショルダーアーマー", value: "shoulder armor" },
+                            { zh: "胸甲", en: "chest plate", jp: "チェストプレート", value: "chest plate" },
+                            { zh: "護臂", en: "arm guards", jp: "アームガード", value: "arm guards" },
+                            { zh: "護肘", en: "elbow guards", jp: "エルボーガード", value: "elbow guards" },
+                            { zh: "護手", en: "gauntlets", jp: "ガントレット", value: "gauntlets" },
+                            { zh: "腰甲", en: "waist guard", jp: "ウエストガード", value: "waist guard" },
+                            { zh: "腹甲", en: "abdominal plate", jp: "アブドミナルプレート", value: "abdominal plate" },
+                            { zh: "背甲", en: "back plate", jp: "バックプレート", value: "back plate" },
+                            { zh: "護臀", en: "butt guard", jp: "ヒップガード", value: "butt guard" },
+                            { zh: "護骨盆", en: "pelvis guard", jp: "ペルビスガード", value: "pelvis guard" },
+                            { zh: "大腿護甲", en: "thigh guards", jp: "大腿ガード", value: "thigh guards" },
+                            { zh: "護膝", en: "knee guards", jp: "ニーパッド", value: "knee guards" },
+                            { zh: "小腿護甲", en: "shin guards", jp: "すねガード", value: "shin guards" },
+                            { zh: "護脛", en: "calf guards", jp: "ふくらはぎガード", value: "calf guards" },
+                            { zh: "護踝", en: "ankle guards", jp: "足首ガード", value: "ankle guards" },
+                            { zh: "護足", en: "greaves", jp: "グリーヴ", value: "greaves" },
+                            { zh: "護腳趾", en: "toe guards", jp: "つま先ガード", value: "toe guards" },
+
                         ]
                     },
                     {
@@ -5363,7 +5451,7 @@
                             { zh: "娼婦套裝", en: "prostitute outfit", jp: "娼婦服セット", value: "prostitute, corset, skirt, stockings, shoes, accessories" },
                             { zh: "性感娼婦套裝", en: "sexy prostitute outfit", jp: "セクシー娼婦服", value: "prostitute, open corset, bare chest, thong skirt, stockings, high heels, accessories" },
                             { zh: "宮廷服套裝", en: "otokoyaku", jp: "宮廷衣装", value: "otokoyaku, jacket/top, pants/skirt, cape, shoes, accessories" },
-                            
+
                             { zh: "經典小丑服裝", en: "classic clown outfit", jp: "クラシックピエロ衣装", value: "clown, clown hat, diamond blouse, diamond mini skirt, ruffle collar, striped gloves, thigh stockings" },
                             { zh: "宮廷小丑服裝", en: "court clown outfit", jp: "宮廷ピエロ衣装", value: "clown, clown hat, ornate blouse, layered skirt, gold trim, ribbon sleeves, lace boots" },
                             { zh: "暗黑小丑服裝", en: "dark clown outfit", jp: "ダークピエロ衣装", value: "clown, clown hat, gothic leather corset, black skirt, torn lace sleeves, striped stockings" },
@@ -6420,6 +6508,60 @@
                             { zh: "發光路面招牌", en: "glowing street signs", jp: "光る看板", value: "glowing street signs" },
                             { zh: "半透明街頭人影", en: "ghostly silhouettes", jp: "半透明な人影", value: "ghostly silhouettes" }
                         ]
+                    },
+                    {
+                        subCategory: "場景風格指標",
+                        tags: [
+
+                            // 世界觀 / 時代
+                            { zh: "現代", en: "modern", jp: "近代", value: "modern" },
+                            { zh: "未來", en: "future", jp: "未来", value: "futuristic" },
+                            { zh: "近未來", en: "near-future", jp: "近未来", value: "near-future" },
+                            { zh: "中世紀", en: "medieval", jp: "中世", value: "medieval" },
+                            { zh: "古代", en: "ancient", jp: "古代", value: "ancient" },
+                            { zh: "魔法奇幻", en: "fantasy", jp: "ファンタジー", value: "fantasy" },
+                            { zh: "黑暗奇幻", en: "dark fantasy", jp: "ダークファンタジー", value: "dark fantasy" },
+                            { zh: "史詩神話", en: "mythological", jp: "神話", value: "mythological" },
+                            { zh: "科幻", en: "sci-fi", jp: "SF", value: "sci-fi" },
+                            { zh: "太空宇宙", en: "space", jp: "宇宙", value: "space" },
+                            { zh: "蒸汽龐克", en: "steampunk", jp: "スチームパンク", value: "steampunk" },
+                            { zh: "賽博龐克", en: "cyberpunk", jp: "サイバーパンク", value: "cyberpunk" },
+                            { zh: "後末日", en: "post-apocalyptic", jp: "ポストアポカリプス", value: "post-apocalyptic" },
+                            { zh: "和風時代劇", en: "samurai era", jp: "和風時代", value: "samurai era" },
+                            { zh: "武俠世界", en: "wuxia", jp: "武侠", value: "wuxia" },
+                            { zh: "淘金工業時代", en: "industrial revolution", jp: "産業革命", value: "industrial revolution" },
+
+                            // 地點 / 建築風格
+                            { zh: "城市", en: "city", jp: "都市", value: "city" },
+                            { zh: "現代大都會", en: "metropolis", jp: "大都市", value: "metropolis" },
+                            { zh: "夜城", en: "neon city", jp: "ネオンシティ", value: "neon city" },
+                            { zh: "鄉村", en: "countryside", jp: "田舎", value: "countryside" },
+                            { zh: "叢林", en: "jungle", jp: "ジャングル", value: "jungle" },
+                            { zh: "沙漠", en: "desert", jp: "砂漠", value: "desert" },
+                            { zh: "雪國", en: "snowy land", jp: "雪国", value: "snowy land" },
+                            { zh: "城堡", en: "castle", jp: "城", value: "castle" },
+                            { zh: "高塔", en: "tower", jp: "塔", value: "tall tower" },
+                            { zh: "王宮", en: "royal palace", jp: "王宮", value: "royal palace" },
+                            { zh: "魔法學院", en: "magic academy", jp: "魔法学院", value: "magic academy" },
+                            { zh: "廢墟", en: "ruins", jp: "廃墟", value: "ruins" },
+                            { zh: "太空站", en: "space station", jp: "宇宙ステーション", value: "space station" },
+                            { zh: "企業地下城", en: "corporate lab", jp: "企業ラボ", value: "corporate lab" },
+                            { zh: "貴族宅邸", en: "noble mansion", jp: "貴族邸", value: "noble mansion" },
+                            { zh: "古代神殿", en: "ancient temple", jp: "古代神殿", value: "ancient temple" },
+
+                            // 文化 / 美學流派
+                            { zh: "貴族", en: "aristocratic", jp: "貴族", value: "aristocratic" },
+                            { zh: "宮廷風", en: "royal court", jp: "宮廷風", value: "royal court" },
+                            { zh: "維多利亞", en: "victorian", jp: "ヴィクトリア", value: "victorian" },
+                            { zh: "歐式古典", en: "european classical", jp: "欧風クラシック", value: "european classical" },
+                            { zh: "東洋幻想", en: "oriental fantasy", jp: "東洋ファンタジー", value: "oriental fantasy" },
+                            { zh: "哥德", en: "gothic", jp: "ゴシック", value: "gothic" },
+                            { zh: "暗黑哥德", en: "dark gothic", jp: "ダークゴシック", value: "dark gothic" },
+                            { zh: "街頭風", en: "street fashion", jp: "ストリートファッション", value: "street fashion" },
+                            { zh: "都會時尚", en: "urban fashion", jp: "アーバンファッション", value: "urban fashion" },
+                            { zh: "高科技武裝", en: "techwear", jp: "テックウェア", value: "techwear" },
+                            { zh: "太空服飾", en: "spacesuit fashion", jp: "スペーススーツ風", value: "spacesuit fashion" }
+                        ]
                     }
                 ]
             },
@@ -7011,8 +7153,10 @@
                             { zh: "踩球站姿", en: "jester standing on ball pose", jp: "玉乗り道化師ポーズ", value: "standing on ball, arms out balancing, wide stance" },
                             { zh: "手杖旋轉姿勢", en: "jester cane spin pose", jp: "ステッキ回し道化師ポーズ", value: "spinning cane, one hand pose, dynamic torso angle" },
                             { zh: "騎單車", en: "riding bicycle", jp: "ライディング自転車", value: "sitting astride, leaning forward hold, two hands gripping forward, pedaling motion, dynamic body balance, ride, riding bicycle, bicycle" },
+                            { zh: "格鬥姿勢", en: "fighting stance", jp: "格闘ポーズ", value: "fighting stance" },
                         ]
                     },
+
                     {
                         subCategory: "背面",
                         tags: [
@@ -7405,6 +7549,33 @@
                             { zh: "手持匕首", en: "holding dagger", jp: "ダガーを持つ", value: "holding dagger" },
                             { zh: "抬弓準備射擊", en: "aiming bow", jp: "弓を引く", value: "aiming bow" },
                             { zh: "重力揮斧", en: "swinging axe", jp: "斧を振る", value: "swinging axe" },
+                            { zh: "手握長劍", en: "holding longsword", jp: "長剣を持つ", value: "holding longsword" },
+                            { zh: "手握大劍", en: "holding greatsword", jp: "大剣を持つ", value: "holding greatsword" },
+                            { zh: "手握破壞劍", en: "holding buster sword", jp: "破壊剣を持つ", value: "holding buster sword" },
+                            { zh: "雙手揮大劍", en: "swinging greatsword", jp: "大剣を振る", value: "swinging greatsword" },
+                            { zh: "手握戰斧", en: "holding battle axe", jp: "戦斧を持つ", value: "holding battle axe" },
+                            { zh: "揮戰斧", en: "swinging battle axe", jp: "戦斧を振る", value: "swinging battle axe" },
+                            { zh: "手握長矛", en: "holding spear", jp: "槍を持つ", value: "holding spear" },
+                            { zh: "刺擊姿勢", en: "thrusting spear", jp: "槍で突く", value: "thrusting spear" },
+                            { zh: "手握弓", en: "holding bow", jp: "弓を持つ", value: "holding bow" },
+                            { zh: "拉弓準備射擊", en: "drawing bow", jp: "弓を引く準備", value: "drawing bow" },
+                            { zh: "手握十字弓", en: "holding crossbow", jp: "クロスボウを持つ", value: "holding crossbow" },
+                            { zh: "瞄準十字弓", en: "aiming crossbow", jp: "クロスボウを構える", value: "aiming crossbow" },
+                            { zh: "手握火槍", en: "holding musket", jp: "火縄銃を持つ", value: "holding musket" },
+                            { zh: "瞄準火槍", en: "aiming musket", jp: "火縄銃を狙う", value: "aiming musket" },
+                            { zh: "手握自動步槍", en: "holding assault rifle", jp: "自動小銃を持つ", value: "holding assault rifle" },
+                            { zh: "瞄準自動步槍", en: "aiming assault rifle", jp: "自動小銃を構える", value: "aiming assault rifle" },
+                            { zh: "手握手槍", en: "holding handgun", jp: "ハンドガンを持つ", value: "holding handgun" },
+                            { zh: "雙手舉槍", en: "two-handed gun pose", jp: "両手で銃を構える", value: "two handed gun pose" },
+                            { zh: "瞄準手槍", en: "aiming handgun", jp: "ハンドガンを構える", value: "aiming handgun" },
+
+                            // 魔法/奇幻武器
+                            { zh: "手握魔法杖", en: "holding magic staff", jp: "魔法の杖を持つ", value: "holding magic staff" },
+                            { zh: "施展魔法", en: "casting magic", jp: "魔法を使う", value: "casting magic" },
+                            { zh: "手握法杖", en: "holding wizard staff", jp: "魔法使いの杖を持つ", value: "holding wizard staff" },
+                            { zh: "手握魔法書", en: "holding spellbook", jp: "魔法書を持つ", value: "holding spellbook" },
+                            { zh: "施法手勢", en: "casting gesture", jp: "魔法のジェスチャー", value: "casting gesture" }
+
                         ]
                     },
                     {
