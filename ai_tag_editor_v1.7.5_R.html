@@ -537,10 +537,24 @@
                             { zh: "反向詞_沒男人", en: "Reverse word_no man", jp: "逆引き単語_男性不要", value: "male, man, men, boy, yaoi, bl, shota, male character, male body, penis, testicles, muscular male, male face, male hands, male legs" },
                             { zh: "反向詞_其他人", en: "Reverse word_no man", jp: "逆引き単語_他角不要", value: "extra people, background characters, additional subjects, pedestrians, crowd, random person, unwanted person, strangers, multiple characters, photobomb, second person, extra limbs, extra hands" },
                             { zh: "無修", en: "uncensored", jp: "無修正", value: "nsfw, uncensored,uncensored" },
-                            { zh: "單畫面構圖（不分格）", en: "single frame composition", jp: "単一構図", value: "single frame" },
                             { zh: "角色用", en: "characters", jp: "キャラクター用", value: "(Little girl, Loli)" },
                             { zh: "陰用", en: "characters2", jp: "まんこ用", value: "secret parts" },
                             { zh: "好身材", en: "good figure", jp: "ナイスバディ", value: "curvy, voluptuous" },
+                        ]
+                    },
+                    {
+                        subCategory: "畫格",
+                        tags: [
+                            { zh: "單畫面構圖（不分格）", en: "single frame composition", jp: "単一構図", value: "single frame" },
+                            { zh: "雙格分鏡", en: "two panel composition", jp: "2コマ構図", value: "two panels" },
+                            { zh: "三格分鏡", en: "three panel composition", jp: "3コマ構図", value: "three panels" },
+                            { zh: "左右分鏡", en: "horizontal panels", jp: "横並びコマ", value: "horizontal panels" },
+                            { zh: "上下分鏡", en: "vertical panels", jp: "縦並びコマ", value: "vertical panels" },
+                            { zh: "漫畫分鏡", en: "comic panel layout", jp: "漫画コマ割り", value: "comic panels" },
+                            { zh: "畫格邊框", en: "panel borders", jp: "コマ枠", value: "panel borders" },
+                            { zh: "動作連續分鏡", en: "sequential action panels", jp: "連続動作コマ", value: "sequential panels" },
+                            { zh: "同一角色多畫格", en: "same character multiple panels", jp: "同一キャラ複数コマ", value: "same character panels" },
+
                         ]
                     }
                 ]
@@ -628,21 +642,25 @@
                     {
                         subCategory: "遠近景",
                         tags: [
-                            { zh: "全景", en: "panorama", jp: "パノラマ", value: "panorama" },
-                            { zh: "全景視角", en: "wide shot", jp: "ワイドショット", value: "wide shot" },
-                            { zh: "中景視角", en: "medium shot", jp: "ミディアムショット", value: "medium shot" },
-                            { zh: "近景視角", en: "close-up", jp: "クローズアップ", value: "close-up" },
-                            { zh: "極近景", en: "extreme close-up", jp: "極端なクローズアップ", value: "extreme close-up" },
-                            { zh: "局部特寫", en: "detail focus", jp: "ディテールフォーカス", value: "detail focus" },
-                            { zh: "半身視角", en: "half-body shot", jp: "半身ショット", value: "half-body shot" },
-                            { zh: "全身像", en: "full body", jp: "全身", value: "full body" },
-                            { zh: "全身動態", en: "full body action shot", jp: "全身アクションショット", value: "full body action shot" },
-                            { zh: "後方全身", en: "full body from back", jp: "後方全身", value: "full body from back" },
-                            { zh: "後方半身", en: "half-body from back", jp: "後方半身", value: "half-body from back" },
-                            { zh: "上半身", en: "upper body", jp: "胸から頭まで", value: "upper body" },
-                            { zh: "肖像", en: "portrait", jp: "主に顔、たまに胸までのアップ", value: "portrait" },
+                            { zh: "全景", en: "panorama view", jp: "パノラマビュー", value: "panorama" },
+                            { zh: "廣角遠景", en: "wide shot", jp: "ワイドショット", value: "wide shot" },
+                            { zh: "遠景", en: "long shot", jp: "ロングショット", value: "long shot" },
+                            { zh: "中遠景", en: "medium long shot", jp: "ミディアムロングショット", value: "medium long shot" },
+                            { zh: "中景", en: "medium shot", jp: "ミディアムショット", value: "medium shot" },
+                            { zh: "近景", en: "near shot", jp: "近景ショット", value: "near shot" },
+                            { zh: "特寫", en: "close up", jp: "クローズアップ", value: "close up" },
+                            { zh: "極近特寫", en: "extreme close up", jp: "極端なクローズアップ", value: "extreme close up" },
+                            { zh: "局部特寫", en: "detail shot", jp: "ディテールショット", value: "detail shot" },
+                            { zh: "肖像構圖", en: "portrait shot", jp: "ポートレートショット", value: "portrait" },
+                            { zh: "上半身構圖", en: "upper body shot", jp: "上半身ショット", value: "upper body" },
+                            { zh: "半身構圖", en: "half body shot", jp: "半身ショット", value: "half body" },
+                            { zh: "全身構圖", en: "full body shot", jp: "全身ショット", value: "full body" },
+                            { zh: "全身動態構圖", en: "full body action shot", jp: "全身アクションショット", value: "full body action" },
+                            { zh: "後方全身構圖", en: "full body from behind", jp: "後方全身", value: "from behind full body" },
+                            { zh: "後方半身構圖", en: "half body from behind", jp: "後方半身", value: "from behind half body" },
                         ]
-                    }, {
+                    },
+                    {
                         subCategory: "聚焦 / 特寫",
                         tags: [
                             // --- 視角基礎 ---
@@ -687,7 +705,9 @@
                             { zh: "聚焦女性", en: "female focus", jp: "女性に焦点", value: "female focus" },
                             { zh: "聚焦男性", en: "male focus", jp: "男性に焦点", value: "male focus" },
                             { zh: "聚焦人類", en: "human focus", jp: "人間に焦点", value: "human focus" },
-                            { zh: "聚焦一人", en: "solo focus", jp: "他のキャラクターが存在しても主な焦点は一人", value: "solo focus" }
+                            { zh: "聚焦一人", en: "solo focus", jp: "他のキャラクターが存在しても主な焦点は一人", value: "solo focus" },
+                            { zh: "剖面圖", en: "cross section", jp: "断面図", value: "cross section" },
+
                         ]
                     },
                     {
@@ -8459,7 +8479,22 @@
                             { zh: "繩索綑綁", en: "rope bondage", jp: "縄による拘束", value: "rope bondage" },
                             { zh: "綁住雙腿", en: "legs tied", jp: "足を縛られた", value: "legs tied" },
                             { zh: "固定拘束", en: "restrained", jp: "拘束されている", value: "restrained" },
-                            { zh: "戴上嘴套/堵住嘴", en: "muzzled/gagged", jp: "口輪/猿轡", value: "muzzled/gagged" }
+                            { zh: "戴上嘴套/堵住嘴", en: "muzzled/gagged", jp: "口輪/猿轡", value: "muzzled/gagged" },
+                            { zh: "地面纏鬥", en: "ground grappling", jp: "グラウンドの組み合い", value: "ground grappling" },
+                            { zh: "地面壓制", en: "ground pin", jp: "グラウンド押さえ込み", value: "ground pin" },
+                            { zh: "騎乘壓制", en: "mounted position", jp: "マウントポジション", value: "mounted position" },
+                            { zh: "側壓制", en: "side control", jp: "サイドコントロール", value: "side control" },
+                            { zh: "翻滾纏鬥", en: "rolling struggle", jp: "転がるもみ合い", value: "rolling struggle" },
+                            { zh: "鎖喉", en: "choke hold", jp: "チョークホールド", value: "choke hold" },
+                            { zh: "關節技", en: "joint lock", jp: "関節技", value: "joint lock" },
+                            { zh: "壓在地面", en: "pressed to ground", jp: "地面に押し倒す", value: "pressed to ground" },
+                            { zh: "身體密着壓制", en: "body pressing down", jp: "体を密着させて押さえる", value: "body pressing down" },
+                            { zh: "胸部貼壓", en: "chest pressing", jp: "胸を押し付ける", value: "chest pressing" },
+                            { zh: "貼身纏住", en: "clinging grapple", jp: "密着して絡みつく", value: "clinging grapple" },
+                            { zh: "跨坐壓制", en: "straddling opponent", jp: "相手に跨る", value: "straddling opponent" },
+                            { zh: "腿部纏繞", en: "leg entanglement", jp: "脚を絡める", value: "leg entanglement" },
+                            { zh: "被壓在下方", en: "pinned underneath", jp: "下敷きにされる", value: "pinned underneath" },
+                            { zh: "壓制中掙扎", en: "struggling under pressure", jp: "押さえ込まれてもがく", value: "struggling under pressure" },
                         ]
                     },
                     {
