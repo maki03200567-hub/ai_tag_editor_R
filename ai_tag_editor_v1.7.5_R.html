@@ -4706,6 +4706,8 @@
                     {
                         subCategory: "現實職業",
                         tags: [
+                            { zh: "學生", en: "student", jp: "学生", value: "student" },
+                            { zh: "女學生", en: "schoolgirl", jp: "女子学生", value: "schoolgirl" },
                             { zh: "護士", en: "nurse", jp: "看護師", value: "nurse" },
                             { zh: "醫生", en: "doctor", jp: "医者", value: "doctor" },
                             { zh: "消防員", en: "firefighter", jp: "消防士", value: "firefighter" },
@@ -4719,7 +4721,6 @@
                             { zh: "科學家", en: "scientist", jp: "科学者", value: "scientist" },
                             { zh: "研究員", en: "researcher", jp: "研究者", value: "researcher" },
                             { zh: "教師", en: "teacher", jp: "教師", value: "teacher" },
-                            { zh: "學生", en: "student", jp: "学生", value: "student" },
                             { zh: "畫家", en: "painter", jp: "画家", value: "painter" },
                             { zh: "攝影師", en: "photographer", jp: "写真家", value: "photographer" },
                             { zh: "音樂家", en: "musician", jp: "音楽家", value: "musician" },
@@ -7221,10 +7222,8 @@
                             { zh: "撿東西", en: "picking up item", jp: "物を拾う", value: "picking up item" },
                             { zh: "跌倒", en: "falling", jp: "転倒", value: "falling" },
                             { zh: "仰拱", en: "arched back", jp: "仰け反り", value: "arched back" },
-                            { zh: "格鬥姿勢", en: "fighting stance", jp: "格闘ポーズ", value: "fighting stance" },
-                            { zh: "拔刀姿勢", en: "battoujutsu stance", jp: "剣士スタイル", value: "battoujutsu stance" }
                         ]
-                    },
+                    },                    
                     {
                         subCategory: "坐姿",
                         tags: [
@@ -7235,26 +7234,40 @@
                             { zh: "靠坐 / 躺靠", en: "reclining", jp: "くつろぐ", value: "reclining" },
                             { zh: "正坐", en: "seiza", jp: "正座", value: "seiza" },
                             { zh: "鴨子坐", en: "wariza", jp: "女の子座り", value: "wariza" },
-                            { zh: "盤腿坐", en: "indian style", jp: "胡坐", value: "indian style" },
+                            { zh: "盤腿坐（胡坐）", en: "indian style", jp: "胡坐", value: "indian style" },
+                            { zh: "盤腿坐", en: "cross-legged sitting", jp: "あぐら座り", value: "cross-legged sitting" },
                             { zh: "坐姿跨坐", en: "sit astride", jp: "馬乗り", value: "sit astride" },
                             { zh: "坐在某物上", en: "sitting on", jp: "～の上に座る", value: "sitting on" },
                             { zh: "坐在其他人身上", en: "sitting on another", jp: "他者の上に座る", value: "sitting on another" },
                             { zh: "坐在腿上", en: "sitting on lap", jp: "膝の上に座る", value: "sitting on lap" },
-                            { zh: "坐在大腿上", en: "sitting on thigh", jp: "太ももの上に座る", value: "sitting on thigh" },
-                            { zh: "I字平衡", en: "standing split", jp: "I字バランス", value: "standing split", },
-
+                            { zh: "坐在大腿上", en: "sitting on thigh", jp: "太ももの上に座る", value: "sitting on thigh" }
                         ]
                     },
                     {
-                        subCategory: "跪 / 蹲姿",
+                        subCategory: "跪姿",
                         tags: [
-                            { zh: "跪姿", en: "kneeling", jp: "跪く", value: "kneeling" },
-                            { zh: "單膝跪", en: "one knee kneel", jp: "片膝立ち", value: "one knee kneel" },
-                            { zh: "雙膝跪地", en: "kneeling on both knees", jp: "両膝をつく", value: "kneeling on both knees" },
-                            { zh: "半跪", en: "half kneeling", jp: "ハーフニーリング", value: "half kneeling" },
+                            { zh: "下跪 / 跪姿", en: "kneeling", jp: "跪く", value: "kneeling" },
+                            { zh: "膝上跪", en: "kneeling on knees", jp: "膝立ち", value: "kneeling on knees" },
+                            { zh: "單腳膝跪", en: "one knee kneel", jp: "片膝立ち", value: "one knee kneel" },
+                            { zh: "單膝跪", en: "kneeling on one knee", jp: "片膝をつく", value: "kneeling on one knee" },
+                            { zh: "半跪姿勢", en: "half kneeling", jp: "ハーフニーリングポーズ", value: "half kneeling" },
+                            { zh: "跪姿張腿", en: "kneeling spread legs", jp: "跪いて脚を広げる", value: "kneeling spread legs" },
                             { zh: "跪地俯身", en: "kneeling and bowing", jp: "跪いて上体を倒す", value: "kneeling and bowing" },
-                            { zh: "四肢著地", en: "on all fours", jp: "四つん這い", value: "on all fours" },
                             { zh: "跪地前傾", en: "kneeling forward lean", jp: "跪いて前かがみ", value: "kneeling forward lean" },
+                            { zh: "跪地祈禱", en: "kneeling and praying", jp: "跪く + 祈る", value: "kneeling, praying" },
+                            { zh: "跪姿施法", en: "kneeling casting spell", jp: "跪く + 魔法を唱える", value: "kneeling, casting spell" },
+                            { zh: "單膝跪舉杖", en: "kneeling with staff", jp: "片膝をつく + 杖を持つ", value: "kneeling on one knee, holding staff" },
+                            { zh: "單膝跪劍士姿勢", en: "kneeling sword pose", jp: "片膝をつく + 剣を持つ", value: "kneeling on one knee, holding sword" },
+                            { zh: "單膝跪回頭", en: "kneeling looking back", jp: "片膝をつく + 振り向く", value: "kneeling on one knee, looking back" },
+                            { zh: "單膝跪伸手", en: "kneeling reaching forward", jp: "片膝をつく + 手を伸ばす", value: "kneeling on one knee, reaching forward" },
+                            { zh: "單膝跪仰視", en: "kneeling looking up", jp: "片膝をつく + 見上げる", value: "kneeling on one knee, looking up" }
+                        ]
+                    },
+                    {
+                        subCategory: "蹲 / 四肢著地",
+                        tags: [
+                            { zh: "四肢著地", en: "all fours", jp: "四つん這い", value: "all fours" },
+                            { zh: "四肢著地", en: "on all fours", jp: "四つん這い", value: "on all fours" },
                             { zh: "蹲姿", en: "squatting", jp: "しゃがむ", value: "squatting" },
                             { zh: "低蹲", en: "low squat", jp: "低くしゃがむ", value: "low squat" },
                             { zh: "半蹲", en: "half squat", jp: "ハーフスクワット", value: "half squat" },
@@ -7286,8 +7299,17 @@
                         ]
                     },
                     {
-                        subCategory: "動態",
+                        subCategory: "戰鬥 / 動態",
                         tags: [
+                            { zh: "戰鬥", en: "fight", jp: "戦い", value: "fight" },
+                            { zh: "戰鬥姿勢", en: "fighting stance", jp: "ファイティングポーズ", value: "fighting stance" },
+                            { zh: "格鬥姿勢", en: "fighting stance", jp: "格闘ポーズ", value: "fighting stance" },
+                            { zh: "動態造型", en: "action pose", jp: "アクションポーズ", value: "action pose" },
+                            { zh: "操縱元素", en: "elemental manipulation", jp: "元素操作", value: "elemental manipulation" },
+                            { zh: "運動", en: "exercise", jp: "運動", value: "exercise" },
+                            { zh: "球類運動", en: "sport", jp: "スポーツ", value: "sport" },
+                            { zh: "鍛鍊(訓練)", en: "workout", jp: "トレーニング", value: "workout" },
+                            { zh: "跳舞", en: "dancing", jp: "ダンス", value: "dancing" },
                             { zh: "伸展", en: "stretching", jp: "ストレッチ", value: "stretching" },
                             { zh: "伏地挺身", en: "push-up", jp: "腕立て伏せ", value: "push-up" },
                             { zh: "仰臥起坐", en: "sit-up", jp: "腹筋運動", value: "sit-up" },
@@ -7311,10 +7333,8 @@
                             { zh: "踩球站姿", en: "jester standing on ball pose", jp: "玉乗り道化師ポーズ", value: "standing on ball, arms out balancing, wide stance" },
                             { zh: "手杖旋轉姿勢", en: "jester cane spin pose", jp: "ステッキ回し道化師ポーズ", value: "spinning cane, one hand pose, dynamic torso angle" },
                             { zh: "騎單車", en: "riding bicycle", jp: "ライディング自転車", value: "sitting astride, leaning forward hold, two hands gripping forward, pedaling motion, dynamic body balance, ride, riding bicycle, bicycle" },
-                            { zh: "格鬥姿勢", en: "fighting stance", jp: "格闘ポーズ", value: "fighting stance" },
                         ]
                     },
-
                     {
                         subCategory: "背面",
                         tags: [
@@ -7904,29 +7924,8 @@
                             { zh: "雙腳張開(站立)", en: "legs apart", jp: "立った状態で少し開脚", value: "legs apart" },
                             { zh: "開腿站立", en: "stand, open legs", jp: "足を広げる", value: "stand, open legs" },
                             { zh: "踮腳尖", en: "tiptoe", jp: "つま先立ち", value: "tiptoe" },
-                            { zh: "單腳尖立", en: "stand on one toe", jp: "片足つま先立ち", value: "stand on one toe" }
-                        ]
-                    },
-                    {
-                        subCategory: "坐姿 / 跪姿",
-                        tags: [
-                            { zh: "跪坐", en: "seiza", jp: "正座", value: "seiza" },
-                            { zh: "膝上跪", en: "kneeling on knees", jp: "膝立ち", value: "kneeling on knees" },
-                            { zh: "單腳膝跪", en: "one knee kneel", jp: "片膝立ち", value: "one knee kneel" },
-                            { zh: "下跪", en: "kneeling", jp: "ひざまずく", value: "kneeling" },
-                            { zh: "四肢著地", en: "all fours", jp: "四つん這い", value: "all fours" },
-                            { zh: "跪姿張腿", en: "kneeling spread legs", jp: "跪いて脚を広げる", value: "kneeling spread legs" },
-                            { zh: "盤腿坐", en: "cross-legged sitting", jp: "あぐら座り", value: "cross-legged sitting" },
-                            { zh: "跪姿", en: "Kneeling", jp: "跪く", value: "kneeling" },
-                            { zh: "單膝跪", en: "Kneeling on one knee", jp: "片膝をつく", value: "kneeling on one knee" },
-                            { zh: "半跪姿勢", en: "half kneeling", jp: "ハーフニーリングポーズ", value: "half kneeling" },
-                            { zh: "跪地祈禱", en: "kneeling and praying", jp: "跪く + 祈る", value: "kneeling, praying" },
-                            { zh: "單膝跪舉杖", en: "kneeling with staff", jp: "片膝をつく + 杖を持つ", value: "kneeling on one knee, holding staff" },
-                            { zh: "單膝跪劍士姿勢", en: "kneeling sword pose", jp: "片膝をつく + 剣を持つ", value: "kneeling on one knee, holding sword" },
-                            { zh: "跪姿施法", en: "kneeling casting spell", jp: "跪く + 魔法を唱える", value: "kneeling, casting spell" },
-                            { zh: "單膝跪回頭", en: "kneeling looking back", jp: "片膝をつく + 振り向く", value: "kneeling on one knee, looking back" },
-                            { zh: "單膝跪伸手", en: "kneeling reaching forward", jp: "片膝をつく + 手を伸ばす", value: "kneeling on one knee, reaching forward" },
-                            { zh: "單膝跪仰視", en: "kneeling looking up", jp: "片膝をつく + 見上げる", value: "kneeling on one knee, looking up" }
+                            { zh: "單腳尖立", en: "stand on one toe", jp: "片足つま先立ち", value: "stand on one toe" },
+                            { zh: "I字平衡", en: "standing split", jp: "I字バランス", value: "standing split" }
                         ]
                     },
                     {
@@ -8014,6 +8013,7 @@
                             { zh: "腳翹向側面", en: "legs sideways up", jp: "脚を横に上げる", value: "legs sideways up" }
                         ]
                     },
+
                     {
                         subCategory: "戰鬥 / 動態動作",
                         tags: [
@@ -8111,16 +8111,40 @@
                         ]
                     },
                     {
-                        subCategory: "戰鬥 / 動態",
+                        subCategory: "失平衡與跌倒狀態",
                         tags: [
-                            { zh: "戰鬥", en: "fight", jp: "戦い", value: "fight" },
-                            { zh: "戰鬥姿勢", en: "fighting stance", jp: "ファイティングポーズ", value: "fighting stance" },
-                            { zh: "動態造型", en: "action pose", jp: "アクションポーズ", value: "action pose" },
-                            { zh: "操縱元素", en: "elemental manipulation", jp: "元素操作", value: "elemental manipulation" },
-                            { zh: "運動", en: "exercise", jp: "運動", value: "exercise" },
-                            { zh: "球類運動", en: "sport", jp: "スポーツ", value: "sport" },
-                            { zh: "鍛鍊(訓練)", en: "workout", jp: "トレーニング", value: "workout" },
-                            { zh: "跳舞", en: "dancing", jp: "ダンス", value: "dancing" },
+                            // ─────────────
+                            // 核心狀態（最穩定）
+                            // ─────────────
+                            { zh: "失去平衡", en: "losing balance", jp: "バランスを崩す", value: "losing balance" },
+                            { zh: "站立不穩", en: "unsteady stance", jp: "足元が不安定", value: "unsteady stance" },
+                            { zh: "身體傾斜", en: "body tilted", jp: "体が傾いている", value: "body tilted" },
+                            { zh: "重心偏移", en: "shifted center of gravity", jp: "重心がずれている", value: "shifted center of gravity" },
+                            { zh: "快要跌倒", en: "about to fall", jp: "転びそう", value: "about to fall" },
+
+                            // ─────────────
+                            // 原因型（輕微、日常）
+                            // ─────────────
+                            { zh: "腳滑", en: "slipping", jp: "足を滑らせる", value: "slipping" },
+                            { zh: "踩空", en: "misstep", jp: "踏み外す", value: "misstep" },
+                            { zh: "被絆倒", en: "tripping", jp: "つまずく", value: "tripping" },
+                            { zh: "地面濕滑", en: "slippery floor", jp: "滑りやすい床", value: "slippery floor" },
+                            { zh: "姿勢不穩", en: "poor posture balance", jp: "姿勢が不安定", value: "poor posture balance" },
+
+                            // ─────────────
+                            // 跌倒進行中（很關鍵）
+                            // ─────────────
+                            { zh: "正在跌倒", en: "falling", jp: "転倒中", value: "falling" },
+                            { zh: "向前跌倒", en: "falling forward", jp: "前に倒れる", value: "falling forward" },
+                            { zh: "向後跌倒", en: "falling backward", jp: "後ろに倒れる", value: "falling backward" },
+                            { zh: "側向跌倒", en: "falling sideways", jp: "横に倒れる", value: "falling sideways" },
+
+                            // ─────────────
+                            // 已跌倒（靜態結果）
+                            // ─────────────
+                            { zh: "跌坐在地", en: "fallen sitting", jp: "尻もちをつく", value: "fallen sitting" },
+                            { zh: "跌倒在地", en: "collapsed on the ground", jp: "地面に倒れた", value: "collapsed on the ground" },
+                            { zh: "跪倒", en: "collapsed to knees", jp: "膝をつく", value: "collapsed to knees" },
                         ]
                     },
                     {
