@@ -832,6 +832,8 @@
                             { zh: "1 VS 3", en: "trio", jp: "トリオ", value: "trio" },
                             { zh: "男有X人", en: "xboy", jp: "男x人（xを数字に）", value: "xboy" },
                             { zh: "女有X人", en: "xgirl", jp: "女x人（xを数字に）", value: "xgirl" },
+                            { zh: "單一角色", en: "single character", jp: "単一キャラ", value: "single character" },
+                            { zh: "只有一個人", en: "only one person", jp: "一人だけ", value: "only one person" },
                         ]
                     },
                     {
@@ -2200,6 +2202,14 @@
                         subCategory: "髮質 / 捲度",
                         tags: [
                             { zh: "直髮", en: "straight hair", jp: "ストレートヘア", value: "straight hair" },
+                            { zh: "極直髮", en: "pin-straight hair", jp: "超ストレートヘア", value: "pin-straight hair" },
+                            { zh: "柔順直髮", en: "silky straight hair", jp: "さらさらストレート", value: "silky straight hair" },
+                            { zh: "自然直髮", en: "natural straight hair", jp: "自然なストレートヘア", value: "natural straight hair" },
+                            { zh: "微彎直髮", en: "slightly wavy straight hair", jp: "わずかにうねる直髪", value: "slightly wavy straight hair" },
+                            { zh: "順貼直髮", en: "flat straight hair", jp: "ぺたんこストレート", value: "flat straight hair" },
+                            { zh: "蓬直髮", en: "voluminous straight hair", jp: "ボリュームのある直髪", value: "voluminous straight hair" },
+                            { zh: "厚重直髮", en: "thick straight hair", jp: "重めストレート", value: "thick straight hair" },
+                            { zh: "細軟直髮", en: "fine straight hair", jp: "細く柔らかい直髪", value: "fine straight hair" },
                             { zh: "自然捲", en: "natural curls", jp: "天然パーマ", value: "natural curls" },
                             { zh: "鬈髮", en: "curly hair", jp: "カーリーヘア", value: "curly hair" },
                             { zh: "垂落鬆捲", en: "loose curls", jp: "ゆるふわカール", value: "loose curls" },
@@ -2208,6 +2218,16 @@
                             { zh: "蓬鬆捲髮", en: "wavy hair", jp: "ウェーブヘア", value: "wavy hair" },
                             { zh: "長波浪髮", en: "long wavy hair", jp: "ロングウェーブヘア", value: "long wavy hair" },
                             { zh: "鬆亂波浪髮", en: "messy wavy hair", jp: "ゆるウェーブヘア", value: "messy wavy hair" }
+                        ]
+                    },
+                    {
+                        subCategory: "髮型輪廓",
+                        tags: [
+                            { zh: "齊切髮型", en: "blunt cut hair", jp: "ぱっつんカット", value: "blunt cut hair" },
+                            { zh: "順直長髮", en: "sleek long hair", jp: "ストレートロング", value: "sleek long hair" },
+                            { zh: "自然垂落長髮", en: "naturally flowing long hair", jp: "自然に垂れた長髪", value: "naturally flowing long hair" },
+                            { zh: "貼頭直髮", en: "straight hair hugging head", jp: "頭に沿う直髪", value: "straight hair hugging head" },
+                            { zh: "輕層直髮", en: "light layered straight hair", jp: "軽めレイヤーストレート", value: "light layered straight hair" }
                         ]
                     },
                     {
@@ -2327,16 +2347,6 @@
                             { zh: "雙馬尾末端電鑽", en: "twin tails with drill curled ends", jp: "ツインテ先ドリル", value: "twin tails drill ends" },
                             { zh: "側馬尾末端電鑽", en: "side ponytail with drill tips", jp: "サイドテ先縦ロール", value: "side ponytail drill ends" },
                             { zh: "辮子髮尾電鑽", en: "braid with drill curled end", jp: "三つ編み先ドリル", value: "braid drill end" },
-                        ]
-                    },
-                    {
-                        subCategory: "剃削 / 背頭",
-                        tags: [
-                            { zh: "側削髮型", en: "shaved sides", jp: "ツーブロック", value: "shaved sides" },
-                            { zh: "短側削", en: "short shaved sides", jp: "短いツーブロック", value: "short shaved sides" },
-                            { zh: "後頸削短", en: "nape undercut", jp: "うなじ刈り上げ", value: "nape undercut" },
-                            { zh: "背頭", en: "slicked back hair", jp: "オールバック", value: "slicked back hair" },
-                            { zh: "剃線造型", en: "hairline design", jp: "ラインデザイン", value: "hairline design" }
                         ]
                     },
                     {
@@ -6926,6 +6936,20 @@
                     {
                         subCategory: "地上散亂物品",
                         tags: [
+                            { zh: "凌亂的房間", en: "messy room", jp: "散らかった部屋", value: "messy room" },
+                            { zh: "有人生活過的房間", en: "lived in room", jp: "生活感のある部屋", value: "lived in room" },
+                            { zh: "雜亂居住空間", en: "cluttered living space", jp: "雑然とした生活空間", value: "cluttered room" },
+                            { zh: "不整理的房間", en: "untidy room", jp: "片付いていない部屋", value: "untidy room" },
+                            { zh: "衣服散落地板", en: "clothes scattered on floor", jp: "床に散らばった服", value: "clothes on floor" },
+                            { zh: "隨手亂丟的衣服", en: "casually tossed clothes", jp: "無造作に置かれた服", value: "tossed clothes" },
+                            { zh: "換下來的衣服", en: "discarded clothes", jp: "脱ぎ捨てた服", value: "discarded clothes" },
+                            { zh: "衣物堆積", en: "pile of clothes", jp: "服の山", value: "clothes pile" },
+                            { zh: "混在衣物中的內衣", en: "lingerie mixed with clothes", jp: "服に混ざった下着", value: "lingerie mixed clothes" },
+                            { zh: "生活中可見的內衣", en: "visible everyday lingerie", jp: "生活感のある下着", value: "visible lingerie" },
+                            { zh: "隨意放置的貼身衣物", en: "casually placed underwear", jp: "無造作に置かれた下着", value: "casual underwear" },
+                            { zh: "打開的衣櫃", en: "open wardrobe", jp: "開いたクローゼット", value: "open wardrobe" },
+                            { zh: "打開的抽屜", en: "open drawers", jp: "開いた引き出し", value: "open drawers" },
+                            { zh: "未收拾的洗衣籃", en: "unfolded laundry basket", jp: "片付けていない洗濯かご", value: "laundry basket" },
                             { zh: "散亂的罐子", en: "scattered cans", jp: "散らばった缶", value: "scattered cans" },
                             { zh: "散亂的瓶子", en: "scattered bottles", jp: "散らばった瓶", value: "scattered bottles" },
                             { zh: "散亂的衣服", en: "scattered clothes", jp: "散らばった服", value: "scattered clothes" },
@@ -6947,7 +6971,7 @@
                             { zh: "地上散亂的衣物與垃圾", en: "clothes and trash scattered on floor", jp: "床に散らばった服とゴミ", value: "floor scattered trash clothes" },
                             { zh: "散亂的成人玩具", en: "scattered adult toys", jp: "散らばったアダルトグッズ", value: "scattered adult toys" },
                             { zh: "地上散亂的情趣用品", en: "adult items scattered on floor", jp: "床に散らばった大人のおもちゃ", value: "floor scattered adult toys" },
-                            { zh: "床邊散亂的情趣物品", en: "adult goods scattered beside bed", jp: "ベッドの横に散らばったアダルトグッズ", value: "bedside scattered adult items" }
+                            { zh: "床邊散亂的情趣物品", en: "adult goods scattered beside bed", jp: "ベッドの横に散らばったアダルトグッズ", value: "bedside scattered adult items" },
                         ]
                     },
                     {
@@ -7242,20 +7266,47 @@
                     {
                         subCategory: "基本姿勢",
                         tags: [
-                            { zh: "站立", en: "standing", jp: "立っている", value: "standing" },
-                            { zh: "自然站姿", en: "contrapposto", jp: "ナチュラルな立ち姿", value: "contrapposto" },
+                            { zh: "直立站姿", en: "upright standing", jp: "直立姿勢", value: "upright standing" },
+                            { zh: "放鬆站姿", en: "relaxed standing", jp: "リラックスした立ち姿", value: "relaxed standing" },
+                            { zh: "挺胸站立", en: "chest out standing", jp: "胸を張って立つ", value: "chest out standing" },
+                            { zh: "駝背站姿", en: "slouched standing", jp: "猫背で立つ", value: "slouched standing" },
+                            { zh: "雙腳併攏站立", en: "standing with legs together", jp: "脚を揃えて立つ", value: "legs together standing" },
+                            { zh: "雙腳微開站立", en: "standing with legs apart", jp: "足を少し開いて立つ", value: "legs apart standing" },
+                            { zh: "內八站姿", en: "pigeon toed standing", jp: "内股で立つ", value: "pigeon toed standing" },
+                            { zh: "膝併攏站立", en: "knees together standing", jp: "膝を揃えて立つ", value: "knees together standing" },
                             { zh: "站立（片足重心）", en: "contrapposto (one leg weight)", jp: "片足に重心", value: "contrapposto one leg" },
                             { zh: "行走", en: "walking", jp: "歩き", value: "walking" },
+                            { zh: "慢步行走", en: "slow walking", jp: "ゆっくり歩く", value: "slow walking" },
+                            { zh: "自然行走", en: "casual walking", jp: "自然に歩く", value: "casual walking" },
+                            { zh: "小步行走", en: "small steps walking", jp: "小さく歩く", value: "small steps walking" },
                             { zh: "奔跑", en: "running", jp: "走っている姿", value: "running" },
                             { zh: "少女跑", en: "girly running", jp: "女の子走り", value: "girly running" },
                             { zh: "逃跑", en: "fleeing", jp: "逃げる", value: "fleeing" },
+                            { zh: "輕快奔跑", en: "light running", jp: "軽やかに走る", value: "light running" },
+                            { zh: "全力奔跑", en: "full sprint", jp: "全力で走る", value: "full sprint" },
+                            { zh: "慌張奔跑", en: "panicked running", jp: "慌てて走る", value: "panicked running" },
                             { zh: "跳躍", en: "jumping", jp: "ジャンプ", value: "jumping" },
+                            { zh: "原地跳躍", en: "jumping in place", jp: "その場でジャンプ", value: "jumping in place" },
+                            { zh: "輕跳", en: "light jump", jp: "軽くジャンプ", value: "light jump" },
+                            { zh: "向上跳躍", en: "jumping upward", jp: "上にジャンプ", value: "jumping upward" },
+                            { zh: "跳躍滯空", en: "mid air jump", jp: "空中にいるジャンプ", value: "mid air jump" },
                             { zh: "前傾", en: "leaning forward", jp: "前かがみ", value: "leaning forward" },
                             { zh: "彎腰", en: "bending over", jp: "前かがみ", value: "bending over" },
+                            { zh: "微前傾", en: "slight forward lean", jp: "軽く前かがみ", value: "slight forward lean" },
+                            { zh: "深度前傾", en: "deep forward lean", jp: "深く前かがみ", value: "deep forward lean" },
+                            { zh: "站立彎腰", en: "standing bending over", jp: "立ったまま前屈", value: "standing bending over" },
+                            { zh: "腰部前屈", en: "waist bending forward", jp: "腰から前屈", value: "waist bending forward" },
                             { zh: "彎腰拉腿", en: "bending over leg stretch", jp: "前かがみで脚を伸ばす", value: "bending over leg stretch" },
                             { zh: "撿東西", en: "picking up item", jp: "物を拾う", value: "picking up item" },
                             { zh: "跌倒", en: "falling", jp: "転倒", value: "falling" },
                             { zh: "仰拱", en: "arched back", jp: "仰け反り", value: "arched back" },
+                            { zh: "仰後", en: "leaning back", jp: "後ろに反る", value: "leaning back" },
+                            { zh: "微仰後", en: "slight backward lean", jp: "軽く後ろに反る", value: "slight backward lean" },
+                            { zh: "深度仰後", en: "deep backward arch", jp: "大きく反る", value: "deep backward arch" },
+                            { zh: "後仰伸展", en: "backward stretch", jp: "後ろに伸びる", value: "backward stretch" },
+                            { zh: "伸展動作", en: "stretching body", jp: "伸びをする", value: "stretching body" },
+                            { zh: "拱背仰後", en: "arched back lean", jp: "背中を反らす", value: "arched back lean" },
+
                         ]
                     },
                     {
@@ -7274,7 +7325,7 @@
                             { zh: "坐在某物上", en: "sitting on", jp: "～の上に座る", value: "sitting on" },
                             { zh: "坐在其他人身上", en: "sitting on another", jp: "他者の上に座る", value: "sitting on another" },
                             { zh: "坐在腿上", en: "sitting on lap", jp: "膝の上に座る", value: "sitting on lap" },
-                            { zh: "坐在大腿上", en: "sitting on thigh", jp: "太ももの上に座る", value: "sitting on thigh" },                        
+                            { zh: "坐在大腿上", en: "sitting on thigh", jp: "太ももの上に座る", value: "sitting on thigh" },
                             { zh: "跨坐", en: "straddle", jp: "跨る", value: "straddle" },
                             { zh: "乘騎", en: "ride", jp: "乗る", value: "ride" },
                         ]
