@@ -350,8 +350,9 @@
             }
 
             #undoBtn {
-    display: none;
-}
+                display: none;
+            }
+
             .template-box.show {
                 display: block;
             }
@@ -514,11 +515,11 @@
                 <button onclick="addOutput()">➕ Add Output</button>
                 <button onclick="removeLast()">➖ Remove Last</button>
             </div>
-<div class="right-buttons">
-    <button id="undoBtn" onclick="undoLast()">↩️</button>
-    <button onclick="clearAll()">🗑️ Clear All</button>
-    <button onclick="copyAll()">📋 Copy All</button>
-</div>
+            <div class="right-buttons">
+                <button id="undoBtn" onclick="undoLast()">↩️</button>
+                <button onclick="clearAll()">🗑️ Clear All</button>
+                <button onclick="copyAll()">📋 Copy All</button>
+            </div>
         </div>
     </div>
     <script>
@@ -1041,6 +1042,34 @@
                             { zh: "愛麗絲（辣妹外觀E）", en: "alice club look E", jp: "アリスクラブE", value: "platinum hair, soft bangs, medium hair, sapphire eyes" },
                         ]
                     },
+                    {
+                        subCategory: "暫",
+                        tags: [
+                            { zh: "艾歐諾", en: "Iono", jp: "ナンジャモ", value: "iono pokemon" },
+                            { zh: "多色眼睛", en: "multicolored eyes", jp: "多色の瞳", value: "multicolored eyes" },
+                            { zh: "漸層眼睛", en: "gradient eyes", jp: "グラデーションの瞳", value: "gradient eyes" },
+                            { zh: "粉紅色頭髮", en: "pink hair", jp: "ピンクの髪", value: "pink hair" },
+                            { zh: "多色頭髮", en: "multicolored hair", jp: "多色の髪", value: "multicolored hair" },
+                            { zh: "分色頭髮", en: "split color hair", jp: "ツートンヘア", value: "split color hair" },
+                            { zh: "雙色頭髮", en: "two tone hair", jp: "二色の髪", value: "two tone hair" },
+                            { zh: "非常長的頭髮", en: "very long hair", jp: "とても長い髪", value: "very long hair" },
+                            { zh: "藍色頭髮", en: "blue hair", jp: "青い髪", value: "blue hair" },
+                            { zh: "低位置雙馬尾", en: "low tied twintails", jp: "低い位置のツインテール", value: "low tied twintails" },
+                            { zh: "雙馬尾", en: "twintails", jp: "ツインテール", value: "twintails" },
+                            { zh: "髮飾", en: "hair ornament", jp: "髪飾り", value: "hair ornament" },
+
+                            { zh: "灰色 絲襪", en: "grey pantyhose", jp: "グレーのパンスト", value: "grey pantyhose" },
+                            { zh: "單腿 絲襪", en: "single leg pantyhose", jp: "片脚パンスト", value: "single leg pantyhose" },
+                            { zh: "六角形花紋", en: "hexagon print", jp: "六角形柄", value: "hexagon print" },
+                            { zh: "外套", en: "jacket", jp: "ジャケット", value: "jacket" },
+                            { zh: "黃色外套", en: "yellow jacket", jp: "黄色のジャケット", value: "yellow jacket" },
+                            { zh: "寬鬆服裝", en: "oversized clothes", jp: "オーバーサイズの服", value: "oversized clothes" },
+                            { zh: "袖子遮住手指", en: "sleeves past fingers", jp: "指先まで隠れる袖", value: "sleeves past fingers" },
+                            { zh: "袖子遮住手腕", en: "sleeves past wrists", jp: "手首を覆う袖", value: "sleeves past wrists" },
+                            { zh: "超長袖", en: "very long sleeves", jp: "とても長い袖", value: "very long sleeves" },
+                            { zh: "灰色鞋子", en: "grey footwear", jp: "グレーの靴", value: "grey footwear" },
+                        ]
+                    },
                 ]
             },
             {
@@ -1062,6 +1091,9 @@
                             { zh: "亞妮絲泳裝", en: "Anis Clothing", jp: "アニス水着", value: "eyewear on head, pink-tinted eyewear, necklace, white bikini, eyepatch bikini, side-tie bikini bottom, cleavage, yellow jacket, open jacket, off shoulder, bare shoulders, collarbone, navel, stirrup legwear" },
                             { zh: "銀狼（崩壞：星穹鐵道）", en: "Silver Wolf from Honkai Star Rail", jp: "銀狼（崩壊スターレイル）", value: "silver wolf, honkai star rail, hair ribbon, drill ponytail" },
                             { zh: "銀狼默認服裝", en: "Silver Wolf default outfit", jp: "銀狼のデフォルト衣装", value: "fingerless gloves, black shorts, cropped jacket, eyewear on head, crop top, fold over boots, thigh strap, single fishnet sock, choker" },
+                            { zh: "奇樹（外觀）", en: "Iono appearance", jp: "ナンジャモ外見", value: "iono pokemon, multicolored eyes, gradient eyes, pink hair, multicolored hair, split color hair, two tone hair, very long hair, blue hair, low tied long hair, twintails, hair ornament" },
+                            { zh: "奇樹（服裝）", en: "Iono outfit", jp: "ナンジャモ衣装", value: "grey pantyhose, single leg pantyhose, hexagon print, oversized clothes, jacket, yellow jacket, sleeves past fingers, sleeves past wrists, very long sleeves, grey footwear" },
+
                         ]
                     },
                     {
@@ -11557,27 +11589,27 @@
            output / tag selection logic
         ------------------------- */
         function pushUndoState() {
-    undoStack.push(JSON.parse(JSON.stringify(outputData)));
-    if (undoStack.length > UNDO_LIMIT) {
-        undoStack.shift();
-    }
-}
+            undoStack.push(JSON.parse(JSON.stringify(outputData)));
+            if (undoStack.length > UNDO_LIMIT) {
+                undoStack.shift();
+            }
+        }
 
-function undoLast() {
-    if (!undoStack.length) return;
+        function undoLast() {
+            if (!undoStack.length) return;
 
-    outputData = undoStack.pop();
-    outputsDiv.innerHTML = '';
+            outputData = undoStack.pop();
+            outputsDiv.innerHTML = '';
 
-    outputData.forEach((_, i) => createOutputBox(i));
+            outputData.forEach((_, i) => createOutputBox(i));
 
-    currentOutputIndex = Math.min(
-        currentOutputIndex,
-        outputData.length - 1
-    );
+            currentOutputIndex = Math.min(
+                currentOutputIndex,
+                outputData.length - 1
+            );
 
-    updateOutputHighlight();
-}
+            updateOutputHighlight();
+        }
 
         function autoAdjustWeight(value, delta) {
             const found = outputData.findIndex(arr => arr.some(t => t.value === value || (typeof t.value === 'string' && t.value.startsWith(`${value}:`))));
@@ -11590,25 +11622,25 @@ function undoLast() {
             return false;
         }
 
-function adjustTagWeight(value, delta) {
-    pushUndoState();
+        function adjustTagWeight(value, delta) {
+            pushUndoState();
 
-    const tag = outputData[currentOutputIndex]
-        .find(t => t.value === value || 
-              (typeof t.value === 'string' && t.value.startsWith(`${value}:`)));
+            const tag = outputData[currentOutputIndex]
+                .find(t => t.value === value ||
+                    (typeof t.value === 'string' && t.value.startsWith(`${value}:`)));
 
-    if (!tag) return;
+            if (!tag) return;
 
-    const currentWeight = tag.weight || 1.0;
-    const newWeight = Math.max(
-        0.1,
-        Math.min(2.0, +(currentWeight + delta).toFixed(1))
-    );
+            const currentWeight = tag.weight || 1.0;
+            const newWeight = Math.max(
+                0.1,
+                Math.min(2.0, +(currentWeight + delta).toFixed(1))
+            );
 
-    tag.weight = newWeight;
-    updateOutput(currentOutputIndex);
-    updateAllTagHighlight();
-}
+            tag.weight = newWeight;
+            updateOutput(currentOutputIndex);
+            updateAllTagHighlight();
+        }
 
 
         function toggleTag(el, tagObj) {
@@ -11643,28 +11675,28 @@ function adjustTagWeight(value, delta) {
             const tagDisplay = document.createElement('div');
             tagDisplay.className = 'output-tags';
             const textarea = document.createElement('textarea');
-textarea.oninput = () => {
-    pushUndoState();
+            textarea.oninput = () => {
+                pushUndoState();
 
-    const values = textarea.value
-        .split(',')
-        .map(t => t.trim())
-        .filter(t => t);
+                const values = textarea.value
+                    .split(',')
+                    .map(t => t.trim())
+                    .filter(t => t);
 
-    outputData[index] = values.map(v => {
-        for (let cat in jsonData) {
-            const match = jsonData[cat].find(t => t.value === v);
-            if (match) return match;
-        }
-        return {
-            label: { zh: v, en: v, jp: v },
-            value: v
-        };
-    });
+                outputData[index] = values.map(v => {
+                    for (let cat in jsonData) {
+                        const match = jsonData[cat].find(t => t.value === v);
+                        if (match) return match;
+                    }
+                    return {
+                        label: { zh: v, en: v, jp: v },
+                        value: v
+                    };
+                });
 
-    renderTagDisplay(index);
-    updateAllTagHighlight();
-};
+                renderTagDisplay(index);
+                updateAllTagHighlight();
+            };
 
 
             const controls = document.createElement('div');
@@ -11742,12 +11774,12 @@ textarea.oninput = () => {
             });
         }
 
-function removeTag(index, value) {
-    pushUndoState();
-    outputData[index] = outputData[index].filter(t => t.value !== value);
-    updateOutput(index);
-    updateAllTagHighlight();
-}
+        function removeTag(index, value) {
+            pushUndoState();
+            outputData[index] = outputData[index].filter(t => t.value !== value);
+            updateOutput(index);
+            updateAllTagHighlight();
+        }
 
 
         function updateOutput(index) {
@@ -11777,24 +11809,24 @@ function removeTag(index, value) {
             });
         }
 
-function addTagToCurrent(tagObj) {
-    pushUndoState();
+        function addTagToCurrent(tagObj) {
+            pushUndoState();
 
-    if (!outputData[currentOutputIndex]) {
-        outputData[currentOutputIndex] = [];
-    }
+            if (!outputData[currentOutputIndex]) {
+                outputData[currentOutputIndex] = [];
+            }
 
-    const exists = outputData[currentOutputIndex]
-        .some(t => t.value === tagObj.value);
+            const exists = outputData[currentOutputIndex]
+                .some(t => t.value === tagObj.value);
 
-    if (!exists) {
-        const cleanTag = JSON.parse(JSON.stringify(tagObj));
-        delete cleanTag.weight;
-        outputData[currentOutputIndex].push(cleanTag);
-        updateOutput(currentOutputIndex);
-        updateAllTagHighlight();
-    }
-}
+            if (!exists) {
+                const cleanTag = JSON.parse(JSON.stringify(tagObj));
+                delete cleanTag.weight;
+                outputData[currentOutputIndex].push(cleanTag);
+                updateOutput(currentOutputIndex);
+                updateAllTagHighlight();
+            }
+        }
 
 
         function copyAll() {
@@ -11822,14 +11854,14 @@ function addTagToCurrent(tagObj) {
             }
         }
 
-function clearAll() {
-    pushUndoState();
-    for (let i = 0; i < outputData.length; i++) {
-        outputData[i] = [];
-        updateOutput(i);
-    }
-    updateAllTagHighlight();
-}
+        function clearAll() {
+            pushUndoState();
+            for (let i = 0; i < outputData.length; i++) {
+                outputData[i] = [];
+                updateOutput(i);
+            }
+            updateAllTagHighlight();
+        }
 
 
         function addOutput() {
