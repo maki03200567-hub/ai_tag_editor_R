@@ -147,17 +147,17 @@
             margin-left: 5px;
         }
 
-.output-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 4px;
-}
+        .output-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+        }
 
-.move-buttons {
-    display: flex;
-    gap: 4px;
-}
+        .move-buttons {
+            display: flex;
+            gap: 4px;
+        }
 
 
         .template-box span {
@@ -556,9 +556,7 @@
                             { zh: "反向詞_其他人", en: "Reverse word_no man", jp: "逆引き単語_他角不要", value: "extra people, background characters, additional subjects, pedestrians, crowd, random person, unwanted person, strangers, multiple characters, photobomb, second person, extra limbs, extra hands" },
                             { zh: "無修", en: "uncensored", jp: "無修正", value: "nsfw, uncensored,uncensored" },
                             { zh: "角色用", en: "characters", jp: "キャラクター用", value: "(Little girl, Loli)" },
-                            { zh: "陰用", en: "characters2", jp: "まんこ用", value: "secret parts" },
                             { zh: "好身材", en: "good figure", jp: "ナイスバディ", value: "curvy, voluptuous" },
-                            { zh: "R-style", en: "R-style", jp: "R-style", value: "R-style" },
                         ]
                     },
                     {
@@ -587,6 +585,15 @@
                             { zh: "角色偏畫面一側", en: "off-center character placement", jp: "片側配置", value: "off-center character placement" },
                             { zh: "廣角場景構圖", en: "wide scene composition", jp: "ワイド構図", value: "wide scene composition" },
                             { zh: "景深拉開", en: "deep depth of field", jp: "深い被写界深度", value: "deep depth of field" }
+
+                        ]
+                    },
+                    {
+                        subCategory: "call lora用",
+                        tags: [
+                            { zh: "陰用", en: "characters2", jp: "まんこ用", value: "secret parts" },
+                            { zh: "R-style", en: "R-style", jp: "R-style", value: "R-style" },
+                            { zh: "calvin klein風內衣", en: "calvin klein", jp: "calvin klein", value: "calvin klein" },
 
                         ]
                     }
@@ -867,6 +874,15 @@
                             { zh: "女有X人", en: "xgirl", jp: "女x人（xを数字に）", value: "xgirl" },
                             { zh: "單一角色", en: "single character", jp: "単一キャラ", value: "single character" },
                             { zh: "只有一個人", en: "only one person", jp: "一人だけ", value: "only one person" },
+                            { zh: "雙人", en: "two people", jp: "二人", value: "2girls, 1boy 1girl, duo" },
+                            { zh: "三人（3人）", en: "three people", jp: "三人", value: "3girls, 2girls 1boy, trio" },
+                            { zh: "四人（4人）", en: "four people", jp: "四人", value: "4girls, 3girls 1boy, group" },
+                            { zh: "多人構圖（大群人）", en: "multiple people", jp: "多人数", value: "multiple girls, crowd, group picture" },
+                            { zh: "雙人互動（親密）", en: "two people interacting", jp: "二人のふれあい", value: "duo, touching, close to each other" },
+                            { zh: "火車便車構圖（多人串聯）", en: "train formation composition", jp: "トレイン構図", value: "train, lining up, behind each other" },
+                            { zh: "三明治構圖（夾在中間）", en: "sandwiched between people", jp: "サンドイッチ構図", value: "sandwiched, middle of a group, surrounded" },
+                            { zh: "雙人近距離互動動作", en: "two people interacting at close range", jp: "二人の近距離インタラクション", value: "2persons, close interaction, interacting" },
+                            { zh: "雙人身體接觸互動姿勢", en: "two people interacting with body contact", jp: "二人の身体接触を伴う構図", value: "2persons, body contact, interacting" },
                         ]
                     },
                     {
@@ -11888,124 +11904,124 @@
             }
         }
 
-function moveOutput(index, direction) {
-    const newIndex = index + direction;
+        function moveOutput(index, direction) {
+            const newIndex = index + direction;
 
-    if (newIndex < 0 || newIndex >= outputData.length) return;
+            if (newIndex < 0 || newIndex >= outputData.length) return;
 
-    pushUndoState();
+            pushUndoState();
 
-    // 交換資料
-    const temp = outputData[index];
-    outputData[index] = outputData[newIndex];
-    outputData[newIndex] = temp;
+            // 交換資料
+            const temp = outputData[index];
+            outputData[index] = outputData[newIndex];
+            outputData[newIndex] = temp;
 
-    // 更新目前選中 index
-    currentOutputIndex = newIndex;
+            // 更新目前選中 index
+            currentOutputIndex = newIndex;
 
-    // 重建整個 UI
-    outputsDiv.innerHTML = '';
-    outputData.forEach((_, i) => createOutputBox(i));
+            // 重建整個 UI
+            outputsDiv.innerHTML = '';
+            outputData.forEach((_, i) => createOutputBox(i));
 
-    updateOutputHighlight();
-    updateAllTagHighlight();
-}
+            updateOutputHighlight();
+            updateAllTagHighlight();
+        }
 
 
-function createOutputBox(index) {
-    const box = document.createElement('div');
-    box.className = 'output-box';
-    box.onclick = () => {
-        currentOutputIndex = index;
-        updateOutputHighlight();
-    };
-
-    const tagDisplay = document.createElement('div');
-    tagDisplay.className = 'output-tags';
-
-    const textarea = document.createElement('textarea');
-    textarea.oninput = () => {
-        pushUndoState();
-
-        const values = textarea.value
-            .split(',')
-            .map(t => t.trim())
-            .filter(t => t);
-
-        outputData[index] = values.map(v => {
-            for (let cat in jsonData) {
-                const match = jsonData[cat].find(t => t.value === v);
-                if (match) return match;
-            }
-            return {
-                label: { zh: v, en: v, jp: v },
-                value: v
+        function createOutputBox(index) {
+            const box = document.createElement('div');
+            box.className = 'output-box';
+            box.onclick = () => {
+                currentOutputIndex = index;
+                updateOutputHighlight();
             };
-        });
 
-        renderTagDisplay(index);
-        updateAllTagHighlight();
-    };
+            const tagDisplay = document.createElement('div');
+            tagDisplay.className = 'output-tags';
 
-    const controls = document.createElement('div');
-    controls.className = 'output-controls';
+            const textarea = document.createElement('textarea');
+            textarea.oninput = () => {
+                pushUndoState();
 
-    // 📋 Copy
-    const copyBtn = document.createElement('button');
-    copyBtn.textContent = '📋';
-    copyBtn.onclick = (e) => {
-        e.stopPropagation();
-        navigator.clipboard.writeText(textarea.value);
-    };
+                const values = textarea.value
+                    .split(',')
+                    .map(t => t.trim())
+                    .filter(t => t);
 
-    // 🗑️ Clear
-    const clearBtn = document.createElement('button');
-    clearBtn.textContent = '🗑️';
-    clearBtn.onclick = (e) => {
-        e.stopPropagation();
-        pushUndoState();
-        outputData[index] = [];
-        updateOutput(index);
-        updateAllTagHighlight();
-    };
+                outputData[index] = values.map(v => {
+                    for (let cat in jsonData) {
+                        const match = jsonData[cat].find(t => t.value === v);
+                        if (match) return match;
+                    }
+                    return {
+                        label: { zh: v, en: v, jp: v },
+                        value: v
+                    };
+                });
 
-    // ⬆️ 上移
-    const upBtn = document.createElement('button');
-    upBtn.textContent = '⬆️';
-    upBtn.onclick = (e) => {
-        e.stopPropagation();
-        moveOutput(index, -1);
-    };
+                renderTagDisplay(index);
+                updateAllTagHighlight();
+            };
 
-    // ⬇️ 下移
-    const downBtn = document.createElement('button');
-    downBtn.textContent = '⬇️';
-    downBtn.onclick = (e) => {
-        e.stopPropagation();
-        moveOutput(index, 1);
-    };
+            const controls = document.createElement('div');
+            controls.className = 'output-controls';
 
-const moveWrap = document.createElement('div');
-moveWrap.className = 'move-buttons';
-moveWrap.appendChild(upBtn);
-moveWrap.appendChild(downBtn);
+            // 📋 Copy
+            const copyBtn = document.createElement('button');
+            copyBtn.textContent = '📋';
+            copyBtn.onclick = (e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(textarea.value);
+            };
 
-const leftWrap = document.createElement('div');
-leftWrap.appendChild(copyBtn);
-leftWrap.appendChild(clearBtn);
+            // 🗑️ Clear
+            const clearBtn = document.createElement('button');
+            clearBtn.textContent = '🗑️';
+            clearBtn.onclick = (e) => {
+                e.stopPropagation();
+                pushUndoState();
+                outputData[index] = [];
+                updateOutput(index);
+                updateAllTagHighlight();
+            };
 
-controls.appendChild(leftWrap);
-controls.appendChild(moveWrap);
+            // ⬆️ 上移
+            const upBtn = document.createElement('button');
+            upBtn.textContent = '⬆️';
+            upBtn.onclick = (e) => {
+                e.stopPropagation();
+                moveOutput(index, -1);
+            };
+
+            // ⬇️ 下移
+            const downBtn = document.createElement('button');
+            downBtn.textContent = '⬇️';
+            downBtn.onclick = (e) => {
+                e.stopPropagation();
+                moveOutput(index, 1);
+            };
+
+            const moveWrap = document.createElement('div');
+            moveWrap.className = 'move-buttons';
+            moveWrap.appendChild(upBtn);
+            moveWrap.appendChild(downBtn);
+
+            const leftWrap = document.createElement('div');
+            leftWrap.appendChild(copyBtn);
+            leftWrap.appendChild(clearBtn);
+
+            controls.appendChild(leftWrap);
+            controls.appendChild(moveWrap);
 
 
 
-    box.appendChild(tagDisplay);
-    box.appendChild(textarea);
-    box.appendChild(controls);
-    outputsDiv.appendChild(box);
+            box.appendChild(tagDisplay);
+            box.appendChild(textarea);
+            box.appendChild(controls);
+            outputsDiv.appendChild(box);
 
-    updateOutput(index);
-}
+            updateOutput(index);
+        }
 
 
         function normalizeValue(v) {
