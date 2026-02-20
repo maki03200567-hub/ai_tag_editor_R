@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Multi-column Tag Editor (with Search)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .left,
+        .right {
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .left {
+            width: 40%;
+            border-right: 1px solid #444;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .topbar,
+        .template-box,
+        .footer-controls {
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .topbar select {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            padding: 4px;
+        }
+
+        .category-buttons button,
+        .template-box button {
+            margin: 2px;
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            overflow-y: auto;
+            scrollbar-gutter: stable;
+        }
+
+        .tag {
+            padding: 5px 8px;
+            background: #c2c2c2;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .tag.selected {
+            background: #1fce62;
+            color: #000;
+        }
+
+        .tag-category h3 {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        .tag-subcategory h4 {
+            margin: 8px 0 4px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #66ccff;
+        }
+
+        .output-box {
+            border: 1px solid #555;
+            background-color: #1e1e1e;
+            padding: 5px;
+            position: relative;
+        }
+
+        .output-box.selected {
+            border: 2px solid #00BCD4;
+        }
+
+        .output-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .output-tag {
+            background: #4caf50;
+            padding: 4px 6px;
+            border-radius: 4px;
+        }
+
+        .output-tag span {
+            margin-left: 4px;
+            cursor: pointer;
+            color: red;
+        }
+
+        .output-box textarea {
+            width: 100%;
+            height: 60px;
+            resize: none;
+            background-color: #333;
+            color: #eee;
+            border: none;
+            border-radius: 4px;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+
+        .output-controls button {
+            margin-left: 5px;
+        }
+
+.output-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.move-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+
+        .template-box span {
+            cursor: pointer;
+            margin-left: 5px;
+            color: red;
+        }
+
+        .footer-controls {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: #1e1e1e;
+            border-radius: 6px;
+        }
+
+        .footer-controls>div {
+            display: flex;
+            gap: 10px;
+        }
+
+        #templateToggle {
+            display: none;
+        }
+
+        .group-buttons button.active,
+        .category-buttons button.active {
+            background-color: #00bcd4;
+            color: #000;
+            border: 1px solid #00bcd4;
+        }
+
+        /* 搜尋輸入樣式 (保守、跟現有 UI 一致) */
+        .search-input {
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            padding: 6px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            min-width: 160px;
+        }
+
+        .search-wrapper button {
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .search-wrapper button:hover {
+            opacity: 1;
+        }
+
+        /* === 修正搜尋框擠到下一行問題 === */
+        .topbar {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 6px;
+            /* 控制語言選單與搜尋欄間距 */
+        }
+
+        .topbar label,
+        .topbar select {
+            flex-shrink: 0;
+        }
+
+        .topbar .search-wrapper {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            /* 讓搜尋欄可自動壓縮而不換行 */
+            min-width: 0;
+            /* 關鍵：允許 flex 收縮 */
+            position: relative;
+        }
+
+        .topbar .search-wrapper input[type="text"] {
+            width: 100%;
+            min-width: 180px;
+            padding-right: 24px;
+            /* 給右側✕留空 */
+            box-sizing: border-box;
+        }
+
+        .topbar .search-wrapper button {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .topbar .search-wrapper button:hover {
+            opacity: 1;
+        }
+
+
+
+        /* 手機專用調整 */
+        @media (max-width: 768px) {
+
+            body {
+                flex-direction: column;
+                overflow-x: hidden;
+            }
+
+            .group-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                overflow-y: auto;
+                line-height: 1.6em;
+                max-height: calc(1.6em * 2 + 12px);
+                min-height: calc(1.6em * 2 + 12px);
+                margin-bottom: 6px;
+                flex-shrink: 0;
+                background: #1e1e1e;
+                border-radius: 6px;
+                padding: 6px;
+            }
+
+            .category-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                overflow-y: auto;
+                line-height: 1.6em;
+                max-height: calc(1.6em * 2 + 12px);
+                min-height: calc(1.6em * 2 + 12px);
+                margin-bottom: 6px;
+                flex-shrink: 0;
+                background: #1e1e1e;
+                border-radius: 6px;
+                padding: 6px;
+            }
+
+            .group-buttons button,
+            .category-buttons button {
+                margin: 2px;
+                background-color: #2c2c2c;
+                color: #e0e0e0;
+                border: 1px solid #555;
+                border-radius: 4px;
+                cursor: pointer;
+                height: 32px;
+                line-height: 22px;
+                padding: 0 8px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .left {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box;
+                max-height: 40vh;
+                display: flex;
+                flex-direction: column;
+                flex-shrink: 0;
+                min-height: 200px;
+            }
+
+            .tag-list {
+                display: flex;
+                flex-wrap: wrap;
+                overflow-y: auto;
+                line-height: 1.6em;
+                max-height: calc(1.6em * 6.9);
+                min-height: calc(1.6em * 6.9);
+                flex-shrink: 0;
+            }
+
+            #templateToggle.mobile-only {
+                display: block;
+                background-color: #2c2c2c;
+                color: #e0e0e0;
+                border: 1px solid #555;
+                border-radius: 4px;
+                padding: 6px 10px;
+                text-align: left;
+                height: 38px;
+            }
+
+            .template-box {
+                display: none;
+                position: fixed;
+                bottom: 70px;
+                left: 5%;
+                width: 90%;
+                max-height: 60vh;
+                overflow-y: auto;
+                background: #1e1e1e;
+                border: 1px solid #444;
+                border-radius: 8px;
+                padding: 10px;
+                z-index: 1000;
+            }
+
+            #undoBtn {
+                display: none;
+            }
+
+            .template-box.show {
+                display: block;
+            }
+
+            .right {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box;
+                flex-grow: 1;
+                max-height: 43.2vh;
+                overflow-y: auto;
+                padding-right: 0;
+                padding-left: 0;
+                padding-bottom: 90px;
+            }
+
+            .footer-controls {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: #1e1e1e;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                padding: 10px;
+                z-index: 999;
+            }
+
+            .footer-row1,
+            .footer-row2 {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0 10px;
+            }
+
+            #languageSelect,
+            #templateToggle.mobile-only {
+                width: 80px;
+                min-width: 80px;
+                max-width: 80px;
+                box-sizing: border-box;
+            }
+
+            .footer-row1 .right-buttons button,
+            .footer-row2 .right-buttons button {
+                width: 120px;
+                min-width: 120px;
+                max-width: 120px;
+                text-align: center;
+                flex-shrink: 0;
+            }
+
+            .footer-row1 .right-buttons button,
+            .footer-row2 .right-buttons button {
+                flex: 1 1 45%;
+                max-width: 120px;
+                text-align: center;
+            }
+
+            .topbar label[for="languageSelect"] {
+                display: none !important;
+            }
+
+            .footer-controls #languageSelect {
+                -webkit-appearance: none;
+                appearance: none;
+                background-color: #2c2c2c;
+                color: #e0e0e0;
+                border: 1px solid #555;
+                padding: 6px 8px;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+
+            /* 手機時 search input 放在 groupButtons 上方：用 .mobile-search 區塊 */
+            .topbar .search-input {
+                display: none;
+            }
+
+            .mobile-search {
+                display: block;
+                margin-bottom: 6px;
+            }
+
+        }
+
+        /* 已儲存的模板 - 橫式排列 */
+        #templateList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        #templateList .template-item {
+            flex: 0 0 auto;
+            min-width: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #f9f9f9;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #templateList .template-item:hover {
+            background: #eaeaea;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左邊欄 -->
+    <div class="left">
+        <div class="topbar">
+            <label for="languageSelect">介面語言:</label>
+            <select id="languageSelect">
+                <option value=zh>中文</option>
+                <option value=en>English</option>
+                <option value=jp>日本語</option>
+            </select>
+
+            <!-- 搜尋輸入（桌機 / 預設放在語言選單旁） -->
+            <input id="searchInput" class="search-input" placeholder="搜尋 tag 或 value（按 Enter）" />
+
+            <!-- 📂 模板鍵要放在這裡，緊貼語言選單下面 -->
+            <button id="templateToggle" class="mobile-only">📂 模板</button>
+        </div>
+
+        <!-- 手機時：把搜尋放在大類上方（這個區塊只在手機時顯示） -->
+        <div id="mobileSearchContainer" class="mobile-search" style="display:none;">
+            <input id="mobileSearchInput" class="search-input" placeholder="搜尋 tag 或 value（按 Enter）" />
+        </div>
+
+        <!-- 新增大類按鈕列（僅手機版會顯示） -->
+        <div class="group-buttons" id="groupButtons"></div>
+        <div class="category-buttons" id="categories"></div>
+        <div class="tag-list" id="tagList"></div>
+
+
+        <div class="template-box">
+            <input type="text" id="templateName" placeholder="模板名稱">
+            <button onclick="saveTemplate()">💾 儲存模板</button>
+            <button onclick="downloadTemplates()">⬇ 下載模板</button>
+            <input type="file" id="uploadInput" onchange="uploadTemplates()" style="margin-top: 6px;">
+            <div id="templateList"></div>
+        </div>
+    </div>
+
+    <!-- 右邊欄 -->
+    <div class="right">
+        <div id="outputs"></div>
+        <div class="footer-controls">
+            <div class="left-buttons">
+                <button onclick="addOutput()">➕ Add Output</button>
+                <button onclick="removeLast()">➖ Remove Last</button>
+            </div>
+            <div class="right-buttons">
+                <button id="undoBtn" onclick="undoLast()">↩️</button>
+                <button onclick="clearAll()">🗑️ Clear All</button>
+                <button onclick="copyAll()">📋 Copy All</button>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const rawData = [
+            {
+                category: { key: "Common words", zh: "常用詞", en: "Common words", jp: "よく使われる単語" },
+                groups: [
+                    {
+                        subCategory: "常用",
+                        tags: [
+                            { zh: "汎用正向詞", en: "Safe Positive word", jp: "汎用ポジティブな言葉", value: "nsfw, uncensored,anime style, (masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines),concept art, source anime, perfect proportions, perfect_eyes, dynamic pose, lustrous, fair skin, smooth anime skin, soft shading" },
+                            { zh: "一般向正向詞", en: "Safe Positive word", jp: "一般向ポジティブな言葉", value: "anime style, (masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines), concept art, source anime, perfect proportions, perfect_eyes, dynamic pose, lustrous, fair skin, smooth anime skin, soft shading" },
+                            { zh: "正向詞1", en: "Positive word 1", jp: "ポジティブな言葉1", value: "nsfw, uncensored, no censorship, unfiltered, anime style, score_9, score_8_up, masterpiece, best quality, amazing quality, breasts, shiny skin, beautiful face, beautiful eyes, flawless, fair skin, smooth anime skin, soft shading" },
+                            { zh: "正向詞0", en: "Positive word 0", jp: "ポジティブな言葉0", value: "(masterpiece, best quality, ultra detailed, intricate details, high resolution, smooth lines),concept art, source_anime, perfect proportions, perfect_eyes, dynamic pose, lustrous, fair skin, smooth anime skin, soft shading, uncensored" },
+                            { zh: "反向詞0", en: "Reverse word 0", jp: "逆引き単語0", value: "bad anatomy, bad hands, missing fingers, extra fingers, fused fingers, deformed hands, malformed limbs, wrong proportions, extra limbs, mutated hands, poorly drawn hands, malformed body, distorted body, long neck, multiple arms, multiple hands, asymmetrical eyes, deformed face, distorted face, extra nipples, misplaced limbs, deformed legs, malformed feet, glitch, noisy, artifact, blurry, overexposure, oversaturated, flat shading, dull skin, monochrome skin, jpeg artifacts, watermark, signature, text, cropped body, cut off, duplicated body, cloned body" },
+                            { zh: "反向詞1", en: "Reverse word 1", jp: "逆引き単語1", value: "bad quality,worst quality,worst detail,sketch,censor,glowing skin, glowing tattoos, glowing patterns, discolored skin, multicolored skin, green skin, blue skin, purple skin, extra marks, body paint, unrealistic skin, swollen belly, stomach bulge, nipple rings, nipple decorations" },
+                            { zh: "反向詞2", en: "Reverse word 2", jp: "逆引き単語2", value: "bad quality, worst quality, worst detail, lowres, sketch, censor, extra hands, extra fingers, missing fingers, extra digit, fewer digits, deformed hands, wrong proportions, bad anatomy, bad hands, bad feet, mutation, fused limbs, fused fingers, multiple hands, floating hands, disembodied hands, multiple arms, swollen belly, stomach bulge, low quality, normal quality, jpeg artifacts, blurry, text, signature, watermark, username, logos, subtitles, handwriting, lettering, ui elements, error, cropped, glowing skin, overly saturated skin, nipple rings, nipple decorations, black panties, white panties" },
+                            { zh: "反向詞3", en: "Reverse word 3", jp: "逆引き単語3", value: "bad quality, worst quality, low quality, lowres, jpeg artifacts, blurry, sketch, cropped, censor, text, signature, watermark, logo, subtitles, handwriting, ui elements, error,bad anatomy, bad proportions, bad hands, bad feet, deformed hands, malformed limbs, wrong proportions, twisted body, dislocated joints, mutation, mutated limbs, fused fingers, fused limbs,extra hands, extra fingers, extra limbs, multiple limbs, multiple arms, multiple fingers, extra digits, missing fingers, missing limbs, floating hands, disembodied limbs,extra people, additional people, unwanted people, background characters, photobomb, strangers, multiple subjects, crowd,stomach bulge, swollen belly,oversaturated, noisy texture, grainy, low contrast,nsfw censor bars, mosaic, blurry censorship" },
+                            { zh: "反向詞_沒男人", en: "Reverse word_no man", jp: "逆引き単語_男性不要", value: "male, man, men, boy, yaoi, bl, shota, male character, male body, penis, testicles, muscular male, male face, male hands, male legs" },
+                            { zh: "反向詞_其他人", en: "Reverse word_no man", jp: "逆引き単語_他角不要", value: "extra people, background characters, additional subjects, pedestrians, crowd, random person, unwanted person, strangers, multiple characters, photobomb, second person, extra limbs, extra hands" },
+                            { zh: "無修", en: "uncensored", jp: "無修正", value: "nsfw, uncensored,uncensored" },
+                            { zh: "角色用", en: "characters", jp: "キャラクター用", value: "(Little girl, Loli)" },
+                            { zh: "陰用", en: "characters2", jp: "まんこ用", value: "secret parts" },
+                            { zh: "好身材", en: "good figure", jp: "ナイスバディ", value: "curvy, voluptuous" },
+                            { zh: "R-style", en: "R-style", jp: "R-style", value: "R-style" },
+                        ]
+                    },
+                    {
+                        subCategory: "畫格",
+                        tags: [
+                            { zh: "單畫面構圖（不分格）", en: "single frame composition", jp: "単一構図", value: "single frame" },
+                            { zh: "雙格分鏡", en: "two panel composition", jp: "2コマ構図", value: "two panels" },
+                            { zh: "三格分鏡", en: "three panel composition", jp: "3コマ構図", value: "three panels" },
+                            { zh: "左右分鏡", en: "horizontal panels", jp: "横並びコマ", value: "horizontal panels" },
+                            { zh: "上下分鏡", en: "vertical panels", jp: "縦並びコマ", value: "vertical panels" },
+                            { zh: "漫畫分鏡", en: "comic panel layout", jp: "漫画コマ割り", value: "comic panels" },
+                            { zh: "畫格邊框", en: "panel borders", jp: "コマ枠", value: "panel borders" },
+                            { zh: "動作連續分鏡", en: "sequential action panels", jp: "連続動作コマ", value: "sequential panels" },
+                            { zh: "同一角色多畫格", en: "same character multiple panels", jp: "同一キャラ複数コマ", value: "same character panels" },
+                            { zh: "橫向單一構圖主體置中", en: "centered single composition wide shot", jp: "横構図単一構図中央配置", value: "centered subject, subject occupies most of the frame, single panel, one shot, one composition, wide angle shot, single focal point" },
+
+
+                        ]
+                    },
+                    {
+                        subCategory: "16:9 橫向構圖防重覆角色",
+                        tags: [
+                            { zh: "單一角色構圖", en: "single character composition", jp: "単一キャラ構図", value: "single character composition" },
+                            { zh: "負空間構圖", en: "negative space composition", jp: "余白構図", value: "negative space composition" },
+                            { zh: "環境填充畫面", en: "environment-focused framing", jp: "背景主導構図", value: "environment-focused framing" },
+                            { zh: "角色偏畫面一側", en: "off-center character placement", jp: "片側配置", value: "off-center character placement" },
+                            { zh: "廣角場景構圖", en: "wide scene composition", jp: "ワイド構図", value: "wide scene composition" },
+                            { zh: "景深拉開", en: "deep depth of field", jp: "深い被写界深度", value: "deep depth of field" }
+
+                        ]
+                    }
+                ]
+            },
+            {
+                category: { key: "angle", zh: "視角", en: "Angle", jp: "視点" },
+                groups: [
+                    {
+                        subCategory: "基本角度",
+                        tags: [
+                            { zh: "正面視角", en: "front view", jp: "正面から", value: "front view" },
+                            { zh: "上方視角", en: "from above", jp: "上から", value: "from above" },
+                            { zh: "下方視角", en: "from below", jp: "下から", value: "from below" },
+                            { zh: "後方視角", en: "from behind", jp: "後ろから", value: "from behind" },
+                            { zh: "側面視角", en: "from side", jp: "横から", value: "from side" },
+                            { zh: "低角度", en: "low angle", jp: "ローアングル", value: "pov from below, low angle, from below, cameltoe focus, " },
+                            { zh: "前方低角度", en: "low front angle", jp: "前方ローアングル", value: "low front angle" },
+                            { zh: "前方高角度", en: "high front angle", jp: "前方ハイアングル", value: "high front angle" },
+                            { zh: "背後低角度", en: "low back angle", jp: "後方ローアングル", value: "low back angle" },
+                            { zh: "背後高角度", en: "high back angle", jp: "後方ハイアングル", value: "high back angle" },
+                            { zh: "斜側視角", en: "oblique side view", jp: "斜め横から", value: "oblique side view" },
+                            { zh: "側後視角", en: "side-back view", jp: "横後ろから", value: "side-back view" },
+                            { zh: "側前視角", en: "side-front view", jp: "横前から", value: "side-front view" },
+                            { zh: "傾斜視角", en: "tilted / dutch angle", jp: "傾き構図", value: "tilted / dutch angle" },
+                            { zh: "透視縮短", en: "foreshortening", jp: "小人視点（パースが強くなる）", value: "foreshortening" },
+                            { zh: "鳥瞰視角", en: "bird's eye view", jp: "俯瞰視点", value: "bird's eye view" },
+                            { zh: "蟲瞰視角", en: "worm's eye view", jp: "蟲の視点", value: "worm's eye view" },
+                        ]
+                    },
+                    {
+                        subCategory: "前方視角",
+                        tags: [
+                            { zh: "正面視角", en: "front view", jp: "正面から", value: "front view, facing viewer" },
+                            { zh: "正面上方視角", en: "front high angle", jp: "前方ハイアングル", value: "front high angle, from above" },
+                            { zh: "正面下方視角", en: "front low angle", jp: "前方ローアングル", value: "front low angle, from below" },
+                            { zh: "左前視角", en: "front-left view", jp: "左前から", value: "front-left view" },
+                            { zh: "右前視角", en: "front-right view", jp: "右前から", value: "front-right view" },
+                            { zh: "左前上方視角", en: "front-left high angle", jp: "左前上方から", value: "front-left high angle" },
+                            { zh: "左前下方視角", en: "front-left low angle", jp: "左前下方から", value: "front-left low angle" },
+                            { zh: "右前上方視角", en: "front-right high angle", jp: "右前上方から", value: "front-right high angle" },
+                            { zh: "右前下方視角", en: "front-right low angle", jp: "右前下方から", value: "front-right low angle" }
+                        ]
+                    },
+                    {
+                        subCategory: "後方視角",
+                        tags: [
+                            { zh: "背後視角", en: "back view", jp: "背面から", value: "back view, from behind" },
+                            { zh: "背後上方視角", en: "back high angle", jp: "後方ハイアングル", value: "back high angle, from above" },
+                            { zh: "背後下方視角", en: "back low angle", jp: "後方ローアングル", value: "back low angle, from below" },
+                            { zh: "左後視角", en: "back-left view", jp: "左後ろから", value: "back-left view" },
+                            { zh: "右後視角", en: "back-right view", jp: "右後ろから", value: "back-right view" },
+                            { zh: "左後上方視角", en: "back-left high angle", jp: "左後上方から", value: "back-left high angle" },
+                            { zh: "左後下方視角", en: "back-left low angle", jp: "左後下方から", value: "back-left low angle" },
+                            { zh: "右後上方視角", en: "back-right high angle", jp: "右後上方から", value: "back-right high angle" },
+                            { zh: "右後下方視角", en: "back-right low angle", jp: "右後下方から", value: "back-right low angle" }
+                        ]
+                    },
+                    {
+                        subCategory: "側面視角",
+                        tags: [
+                            { zh: "左側視角", en: "left side view", jp: "左側から", value: "left side view" },
+                            { zh: "右側視角", en: "right side view", jp: "右側から", value: "right side view" },
+                            { zh: "左側上方視角", en: "left high angle", jp: "左上方から", value: "left high angle" },
+                            { zh: "左側下方視角", en: "left low angle", jp: "左下方から", value: "left low angle" },
+                            { zh: "右側上方視角", en: "right high angle", jp: "右上方から", value: "right high angle" },
+                            { zh: "右側下方視角", en: "right low angle", jp: "右下方から", value: "right low angle" }
+                        ]
+                    }
+                ]
+            },
+            {
+                category: { key: "Pelope", zh: "人數", en: "Pelope", jp: "人数" },
+                groups: [
+                    {
+                        subCategory: " ",
+                        tags: [
+                            { zh: "單人", en: "solo", jp: "単体", value: "solo" },
+                            { zh: "單人女", en: "1girl", jp: "女1人", value: "1girl" },
+                            { zh: "單人男", en: "1man", jp: "男1人", value: "1man" },
+                            { zh: "雙人女", en: "2girls", jp: "女2人", value: "2girls" },
+                            { zh: "雙人男", en: "2men", jp: "男2人", value: "2men" },
+                            { zh: "1 VS 2", en: "duo", jp: "デュオ", value: "duo" },
+                            { zh: "多人(也可指群交倫O)", en: "group", jp: "グループ", value: "group" },
+                            { zh: "女性多數", en: "many girls", jp: "女多数", value: "many girls" },
+                            { zh: "多數哥布林", en: "many goblins", jp: "ゴブリン多数", value: "many goblins" },
+                            { zh: "男性多數", en: "many men", jp: "男多数", value: "many men" },
+                            { zh: "1 VS 3", en: "trio", jp: "トリオ", value: "trio" },
+                            { zh: "男有X人", en: "xboy", jp: "男x人（xを数字に）", value: "xboy" },
+                            { zh: "女有X人", en: "xgirl", jp: "女x人（xを数字に）", value: "xgirl" },
+                            { zh: "單一角色", en: "single character", jp: "単一キャラ", value: "single character" },
+                            { zh: "只有一個人", en: "only one person", jp: "一人だけ", value: "only one person" },
+                        ]
+                    }
+                ]
+            }
+        ]
+
+        // 大類資料，對應 rawData 的 category.key
+        const groupData = [
+            { group: { key: "Common", zh: "常用/汎用", en: "General", jp: "汎用" }, classification: ["Common words", "Pelope", "Hololive", "ren", "copyright", "angle", "color"] },
+            { group: { key: "Body", zh: "身體", en: "Body", jp: "体" }, classification: ["hair color", "Bangs(fringe)", "back of the head hair", "hitomi", "Eyes", "Ear", "Mouth", "body", "brisket", "pussy", "butt", "Physical", "effect（body）"] },
+            { group: { key: "Clothes", zh: "衣服", en: "Clothes", jp: "服" }, classification: ["pattern", "Innerwear", "upper body clothing(tops)", "bottoms", "full outfit", "swimsuit", "clothes (style)", "sleeves", "ziraike", "head decoration/hat", "clothes", "boots"] },
+            { group: { key: "Action", zh: "動作", en: "Action", jp: "動作" }, classification: ["pose（sample）", "pose（hand）", "pose（foot）", "pose", "pose（option）", "pose（sex）", "Sex", "Sightline"] },
+            { group: { key: "Emotion", zh: "表情", en: "Expression", jp: "表情" }, classification: ["Emotions_General", "Emotions （Happy）", "Emotions （Sad）", "Emotions （shy）", "Emotions （Anger）", "Emotions （Fear）", "Emotions （Other）", "Emotions （manfu）", "Emotions （Sex）"] },
+            { group: { key: "Environment", zh: "環境", en: "Environment", jp: "環境" }, classification: ["time_weather", "Pleace", "item", "effect", "male", "tentacles", "Ejaculation", "exposure"] },
+        ];
+
+        let currentGroupKey = groupData[0].group.key;
+
+        // 🔧 自動轉換為 categories 與 jsonData（程式用）
+        const categories = {};
+        const jsonData = {};
+        rawData.forEach(group => {
+            const { key, zh, en, jp } = group.category;
+            categories[key] = { zh, en, jp };
+
+            // 🔽 扁平化所有子分類的 tags
+            const allTags = [];
+            if (group.groups) {
+                group.groups.forEach(sub => {
+                    sub.tags.forEach(tag => {
+                        allTags.push({
+                            label: { zh: tag.zh, en: tag.en, jp: tag.jp },
+                            value: tag.value
+                        });
+                    });
+                });
+            }
+
+            jsonData[key] = allTags;
+        });
+
+        let currentLang = 'zh';
+        let currentCategory = Object.keys(jsonData)[0];
+        let currentOutputIndex = 0;
+        let outputData = [];
+        let templateData = [];
+        let undoStack = [];
+        const UNDO_LIMIT = 50;
+
+        // DOM refs (will be set on DOMContentLoaded)
+        let categoriesDiv = null;
+        let tagListDiv = null;
+        let outputsDiv = null;
+        let languageSelect = null;
+        let templateList = null;
+
+        /* -------------------------
+           template local storage
+        ------------------------- */
+        function saveToLocal() {
+            localStorage.setItem("aitagTemplates", JSON.stringify(templateData));
+        }
+        function loadFromLocal() {
+            const saved = localStorage.getItem("aitagTemplates");
+            if (saved) {
+                try {
+                    templateData = JSON.parse(saved);
+                } catch {
+                    templateData = [];
+                }
+            }
+        }
+
+        function downloadTemplates() {
+            const checkboxes = document.querySelectorAll(".template-checkbox:checked");
+            if (!checkboxes.length) return alert("請勾選欲下載的模板");
+
+            const selected = Array.from(checkboxes).map(cb => templateData[parseInt(cb.dataset.index)]);
+            const blob = new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "selected_templates.json";
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function uploadTemplates() {
+            const input = document.getElementById("uploadInput");
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const newTemplates = JSON.parse(e.target.result);
+                    if (!Array.isArray(newTemplates)) throw new Error("格式錯誤");
+                    newTemplates.forEach(t => {
+                        if (t.name && t.data) templateData.push(t);
+                    });
+                    saveToLocal();
+                    renderTemplateList();
+                    updateAllTagHighlight();
+                } catch {
+                    alert("模板格式錯誤");
+                }
+            };
+            reader.readAsText(file);
+            input.value = "";
+        }
+
+        function renderTemplateList() {
+            const container = document.getElementById("templateList");
+            container.innerHTML = "";
+            templateData.forEach((tpl, idx) => {
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.className = "template-checkbox";
+                checkbox.dataset.index = idx;
+
+                const btn = document.createElement("button");
+                btn.textContent = tpl.name;
+                btn.onclick = () => {
+                    applyTemplate(idx);
+                    updateAllTagHighlight();
+                };
+
+                const del = document.createElement("span");
+                del.textContent = "✕";
+                del.onclick = () => {
+                    templateData.splice(idx, 1);
+                    saveToLocal();
+                    renderTemplateList();
+                };
+
+                const wrapper = document.createElement("div");
+                wrapper.appendChild(checkbox);
+                wrapper.appendChild(btn);
+                wrapper.appendChild(del);
+                container.appendChild(wrapper);
+            });
+        }
+
+        function saveTemplate() {
+            const name = document.getElementById("templateName").value.trim();
+            if (!name) return alert("請輸入模板名稱！");
+            if (templateData.length >= 30) return alert("最多只能儲存 30 個模板！");
+            if (templateData.some(t => t.name === name)) return alert("名稱重複，請換一個名稱");
+            const template = {
+                name: name,
+                data: JSON.parse(JSON.stringify(outputData))
+            };
+            templateData.push(template);
+            saveToLocal();
+            renderTemplateList();
+            document.getElementById("templateName").value = "";
+        }
+
+        function applyTemplate(index) {
+            const t = templateData[index];
+            if (!t) return;
+            outputData = [];
+            outputsDiv.innerHTML = "";
+            outputData = JSON.parse(JSON.stringify(t.data));
+            outputData.forEach((_, i) => createOutputBox(i));
+            currentOutputIndex = Math.max(0, outputData.length - 1);
+            updateOutputHighlight();
+        }
+
+        /* -------------------------
+           category / tags rendering
+        ------------------------- */
+        function renderCategoryButtons() {
+            categoriesDiv.innerHTML = '';
+            Object.keys(jsonData).forEach((key) => {
+                const btn = document.createElement('button');
+                btn.textContent = categories[key][currentLang] || key;
+                btn.onclick = () => {
+                    currentCategory = key;
+
+                    // 🔹 偵測搜尋欄是否有內容
+                    const desktopInput = document.getElementById('searchInput');
+                    const mobileInput = document.getElementById('mobileSearchInput');
+                    const hasSearch =
+                        (desktopInput && desktopInput.value.trim()) ||
+                        (mobileInput && mobileInput.value.trim());
+
+                    if (hasSearch) {
+                        // 清空搜尋欄並回復該分類完整 TAG
+                        if (desktopInput) desktopInput.value = '';
+                        if (mobileInput) mobileInput.value = '';
+                        renderTags(key, null);
+                    } else {
+                        // 若原本就沒有搜尋文字，保持現有邏輯
+                        const q = (desktopInput || { value: '' }).value.trim();
+                        renderTags(key, q || null);
+                    }
+                };
+                categoriesDiv.appendChild(btn);
+            });
+        }
+
+
+        // helper to decide match (zh/en/jp/value)
+        function tagMatchesFilter(tag, filter) {
+            if (!filter) return true;
+            const f = String(filter).trim().toLowerCase();
+            if (!f) return true;
+            return (String(tag.zh || '').toLowerCase().includes(f) ||
+                String(tag.en || '').toLowerCase().includes(f) ||
+                String(tag.jp || '').toLowerCase().includes(f) ||
+                String(tag.value || '').toLowerCase().includes(f));
+        }
+
+        // Render a single category (used for no-filter mode)
+        function renderCategory(categoryData, filter) {
+            const container = document.createElement("div");
+            container.className = "tag-category";
+
+            // 主分類標題
+            const mainTitle = document.createElement("h3");
+            mainTitle.textContent = categoryData.category[currentLang] || categoryData.category.zh || categoryData.category.key;
+            container.appendChild(mainTitle);
+
+            // === 🎲 Category 隨機按鈕 ===
+            const catRandom = document.createElement("button");
+            catRandom.textContent = "🎲";
+            catRandom.style.marginLeft = "8px";
+            catRandom.style.padding = "2px 6px";
+            catRandom.style.fontSize = "12px";
+            catRandom.style.cursor = "pointer";
+
+            catRandom.onclick = (e) => {
+                e.stopPropagation();
+
+                // 收集整個 category 所有 tag
+                let allTags = [];
+                categoryData.groups.forEach(sub => {
+                    if (sub.tags && sub.tags.length) {
+                        allTags = allTags.concat(sub.tags);
+                    }
+                });
+
+                if (allTags.length === 0) return;
+
+                // 隨機抽一個
+                const rnd = allTags[Math.floor(Math.random() * allTags.length)];
+
+                // 加到當前 output
+                addTagToCurrent(rnd);
+
+                updateOutput(currentOutputIndex);
+                updateAllTagHighlight();
+            };
+
+            // 放到標題後面
+            mainTitle.appendChild(catRandom);
+
+
+            // 子分類
+            categoryData.groups.forEach(group => {
+                // 檢查此子分類是否有任何 tag 符合 filter
+                const matchedTags = group.tags.filter(t => tagMatchesFilter(t, filter));
+                if (matchedTags.length === 0) return; // 若無符合，整個子分類不顯示
+
+                const groupDiv = document.createElement("div");
+                groupDiv.className = "tag-subcategory";
+
+                const subTitle = document.createElement("h4");
+                subTitle.textContent = group.subCategory || '';
+                groupDiv.appendChild(subTitle);
+
+                // === 🎲 隨機按鈕 ===
+                const randomBtn = document.createElement("button");
+                randomBtn.textContent = "🎲";
+                randomBtn.style.marginLeft = "6px";
+                randomBtn.style.padding = "2px 6px";
+                randomBtn.style.fontSize = "12px";
+                randomBtn.style.cursor = "pointer";
+
+                randomBtn.onclick = (e) => {
+                    e.stopPropagation();
+
+                    // 取出此 subCategory 的 tags 陣列
+                    const tags = group.tags;
+                    if (!tags || tags.length === 0) return;
+
+                    // 隨機選一個
+                    const rnd = tags[Math.floor(Math.random() * tags.length)];
+
+                    // 加進目前 Output
+                    addTagToCurrent(rnd);
+
+                    // 更新顯示 & 高亮
+                    updateOutput(currentOutputIndex);
+                    updateAllTagHighlight();
+                };
+
+                subTitle.appendChild(randomBtn);
+
+
+                // tags（只渲染 matchedTags）
+                matchedTags.forEach(tag => {
+                    const btn = document.createElement("button");
+                    btn.className = "tag";
+                    btn.textContent = tag[currentLang] || tag.en || tag.zh || tag.value;
+                    btn.dataset.value = tag.value;
+
+                    //Add weight controls (keeps original behavior)
+                    const weight = document.createElement('span');
+                    weight.className = 'weight-control';
+                    weight.innerHTML = '<button class="wplus">+</button><button class="wminus">-</button>';
+                    weight.querySelector('.wplus').onclick = e => {
+                        e.stopPropagation();
+                        const added = autoAdjustWeight(tag.value, 0.1);
+                        if (!added) {
+                            const match = tag;
+                            match.weight = 1.0;
+                            addTagToCurrent(match);
+                        }
+                        updateAllTagHighlight();
+                    };
+                    weight.querySelector('.wminus').onclick = e => {
+                        e.stopPropagation();
+                        autoAdjustWeight(tag.value, -0.1);
+                        updateAllTagHighlight();
+                    };
+                    btn.appendChild(weight);
+
+                    btn.addEventListener("click", () => {
+                        toggleTag(btn, tag);
+                        updateAllTagHighlight();
+                    });
+
+                    groupDiv.appendChild(btn);
+                });
+
+                container.appendChild(groupDiv);
+            });
+
+            return container;
+        }
+
+        /* renderTags:
+           - if no filter => render only currentCategory (original behavior)
+           - if filter => search across all rawData and display matching categories/groups/tags
+        */
+        function renderTags(categoryKey, filter) {
+            tagListDiv.innerHTML = '';
+
+            // no filter: original behavior - show only current category
+            if (!filter) {
+                const categoryData = rawData.find(c => c.category.key === categoryKey);
+                if (!categoryData) return;
+                const categoryEl = renderCategory(categoryData, null);
+                tagListDiv.appendChild(categoryEl);
+                updateAllTagHighlight();
+                return;
+            }
+
+            // with filter: search across all categories & groups
+            const q = String(filter).trim().toLowerCase();
+            const container = document.createElement("div");
+
+            rawData.forEach(categoryData => {
+                let categoryHasResults = false;
+                const catDiv = document.createElement('div');
+                catDiv.className = 'tag-category';
+
+                const title = document.createElement('h3');
+                title.textContent = categoryData.category[currentLang] || categoryData.category.zh || categoryData.category.key;
+
+                // build subgroups that match
+                categoryData.groups.forEach(group => {
+                    const matchedTags = group.tags.filter(t =>
+                        (t.zh || '').toLowerCase().includes(q) ||
+                        (t.en || '').toLowerCase().includes(q) ||
+                        (t.jp || '').toLowerCase().includes(q) ||
+                        (t.value || '').toLowerCase().includes(q)
+                    );
+                    if (!matchedTags.length) return;
+
+                    if (!categoryHasResults) {
+                        categoryHasResults = true;
+                        catDiv.appendChild(title);
+                    }
+
+                    const groupDiv = document.createElement('div');
+                    groupDiv.className = 'tag-subcategory';
+                    const sub = document.createElement('h4');
+                    sub.textContent = group.subCategory || '';
+                    groupDiv.appendChild(sub);
+
+                    // === 🎲 隨機按鈕 ===
+                    const randomBtn = document.createElement("button");
+                    randomBtn.textContent = "🎲";
+                    randomBtn.style.marginLeft = "6px";
+                    randomBtn.style.padding = "2px 6px";
+                    randomBtn.style.fontSize = "12px";
+                    randomBtn.style.cursor = "pointer";
+
+                    randomBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        const tags = group.tags;
+                        if (!tags || tags.length === 0) return;
+                        const rnd = tags[Math.floor(Math.random() * tags.length)];
+                        addTagToCurrent(rnd);
+                        updateOutput(currentOutputIndex);
+                        updateAllTagHighlight();
+                    };
+                    sub.appendChild(randomBtn);
+
+
+
+                    matchedTags.forEach(tag => {
+                        const btn = document.createElement('button');
+                        btn.className = 'tag';
+                        btn.textContent = tag[currentLang] || tag.en || tag.zh || tag.value;
+                        btn.dataset.value = tag.value;
+
+                        const weight = document.createElement('span');
+                        weight.className = 'weight-control';
+                        weight.innerHTML = '<button class="wplus">+</button><button class="wminus">-</button>';
+                        weight.querySelector('.wplus').onclick = e => {
+                            e.stopPropagation();
+                            const added = autoAdjustWeight(tag.value, 0.1);
+                            if (!added) {
+                                const match = tag;
+                                match.weight = 1.0;
+                                addTagToCurrent(match);
+                            }
+                            updateAllTagHighlight();
+                        };
+                        weight.querySelector('.wminus').onclick = e => {
+                            e.stopPropagation();
+                            autoAdjustWeight(tag.value, -0.1);
+                            updateAllTagHighlight();
+                        };
+                        btn.appendChild(weight);
+
+                        btn.addEventListener('click', () => {
+                            toggleTag(btn, tag);
+                            updateAllTagHighlight();
+                        });
+
+                        groupDiv.appendChild(btn);
+                    });
+
+                    catDiv.appendChild(groupDiv);
+                });
+
+                if (categoryHasResults) container.appendChild(catDiv);
+            });
+
+            if (!container.children.length) {
+                const emptyNote = document.createElement('div');
+                emptyNote.style.padding = '10px';
+                emptyNote.style.color = '#ccc';
+                emptyNote.textContent = `No tags match "${filter}"`;
+                tagListDiv.appendChild(emptyNote);
+            } else {
+                tagListDiv.appendChild(container);
+            }
+
+            updateAllTagHighlight();
+        }
+
+        /* -------------------------
+           output / tag selection logic
+        ------------------------- */
+        function pushUndoState() {
+            undoStack.push(JSON.parse(JSON.stringify(outputData)));
+            if (undoStack.length > UNDO_LIMIT) {
+                undoStack.shift();
+            }
+        }
+
+        function undoLast() {
+            if (!undoStack.length) return;
+
+            outputData = undoStack.pop();
+            outputsDiv.innerHTML = '';
+
+            outputData.forEach((_, i) => createOutputBox(i));
+
+            currentOutputIndex = Math.min(
+                currentOutputIndex,
+                outputData.length - 1
+            );
+
+            updateOutputHighlight();
+        }
+
+        function autoAdjustWeight(value, delta) {
+            const found = outputData.findIndex(arr => arr.some(t => t.value === value || (typeof t.value === 'string' && t.value.startsWith(`${value}:`))));
+            if (found !== -1) {
+                currentOutputIndex = found;
+                updateOutputHighlight();
+                adjustTagWeight(value, delta);
+                return true;
+            }
+            return false;
+        }
+
+        function adjustTagWeight(value, delta) {
+            pushUndoState();
+
+            const tag = outputData[currentOutputIndex]
+                .find(t => t.value === value ||
+                    (typeof t.value === 'string' && t.value.startsWith(`${value}:`)));
+
+            if (!tag) return;
+
+            const currentWeight = tag.weight || 1.0;
+            const newWeight = Math.max(
+                0.1,
+                Math.min(2.0, +(currentWeight + delta).toFixed(1))
+            );
+
+            tag.weight = newWeight;
+            updateOutput(currentOutputIndex);
+            updateAllTagHighlight();
+        }
+
+
+        function toggleTag(el, tagObj) {
+            const foundIndex = outputData.findIndex(arr =>
+                arr.some(t => t.value === tagObj.value)
+            );
+
+            // if tag is present in a different output, switch to that output and remove it there
+            if (foundIndex !== -1 && foundIndex !== currentOutputIndex) {
+                currentOutputIndex = foundIndex;
+                updateOutputHighlight();
+                removeTag(foundIndex, tagObj.value);
+                return;
+            }
+
+            const isSelected = el.classList.toggle('selected');
+            if (isSelected) {
+                addTagToCurrent(tagObj);
+            } else {
+                removeTag(currentOutputIndex, tagObj.value);
+            }
+        }
+
+function moveOutput(index, direction) {
+    const newIndex = index + direction;
+
+    if (newIndex < 0 || newIndex >= outputData.length) return;
+
+    pushUndoState();
+
+    // 交換資料
+    const temp = outputData[index];
+    outputData[index] = outputData[newIndex];
+    outputData[newIndex] = temp;
+
+    // 更新目前選中 index
+    currentOutputIndex = newIndex;
+
+    // 重建整個 UI
+    outputsDiv.innerHTML = '';
+    outputData.forEach((_, i) => createOutputBox(i));
+
+    updateOutputHighlight();
+    updateAllTagHighlight();
+}
+
+
+function createOutputBox(index) {
+    const box = document.createElement('div');
+    box.className = 'output-box';
+    box.onclick = () => {
+        currentOutputIndex = index;
+        updateOutputHighlight();
+    };
+
+    const tagDisplay = document.createElement('div');
+    tagDisplay.className = 'output-tags';
+
+    const textarea = document.createElement('textarea');
+    textarea.oninput = () => {
+        pushUndoState();
+
+        const values = textarea.value
+            .split(',')
+            .map(t => t.trim())
+            .filter(t => t);
+
+        outputData[index] = values.map(v => {
+            for (let cat in jsonData) {
+                const match = jsonData[cat].find(t => t.value === v);
+                if (match) return match;
+            }
+            return {
+                label: { zh: v, en: v, jp: v },
+                value: v
+            };
+        });
+
+        renderTagDisplay(index);
+        updateAllTagHighlight();
+    };
+
+    const controls = document.createElement('div');
+    controls.className = 'output-controls';
+
+    // 📋 Copy
+    const copyBtn = document.createElement('button');
+    copyBtn.textContent = '📋';
+    copyBtn.onclick = (e) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(textarea.value);
+    };
+
+    // 🗑️ Clear
+    const clearBtn = document.createElement('button');
+    clearBtn.textContent = '🗑️';
+    clearBtn.onclick = (e) => {
+        e.stopPropagation();
+        pushUndoState();
+        outputData[index] = [];
+        updateOutput(index);
+        updateAllTagHighlight();
+    };
+
+    // ⬆️ 上移
+    const upBtn = document.createElement('button');
+    upBtn.textContent = '⬆️';
+    upBtn.onclick = (e) => {
+        e.stopPropagation();
+        moveOutput(index, -1);
+    };
+
+    // ⬇️ 下移
+    const downBtn = document.createElement('button');
+    downBtn.textContent = '⬇️';
+    downBtn.onclick = (e) => {
+        e.stopPropagation();
+        moveOutput(index, 1);
+    };
+
+const moveWrap = document.createElement('div');
+moveWrap.className = 'move-buttons';
+moveWrap.appendChild(upBtn);
+moveWrap.appendChild(downBtn);
+
+const leftWrap = document.createElement('div');
+leftWrap.appendChild(copyBtn);
+leftWrap.appendChild(clearBtn);
+
+controls.appendChild(leftWrap);
+controls.appendChild(moveWrap);
+
+
+
+    box.appendChild(tagDisplay);
+    box.appendChild(textarea);
+    box.appendChild(controls);
+    outputsDiv.appendChild(box);
+
+    updateOutput(index);
+}
+
+
+        function normalizeValue(v) {
+            if (v === null || v === undefined) return '';
+            return String(v).trim().replace(/^,+|,+$/g, '').replace(/^[\(\[]+|[\)\]]+$/g, '').toLowerCase();
+        }
+
+        function renderTagDisplay(index) {
+            const tagContainer = outputsDiv.children[index].querySelector('.output-tags');
+            tagContainer.innerHTML = '';
+
+            outputData[index].forEach((tag, i) => {
+                const tagValueRaw = (tag && typeof tag === 'object') ? tag.value : tag;
+                const normValue = normalizeValue(tagValueRaw);
+
+                let displayText = null;
+                let foundTagObj = null;
+
+                outer:
+                for (const group of rawData) {
+                    if (!group || !group.groups) continue;
+                    for (const sub of group.groups) {
+                        if (!sub || !Array.isArray(sub.tags)) continue;
+                        for (const t of sub.tags) {
+                            if (!t) continue;
+                            const normT = normalizeValue(t.value);
+                            if (normT === normValue) {
+                                foundTagObj = t;
+                                break outer;
+                            }
+                        }
+                    }
+                }
+
+                if (tag && typeof tag === 'object' && tag.label && tag.label[currentLang]) {
+                    displayText = tag.label[currentLang];
+                } else if (foundTagObj && foundTagObj[currentLang]) {
+                    displayText = foundTagObj[currentLang];
+                } else if (tagValueRaw != null) {
+                    displayText = String(tagValueRaw);
+                } else {
+                    displayText = '';
+                }
+
+                const tagEl = document.createElement('div');
+                tagEl.className = 'output-tag';
+                const safeValue = String(tagValueRaw).replace(/'/g, "\\'");
+                tagEl.innerHTML = `${displayText}<span onclick="removeTag(${index}, '${safeValue}')">✕</span>`;
+                tagContainer.appendChild(tagEl);
+            });
+        }
+
+        function removeTag(index, value) {
+            pushUndoState();
+            outputData[index] = outputData[index].filter(t => t.value !== value);
+            updateOutput(index);
+            updateAllTagHighlight();
+        }
+
+
+        function updateOutput(index) {
+            const text = outputData[index].map(t => {
+                if (t.weight && t.weight !== 1.0) {
+                    return `(${t.value}:${t.weight}), `;
+                }
+                return `${t.value}, `;
+            }).join('');
+            const textarea = outputsDiv.children[index].querySelector('textarea');
+            if (textarea) textarea.value = text;
+            renderTagDisplay(index);
+            updateOutputHighlight();
+        }
+
+        function updateOutputHighlight() {
+            document.querySelectorAll('.output-box').forEach((el, i) => {
+                el.classList.toggle('selected', i === currentOutputIndex);
+            });
+            updateAllTagHighlight();
+        }
+
+        function updateAllTagHighlight() {
+            const selected = new Set(outputData.flat().map(t => t.value));
+            document.querySelectorAll('.tag').forEach(el => {
+                el.classList.toggle('selected', selected.has(el.dataset.value));
+            });
+        }
+
+        function addTagToCurrent(tagObj) {
+            pushUndoState();
+
+            if (!outputData[currentOutputIndex]) {
+                outputData[currentOutputIndex] = [];
+            }
+
+            const exists = outputData[currentOutputIndex]
+                .some(t => t.value === tagObj.value);
+
+            if (!exists) {
+                const cleanTag = JSON.parse(JSON.stringify(tagObj));
+                delete cleanTag.weight;
+                outputData[currentOutputIndex].push(cleanTag);
+                updateOutput(currentOutputIndex);
+                updateAllTagHighlight();
+            }
+        }
+
+
+        function copyAll() {
+            const allText = outputData.map(arr =>
+                arr.map(t => {
+                    if (t.weight && t.weight !== 1) {
+                        return `(${t.value}:${t.weight}), `;
+                    } else {
+                        return `${t.value}, `;
+                    }
+                }).join('')
+            ).join('\nBREAK\n');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(allText).catch(err => {
+                    console.error("Clipboard API 失敗:", err);
+                });
+            } else {
+                const textarea = document.createElement("textarea");
+                textarea.value = allText;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function clearAll() {
+            pushUndoState();
+            for (let i = 0; i < outputData.length; i++) {
+                outputData[i] = [];
+                updateOutput(i);
+            }
+            updateAllTagHighlight();
+        }
+
+
+        function addOutput() {
+            const newIndex = outputData.length;
+            outputData.push([]);
+            createOutputBox(newIndex);
+        }
+        function removeLast() {
+            if (outputData.length > 1) {
+                outputsDiv.removeChild(outputsDiv.lastChild);
+                outputData.pop();
+                if (currentOutputIndex >= outputData.length) {
+                    currentOutputIndex = outputData.length - 1;
+                }
+                updateAllTagHighlight();
+            }
+        }
+
+        /* -------------------------
+           responsive footer / language move
+        ------------------------- */
+        (function () {
+            function moveLanguageSelect() {
+                const select = document.getElementById('languageSelect');
+                const label = document.querySelector('label[for="languageSelect"]');
+                const templateToggle = document.getElementById('templateToggle');
+                const footerControls = document.querySelector('.footer-controls');
+                const topbar = document.querySelector('.topbar');
+                const searchInput = document.getElementById('searchInput');
+                const mobileSearchContainer = document.getElementById('mobileSearchContainer');
+                const mobileSearchInput = document.getElementById('mobileSearchInput');
+
+                if (!select || !footerControls || !templateToggle || !topbar || !searchInput || !mobileSearchContainer) return;
+
+                const origLeft = footerControls.querySelector('.left-buttons');
+                const origRight = footerControls.querySelector('.right-buttons');
+
+                if (window.innerWidth <= 768) {
+                    if (label) label.style.display = 'none';
+
+                    let row1 = footerControls.querySelector('.footer-row1');
+                    let row2 = footerControls.querySelector('.footer-row2');
+                    if (!row1) {
+                        row1 = document.createElement('div');
+                        row1.className = 'footer-row1';
+                        footerControls.insertBefore(row1, footerControls.firstChild);
+                    }
+                    if (!row2) {
+                        row2 = document.createElement('div');
+                        row2.className = 'footer-row2';
+                        footerControls.appendChild(row2);
+                    }
+
+                    let row1Right = row1.querySelector('.right-buttons');
+                    if (!row1Right) {
+                        row1Right = document.createElement('div');
+                        row1Right.className = 'right-buttons';
+                        row1.appendChild(row1Right);
+                    }
+                    let row2Right = row2.querySelector('.right-buttons');
+                    if (!row2Right) {
+                        row2Right = document.createElement('div');
+                        row2Right.className = 'right-buttons';
+                        row2.appendChild(row2Right);
+                    }
+
+                    if (!row1.contains(select)) row1.insertBefore(select, row1.firstChild);
+
+                    if (origLeft) {
+                        while (origLeft.firstChild) {
+                            row1Right.appendChild(origLeft.firstChild);
+                        }
+                        origLeft.remove();
+                    } else {
+                        const btnAdd = footerControls.querySelector('button[onclick*="addOutput"]');
+                        const btnRemove = footerControls.querySelector('button[onclick*="removeLast"]');
+                        if (btnAdd && !row1Right.contains(btnAdd)) row1Right.appendChild(btnAdd);
+                        if (btnRemove && !row1Right.contains(btnRemove)) row1Right.appendChild(btnRemove);
+                    }
+
+                    if (!row2.contains(templateToggle)) row2.insertBefore(templateToggle, row2.firstChild);
+
+                    if (origRight) {
+                        if (origRight !== row1Right && origRight !== row2Right) {
+                            while (origRight.firstChild) {
+                                row2Right.appendChild(origRight.firstChild);
+                            }
+                            origRight.remove();
+                        } else {
+                            const btnClear = footerControls.querySelector('button[onclick*="clearAll"]');
+                            const btnCopy = footerControls.querySelector('button[onclick*="copyAll"]');
+                            if (btnClear && !row2Right.contains(btnClear)) row2Right.appendChild(btnClear);
+                            if (btnCopy && !row2Right.contains(btnCopy)) row2Right.appendChild(btnCopy);
+                        }
+                    } else {
+                        const btnClear = footerControls.querySelector('button[onclick*="clearAll"]');
+                        const btnCopy = footerControls.querySelector('button[onclick*="copyAll"]');
+                        if (btnClear && !row2Right.contains(btnClear)) row2Right.appendChild(btnClear);
+                        if (btnCopy && !row2Right.contains(btnCopy)) row2Right.appendChild(btnCopy);
+                    }
+
+                    // 手機版：把 searchInput 隱藏（topbar），把 mobileSearchInput 放到 mobileSearchContainer 顯示
+                    searchInput.style.display = 'none';
+                    if (!mobileSearchContainer.contains(mobileSearchInput)) mobileSearchContainer.appendChild(mobileSearchInput);
+                    mobileSearchContainer.style.display = 'block';
+
+                } else {
+                    if (label) label.style.display = '';
+
+                    let newLeft = footerControls.querySelector('.left-buttons');
+                    if (!newLeft) {
+                        newLeft = document.createElement('div');
+                        newLeft.className = 'left-buttons';
+                        footerControls.insertBefore(newLeft, footerControls.firstChild);
+                    }
+                    let newRight = null;
+                    footerControls.querySelectorAll(':scope > .right-buttons').forEach(el => newRight = el);
+                    if (!newRight) {
+                        newRight = document.createElement('div');
+                        newRight.className = 'right-buttons';
+                        footerControls.appendChild(newRight);
+                    }
+
+                    const row1 = footerControls.querySelector('.footer-row1');
+                    const row2 = footerControls.querySelector('.footer-row2');
+
+                    if (row1) {
+                        const r1Right = row1.querySelector('.right-buttons');
+                        if (r1Right) {
+                            while (r1Right.firstChild) {
+                                newLeft.appendChild(r1Right.firstChild);
+                            }
+                        }
+                        if (!topbar.contains(select)) {
+                            if (label && label.parentNode) label.parentNode.insertBefore(select, label.nextSibling);
+                            else topbar.appendChild(select);
+                        }
+                    }
+
+                    if (row2) {
+                        const r2Right = row2.querySelector('.right-buttons');
+                        if (r2Right) {
+                            while (r2Right.firstChild) {
+                                newRight.appendChild(r2Right.firstChild);
+                            }
+                        }
+                        if (!topbar.contains(templateToggle)) topbar.appendChild(templateToggle);
+                    }
+
+                    if (row1) row1.remove();
+                    if (row2) row2.remove();
+
+                    // 桌機版：把 mobileSearchInput 還回 topbar 的 searchInput 位置
+                    mobileSearchContainer.style.display = 'none';
+                    if (mobileSearchInput && mobileSearchInput.parentNode) mobileSearchInput.parentNode.removeChild(mobileSearchInput);
+                    searchInput.style.display = '';
+                }
+            }
+
+            window.addEventListener('DOMContentLoaded', moveLanguageSelect);
+            window.addEventListener('resize', moveLanguageSelect);
+            window.addEventListener('orientationchange', moveLanguageSelect);
+        })();
+
+        function renderGroupButtons() {
+            const container = document.getElementById("groupButtons");
+            if (!container) return;
+            container.innerHTML = "";
+            groupData.forEach(g => {
+                const btn = document.createElement("button");
+                btn.textContent = g.group[currentLang] || g.group.key;
+                if (g.group.key === currentGroupKey) btn.classList.add("active");
+                btn.onclick = () => {
+                    currentGroupKey = g.group.key;
+                    currentCategory = g.classification[0];
+                    renderGroupButtons();
+                    renderCategoryButtons_mobile();
+                    renderTags(currentCategory);
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function renderCategoryButtons_mobile() {
+            categoriesDiv.innerHTML = '';
+            const group = groupData.find(g => g.group.key === currentGroupKey);
+            if (!group) return;
+            group.classification.forEach(key => {
+                const category = categories[key];
+                if (!category) return;
+                const btn = document.createElement('button');
+                btn.textContent = category[currentLang] || key;
+                if (key === currentCategory) btn.classList.add("active");
+                btn.onclick = () => {
+                    currentCategory = key;
+
+                    const desktopInput = document.getElementById('searchInput');
+                    const mobileInput = document.getElementById('mobileSearchInput');
+                    const hasSearch =
+                        (desktopInput && desktopInput.value.trim()) ||
+                        (mobileInput && mobileInput.value.trim());
+
+                    if (hasSearch) {
+                        // 清空搜尋並回復完整分類
+                        if (desktopInput) desktopInput.value = '';
+                        if (mobileInput) mobileInput.value = '';
+                    }
+
+                    renderCategoryButtons_mobile();
+                    renderTags(key, null);
+                };
+                categoriesDiv.appendChild(btn);
+            });
+        }
+
+
+        // === 🔍 即時搜尋系統（桌機與手機共用） ===
+
+        // 延遲觸發函式（避免輸入時過度重繪）
+        function debounceSearch(func, delay = 300) {
+            let timer = null;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => func(...args), delay);
+            };
+        }
+
+        // === 🔍 即時搜尋 + 清除鍵版本 ===
+
+        // 延遲觸發函式（防止輸入時過度重繪）
+        function debounceSearch(func, delay = 300) {
+            let timer = null;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => func(...args), delay);
+            };
+        }
+
+        // 搜尋邏輯：輸入即觸發
+        const handleSearchSubmit = debounceSearch(() => {
+            const desktopInput = document.getElementById('searchInput');
+            const mobileInput = document.getElementById('mobileSearchInput');
+            const q =
+                (desktopInput && desktopInput.value)
+                    ? desktopInput.value.trim()
+                    : (mobileInput && mobileInput.value ? mobileInput.value.trim() : '');
+
+            renderTags(currentCategory, q || null);
+        }, 300);
+
+        // 建立一個帶「❌ 清除」按鈕的搜尋框容器
+        function wrapSearchInput(input) {
+            if (!input || input.dataset.hasWrapper) return;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'search-wrapper';
+            wrapper.style.position = 'relative';
+            wrapper.style.display = 'inline-block';
+            wrapper.style.width = '100%';
+
+            input.parentNode.insertBefore(wrapper, input);
+            wrapper.appendChild(input);
+
+            const clearBtn = document.createElement('button');
+            clearBtn.textContent = '✕';
+            clearBtn.title = '清除搜尋';
+            clearBtn.style.position = 'absolute';
+            clearBtn.style.right = '6px';
+            clearBtn.style.top = '50%';
+            clearBtn.style.transform = 'translateY(-50%)';
+            clearBtn.style.border = 'none';
+            clearBtn.style.background = 'transparent';
+            clearBtn.style.cursor = 'pointer';
+            clearBtn.style.fontSize = '14px';
+            clearBtn.style.color = '#666';
+            clearBtn.style.display = 'none';
+            wrapper.appendChild(clearBtn);
+
+            input.dataset.hasWrapper = 'true';
+            input.addEventListener('input', () => {
+                clearBtn.style.display = input.value ? 'block' : 'none';
+            });
+
+            clearBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                input.value = '';
+                clearBtn.style.display = 'none';
+                handleSearchSubmit();
+            });
+        }
+
+        // 同步桌機與手機搜尋框 + 綁定即時搜尋
+        function syncSearchInputs() {
+            const desktopInput = document.getElementById('searchInput');
+            const mobileInput = document.getElementById('mobileSearchInput');
+            if (!desktopInput || !mobileInput) return;
+
+            // 包裝兩個搜尋欄，加上清除鍵
+            wrapSearchInput(desktopInput);
+            wrapSearchInput(mobileInput);
+
+            // 同步兩邊的輸入
+            desktopInput.addEventListener('input', () => {
+                mobileInput.value = desktopInput.value;
+                handleSearchSubmit();
+            });
+            mobileInput.addEventListener('input', () => {
+                desktopInput.value = mobileInput.value;
+                handleSearchSubmit();
+            });
+
+            // 支援 ESC 鍵清除搜尋
+            const clearBoth = () => {
+                desktopInput.value = '';
+                mobileInput.value = '';
+                handleSearchSubmit();
+            };
+            desktopInput.addEventListener('keydown', (e) => { if (e.key === 'Escape') clearBoth(); });
+            mobileInput.addEventListener('keydown', (e) => { if (e.key === 'Escape') clearBoth(); });
+        }
+
+
+        // 修復手機模板鍵行為（被移動到 footer 時也能作用）
+        function bindTemplateToggle() {
+            const toggle = document.getElementById('templateToggle');
+            const templateBox = document.querySelector('.template-box');
+            if (!toggle || !templateBox) return;
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                templateBox.classList.toggle('show');
+            });
+            document.addEventListener('click', (ev) => {
+                if (!templateBox.classList.contains('show')) return;
+                if (ev.target === toggle || templateBox.contains(ev.target)) return;
+                templateBox.classList.remove('show');
+            });
+        }
+
+        // 初始化
+        document.addEventListener("DOMContentLoaded", () => {
+            categoriesDiv = document.getElementById('categories');
+            tagListDiv = document.getElementById('tagList');
+            outputsDiv = document.getElementById('outputs');
+            languageSelect = document.getElementById('languageSelect');
+            templateList = document.getElementById('templateList');
+
+            loadFromLocal();
+            syncSearchInputs();
+            bindTemplateToggle();
+
+            if (window.innerWidth <= 768) {
+                renderGroupButtons();
+                renderCategoryButtons_mobile();
+                renderTags(currentCategory);
+            } else {
+                renderCategoryButtons();
+                renderTags(currentCategory);
+            }
+
+            // 建立三個輸出框
+            for (let i = 0; i < 3; i++) {
+                outputData.push([]);
+                createOutputBox(i);
+            }
+            renderTemplateList();
+
+            languageSelect.onchange = () => {
+                currentLang = languageSelect.value;
+                if (window.innerWidth <= 768) {
+                    renderGroupButtons();
+                    renderCategoryButtons_mobile();
+                    renderTags(currentCategory);
+                } else {
+                    renderCategoryButtons();
+                    renderTags(currentCategory);
+                }
+                outputData.forEach((_, i) => renderTagDisplay(i));
+                updateOutputHighlight();
+            };
+        });
+    </script>
+</body>
+
+</html>
