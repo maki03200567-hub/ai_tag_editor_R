@@ -865,19 +865,18 @@
                             { zh: "單人男", en: "1man", jp: "男1人", value: "1man" },
                             { zh: "雙人女", en: "2girls", jp: "女2人", value: "2girls" },
                             { zh: "雙人男", en: "2men", jp: "男2人", value: "2men" },
-                            { zh: "1 VS 2", en: "duo", jp: "デュオ", value: "duo" },
+                            { zh: "單一角色", en: "single character", jp: "単一キャラ", value: "single character" },
+                            { zh: "只有一個人", en: "only one person", jp: "一人だけ", value: "only one person" },
+                            { zh: "雙人", en: "two people", jp: "二人", value: "duo" },
+                            { zh: "三人（3人）", en: "three people", jp: "三人", value: "trio" },
+                            { zh: "四人（4人）", en: "four people", jp: "四人", value: "group" },
                             { zh: "多人(也可指群交倫O)", en: "group", jp: "グループ", value: "group" },
-                            { zh: "女性多數", en: "many girls", jp: "女多数", value: "many girls" },
-                            { zh: "多數哥布林", en: "many goblins", jp: "ゴブリン多数", value: "many goblins" },
-                            { zh: "男性多數", en: "many men", jp: "男多数", value: "many men" },
                             { zh: "1 VS 3", en: "trio", jp: "トリオ", value: "trio" },
                             { zh: "男有X人", en: "xboy", jp: "男x人（xを数字に）", value: "xboy" },
                             { zh: "女有X人", en: "xgirl", jp: "女x人（xを数字に）", value: "xgirl" },
-                            { zh: "單一角色", en: "single character", jp: "単一キャラ", value: "single character" },
-                            { zh: "只有一個人", en: "only one person", jp: "一人だけ", value: "only one person" },
-                            { zh: "雙人", en: "two people", jp: "二人", value: "1boy 1girl, duo" },
-                            { zh: "三人（3人）", en: "three people", jp: "三人", value: "3girls, 2girls 1boy, trio" },
-                            { zh: "四人（4人）", en: "four people", jp: "四人", value: "4girls, 3girls 1boy, group" },
+                            { zh: "男性多數", en: "many men", jp: "男多数", value: "many men" },
+                            { zh: "女性多數", en: "many girls", jp: "女多数", value: "many girls" },
+                            { zh: "多數哥布林", en: "many goblins", jp: "ゴブリン多数", value: "many goblins" },
                             { zh: "多人構圖（大群人）", en: "multiple people", jp: "多人数", value: "multiple girls, crowd, group picture" },
                             { zh: "雙人互動（親密）", en: "two people interacting", jp: "二人のふれあい", value: "duo, touching, close to each other" },
                             { zh: "火車便車構圖（多人串聯）", en: "train formation composition", jp: "トレイン構図", value: "train, lining up, behind each other" },
@@ -1374,9 +1373,6 @@
                             { zh: "成年女性", en: "adult woman", jp: "成人女性", value: "adult woman" },
                             { zh: "熟女", en: "mature woman", jp: "熟女", value: "mature woman" },
                             { zh: "幼態體型", en: "toddler body", jp: "身体だけロリ", value: "toddler body" },
-                            { zh: "SD身型", en: "chibi", jp: "SDキャラ", value: "chibi" },
-                            { zh: "矮人", en: "dwarf", jp: "ロリ", value: "dwarf" },
-                            { zh: "XX歲", en: "xx years old", jp: "xx歳（xxに数字を入れる）", value: "xx years old" },
                         ]
                     },
                     {
@@ -1398,6 +1394,13 @@
                             { zh: "頭部稍大", en: "slightly large head", jp: "やや大きな頭", value: "slightly large head" },
                             { zh: "纖細骨架", en: "slender frame", jp: "細身の体格", value: "slender frame" },
                             { zh: "女性化骨盆", en: "feminine hips", jp: "女性的な腰", value: "feminine hips" },
+                            { zh: "矮小身形 (通用)", en: "short stature", value: "short stature, small body" },
+                            { zh: "侏儒/矮人體型", en: "dwarfism", value: "dwarfism, achondroplasia body" },
+                            { zh: "SD身型", en: "chibi", jp: "SDキャラ", value: "chibi" },
+                            { zh: "矮人", en: "dwarf", jp: "ロリ", value: "dwarf" },
+                            { zh: "大頭 (控制頭身比)", en: "big head", value: "big head, oversized head, (large head:1.3)" },
+                            { zh: "3-4頭身 (Q版感)", en: "chibi proportions", value: "chibi, 3-4 heads tall, (sd style:1.2)" },
+                            { zh: "骨瘦如柴 (避免變歐克)", en: "scrawny", value: "scrawny, emaciated, skinny" },
 
                         ]
                     },
@@ -4527,6 +4530,12 @@
                     {
                         subCategory: "外套系",
                         tags: [
+                            { zh: "外套", en: "jacket", jp: "ジャケット", value: "jacket" },
+                            { zh: "敞開外套", en: "open jacket", jp: "オープンジャケット", value: "open jacket, unzipped jacket" },
+                            { zh: "滑落外套", en: "off shoulder jacket", jp: "肩落ちジャケット", value: "off shoulder jacket, jacket off shoulder, slipping jacket" },
+                            { zh: "過大外套", en: "oversized jacket", jp: "オーバーサイズジャケット", value: "oversized jacket, baggy jacket" },
+                            { zh: "短版外套", en: "cropped jacket", jp: "ショートジャケット", value: "cropped jacket, short jacket" },
+                            { zh: "披在肩上外套", en: "jacket over shoulders", jp: "肩掛けジャケット", value: "jacket over shoulders, draped jacket" },
                             { zh: "羊毛外套", en: "wool coat", jp: "ウールコート", value: "wool coat" },
                             { zh: "V領毛衣", en: "V-neck sweater", jp: "Vネックセーター", value: "V-neck sweater" },
                             { zh: "針織開襟衫", en: "knit cardigan", jp: "ニットカーディガン", value: "knit cardigan" },
@@ -5655,6 +5664,10 @@
                     {
                         subCategory: "帽子",
                         tags: [
+                            { zh: "無帽子", en: "no hat", jp: "帽子なし", value: "no hat" },
+                            { zh: "無頭部穿戴物", en: "no headwear", jp: "頭部装飾なし", value: "no headwear, no head accessories" },
+                            { zh: "無頭飾", en: "no hair ornament", jp: "髪飾りなし", value: "no hair ornament, no hair accessories" },
+                            { zh: "無兜帽", en: "no hood", jp: "フードなし", value: "no hood, hood down" },
                             { zh: "帽子", en: "hat", jp: "帽子", value: "hat" },
                             { zh: "軍帽", en: "military hat", jp: "ミリタリーハット", value: "military hat" },
                             { zh: "官帽", en: "peaked cap", jp: "官帽", value: "peaked cap" },
@@ -9371,6 +9384,11 @@
                             { zh: "戳臉頰", en: "touch each other's lips face to face", jp: "頬をくっつける", value: "touch each other's lips face to face" },
                             { zh: "觸摸頭髮", en: "touching hair", jp: "髪に触れる", value: "touching hair" },
                             { zh: "轉身", en: "turning around", jp: "振り向き", value: "turning around" },
+                            { zh: "產卵", en: "oviposition", jp: "産卵", value: "oviposition" },
+                            { zh: "正在產卵", en: "laying eggs", jp: "卵を産む", value: "laying eggs" },
+                            { zh: "多個卵", en: "multiple eggs", jp: "複数の卵", value: "multiple eggs" },
+                            { zh: "透明的卵", en: "translucent eggs", jp: "半透明の卵", value: "translucent eggs" },
+                            { zh: "黏液", en: "slime", jp: "スライム/粘液", value: "slime, gooey" },
                         ]
                     },
                     {
@@ -10033,6 +10051,7 @@
                             { zh: "粗曠男", en: "rugged man", jp: "ワイルドな男", value: "rugged man" },
                             { zh: "胖子", en: "fat man", jp: "太った男", value: "fat man" },
                             { zh: "大叔", en: "ojisan", jp: "おじさん", value: "middle-aged man, uncle" },
+                            { zh: "哥布林", en: "goblin", jp: "ゴブリン", value: "goblin, 1boy, short stature, small body, teeth,colored skin, green skin, bald, orc, slit pupils, colored sclera, yellow sclera, topless male, loincloth" },
                         ]
                     },
                     {
