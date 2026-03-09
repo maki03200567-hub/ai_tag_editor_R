@@ -8935,51 +8935,65 @@
                         ]
                     },
                     {
-                        subCategory: "脫衣 / 調整衣物",
+                        subCategory: "脫衣 / 調整衣物 (Clothing Action)",
                         tags: [
-                            { zh: "拉開衣領", en: "pulling collar", jp: "襟を引っ張る", value: "pulling collar" },
+                            // --- 通用與外層 ---
+                            { zh: "拉扯衣物 (通用)", en: "clothing pull", jp: "服を引っ張る", value: "clothing pull" },
+                            { zh: "雙手拉扯", en: "pulling with both hands", jp: "両手で引っ張る", value: "pulling with both hands" },
+                            { zh: "扯開衣服", en: "pulling open clothes", jp: "服を引き裂く", value: "pulling open clothes" },
+                            { zh: "被抓住衣物", en: "grabbed by clothes", jp: "服を掴まれる", value: "grabbed by clothes" },
+                            { zh: "拉開外套", en: "opening jacket", jp: "ジャケットを広げる", value: "pulling open jacket, open clothes" },
+                            { zh: "拉下拉鍊", en: "unzipping", jp: "ジッパーを下ろす", value: "unzipping clothes, pulling zipper down" },
+                            { zh: "解開胸前拉鍊", en: "unzipping front", jp: "前のジッパーを下ろす", value: "unzipping front" },
+
+                            // --- 領口相關 ---
+                            { zh: "拉開衣領", en: "pulling collar", jp: "襟を引っ張る", value: "pulling collar, neckline pull" },
                             { zh: "扯開領口", en: "tugging at collar", jp: "襟を掴む", value: "tugging at collar" },
                             { zh: "拉開襯衫衣領", en: "pulling shirt collar", jp: "シャツの襟を引っ張る", value: "pulling shirt collar" },
-                            { zh: "拉開女僕裝領口", en: "pulling maid outfit collar", jp: "メイド服の襟を引っ張る", value: "pulling maid outfit collar" },
                             { zh: "拉開制服領口", en: "pulling school uniform collar", jp: "制服の襟を引っ張る", value: "pulling school uniform collar" },
+                            { zh: "拉開女僕裝領口", en: "pulling maid outfit collar", jp: "メイド服の襟を引っ張る", value: "pulling maid outfit collar" },
                             { zh: "手放在領口", en: "hand on collar", jp: "襟に手をかける", value: "hand on collar" },
-                            { zh: "扯開衣領強調胸部", en: "emphasize the chest, pulling open collar", jp: "胸を強調 + 襟を引き開ける", value: "emphasize the chest, pulling open collar" },
+                            { zh: "扯開衣領強調胸部", en: "emphasize the chest", jp: "胸を強調 + 襟を引き開ける", value: "emphasize the chest, pulling open collar" },
+
+                            // --- 上身與袖子 ---
                             { zh: "解開襯衫扣子", en: "unbuttoning shirt", jp: "シャツのボタンを外す", value: "unbuttoning shirt" },
-                            { zh: "扯開衣服", en: "pulling open clothes", jp: "服を引き裂く", value: "pulling open clothes" },
-                            { zh: "拉下拉鍊", en: "unzipping clothes", jp: "ジッパーを下ろす", value: "unzipping clothes" },
-                            { zh: "拉開上衣", en: "pulling shirt open", jp: "シャツを引っ張る", value: "pulling shirt open" },
-                            { zh: "拉起衣擺", en: "lifting shirt", jp: "裾をめくる", value: "lifting shirt" },
+                            { zh: "拉起衣擺 (露肚)", en: "lifting shirt", jp: "裾をめくる", value: "lifting shirt, navel cutout" },
                             { zh: "扯住衣擺", en: "grabbing hem", jp: "裾を掴む", value: "grabbing hem" },
-                            { zh: "拉開外套", en: "pulling jacket open", jp: "ジャケットを引っ張る", value: "pulling jacket open" },
-                            { zh: "解開襯衫", en: "unbuttoning shirt", jp: "シャツを外す", value: "unbuttoning shirt" },
-                            { zh: "解開胸前拉鍊", en: "unzipping front", jp: "前のジッパーを下ろす", value: "unzipping front" },
-                            { zh: "拉下拉鍊", en: "pulling zipper down", jp: "ジッパーを下げる", value: "pulling zipper down" },
-                            { zh: "拉開連衣裙", en: "pulling dress open", jp: "ドレスを引っ張る", value: "pulling dress open" },
-                            { zh: "拉下吊帶", en: "pulling down strap", jp: "ストラップを下げる", value: "pulling down strap" },
-                            { zh: "扯開內衣", en: "pulling bra aside", jp: "ブラをずらす", value: "pulling bra aside" },
-                            { zh: "拉下內褲邊緣", en: "pulling panties down slightly", jp: "パンティを少し下げる", value: "pulling panties down slightly" },
-                            { zh: "扯開絲襪", en: "pulling stockings aside", jp: "ストッキングをずらす", value: "pulling stockings aside" },
-                            { zh: "拉起裙子", en: "lifting skirt", jp: "スカートをめくる", value: "lifting skirt" },
-                            { zh: "掀起裙擺", en: "pulling skirt up", jp: "スカートを引き上げる", value: "pulling skirt up" },
+                            { zh: "拉扯袖子", en: "pulling sleeve", jp: "袖を引っ張る", value: "pulling sleeve" },
+                            { zh: "拉下胸罩", en: "pulling down bra", jp: "ブラをずらす", value: "pulling down bra, cup displacement, pulling bra aside" },
+
+                            // --- 下身類 (裙、褲) ---
+                            { zh: "拉起裙子", en: "lifting skirt", jp: "スカートをめくる", value: "lifting skirt, pulling skirt up" },
+                            { zh: "裙子半掀", en: "skirt half-lifted", jp: "スカート半めくり", value: "skirt half-lifted" },
                             { zh: "拉下裙子", en: "pulling skirt down", jp: "スカートを下げる", value: "pulling skirt down" },
                             { zh: "扯開裙擺", en: "grabbing skirt hem", jp: "スカートの裾を掴む", value: "grabbing skirt hem" },
-                            { zh: "拉下短褲", en: "pulling shorts down", jp: "ショートパンツを下げる", value: "pulling shorts down" },
-                            { zh: "拉開褲子", en: "unzipping pants", jp: "ズボンのジッパーを下ろす", value: "unzipping pants" },
+                            { zh: "拉扯褲頭", en: "pulling waistband", jp: "ウエストバンドを引っ張る", value: "pulling waistband" },
+                            { zh: "拉開褲子 (拉鍊)", en: "unzipping pants", jp: "ズボンのジッパーを下ろす", value: "unzipping pants" },
                             { zh: "扯開褲子", en: "pulling pants open", jp: "ズボンを引っ張る", value: "pulling pants open" },
-                            { zh: "拉下絲襪", en: "pulling stockings down", jp: "ストッキングを下げる", value: "pulling stockings down" },
-                            { zh: "拉下吊帶襪", en: "pulling garter straps", jp: "ガーターストラップを引っ張る", value: "pulling garter straps" },
-                            { zh: "扯開內褲邊緣", en: "pulling panties aside", jp: "パンティをずらす", value: "pulling panties aside" },
-                            { zh: "拉下內褲", en: "pulling panties down", jp: "パンティを下げる", value: "pulling panties down" },
-                            { zh: "指尖拉內褲邊", en: "fingering panties edge", jp: "パンティの縁を指で引っ張る", value: "fingering panties edge" },
-                            { zh: "內褲半脫", en: "panties pulled to side", jp: "パンティを片方にずらす", value: "panties pulled to side" },
+                            { zh: "拉下短褲", en: "pulling shorts down", jp: "ショートパンツを下げる", value: "pulling shorts down" },
                             { zh: "褲子半脫", en: "pants half-off", jp: "ズボン半脱ぎ", value: "pants half-off" },
-                            { zh: "裙子半掀", en: "skirt half-lifted", jp: "スカート半めくり", value: "skirt half-lifted" },
-                            { zh: "自己拉扯內褲", en: "self pulling panties", jp: "自分でパンツを引っ張る", value: "self pulling panties" },
+                            { zh: "拉扯褲管", en: "pulling pant leg", jp: "ズボンの裾を引っ張る", value: "pulling pant leg" },
+
+                            // --- 內衣、泳衣與細部 ---
+                            { zh: "拉扯泳衣", en: "pulling swimsuit", jp: "水着を引っ張る", value: "pulling swimsuit" },
+                            { zh: "拉扯肩帶/吊帶", en: "pulling strap", jp: "ストラップを下げる", value: "pulling shoulder strap, pulling down strap" },
+                            { zh: "拉扯細繩", en: "pulling strings", jp: "紐を引っ張る", value: "pulling strings, thin straps pull" },
+                            { zh: "拉扯衣物邊緣", en: "pulling edge", jp: "服の端を引っ張る", value: "pulling edge of clothing" },
+                            { zh: "勒進肉裡", en: "digging into skin", jp: "食い込み", value: "digging into skin, skin indentation" },
+
+                            // --- 內褲細節 (自慰/挑逗向) ---
+                            { zh: "拉扯內褲邊緣", en: "pulling panties", jp: "パンティをずらす", value: "pulling panties, pulling underwear, pulling panties aside" },
+                            { zh: "拉下內褲邊緣", en: "pulling panties down slightly", jp: "パンティを少し下げる", value: "pulling panties down slightly" },
+                            { zh: "拉下內褲", en: "pulling panties down", jp: "パンティを下げる", value: "pulling panties down" },
+                            { zh: "指尖拉/勾內褲邊", en: "hooking panties", jp: "指でパンティを引っ掛ける", value: "fingering panties edge, fingers hooking own panties" },
+                            { zh: "內褲半脫", en: "panties pulled to side", jp: "パンティを片方にずらす", value: "panties pulled to side, partially removing own panties" },
                             { zh: "手放在自己內褲上", en: "hand on own panties", jp: "自分のパンツに手をかける", value: "hand on own panties" },
-                            { zh: "手指勾住內褲邊", en: "fingers hooking own panties", jp: "指で自分のパンツを引っ掛ける", value: "fingers hooking own panties" },
-                            { zh: "往下拉自己的內褲", en: "pulling down own panties", jp: "自分のパンツを下げる", value: "pulling down own panties" },
-                            { zh: "往旁邊扯開自己的內褲", en: "pulling aside own panties", jp: "自分のパンツを横にずらす", value: "pulling aside own panties" },
-                            { zh: "半脫自己的內褲", en: "partially removing own panties", jp: "自分のパンツを半脱ぎする", value: "partially removing own panties" }
+
+                            // --- 襪類 ---
+                            { zh: "拉扯襪子/絲襪", en: "pulling socks", jp: "靴下を引っ張る", value: "pulling socks, pulling legwear" },
+                            { zh: "扯開絲襪", en: "pulling stockings aside", jp: "ストッキングをずらす", value: "pulling stockings aside" },
+                            { zh: "拉下絲襪", en: "pulling stockings down", jp: "ストッキングを下げる", value: "pulling stockings down" },
+                            { zh: "拉下吊帶襪", en: "pulling garter straps", jp: "ガーターストラップを引っ張る", value: "pulling garter straps" }
                         ]
                     },
                     {
