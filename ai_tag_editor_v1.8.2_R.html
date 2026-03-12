@@ -2131,6 +2131,51 @@
                         ]
                     },
                     {
+                        subCategory: "身體部位勒入細節",
+                        tags: [
+                            // --- 頭頸與軀幹 ---
+                            { zh: "脖子勒痕", en: "neck digging", jp: "首の食い込み", value: "neck digging, neck indentation" },
+                            { zh: "肩膀勒入", en: "shoulders digging", jp: "肩の食い込み", value: "shoulders digging into skin, strap marks" },
+                            { zh: "鎖骨勒壓", en: "collarbone digging", jp: "鎖骨の食い込み", value: "collarbone indentation" },
+                            { zh: "背部擠壓", en: "back digging", jp: "背中の食い込み", value: "back digging into skin, squeezed back" },
+                            { zh: "脊椎陷落感", en: "spine indentation", jp: "背骨のくぼみ", value: "spine indentation, deep spine" },
+                            { zh: "肋骨勒痕", en: "ribs digging", jp: "肋骨の食い込み", value: "ribs indentation, ribs squeezed" },
+
+                            // --- 手臂與手部 ---
+                            { zh: "手臂勒入", en: "arms digging", jp: "腕の食い込み", value: "arms digging into skin" },
+                            { zh: "上臂勒緊", en: "upper arms digging", jp: "上腕の食い込み", value: "upper arms squeezed" },
+                            { zh: "手腕勒痕", en: "wrists digging", jp: "手首の食い込み", value: "wrists indentation, wrist straps digging" },
+
+                            // --- 胸部細節 (核心) ---
+                            { zh: "乳頭勒出", en: "nipples digging", jp: "乳首の食い込み", value: "nipples digging through clothes" },
+                            { zh: "乳暈勒痕", en: "areola digging", jp: "乳輪の食い込み", value: "areola indentation" },
+                            { zh: "乳溝擠壓", en: "cleavage squeezing", jp: "谷間の強調", value: "deep cleavage, squeezed breasts" },
+                            { zh: "側乳勒入", en: "sideboob digging", jp: "横乳の食い込み", value: "sideboob digging into skin" },
+                            { zh: "下乳勒入", en: "underboob digging", jp: "下乳の食い込み", value: "underboob indentation, underboob squeeze" },
+
+                            // --- 腰腹與骨盆 ---
+                            { zh: "腰部勒入", en: "waist digging", jp: "腰の食い込み", value: "waist digging into skin, muffin top" },
+                            { zh: "肚臍勒壓", en: "navel digging", jp: "へその食い込み", value: "navel indentation" },
+                            { zh: "下腹部勒入", en: "lower abdomen digging", jp: "下腹部の食い込み", value: "lower abdomen digging into skin" },
+                            { zh: "骨盆V線勒痕", en: "pelvic v-line digging", jp: "Vラインの食い込み", value: "pelvic v-line indentation" },
+                            { zh: "恥丘擠壓", en: "mons pubis digging", jp: "恥丘の食い込み", value: "mons pubis squeezed" },
+                            { zh: "恥骨區勒入", en: "pubic region digging", jp: "恥骨部の食い込み", value: "pubic region indentation" },
+
+                            // --- 私密與臀部 ---
+                            { zh: "陰部勒入 (駱駝蹄)", en: "pussy digging", jp: "マンコの食い込み", value: "pussy digging into skin, cameltoe" },
+                            { zh: "陰唇勒開", en: "labia digging", jp: "陰唇の食い込み", value: "labia squeezed, labia indentation" },
+                            { zh: "臀部勒入", en: "butt digging", jp: "お尻の食い込み", value: "butt digging into skin, thong digging" },
+                            { zh: "股溝勒緊", en: "buttcrack digging", jp: "尻の割れ目の食い込み", value: "buttcrack digging into skin, deep buttcrack" },
+                            { zh: "胯下勒入", en: "groin digging", jp: "股間の食い込み", value: "groin digging into skin" },
+
+                            // --- 下肢 ---
+                            { zh: "大腿勒入", en: "thighs digging", jp: "太ももの食い込み", value: "thighs digging into skin, absolute territory" },
+                            { zh: "膝蓋勒壓", en: "knees digging", jp: "膝の食い込み", value: "knees indentation" },
+                            { zh: "小腿勒入", en: "calves digging", jp: "ふくらはぎの食い込み", value: "calves digging into skin" },
+                            { zh: "腳踝勒痕", en: "ankles digging", jp: "足首の食い込み", value: "ankles indentation" }
+                        ]
+                    },
+                    {
                         subCategory: "勒入 / 緊貼效果",
                         tags: [
                             { zh: "駱駝趾", en: "cameltoe", jp: "キャメル・トゥ", value: "cameltoe" },
@@ -2145,6 +2190,7 @@
                             { zh: "側面勒入", en: "side squeeze / side wedgie", jp: "サイドウェッジ", value: "side wedgie" },
                             { zh: "後側勒入 / 臀縫緊貼", en: "rear wedgie / tight at butt crack", jp: "バックウェッジ", value: "rear wedgie" },
                             { zh: "全範圍緊貼效果", en: "full tightness / snug fit", jp: "全体タイト", value: "full tightness" },
+                            
                         ]
                     },
                     {
@@ -11878,7 +11924,7 @@ function downloadTemplates() {
         function saveTemplate() {
             const name = document.getElementById("templateName").value.trim();
             if (!name) return alert("請輸入模板名稱！");
-            if (templateData.length >= 30) return alert("最多只能儲存 30 個模板！");
+            if (templateData.length >= 100) return alert("最多只能儲存 100 個模板！");
             if (templateData.some(t => t.name === name)) return alert("名稱重複，請換一個名稱");
             const template = {
                 name: name,
