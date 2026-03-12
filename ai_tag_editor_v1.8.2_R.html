@@ -147,17 +147,17 @@
             margin-left: 5px;
         }
 
-.output-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 4px;
-}
+        .output-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+        }
 
-.move-buttons {
-    display: flex;
-    gap: 4px;
-}
+        .move-buttons {
+            display: flex;
+            gap: 4px;
+        }
 
 
         .template-box span {
@@ -2190,7 +2190,7 @@
                             { zh: "側面勒入", en: "side squeeze / side wedgie", jp: "サイドウェッジ", value: "side wedgie" },
                             { zh: "後側勒入 / 臀縫緊貼", en: "rear wedgie / tight at butt crack", jp: "バックウェッジ", value: "rear wedgie" },
                             { zh: "全範圍緊貼效果", en: "full tightness / snug fit", jp: "全体タイト", value: "full tightness" },
-                            
+
                         ]
                     },
                     {
@@ -8942,14 +8942,41 @@
                             { zh: "手拿跳蛋", en: "holding bullet vibrator", jp: "ローターを持つ", value: "holding bullet vibrator" },
                             { zh: "手拿束縛道具", en: "holding bondage gear", jp: "拘束具を持つ", value: "holding bondage gear" },
                             { zh: "手拿口塞球", en: "holding ball gag", jp: "ボールギャグを持つ", value: "holding ball gag" },
-
                             // 魔法/奇幻武器
                             { zh: "手握魔法杖", en: "holding magic staff", jp: "魔法の杖を持つ", value: "holding magic staff" },
                             { zh: "施展魔法", en: "casting magic", jp: "魔法を使う", value: "casting magic" },
                             { zh: "手握法杖", en: "holding wizard staff", jp: "魔法使いの杖を持つ", value: "holding wizard staff" },
                             { zh: "手握魔法書", en: "holding spellbook", jp: "魔法書を持つ", value: "holding spellbook" },
-                            { zh: "施法手勢", en: "casting gesture", jp: "魔法のジェスチャー", value: "casting gesture" }
-
+                            { zh: "施法手勢", en: "casting gesture", jp: "魔法のジェスチャー", value: "casting gesture" },
+                            // --- 機械刃與能量近戰 ---
+                            { zh: "手持機械化大劍", en: "holding mechanized buster sword", jp: "メカ化バスターソードを持つ", value: "holding mechanized buster sword" },
+                            { zh: "手持電鋸劍", en: "holding chainsaw sword", jp: "チェーンソーソードを持つ", value: "holding chainsaw sword" },
+                            { zh: "手持高頻振動刀", en: "holding high-frequency blade", jp: "高周波ブレードを持つ", value: "holding high-frequency blade, vibroblade" },
+                            { zh: "手持科技感太刀", en: "holding cyber katana", jp: "サイバーカタナを持つ", value: "holding cyber katana, neon blade" },
+                            { zh: "手持光束劍", en: "holding beam saber", jp: "ビームサーベルを持つ", value: "holding beam saber" },
+                            { zh: "手持等離子刀", en: "holding plasma blade", jp: "プラズマブレードを持つ", value: "holding plasma blade" },
+                            { zh: "手持雷射劍", en: "holding laser sword", jp: "レーザーソードを持つ", value: "holding laser sword" },
+                            { zh: "手持摺疊式機械刀", en: "holding folding mechanical blade", jp: "折りたたみ式メカニカルナイフを持つ", value: "holding folding mechanical blade" },
+                            { zh: "手持雷射鞭", en: "holding laser whip", jp: "レーザーウィップを持つ", value: "holding laser whip, glowing whip" },
+                            // --- 重型兵器與長柄 ---
+                            { zh: "手持能量斧", en: "holding energy axe", jp: "エナジーアックスを持つ", value: "holding energy axe" },
+                            { zh: "手持等離子斧", en: "holding plasma axe", jp: "プラズマアックスを持つ", value: "holding plasma axe" },
+                            { zh: "手持電磁錘", en: "holding electro hammer", jp: "エレクトロハンマーを持つ", value: "holding electro hammer" },
+                            { zh: "手持重力槌", en: "holding gravity hammer", jp: "グラビティハンマーを持つ", value: "holding gravity hammer" },
+                            { zh: "手持能量鎌刀", en: "holding energy scythe", jp: "エナジーサイズを持つ", value: "holding energy scythe" },
+                            { zh: "手持能量長槍", en: "holding energy lance", jp: "エナジーランスを持つ", value: "holding energy lance, glowing tip" },
+                            { zh: "手持巨大戰斧", en: "holding giant axe", jp: "巨大な斧を持つ", value: "holding giant axe" },
+                            // --- 遠程、砲火與戰術設備 ---
+                            { zh: "手持電磁軌道砲", en: "holding railgun", jp: "レールガンを持つ", value: "holding railgun, heavy weapon" },
+                            { zh: "手持光束步槍", en: "holding beam rifle", jp: "ビームライフルを持つ", value: "holding beam rifle" },
+                            { zh: "手持等離子手槍", en: "holding plasma pistol", jp: "プラズマピストルを持つ", value: "holding plasma pistol" },
+                            { zh: "手持脈衝步槍", en: "holding pulse rifle", jp: "パルスライフルを持つ", value: "holding pulse rifle" },
+                            { zh: "手持雷射狙擊槍", en: "holding laser sniper rifle", jp: "レーザー狙撃銃を持つ", value: "holding laser sniper rifle, long barrel" },
+                            { zh: "手持火炎放射器", en: "holding flamethrower", jp: "火炎放射器を持つ", value: "holding flamethrower, sci-fi flamethrower" },
+                            { zh: "手持榴彈發射器", en: "holding grenade launcher", jp: "グレネードランチャーを持つ", value: "holding grenade launcher, tactical" },
+                            { zh: "手持戰術複合弓", en: "holding tactical compound bow", jp: "タクティカルコンパウンドボウを持つ", value: "holding tactical compound bow, mechanical bow" },
+                            { zh: "手持能量護盾", en: "holding energy shield", jp: "エナジーシールドを持つ", value: "holding energy shield, translucent shield" },
+                            { zh: "手持電擊棒", en: "holding stun baton", jp: "スタンバトンを持つ", value: "holding stun baton, electric sparks" }
                         ]
                     },
                     {
@@ -11843,28 +11870,28 @@
             }
         }
 
-function downloadTemplates() {
-    const checkboxes = document.querySelectorAll(".template-checkbox:checked");
-    if (!checkboxes.length) return alert("請勾選欲下載的模板");
+        function downloadTemplates() {
+            const checkboxes = document.querySelectorAll(".template-checkbox:checked");
+            if (!checkboxes.length) return alert("請勾選欲下載的模板");
 
-    const selected = Array.from(checkboxes).map(cb => templateData[parseInt(cb.dataset.index)]);
+            const selected = Array.from(checkboxes).map(cb => templateData[parseInt(cb.dataset.index)]);
 
-    // 取得模板名稱
-    const names = selected.map(t => t.name || "template");
+            // 取得模板名稱
+            const names = selected.map(t => t.name || "template");
 
-    // 組合檔名
-    const fileName = names.join("_") + ".json";
+            // 組合檔名
+            const fileName = names.join("_") + ".json";
 
-    const blob = new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
+            const blob = new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = fileName;
-    a.click();
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+            a.click();
 
-    URL.revokeObjectURL(url);
-}
+            URL.revokeObjectURL(url);
+        }
 
         function uploadTemplates() {
             const input = document.getElementById("uploadInput");
@@ -12324,124 +12351,124 @@ function downloadTemplates() {
             }
         }
 
-function moveOutput(index, direction) {
-    const newIndex = index + direction;
+        function moveOutput(index, direction) {
+            const newIndex = index + direction;
 
-    if (newIndex < 0 || newIndex >= outputData.length) return;
+            if (newIndex < 0 || newIndex >= outputData.length) return;
 
-    pushUndoState();
+            pushUndoState();
 
-    // 交換資料
-    const temp = outputData[index];
-    outputData[index] = outputData[newIndex];
-    outputData[newIndex] = temp;
+            // 交換資料
+            const temp = outputData[index];
+            outputData[index] = outputData[newIndex];
+            outputData[newIndex] = temp;
 
-    // 更新目前選中 index
-    currentOutputIndex = newIndex;
+            // 更新目前選中 index
+            currentOutputIndex = newIndex;
 
-    // 重建整個 UI
-    outputsDiv.innerHTML = '';
-    outputData.forEach((_, i) => createOutputBox(i));
+            // 重建整個 UI
+            outputsDiv.innerHTML = '';
+            outputData.forEach((_, i) => createOutputBox(i));
 
-    updateOutputHighlight();
-    updateAllTagHighlight();
-}
+            updateOutputHighlight();
+            updateAllTagHighlight();
+        }
 
 
-function createOutputBox(index) {
-    const box = document.createElement('div');
-    box.className = 'output-box';
-    box.onclick = () => {
-        currentOutputIndex = index;
-        updateOutputHighlight();
-    };
-
-    const tagDisplay = document.createElement('div');
-    tagDisplay.className = 'output-tags';
-
-    const textarea = document.createElement('textarea');
-    textarea.oninput = () => {
-        pushUndoState();
-
-        const values = textarea.value
-            .split(',')
-            .map(t => t.trim())
-            .filter(t => t);
-
-        outputData[index] = values.map(v => {
-            for (let cat in jsonData) {
-                const match = jsonData[cat].find(t => t.value === v);
-                if (match) return match;
-            }
-            return {
-                label: { zh: v, en: v, jp: v },
-                value: v
+        function createOutputBox(index) {
+            const box = document.createElement('div');
+            box.className = 'output-box';
+            box.onclick = () => {
+                currentOutputIndex = index;
+                updateOutputHighlight();
             };
-        });
 
-        renderTagDisplay(index);
-        updateAllTagHighlight();
-    };
+            const tagDisplay = document.createElement('div');
+            tagDisplay.className = 'output-tags';
 
-    const controls = document.createElement('div');
-    controls.className = 'output-controls';
+            const textarea = document.createElement('textarea');
+            textarea.oninput = () => {
+                pushUndoState();
 
-    // 📋 Copy
-    const copyBtn = document.createElement('button');
-    copyBtn.textContent = '📋';
-    copyBtn.onclick = (e) => {
-        e.stopPropagation();
-        navigator.clipboard.writeText(textarea.value);
-    };
+                const values = textarea.value
+                    .split(',')
+                    .map(t => t.trim())
+                    .filter(t => t);
 
-    // 🗑️ Clear
-    const clearBtn = document.createElement('button');
-    clearBtn.textContent = '🗑️';
-    clearBtn.onclick = (e) => {
-        e.stopPropagation();
-        pushUndoState();
-        outputData[index] = [];
-        updateOutput(index);
-        updateAllTagHighlight();
-    };
+                outputData[index] = values.map(v => {
+                    for (let cat in jsonData) {
+                        const match = jsonData[cat].find(t => t.value === v);
+                        if (match) return match;
+                    }
+                    return {
+                        label: { zh: v, en: v, jp: v },
+                        value: v
+                    };
+                });
 
-    // ⬆️ 上移
-    const upBtn = document.createElement('button');
-    upBtn.textContent = '⬆️';
-    upBtn.onclick = (e) => {
-        e.stopPropagation();
-        moveOutput(index, -1);
-    };
+                renderTagDisplay(index);
+                updateAllTagHighlight();
+            };
 
-    // ⬇️ 下移
-    const downBtn = document.createElement('button');
-    downBtn.textContent = '⬇️';
-    downBtn.onclick = (e) => {
-        e.stopPropagation();
-        moveOutput(index, 1);
-    };
+            const controls = document.createElement('div');
+            controls.className = 'output-controls';
 
-const moveWrap = document.createElement('div');
-moveWrap.className = 'move-buttons';
-moveWrap.appendChild(upBtn);
-moveWrap.appendChild(downBtn);
+            // 📋 Copy
+            const copyBtn = document.createElement('button');
+            copyBtn.textContent = '📋';
+            copyBtn.onclick = (e) => {
+                e.stopPropagation();
+                navigator.clipboard.writeText(textarea.value);
+            };
 
-const leftWrap = document.createElement('div');
-leftWrap.appendChild(copyBtn);
-leftWrap.appendChild(clearBtn);
+            // 🗑️ Clear
+            const clearBtn = document.createElement('button');
+            clearBtn.textContent = '🗑️';
+            clearBtn.onclick = (e) => {
+                e.stopPropagation();
+                pushUndoState();
+                outputData[index] = [];
+                updateOutput(index);
+                updateAllTagHighlight();
+            };
 
-controls.appendChild(leftWrap);
-controls.appendChild(moveWrap);
+            // ⬆️ 上移
+            const upBtn = document.createElement('button');
+            upBtn.textContent = '⬆️';
+            upBtn.onclick = (e) => {
+                e.stopPropagation();
+                moveOutput(index, -1);
+            };
+
+            // ⬇️ 下移
+            const downBtn = document.createElement('button');
+            downBtn.textContent = '⬇️';
+            downBtn.onclick = (e) => {
+                e.stopPropagation();
+                moveOutput(index, 1);
+            };
+
+            const moveWrap = document.createElement('div');
+            moveWrap.className = 'move-buttons';
+            moveWrap.appendChild(upBtn);
+            moveWrap.appendChild(downBtn);
+
+            const leftWrap = document.createElement('div');
+            leftWrap.appendChild(copyBtn);
+            leftWrap.appendChild(clearBtn);
+
+            controls.appendChild(leftWrap);
+            controls.appendChild(moveWrap);
 
 
 
-    box.appendChild(tagDisplay);
-    box.appendChild(textarea);
-    box.appendChild(controls);
-    outputsDiv.appendChild(box);
+            box.appendChild(tagDisplay);
+            box.appendChild(textarea);
+            box.appendChild(controls);
+            outputsDiv.appendChild(box);
 
-    updateOutput(index);
-}
+            updateOutput(index);
+        }
 
 
         function normalizeValue(v) {
