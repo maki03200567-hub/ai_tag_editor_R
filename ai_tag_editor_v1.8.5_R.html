@@ -668,6 +668,7 @@
                             { zh: "蟲瞰視角", en: "worm's eye view", jp: "蟲の視点", value: "worm's eye view" },
                             { zh: "荷蘭式鏡頭", en: "dutch angle", jp: "ダッチアングル", value: "dutch angle" },
                             { zh: "荷蘭式鏡頭 (強力)", en: "dutch angle", jp: "ダッチアングル(強)", value: "dutch angle, tilted frame, diagonal composition" },
+                            { zh: "壁尻視角構圖", en: "Through Wall Both Views 2koma", jp: "壁尻視点構図", value: "multiple views, split screen, 2koma, upper body view, lower body view, through wall, ass" },
                         ]
                     },
                     {
@@ -1295,7 +1296,9 @@
                             { zh: "響", en: "Hibiki", jp: "響", value: "science fiction, mecha musume, Hibiki, ahoge,brown hair,long hair,hairband,hair between eyes,blue eyes,heterochromia,yellow eyes" },
                             { zh: "響·服", en: "Hibiki Clothing", jp: "響·服", value: "blue jacket,blue cropped jacket, white bodysuit, black gloves, fingerless gloves, covered navel, mechanical boots, blue footwear" },
                             { zh: "加拉哈德", en: "Galahad", jp: "カラハド", value: "Galahad · Akatsuki, short hair, white hair, hair between eyes, blue eyes" },
-                            { zh: "加拉哈德", en: "Galahad Clothing", jp: "カラハド·服", value: "cape, armored leotard,armor, covered navel, headgear, armored boots" },
+                            { zh: "加拉哈德·服", en: "Galahad Clothing", jp: "カラハド·服", value: "cape, armored leotard,armor, covered navel, headgear, armored boots" },
+                            { zh: "菲比（主體）", en: "Phoebe Base", jp: "フィービー（基本）", value: "phoebe_starward, blue hair, streaked hair, long hair, twin braids, hair intakes, purple eyes" },
+                            { zh: "菲比·服", en: "Phoebe Maid Outfit", jp: "フィービー（メイド服）", value: "unconventional maid, frilled, maid headdress, feather ear ornament, cleavage, bare shoulders, wing collar, layered detached sleeves, maid apron, back bow, black gloves, black ribbon, single frilled o-ring thigh strap, frilled socks, white socks, mary janes, black shoes" },
                         ]
                     },
                     {
@@ -12501,7 +12504,7 @@
             input.value = "";
         }
 
-    
+
         function renderTemplateList() {
             const container = document.getElementById("templateList");
             container.innerHTML = "";
@@ -12563,91 +12566,91 @@
         /* -------------------------
            category / tags rendering
         ------------------------- */
-function renderCategoryButtons() {
-    categoriesDiv.innerHTML = '';
+        function renderCategoryButtons() {
+            categoriesDiv.innerHTML = '';
 
-    Object.keys(jsonData).forEach((key) => {
-        const btn = document.createElement('button');
-        btn.textContent = categories[key][currentLang] || key;
+            Object.keys(jsonData).forEach((key) => {
+                const btn = document.createElement('button');
+                btn.textContent = categories[key][currentLang] || key;
 
-        // ✅【新增】記住這顆按鈕代表哪個分類
-        btn.dataset.key = key;
+                // ✅【新增】記住這顆按鈕代表哪個分類
+                btn.dataset.key = key;
 
-        // ✅【新增】初始化時就依 currentCategory 決定是否高亮
-        if (key === currentCategory) {
-            btn.classList.add('active');
+                // ✅【新增】初始化時就依 currentCategory 決定是否高亮
+                if (key === currentCategory) {
+                    btn.classList.add('active');
+                }
+
+                btn.onclick = () => {
+                    currentCategory = key;
+
+                    const desktopInput = document.getElementById('searchInput');
+                    const mobileInput = document.getElementById('mobileSearchInput');
+                    const hasSearch =
+                        (desktopInput && desktopInput.value.trim()) ||
+                        (mobileInput && mobileInput.value.trim());
+
+                    if (hasSearch) {
+                        if (desktopInput) desktopInput.value = '';
+                        if (mobileInput) mobileInput.value = '';
+                        renderTags(key, null);
+                    } else {
+                        const q = (desktopInput || { value: '' }).value.trim();
+                        renderTags(key, q || null);
+                    }
+
+                    // ✅【新增】切換完成後，同步高亮狀態
+                    updateCategoryHighlight();
+
+                };
+
+                categoriesDiv.appendChild(btn);
+            });
         }
 
-        btn.onclick = () => {
-            currentCategory = key;
-
-            const desktopInput = document.getElementById('searchInput');
-            const mobileInput = document.getElementById('mobileSearchInput');
-            const hasSearch =
-                (desktopInput && desktopInput.value.trim()) ||
-                (mobileInput && mobileInput.value.trim());
-
-            if (hasSearch) {
-                if (desktopInput) desktopInput.value = '';
-                if (mobileInput) mobileInput.value = '';
-                renderTags(key, null);
-            } else {
-                const q = (desktopInput || { value: '' }).value.trim();
-                renderTags(key, q || null);
+        function findTagLocation(value) {
+            for (const category of rawData) {
+                for (const group of category.groups || []) {
+                    for (const tag of group.tags || []) {
+                        if (tag.value === value) {
+                            return {
+                                categoryKey: category.category.key,
+                                subCategory: group.subCategory
+                            };
+                        }
+                    }
+                }
             }
-
-            // ✅【新增】切換完成後，同步高亮狀態
-            updateCategoryHighlight();
-            
-        };
-
-        categoriesDiv.appendChild(btn);
-    });
-}
-
-function findTagLocation(value) {
-  for (const category of rawData) {
-    for (const group of category.groups || []) {
-      for (const tag of group.tags || []) {
-        if (tag.value === value) {
-          return {
-            categoryKey: category.category.key,
-            subCategory: group.subCategory
-          };
+            return null;
         }
-      }
-    }
-  }
-  return null;
-}
 
-function jumpToTag(value) {
-  const location = findTagLocation(value);
-  if (!location) return;
+        function jumpToTag(value) {
+            const location = findTagLocation(value);
+            if (!location) return;
 
-  // 1️⃣ 切換分類
-  currentCategory = location.categoryKey;
+            // 1️⃣ 切換分類
+            currentCategory = location.categoryKey;
 
-  // 2️⃣ 重新 render 左側
-  renderCategoryButtons();
-  renderTags(currentCategory, null);
-  updateCategoryHighlight();
+            // 2️⃣ 重新 render 左側
+            renderCategoryButtons();
+            renderTags(currentCategory, null);
+            updateCategoryHighlight();
 
-  // 3️⃣ 等 DOM 畫完後再捲動
-  requestAnimationFrame(() => {
-    const target = document.querySelector(
-      `.tag[data-value="${CSS.escape(value)}"]`
-    );
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-      target.classList.add('jump-highlight');
-      setTimeout(() => target.classList.remove('jump-highlight'), 1200);
-    }
-  });
-}
+            // 3️⃣ 等 DOM 畫完後再捲動
+            requestAnimationFrame(() => {
+                const target = document.querySelector(
+                    `.tag[data-value="${CSS.escape(value)}"]`
+                );
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    target.classList.add('jump-highlight');
+                    setTimeout(() => target.classList.remove('jump-highlight'), 1200);
+                }
+            });
+        }
 
         // helper to decide match (zh/en/jp/value)
         function tagMatchesFilter(tag, filter) {
@@ -12797,19 +12800,19 @@ function jumpToTag(value) {
             tagListDiv.innerHTML = '';
 
             // no filter: original behavior - show only current category
-if (!filter) {
-    const categoryData = rawData.find(c => c.category.key === categoryKey);
-    if (!categoryData) return;
-    const categoryEl = renderCategory(categoryData, null);
-    tagListDiv.appendChild(categoryEl);
-    updateAllTagHighlight();
+            if (!filter) {
+                const categoryData = rawData.find(c => c.category.key === categoryKey);
+                if (!categoryData) return;
+                const categoryEl = renderCategory(categoryData, null);
+                tagListDiv.appendChild(categoryEl);
+                updateAllTagHighlight();
 
-    // ✅【關鍵】同步上方分類鍵高亮
-    updateCategoryHighlight();
-updateCategoryHighlight();
+                // ✅【關鍵】同步上方分類鍵高亮
+                updateCategoryHighlight();
+                updateCategoryHighlight();
 
-    return;
-}
+                return;
+            }
 
             // with filter: search across all categories & groups
             const q = String(filter).trim().toLowerCase();
@@ -12984,14 +12987,14 @@ updateCategoryHighlight();
         }
 
         function parseWeightedTag(raw) {
-  const m = raw.match(/^\((.+?):([0-9.]+)\)$/);
-  if (!m) return null;
+            const m = raw.match(/^\((.+?):([0-9.]+)\)$/);
+            if (!m) return null;
 
-  return {
-    value: m[1].trim(),
-    weight: parseFloat(m[2])
-  };
-}
+            return {
+                value: m[1].trim(),
+                weight: parseFloat(m[2])
+            };
+        }
 
         function toggleTag(el, tagObj) {
             const foundIndex = outputData.findIndex(arr =>
@@ -13058,30 +13061,30 @@ updateCategoryHighlight();
                     .map(t => t.trim())
                     .filter(Boolean);
 
-outputData[index] = values.map(raw => {
-  // ① 嘗試解析 (tag:1.2)
-  const parsed = parseWeightedTag(raw);
-  const lookupValue = parsed ? parsed.value : raw;
+                outputData[index] = values.map(raw => {
+                    // ① 嘗試解析 (tag:1.2)
+                    const parsed = parseWeightedTag(raw);
+                    const lookupValue = parsed ? parsed.value : raw;
 
-  // ② 用乾淨的 value 去找 tag
-  for (let cat in jsonData) {
-    const match = jsonData[cat].find(t => t.value === lookupValue);
-    if (match) {
-      const tagObj = JSON.parse(JSON.stringify(match));
-      // ✅ 如果有解析到 weight，就存起來
-      if (parsed) tagObj.weight = parsed.weight;
-      return tagObj;
-    }
-  }
+                    // ② 用乾淨的 value 去找 tag
+                    for (let cat in jsonData) {
+                        const match = jsonData[cat].find(t => t.value === lookupValue);
+                        if (match) {
+                            const tagObj = JSON.parse(JSON.stringify(match));
+                            // ✅ 如果有解析到 weight，就存起來
+                            if (parsed) tagObj.weight = parsed.weight;
+                            return tagObj;
+                        }
+                    }
 
-  // ③ 找不到 tag → 退化（你說 OK）
-  const fallback = {
-    label: { zh: lookupValue, en: lookupValue, jp: lookupValue },
-    value: lookupValue
-  };
-  if (parsed) fallback.weight = parsed.weight;
-  return fallback;
-});
+                    // ③ 找不到 tag → 退化（你說 OK）
+                    const fallback = {
+                        label: { zh: lookupValue, en: lookupValue, jp: lookupValue },
+                        value: lookupValue
+                    };
+                    if (parsed) fallback.weight = parsed.weight;
+                    return fallback;
+                });
 
 
                 renderTagDisplay(index);
@@ -13191,20 +13194,20 @@ outputData[index] = values.map(raw => {
                     displayText = '';
                 }
 
-const tagEl = document.createElement('div');
-tagEl.className = 'output-tag';
+                const tagEl = document.createElement('div');
+                tagEl.className = 'output-tag';
 
-// ✅ 點擊 output TAG → 反向定位
-tagEl.onclick = () => {
-    jumpToTag(tagValueRaw);
-};
+                // ✅ 點擊 output TAG → 反向定位
+                tagEl.onclick = () => {
+                    jumpToTag(tagValueRaw);
+                };
 
-const safeValue = String(tagValueRaw).replace(/'/g, "\\'");
-tagEl.innerHTML = `${displayText}
+                const safeValue = String(tagValueRaw).replace(/'/g, "\\'");
+                tagEl.innerHTML = `${displayText}
   <span onclick="event.stopPropagation(); removeTag(${index}, '${safeValue}')">✕</span>
 `;
 
-tagContainer.appendChild(tagEl);
+                tagContainer.appendChild(tagEl);
             });
         }
 
@@ -13481,12 +13484,12 @@ tagContainer.appendChild(tagEl);
             });
         }
 
-function updateCategoryHighlight() {
-    document.querySelectorAll('#categories button').forEach(btn => {
-        const key = btn.dataset.key;
-        btn.classList.toggle('active', key === currentCategory);
-    });
-}
+        function updateCategoryHighlight() {
+            document.querySelectorAll('#categories button').forEach(btn => {
+                const key = btn.dataset.key;
+                btn.classList.toggle('active', key === currentCategory);
+            });
+        }
 
         function renderCategoryButtons_mobile() {
             categoriesDiv.innerHTML = '';
@@ -13495,12 +13498,12 @@ function updateCategoryHighlight() {
             group.classification.forEach(key => {
                 const category = categories[key];
                 if (!category) return;
-const btn = document.createElement('button');
-btn.textContent = categories[key][currentLang] || key;
-btn.dataset.key = key;
+                const btn = document.createElement('button');
+                btn.textContent = categories[key][currentLang] || key;
+                btn.dataset.key = key;
 
-// ✅ 初始就同步 active 狀態
-if (key === currentCategory) btn.classList.add('active');
+                // ✅ 初始就同步 active 狀態
+                if (key === currentCategory) btn.classList.add('active');
                 if (key === currentCategory) btn.classList.add("active");
                 btn.onclick = () => {
                     currentCategory = key;
