@@ -6495,6 +6495,7 @@
                             { zh: "毛絨膝上襪", en: "fuzzy knee-high socks", jp: "モコモコオーバーニーソックス", value: "fuzzy knee-high socks" },
                             { zh: "運動膝上襪", en: "sporty knee-high socks", jp: "スポーツオーバーニーソックス", value: "sporty knee-high socks" },
                             // 過膝襪 / thigh-high stockings
+                            { zh: "大腿襪", en: "thighhighs", jp: "ニーソックス", value: "thighhighs" },
                             { zh: "過膝襪", en: "thigh-high stockings", jp: "ニーソ", value: "thigh-high stockings" },
                             { zh: "棉質過膝襪", en: "cotton thigh-high stockings", jp: "コットンニーソ", value: "cotton thigh-high stockings" },
                             { zh: "毛絨過膝襪", en: "fuzzy thigh-high stockings", jp: "モコモコニーソ", value: "fuzzy thigh-high stockings" },
@@ -8523,32 +8524,51 @@
                         ]
                     },
                     {
-                        subCategory: "家具與家居用品",
-                        tags: [
-                            { zh: "床", en: "bed", jp: "ベッド", value: "bed" },
-                            { zh: "電風扇", en: "electric fan", jp: "扇風機", value: "electric fan" },
-                            { zh: "落地電風扇", en: "floor-standing electric fan", jp: "床置き扇風機", value: "floor-standing electric fan" },
-                            { zh: "垃圾桶", en: "trash can", jp: "ゴミ箱", value: "trash can" },
-                            { zh: "水桶", en: "bucket", jp: "バケツ", value: "bucket" },
-                            { zh: "掃把", en: "broom", jp: "ほうき", value: "broom" },
-                            { zh: "拖把", en: "mop", jp: "モップ", value: "mop" },
-                            { zh: "椅子", en: "chair", jp: "椅子", value: "chair" },
-                            { zh: "桌子", en: "table", jp: "テーブル", value: "table" },
-                            { zh: "沙發", en: "sofa", jp: "ソファ", value: "sofa" },
-                            { zh: "枕頭", en: "pillow", jp: "枕", value: "pillow" },
-                            { zh: "毛毯", en: "blanket", jp: "毛布", value: "blanket" },
-                            { zh: "花瓶", en: "vase", jp: "花瓶", value: "vase" },
-                            { zh: "裝飾燈", en: "decorative light", jp: "装飾ライト", value: "decorative light" },
-                            { zh: "掛鐘", en: "wall clock", jp: "掛け時計", value: "wall clock" },
-                            { zh: "化妝鏡", en: "makeup mirror", jp: "化粧鏡", value: "makeup mirror" },
-                            { zh: "小椅子", en: "small chair", jp: "小さな椅子", value: "small chair" },
-                            { zh: "梳妝台", en: "dressing table", jp: "ドレッサー", value: "dressing table" },
-                            { zh: "啞鈴", en: "dumbbells", jp: "ダンベル", value: "dumbbells" },
-                            { zh: "槓鈴", en: "barbell", jp: "バーベル", value: "barbell" },
-                            { zh: "重物盤", en: "weight plates", jp: "ウェイトプレート", value: "weight plates" },
-                            { zh: "按摩床", en: "massage table", jp: "マッサージベッド", value: "massage table" },
-                        ]
-                    },
+    subCategory: "家具與家居用品",
+    tags: [
+        // --- 基礎家具 ---
+        { zh: "床", en: "bed", jp: "ベッド", value: "bed" },
+        { zh: "椅子", en: "chair", jp: "椅子", value: "chair" },
+        { zh: "桌子", en: "table", jp: "テーブル", value: "table" },
+        { zh: "沙發", en: "sofa", jp: "ソファ", value: "sofa" },
+        { zh: "小椅子", en: "small chair", jp: "小さな椅子", value: "small chair" },
+        { zh: "辦公椅", en: "office chair", jp: "オフィスチェア", value: "office chair" },
+        { zh: "扶手椅", en: "armchair", jp: "アームチェア", value: "armchair" },
+        { zh: "長凳", en: "bench", jp: "ベンチ", value: "bench" },
+        // --- 收納家具 ---
+        { zh: "書架", en: "bookshelf", jp: "本棚", value: "bookshelf" },
+        { zh: "衣櫃", en: "wardrobe", jp: "クローゼット", value: "wardrobe" },
+        { zh: "梳妝台", en: "dressing table", jp: "ドレッサー", value: "dressing table" },
+        { zh: "床頭櫃", en: "nightstand", jp: "ナイトテーブル", value: "nightstand" },
+        { zh: "櫥櫃", en: "cabinet", jp: "キャビネット", value: "cabinet" },        
+        // --- 寢具與軟裝 ---
+        { zh: "枕頭", en: "pillow", jp: "枕", value: "pillow" },
+        { zh: "毛毯", en: "blanket", jp: "毛布", value: "blanket" },
+        { zh: "地毯", en: "rug", jp: "ラグマット", value: "rug" },
+        { zh: "窗簾", en: "curtains", jp: "カーテン", value: "curtains" },
+        { zh: "坐墊", en: "cushion", jp: "クッション", value: "cushion" },        
+        // --- 擺飾與生活用品 ---
+        { zh: "花瓶", en: "vase", jp: "花瓶", value: "vase" },
+        { zh: "掛鐘", en: "wall clock", jp: "掛け時計", value: "wall clock" },
+        { zh: "化妝鏡", en: "makeup mirror", jp: "化粧鏡", value: "makeup mirror" },
+        { zh: "全身鏡", en: "full-length mirror", jp: "姿見", value: "full-length mirror" },
+        { zh: "裝飾燈", en: "decorative light", jp: "装飾ライト", value: "decorative light" },
+        { zh: "盆栽", en: "potted plant", jp: "観葉植物", value: "potted plant" },
+        { zh: "面紙盒", en: "tissue box", jp: "ティッシュボックス", value: "tissue box" },        
+        // --- 清潔工具 ---
+        { zh: "垃圾桶", en: "trash can", jp: "ゴミ箱", value: "trash can" },
+        { zh: "水桶", en: "bucket", jp: "バケツ", value: "bucket" },
+        { zh: "掃把", en: "broom", jp: "ほうき", value: "broom" },
+        { zh: "拖把", en: "mop", jp: "モップ", value: "mop" },
+        { zh: "洗衣籃", en: "laundry basket", jp: "ランドリーバスケット", value: "laundry basket" },        
+        // --- 運動與特殊用途 ---
+        { zh: "啞鈴", en: "dumbbells", jp: "ダンベル", value: "dumbbells" },
+        { zh: "槓鈴", en: "barbell", jp: "バーベル", value: "barbell" },
+        { zh: "重物盤", en: "weight plates", jp: "ウェイトプレート", value: "weight plates" },
+        { zh: "瑜珈墊", en: "yoga mat", jp: "ヨガマット", value: "yoga mat" },
+        { zh: "按摩床", en: "massage table", jp: "マッサージベッド", value: "massage table" },
+    ]
+},
                     {
                         subCategory: "地上散亂物品",
                         tags: [
