@@ -5374,6 +5374,95 @@
                 category: { key: "clothes (style)", zh: "服裝風格", en: "clothes (style)", jp: "服（スタイル）" },
                 groups: [
                     {
+    subCategory: "裸露程度與局部裸露",
+    tags: [
+        // --- 整體裸露 ---
+        { zh: "全裸", en: "completely nude", jp: "全裸", value: "completely nude" },
+        { zh: "裸體", en: "nude", jp: "裸", value: "nude" },
+        { zh: "半裸", en: "partially nude", jp: "半裸", value: "partially nude" },
+        { zh: "幾乎全裸", en: "almost nude", jp: "ほぼ全裸", value: "almost nude" },
+
+        // --- 上半身 ---
+        { zh: "裸胸", en: "bare chest", jp: "胸部裸出", value: "bare chest" },
+        { zh: "無上裝", en: "topless", jp: "トップレス", value: "topless" },
+        { zh: "露出乳頭", en: "exposed nipples", jp: "乳首露出", value: "exposed nipples" },
+        { zh: "下乳露出", en: "underboob", jp: "下乳", value: "underboob" },
+        { zh: "側乳露出", en: "sideboob", jp: "横乳", value: "sideboob" },
+
+        // --- 下半身 ---
+        { zh: "無下裝", en: "bottomless", jp: "ボトムレス", value: "bottomless" },
+        { zh: "沒穿內褲", en: "no panties", jp: "ノーパン", value: "no panties" },
+        { zh: "露出陰部", en: "exposed pussy", jp: "まんこ露出", value: "exposed pussy" },
+        { zh: "露出臀部", en: "exposed buttocks", jp: "尻露出", value: "exposed buttocks" },
+        { zh: "露出肛門", en: "exposed anus", jp: "アナル露出", value: "exposed anus" },
+
+        // --- 腰 / 身體中段 ---
+        { zh: "露腰", en: "midriff", jp: "腹部露出", value: "midriff" },
+        { zh: "露肚臍", en: "navel exposed", jp: "へそ出し", value: "navel" },
+
+        // --- 背 / 肩 ---
+        { zh: "露背", en: "bare back", jp: "背中露出", value: "bare back" },
+        { zh: "露肩", en: "bare shoulders", jp: "肩出し", value: "bare shoulders" },
+
+        // --- 腿 / 足 ---
+        { zh: "裸腿", en: "bare legs", jp: "素足", value: "bare legs" },
+        { zh: "裸足", en: "barefoot", jp: "裸足", value: "barefoot" },
+        { zh: "腳底裸露", en: "bare soles", jp: "足裏露出", value: "bare soles" },
+        { zh: "腳趾裸露", en: "bare toes", jp: "足指露出", value: "bare toes" },
+
+        // --- 手部 ---
+        { zh: "裸手", en: "bare hands", jp: "素手", value: "bare hands" },
+
+        // --- 穿衣狀態下的裸露 ---
+        { zh: "掀起衣服", en: "lifting clothes", jp: "服をめくる", value: "lifting clothes" },
+        { zh: "掀衣露胸", en: "lifting shirt, exposing breasts", jp: "服をめくって胸出し", value: "lifting clothes, topless" },
+        { zh: "半脫衣", en: "partially undressed", jp: "半脱ぎ", value: "partially undressed" },
+        { zh: "衣物滑落", en: "clothes slipping", jp: "服がずれる", value: "clothes slipping" },
+
+        // --- 內衣狀態 ---
+        { zh: "沒穿內褲", en: "no panties", jp: "ノーパン", value: "no panties" },
+        { zh: "沒穿胸罩", en: "no bra", jp: "ノーブラ", value: "no bra" },
+        { zh: "內衣外露", en: "underwear visible", jp: "下着露出", value: "underwear visible" },
+
+        // --- 材質導致裸露 ---
+        { zh: "透視裝", en: "see-through", jp: "シースルー", value: "see-through" },
+        { zh: "濕透衣物", en: "wet clothes", jp: "濡れた服", value: "wet clothes" },
+        { zh: "緊貼衣物", en: "clinging clothes", jp: "張り付く服", value: "clinging clothes" }
+    ]
+},
+{
+    subCategory: "未穿戴 / 無裝備",
+    tags: [
+        // --- 頭部 ---
+        { zh: "無帽子", en: "no hat", jp: "帽子なし", value: "no hat" },
+        { zh: "無頭飾", en: "no headwear", jp: "頭飾りなし", value: "no headwear" },
+        { zh: "無眼鏡", en: "no glasses", jp: "眼鏡なし", value: "no glasses" },
+        { zh: "無口罩", en: "no mask", jp: "マスクなし", value: "no mask" },
+        // --- 上半身 ---
+        { zh: "無外套", en: "no jacket", jp: "上着なし", value: "no jacket" },
+        { zh: "無上衣", en: "no shirt", jp: "シャツなし", value: "no shirt" },
+        { zh: "無胸罩", en: "no bra", jp: "ノーブラ", value: "no bra" },
+        { zh: "無手套", en: "no gloves", jp: "手袋なし", value: "no gloves" },
+        // --- 下半身 ---
+        { zh: "無褲子", en: "no pants", jp: "ズボンなし", value: "no pants" },
+        { zh: "無裙子", en: "no skirt", jp: "スカートなし", value: "no skirt" },
+        { zh: "無內褲", en: "no panties", jp: "ノーパン", value: "no panties" },
+        // --- 腿 / 足 ---
+        { zh: "無襪", en: "no socks", jp: "靴下なし", value: "no socks" },
+        { zh: "無絲襪", en: "no pantyhose", jp: "パンストなし", value: "no pantyhose" },
+        { zh: "無大腿襪", en: "no thighhighs", jp: "ニーソなし", value: "no thighhighs" },
+        { zh: "無鞋", en: "no shoes", jp: "靴なし", value: "no shoes" },
+        // --- 配件 ---
+        { zh: "無項鍊", en: "no necklace", jp: "ネックレスなし", value: "no necklace" },
+        { zh: "無耳環", en: "no earrings", jp: "ピアスなし", value: "no earrings" },
+        { zh: "無手環", en: "no bracelet", jp: "ブレスレットなし", value: "no bracelet" },
+        { zh: "無腰帶", en: "no belt", jp: "ベルトなし", value: "no belt" },
+        // --- 泛用 ---
+        { zh: "無裝備", en: "no accessories", jp: "装飾なし", value: "no accessories" },
+        { zh: "簡潔穿著", en: "minimal accessories", jp: "装飾少なめ", value: "minimal accessories" }
+    ]
+},
+                    {
                         subCategory: "暴露度・遮蔽程度",
                         tags: [
                             { zh: "幾乎沒有遮蔽", en: "almost no cover", jp: "ほぼ無覆い", value: "almost no cover" },
