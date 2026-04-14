@@ -725,7 +725,7 @@
                             { zh: "主觀視角", en: "first-person POV", jp: "主観視点", value: "pov, first person view" },
                             { zh: "鏡中視角", en: "mirror view", jp: "鏡越し視点", value: "mirror reflection view" },
                             { zh: "透視縮短", en: "foreshortening", jp: "パース強調視点", value: "foreshortening, forced perspective" },
-                            { zh: "傾斜視角", en: "tilted / dutch angle", jp: "傾き構図", value: "tilted angle, dutch angle" }
+                            { zh: "傾斜視角", en: "tilted / dutch angle", jp: "傾き構図", value: "tilted angle, dutch angle" },
                         ]
                     },
                     {
@@ -864,6 +864,46 @@
                             { zh: "極近腳部", en: "extreme close-up feet", jp: "足ドアップ", value: "extreme close-up feet" },
                             { zh: "腳貼近視角", en: "feet pressed to viewpoint", jp: "足を視点に押し付ける", value: "feet pressed to viewpoint" },
                             { zh: "腳靠近視角", en: "feet very close to viewpoint", jp: "足が視点に近い", value: "feet very close to viewpoint" }
+                        ]
+                    },
+                    {
+                        subCategory: "偷窺",
+                        tags: [
+                            // --- 視角 ---
+                            { zh: "第一人稱視角", en: "pov", jp: "主観視点", value: "pov" },
+                            { zh: "偷窺", en: "peeking", jp: "覗き見", value: "peeking" },
+                            { zh: "從下方偷看", en: "peeking from below", jp: "下から覗く", value: "peeking from below" },
+                            { zh: "從側邊偷看", en: "peeking from side", jp: "横から覗く", value: "peeking from side" },
+                            // --- 遮擋 / 隱藏 ---
+                            { zh: "部分遮擋", en: "partially obscured", jp: "一部遮られる", value: "partially obscured" },
+                            { zh: "被遮住視線", en: "obstructed view", jp: "視界が遮られる", value: "obstructed view" },
+                            { zh: "躲藏中", en: "hidden", jp: "隠れている", value: "hidden" },
+                            { zh: "從縫隙看", en: "looking through gap", jp: "隙間から見る", value: "looking through gap" },
+                            // --- 遮擋物 ---
+                            { zh: "桌下", en: "under table", jp: "机の下", value: "under table" },
+                            { zh: "門後", en: "behind door", jp: "ドアの後ろ", value: "behind door" },
+                            { zh: "牆後", en: "behind wall", jp: "壁の後ろ", value: "behind wall" },
+                            { zh: "窗簾後", en: "behind curtain", jp: "カーテンの後ろ", value: "behind curtain" },
+                            // --- 角色狀態 ---
+                            { zh: "未察覺", en: "unaware", jp: "気づいていない", value: "unaware" },
+                            { zh: "沒有對視", en: "not looking at viewer", jp: "こちらを見ない", value: "not looking at viewer" },
+                            { zh: "突然對視", en: "sudden eye contact", jp: "急に目が合う", value: "sudden eye contact" },
+                            // --- 視角補強 ---
+                            { zh: "狹窄視野", en: "narrow view", jp: "狭い視界", value: "narrow view" }
+                        ]
+                    },
+                    {
+                        subCategory: "偷窺視角",
+                        tags: [
+                            { zh: "桌下偷看", en: "under table voyeur POV", jp: "机の下からの覗き視点", value: "under table, pov, peeking from below, low angle, partially obscured, obstructed view, unaware, not looking at viewer" },
+                            { zh: "桌下偷看（腿部強調）", en: "under table leg focus POV", jp: "机の下から脚フォーカス覗き視点", value: "under table, pov, peeking from below, low angle, partially obscured, focus on legs, lower body view, unaware" },
+                            { zh: "桌下偷看（坐姿）", en: "under table sitting POV", jp: "机の下から座り姿覗き視点", value: "under table, pov, low angle, sitting at table, partially obscured, obstructed view, lower body view, unaware" },
+                            { zh: "門後偷看", en: "peeking from behind door POV", jp: "ドアの後ろから覗く視点", value: "pov, peeking from behind door, behind door, partially obscured, hidden, narrow view, unaware, not looking at viewer" },
+                            { zh: "牆後偷看", en: "peeking from behind wall POV", jp: "壁の後ろから覗く視点", value: "pov, peeking from side, behind wall, partially obscured, hidden, obstructed view, unaware" },
+                            { zh: "窗簾後偷看", en: "peeking from behind curtain POV", jp: "カーテンの後ろから覗く視点", value: "pov, behind curtain, peeking, partially obscured, narrow view, hidden, unaware" },
+                            { zh: "縫隙偷看", en: "looking through gap POV", jp: "隙間から覗く視点", value: "pov, looking through gap, narrow view, obstructed view, partially obscured, unaware, not looking at viewer" },
+                            { zh: "低角度桌邊偷看", en: "low angle table edge POV", jp: "机の端からのローアングル覗き視点", value: "low angle, pov, peeking from below, table above, partially obscured, looking up, unaware" },
+                            { zh: "偷看被發現", en: "voyeur caught POV", jp: "覗きがバレる視点", value: "pov, peeking, partially obscured, sudden eye contact, looking at viewer" },
                         ]
                     },
                     {
@@ -9954,6 +9994,15 @@
                             { zh: "手持馬克杯", en: "holding mug", jp: "マグカップを持つ", value: "holding mug, mug in hand" },
                             { zh: "手拿餐具", en: "holding utensils", jp: "食器を持つ", value: "holding utensils" },
                             { zh: "拿飲料", en: "holding drink", jp: "飲み物を持つ", value: "holding drink" },
+                            { zh: "手拿冰淇淋", en: "holding ice cream", jp: "アイスクリームを持つ", value: "holding ice cream" },
+                            { zh: "手拿冰棒", en: "holding popsicle", jp: "アイスバーを持つ", value: "holding popsicle" },
+                            { zh: "手拿雪糕", en: "holding ice cream bar", jp: "アイスバーを持つ", value: "holding ice cream bar" },
+                            { zh: "手拿甜筒冰淇淋", en: "holding ice cream cone", jp: "コーンアイスを持つ", value: "holding ice cream cone" },
+                            { zh: "手拿雙球冰淇淋", en: "holding double scoop ice cream", jp: "ダブルスクープアイスを持つ", value: "holding double scoop ice cream" },
+                            { zh: "手拿融化冰淇淋", en: "holding melting ice cream", jp: "溶けたアイスを持つ", value: "holding melting ice cream" },
+                            { zh: "手拿滴落冰淇淋", en: "holding dripping ice cream", jp: "滴るアイスを持つ", value: "holding dripping ice cream" },
+                            { zh: "拿著冰品", en: "holding frozen dessert", jp: "冷たいデザートを持つ", value: "holding frozen dessert" },
+                            { zh: "拿著甜點", en: "holding dessert", jp: "デザートを持つ", value: "holding dessert" },
                             { zh: "拿書本", en: "holding book", jp: "本を持つ", value: "holding book" },
                             { zh: "拿著遊戲機手把", en: "holding game controller", jp: "ゲームコントローラーを持つ", value: "holding game controller" },
                             { zh: "拿著遊戲機", en: "holding game console", jp: "ゲーム機を持つ", value: "holding game console" },
