@@ -867,6 +867,32 @@
                         ]
                     },
                     {
+                        subCategory: "桌下視角 / 低角度構圖",
+                        tags: [
+                            // --- 核心視角 ---
+                            { zh: "桌下視角", en: "under the table view", jp: "机の下からの視点", value: "under the table view" },
+                            { zh: "從下往上看", en: "from below", jp: "あおり視点", value: "from below" },
+                            { zh: "低角度視角", en: "low angle", jp: "ローアングル", value: "low angle" },
+
+                            // --- 空間關係 ---
+                            { zh: "在桌子下", en: "under table", jp: "机の下", value: "under table" },
+                            { zh: "桌子遮擋", en: "table above", jp: "机が上にある", value: "table above" },
+                            { zh: "被桌子遮住部分視野", en: "partially obscured by table", jp: "机で一部遮られる", value: "partially obscured by table" },
+
+                            // --- 視角感 ---
+                            { zh: "第一人稱視角", en: "pov", jp: "主観視点", value: "pov" },
+                            { zh: "從縫隙看", en: "peeking from below", jp: "下から覗く", value: "peeking from below" },
+
+                            // --- 角色位置 ---
+                            { zh: "站在桌前", en: "standing in front of table", jp: "机の前に立つ", value: "standing in front of table" },
+                            { zh: "坐在桌前", en: "sitting at table", jp: "机に座る", value: "sitting at table" },
+
+                            // --- 補強畫面 ---
+                            { zh: "腿部特寫", en: "focus on legs", jp: "脚にフォーカス", value: "focus on legs" },
+                            { zh: "下半身視角", en: "lower body view", jp: "下半身視点", value: "lower body view" }
+                        ]
+                    },
+                    {
                         subCategory: "其他 / 特殊",
                         tags: [
                             { zh: "主視角", en: "pov", jp: "主観視点", value: "pov" },
@@ -2888,28 +2914,47 @@
                 category: { key: "Sightline", zh: "視線", en: "Sightline", jp: "視線" },
                 groups: [
                     {
-                        subCategory: " ",
+                        subCategory: "指向觀眾之視線 (互動)",
                         tags: [
                             { zh: "眼神交會", en: "eye contact", jp: "アイコンタクト", value: "eye contact" },
-                            { zh: "看著觀眾(畫面)", en: "looking at viewer", jp: "こちらを見ている", value: "looking at viewer, looking at camera" },
+                            { zh: "看著觀眾", en: "looking at viewer", jp: "こちらを見ている", value: "looking at viewer, looking at camera" },
                             { zh: "直視鏡頭", en: "direct gaze", jp: "正面視線", value: "direct gaze, staring at camera" },
-                            { zh: "回頭看向畫面(觀眾)", en: "looking back at viewer", jp: "振り返ってカメラ目線", value: "looking back at viewer" },
+                            { zh: "回頭看向觀眾", en: "looking back at viewer", jp: "振り返ってカメラ目線", value: "looking back at viewer" },
                             { zh: "看著畫面並說話", en: "talking to viewer", jp: "カメラ目線で話す", value: "talking to viewer" },
-                            { zh: "觀察的眼神", en: "observing gaze", jp: "観察する視線", value: "observing gaze, scrutinizing look" },
-                            { zh: "從掩體後觀察", en: "observing from cover", jp: "遮蔽物越しに観察", value: "observing from cover" },
+                            { zh: "凝視觀眾", en: "staring at viewer", jp: "見つめる", value: "staring at viewer" },
+                            { zh: "偷看觀眾", en: "glancing at viewer", jp: "ちらっと見る", value: "glancing at viewer" },
+                            { zh: "誘惑目光", en: "seductive gaze", jp: "誘惑的な視線", value: "seductive gaze" },
+                        ]
+                    },
+                    {
+                        subCategory: "方向與環境觀察",
+                        tags: [
+                            { zh: "不看觀眾", en: "not looking at viewer", jp: "こちらを見ない", value: "not looking at viewer" },
+                            { zh: "視線移開/望向某處", en: "looking away", jp: "よそ見している", value: "looking away" },
+                            { zh: "看向別處", en: "looking elsewhere", jp: "別の方向を見る", value: "looking elsewhere" },
+                            { zh: "觀察的眼神", en: "observing gaze", jp: "觀察する視線", value: "observing gaze, scrutinizing look" },
+                            { zh: "從掩體後觀察", en: "observing from cover", jp: "遮蔽物越しに觀察", value: "observing from cover" },
                             { zh: "偷看", en: "peeking", jp: "覗き見る", value: "peeking" },
                             { zh: "確認周圍", en: "checking surroundings", jp: "周囲を確認する", value: "checking surroundings" },
                             { zh: "望向遠方", en: "looking afar", jp: "遠くを見る", value: "looking afar" },
-                            { zh: "望向某處", en: "looking away", jp: "よそ見している", value: "looking away" },
                             { zh: "望向旁邊", en: "looking aside", jp: "視線を横に向ける", value: "looking aside" },
-                            { zh: "從側面看", en: "looking to the side", jp: "横を見る", value: "looking to the side" },
+                            { zh: "從側面看", en: "looking to the side", jp: "橫を見る", value: "looking to the side" },
                             { zh: "往下看", en: "looking down", jp: "下を見る", value: "looking down" },
                             { zh: "抬頭看", en: "looking up", jp: "上を見上げる", value: "looking up" },
                             { zh: "看向後方", en: "looking back", jp: "後ろを見る", value: "looking back" },
                             { zh: "往外看", en: "looking outside", jp: "外を見る", value: "looking outside" },
+                            { zh: "目光銳利", en: "sharp gaze", jp: "鋭い視線", value: "sharp gaze" },
+                            { zh: "溫柔注視", en: "gentle gaze", jp: "優しい視線", value: "gentle gaze" },
+                            { zh: "低頭不看鏡頭", en: "looking down, not looking at viewer", jp: "俯いている", value: "looking down, not looking at viewer" },
+                        ]
+                    },
+                    {
+                        subCategory: "對特定目標之注視",
+                        tags: [
                             { zh: "隔著眼鏡向外看", en: "looking over eyewear", jp: "眼鏡越しに見る", value: "looking over eyewear" },
                             { zh: "隔著雙腿向外看", en: "looking through legs", jp: "足の間から見る", value: "looking through legs" },
                             { zh: "看著他人", en: "looking at another", jp: "他人を見ている", value: "looking at another" },
+                            { zh: "對視", en: "looking at each other", jp: "見つめ合う", value: "looking at each other" },
                             { zh: "看著伴侶", en: "looking at partner", jp: "パートナーを見る", value: "looking at partner" },
                             { zh: "看著乳房", en: "looking at breasts", jp: "胸を見る", value: "looking at breasts" },
                             { zh: "看著手", en: "looking at hand", jp: "手を見る", value: "looking at hand" },
@@ -2917,6 +2962,7 @@
                             { zh: "看著鏡子", en: "looking at mirror", jp: "鏡を見る", value: "looking at mirror" },
                         ]
                     },
+
                     {
                         subCategory: "頭部姿勢",
                         tags: [
