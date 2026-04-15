@@ -913,20 +913,16 @@
                             { zh: "桌下視角", en: "under the table view", jp: "机の下からの視点", value: "under the table view" },
                             { zh: "從下往上看", en: "from below", jp: "あおり視点", value: "from below" },
                             { zh: "低角度視角", en: "low angle", jp: "ローアングル", value: "low angle" },
-
                             // --- 空間關係 ---
                             { zh: "在桌子下", en: "under table", jp: "机の下", value: "under table" },
                             { zh: "桌子遮擋", en: "table above", jp: "机が上にある", value: "table above" },
                             { zh: "被桌子遮住部分視野", en: "partially obscured by table", jp: "机で一部遮られる", value: "partially obscured by table" },
-
                             // --- 視角感 ---
                             { zh: "第一人稱視角", en: "pov", jp: "主観視点", value: "pov" },
                             { zh: "從縫隙看", en: "peeking from below", jp: "下から覗く", value: "peeking from below" },
-
                             // --- 角色位置 ---
                             { zh: "站在桌前", en: "standing in front of table", jp: "机の前に立つ", value: "standing in front of table" },
                             { zh: "坐在桌前", en: "sitting at table", jp: "机に座る", value: "sitting at table" },
-
                             // --- 補強畫面 ---
                             { zh: "腿部特寫", en: "focus on legs", jp: "脚にフォーカス", value: "focus on legs" },
                             { zh: "下半身視角", en: "lower body view", jp: "下半身視点", value: "lower body view" }
@@ -8946,6 +8942,9 @@
                             { zh: "海綿", en: "sponge", jp: "スポンジ", value: "holding sponge" },
                             { zh: "掛著的內衣", en: "lingerie on hanger", jp: "ハンガーにかけられた下着", value: "lingerie on hanger" },
                             { zh: "鏡子倒影", en: "mirror reflection", jp: "鏡の映り込み", value: "mirror reflection" },
+                            { zh: "拖把", en: "mop", jp: "モップ", value: "mop" },
+                            { zh: "水桶", en: "bucket", jp: "バケツ", value: "bucket" },
+                            { zh: "抹布", en: "cleaning cloth", jp: "雑巾", value: "cleaning cloth" },
                         ]
                     },
                     {
@@ -10412,7 +10411,7 @@
                 ]
             },
             {
-                category: { key: "pose", zh: "姿勢", en: "Pose", jp: "ポーズ" },
+                category: { key: "pose", zh: "姿勢(動作)", en: "Pose", jp: "ポーズ" },
                 groups: [
                     {
                         subCategory: "玻璃相關",
@@ -10791,7 +10790,6 @@
                             // --- 狀態 / 氣氛 ---
                             { zh: "忙碌", en: "busy", jp: "忙しい", value: "busy" },
                             { zh: "加班", en: "working overtime", jp: "残業", value: "working overtime" },
-                            { zh: "疲憊", en: "tired", jp: "疲れている", value: "tired" }
                         ]
                     },
                     {
@@ -10810,6 +10808,28 @@
                             { zh: "襯衫晾曬", en: "shirt hanging", jp: "シャツを干す", value: "shirt hanging" },
                             { zh: "濕衣服", en: "wet clothes", jp: "濡れた服", value: "wet clothes" },
                             { zh: "隨風晃動的衣物", en: "clothes fluttering", jp: "風になびく洗濯物", value: "clothes fluttering" },
+
+                        ]
+                    },
+                    {
+                        subCategory: "清潔相關",
+                        tags: [
+                            { zh: "拖地", en: "mopping floor", jp: "床をモップがけ", value: "mopping floor" },
+                            { zh: "用拖把拖地", en: "using mop", jp: "モップを使う", value: "using mop" },
+                            { zh: "擦地板", en: "wiping floor", jp: "床を拭く", value: "wiping floor" },
+
+                            // --- 姿勢 ---
+                            { zh: "跪著擦地", en: "kneeling and cleaning floor", jp: "膝をついて床掃除", value: "kneeling, cleaning floor" },
+                            { zh: "蹲著擦地", en: "squatting and cleaning", jp: "しゃがんで掃除", value: "squatting, cleaning floor" },
+                            { zh: "彎腰拖地", en: "bending over while mopping", jp: "前かがみでモップがけ", value: "bending over, mopping floor" },
+                            { zh: "趴著擦地", en: "lying and wiping floor", jp: "うつ伏せで床拭き", value: "lying on stomach, cleaning floor" },
+                            // --- 手部動作 ---
+                            { zh: "用布擦地", en: "cleaning with cloth", jp: "布で床を拭く", value: "cleaning with cloth" },
+                            { zh: "用手擦地", en: "cleaning with hands", jp: "手で床を拭く", value: "cleaning with hands" },
+                            // --- 狀態 ---
+                            { zh: "打掃中", en: "cleaning", jp: "掃除中", value: "cleaning" },
+                            { zh: "做家務", en: "doing chores", jp: "家事中", value: "doing chores" },
+                            { zh: "地板濕滑", en: "wet floor", jp: "濡れた床", value: "wet floor" }
 
                         ]
                     },
@@ -10909,37 +10929,6 @@
                 category: { key: "pose（sex）", zh: "姿勢（性交）", en: "Pose（sex）", jp: "ポーズ（性行為）" },
                 groups: [
                     {
-                        subCategory: "姿勢（體位）",
-                        tags: [
-                            { zh: "傳教士體位", en: "missionary position", jp: "正常位", value: "missionary position" },
-                            { zh: "後入式", en: "sex from behind", jp: "バック", value: "sex from behind" },
-                            { zh: "四腳姿勢", en: "on all fours", jp: "四つん這い", value: "on all fours" },
-                            { zh: "騎乘位", en: "cowgirl position", jp: "騎乗位", value: "cowgirl position" },
-                            { zh: "背面騎乘位", en: "reverse cowgirl position", jp: "背面騎乗位", value: "reverse cowgirl position" },
-                            { zh: "側臥位", en: "side position", jp: "横たわり体位", value: "side position" },
-                            { zh: "站立性交", en: "standing sex", jp: "立位性交", value: "standing sex" },
-                            { zh: "站立後入式", en: "standing from behind", jp: "立ったままバック", value: "standing from behind" },
-                            { zh: "火車便當式", en: "suspended sex", jp: "駅弁体位", value: "suspended sex" },
-                            { zh: "倒立體位", en: "upside down position", jp: "逆さま体位", value: "upside down position" },
-                            { zh: "跨坐體位", en: "straddling position", jp: "跨がり体位", value: "straddling position" },
-                            { zh: "跪姿性交", en: "kneeling sex", jp: "跪いた性交", value: "kneeling sex" },
-                            { zh: "坐姿性交", en: "sitting sex", jp: "座位性交", value: "sitting sex" },
-                            { zh: "床邊體位", en: "edge of bed position", jp: "ベッドの端体位", value: "edge of bed position" },
-                            { zh: "桌上體位", en: "on table position", jp: "テーブル上体位", value: "on table position" },
-                            { zh: "騎乘緊貼", en: "tight cowgirl", jp: "密着騎乗位", value: "tight cowgirl" },
-                            { zh: "騎乘磨擦", en: "rubbing cowgirl", jp: "擦りつけ騎乗位", value: "rubbing cowgirl" },
-                            { zh: "跨腿體位", en: "leg straddling", jp: "脚を跨ぐ体位", value: "leg straddling" },
-                            { zh: "反向側臥位", en: "reverse side position", jp: "逆向き横たわり", value: "reverse side position" },
-                            { zh: "雙腿纏繞", en: "entwined legs", jp: "脚を絡ませる", value: "entwined legs" },
-                            { zh: "腿部纏繞腰部", en: "legs wrapped around waist", jp: "脚を腰に絡ませる", value: "legs wrapped around waist" },
-                            { zh: "壓制體位", en: "pinned position", jp: "押さえ込み体位", value: "pinned position" },
-                            { zh: "背後壓制", en: "pinned from behind", jp: "後ろから押さえつけ", value: "pinned from behind" },
-                            { zh: "床上體位", en: "on bed position", jp: "ベッド上体位", value: "on bed position" },
-                            { zh: "沙發體位", en: "on sofa position", jp: "ソファ上体位", value: "on sofa position" },
-                            { zh: "桌邊體位", en: "table edge position", jp: "テーブル端体位", value: "table edge position" }
-                        ]
-                    },
-                    {
                         subCategory: "手部 / 臂部動作",
                         tags: [
                             { zh: "雙臂置於頭後方", en: "arms behind head", jp: "腕を頭の後ろに置く", value: "arms behind head" },
@@ -11014,42 +11003,6 @@
                         ]
                     },
                     {
-                        subCategory: "衣物相關 / 服裝互動",
-                        tags: [
-                            { zh: "上衣掀起", en: "shirt lifted", jp: "シャツをめくる", value: "shirt lift" },
-                            { zh: "下衣拉起", en: "pants pulled up", jp: "ズボンを引き上げる", value: "pulling up pants" },
-                            { zh: "內褲滑落", en: "panties slipping", jp: "パンティがずり落ちる", value: "panties slipping" },
-                            { zh: "衣物半脫", en: "half-undressed", jp: "服を半脱ぎ", value: "half-off clothes" },
-                            { zh: "衣物全脫", en: "fully undressed", jp: "服を完全に脱ぐ", value: "fully undressed" },
-                            { zh: "胸衣掀開", en: "bra lifted", jp: "ブラをめくる", value: "bra lift" },
-                            { zh: "胸衣半脫", en: "bra half off", jp: "ブラ半脱ぎ", value: "bra half-off" },
-                            { zh: "胸衣全脫", en: "bra fully off", jp: "ブラ完全脱ぎ", value: "bra off" },
-                            { zh: "裙子掀起", en: "skirt lifted", jp: "スカートをめくる", value: "lifted skirt" },
-                            { zh: "裙子滑落", en: "skirt slipping", jp: "スカートが落ちる", value: "skirt slipping" },
-                            { zh: "褲子拉下", en: "pants pulled down", jp: "ズボンを下ろす", value: "pants pulled down" },
-                            { zh: "內褲拉下", en: "panties pulled down", jp: "パンティを下ろす", value: "panties down" },
-                            { zh: "制服半脫", en: "school uniform half off", jp: "制服半脱ぎ", value: "uniform half-off" },
-                            { zh: "制服全脫", en: "school uniform fully off", jp: "制服完全脱ぎ", value: "uniform off" },
-                            { zh: "外套滑落", en: "jacket slipping", jp: "ジャケットが落ちる", value: "jacket slipping" },
-                            { zh: "衣物扯開", en: "clothes ripped open", jp: "服を引き裂く", value: "ripped clothes" },
-                            { zh: "透視服裝", en: "see-through clothes", jp: "透ける服", value: "see-through clothes" },
-                            { zh: "半透明內衣", en: "semi-transparent lingerie", jp: "半透明ランジェリー", value: "sheer lingerie" },
-                            { zh: "絲襪滑落", en: "stockings slipping", jp: "ストッキングが落ちる", value: "stockings slipping" },
-                            { zh: "襪子半脫", en: "socks half off", jp: "靴下半脱ぎ", value: "socks half-off" },
-                            { zh: "高跟鞋脫落", en: "high heels off", jp: "ハイヒール脱げる", value: "heels off" },
-                            { zh: "鞋子脫落", en: "shoes off", jp: "靴脱げる", value: "shoes off" },
-                            { zh: "衣物遮擋局部", en: "clothes covering parts", jp: "服で局部を隠す", value: "clothes covering" },
-                            { zh: "衣物滑動遮擋", en: "clothes sliding cover", jp: "服が滑って隠す", value: "sliding cover" },
-                            { zh: "衣物被拉扯", en: "clothes pulled", jp: "服を引っ張られる", value: "clothes pulled" },
-                            { zh: "內衣露出", en: "lingerie exposed", jp: "下着が見える", value: "lingerie showing" },
-                            { zh: "衣物暴露胸部", en: "clothes revealing breasts", jp: "服で胸を露出", value: "breast exposure" },
-                            { zh: "衣物暴露下體", en: "clothes revealing genitals", jp: "服で下半身を露出", value: "crotch exposure" },
-                            { zh: "衣物被弄亂", en: "clothes messy", jp: "服が乱れる", value: "messy clothes" },
-                            { zh: "袖子滑落", en: "sleeves slipping", jp: "袖が落ちる", value: "slipping sleeves" },
-                            { zh: "帽子移位", en: "hat shifted", jp: "帽子がずれる", value: "shifted hat" }
-                        ]
-                    },
-                    {
                         subCategory: "性虐 / 束縛 / 調教",
                         tags: [
                             { zh: "束縛調教", en: "bdsm", jp: "縛り、支配", value: "bdsm" },
@@ -11105,20 +11058,55 @@
             {
                 category: { key: "Sex", zh: "性行為", en: "Sex", jp: "性行為" },
                 groups: [
-                    {
-                        subCategory: "基本性行為類型",
-                        tags: [
-                            { zh: "性交", en: "sex", jp: "セックス", value: "sex" },
-                            { zh: "陰道性交", en: "vaginal sex", jp: "おまんこセックス", value: "vaginal sex" },
-                            { zh: "肛交", en: "anal sex", jp: "アナルセックス", value: "anal sex" },
-                            { zh: "乳交", en: "breast in 1penis", jp: "パイズリされる竿", value: "breast in 1penis" },
-                            { zh: "自慰", en: "masturbation", jp: "オナニー", value: "masturbation" },
-                            { zh: "事後", en: "after sex", jp: "事後、射精直後", value: "after sex" },
-                            { zh: "二穴同時插入", en: "double penetration", jp: "二穴同時挿入", value: "double penetration" },
-                            { zh: "雙重肛交", en: "double anal", jp: "二重アナル", value: "double anal" },
-                            { zh: "雙重陰道交", en: "double vaginal", jp: "二重挿入", value: "double vaginal" },
-                        ]
-                    },
+  {
+    "subCategory": "性行為",
+    "tags": [
+      { "zh": "性交", "en": "sex", "jp": "セックス", "value": "sex" },
+      { "zh": "陰道性交", "en": "vaginal sex", "jp": "おまんこセックス", "value": "vaginal sex" },
+      { "zh": "肛交", "en": "anal sex", "jp": "アナルセックス", "value": "anal sex" },
+      { "zh": "乳交", "en": "breast in 1penis", "jp": "パイズリされる竿", "value": "breast in 1penis" },
+      { "zh": "自慰", "en": "masturbation", "jp": "オナニー", "value": "masturbation" },
+      { "zh": "事後", "en": "after sex", "jp": "事後、射精直後", "value": "after sex" },
+      { "zh": "二穴同時插入", "en": "double penetration", "jp": "二穴同時挿入", "value": "double penetration" },
+      { "zh": "雙重肛交", "en": "double anal", "jp": "二重アナル", "value": "double anal" },
+      { "zh": "雙重陰道交", "en": "double vaginal", "jp": "二重挿入", "value": "double vaginal" }
+    ]
+  },
+  {
+    "subCategory": "體位",
+    "tags": [
+      { "zh": "傳教士體位", "en": "missionary position", "jp": "正常位", "value": "missionary position" },
+      { "zh": "後入式", "en": "doggy style", "jp": "バック", "value": "doggy style" },
+      { "zh": "騎乘位", "en": "cowgirl position", "jp": "騎乗位", "value": "cowgirl position" },
+      { "zh": "背面騎乘位", "en": "reverse cowgirl position", "jp": "背面騎乗位", "value": "reverse cowgirl position" },
+      { "zh": "四腳姿勢", "en": "on all fours", "jp": "四つん這い", "value": "on all fours" },
+      { "zh": "側臥位", "en": "side position", "jp": "横たわり体位", "value": "side position" },
+      { "zh": "站立性交", "en": "standing sex", "jp": "立位性交", "value": "standing sex" },
+      { "zh": "坐姿性交", "en": "sitting sex", "jp": "座位性交", "value": "sitting sex" },
+      { "zh": "跪姿性交", "en": "kneeling sex", "jp": "跪いた性交", "value": "kneeling sex" },
+      { "zh": "火車便當式", "en": "suspended sex", "jp": "駅弁体位", "value": "suspended sex" },
+      { "zh": "跨坐體位", "en": "straddling position", "jp": "跨がり体位", "value": "straddling position" },
+      { "zh": "倒立體位", "en": "upside down position", "jp": "逆さま体位", "value": "upside down position" },
+      { "zh": "深蹲插入", "en": "squat penetration", "jp": "しゃがみ挿入", "value": "squat penetration" },
+      { "zh": "仰俯配合", "en": "lying face-down penetration", "jp": "うつ伏せで挿入", "value": "lying face-down penetration" }
+    ]
+  },
+  {
+    "subCategory": "姿勢細節",
+    "tags": [
+      { "zh": "後背擁抱性交", "en": "hug behind sex", "jp": "セックスの背後で抱き合う", "value": "hug behind sex" },
+      { "zh": "站立後入式", "en": "standing from behind", "jp": "立ったままバック", "value": "standing from behind" },
+      { "zh": "口交坐姿", "en": "oral while sitting", "jp": "座ったままオーラル", "value": "oral while sitting" },
+      { "zh": "前傾插入", "en": "bending over penetration", "jp": "前かがみで挿入", "value": "bending over penetration" },
+      { "zh": "雙腿抬高插入", "en": "legs up penetration", "jp": "腳を上げて挿入", "value": "legs up penetration" },
+      { "zh": "腿部纏繞腰部", "en": "legs wrapped around waist", "jp": "腳を腰に絡ませる", "value": "legs wrapped around waist" },
+      { "zh": "壓制體位", "en": "pinned position", "jp": "押さえ込み体位", "value": "pinned position" },
+      { "zh": "騎乘緊貼", "en": "tight cowgirl", "jp": "密着騎乗位", "value": "tight cowgirl" },
+      { "zh": "床邊體位", "en": "edge of bed position", "jp": "ベッドの端体位", "value": "edge of bed position" },
+      { "zh": "沙發體位", "en": "on sofa position", "jp": "ソファ上体位", "value": "on sofa position" },
+      { "zh": "桌上體位", "en": "on table position", "jp": "テーブル上体位", "value": "on table position" }
+    ]
+  },
                     {
                         subCategory: "胸部互動",
                         tags: [
@@ -11129,37 +11117,7 @@
                         ]
                     },
                     {
-                        subCategory: "體位與姿勢",
-                        tags: [
-                            { zh: "騎乘位", en: "girl on top", jp: "騎乗位", value: "girl on top" },
-                            { zh: "背後插入", en: "doggy style", jp: "バック", value: "doggy style" },
-                            { zh: "後背擁抱性交", en: "hug from behind, hug, sex from behind", jp: "セックスの背後で抱き合う", value: "hug behind sex" },
-                            { zh: "側臥性交", en: "side by side sex", jp: "横たわり性交", value: "side by side sex" },
-                            { zh: "口交坐姿", en: "oral while sitting", jp: "座ったままオーラル", value: "oral while sitting" },
-                            { zh: "站立性交", en: "standing sex", jp: "立ちバック/立ち挿入", value: "standing sex" },
-                            { zh: "倒立體位", en: "reverse cowgirl", jp: "リバース騎乗位", value: "reverse cowgirl" },
-                            { zh: "傳教士", en: "missionary", jp: "正常位", value: "missionary" },
-                            { zh: "站立插入", en: "standing penetration", jp: "立ち挿入", value: "standing penetration" },
-                            { zh: "坐姿插入", en: "sitting penetration", jp: "座った挿入", value: "sitting penetration" },
-                            { zh: "仰躺插入", en: "missionary penetration", jp: "仰向け挿入", value: "missionary penetration" },
-                            { zh: "跪姿插入", en: "kneeling penetration", jp: "跪いた挿入", value: "kneeling penetration" },
-                            { zh: "四肢著地插入", en: "all fours penetration", jp: "四つん這い挿入", value: "all fours penetration" },
-                            { zh: "深蹲插入", en: "squat penetration", jp: "しゃがみ挿入", value: "squat penetration" },
-                            { zh: "跨坐插入", en: "straddling penetration", jp: "騎乗位挿入", value: "straddling penetration" },
-                            { zh: "反向跨坐插入", en: "reverse straddling penetration", jp: "逆騎乗位挿入", value: "reverse straddling penetration" },
-                            { zh: "前傾插入", en: "bending over penetration", jp: "前かがみで挿入", value: "bending over penetration" },
-                            { zh: "後入視角", en: "from behind penetration", jp: "後ろから挿入", value: "from behind penetration" },
-                            { zh: "仰躺插入", en: "lying on back penetration", jp: "仰向けで挿入", value: "lying on back penetration" },
-                            { zh: "坐姿穿插", en: "sitting penetration", jp: "座ったまま挿入", value: "sitting penetration" },
-                            { zh: "雙腿抬高插入", en: "legs up penetration", jp: "脚を上げて挿入", value: "legs up penetration" },
-                            { zh: "交叉腿插入", en: "crossed legs penetration", jp: "足を交差して挿入", value: "crossed legs penetration" },
-                            { zh: "深蹲插入", en: "squat penetration", jp: "しゃがんで挿入", value: "squat penetration" },
-                            { zh: "四肢著地插入", en: "all fours penetration", jp: "四つん這いで挿入", value: "all fours penetration" },
-                            { zh: "仰俯配合", en: "lying face-down penetration", jp: "うつ伏せで挿入", value: "lying face-down penetration" },
-                        ]
-                    },
-                    {
-                        subCategory: "動作與表現",
+                        subCategory: "插入表現",
                         tags: [
                             { zh: "插入", en: "penetration", jp: "挿入", value: "penetration" },
                             { zh: "陰道插入", en: "pussy penetration", jp: "膣挿入", value: "pussy penetration" },
@@ -11182,15 +11140,6 @@
                         ]
                     },
                     {
-                        subCategory: "強調效果",
-                        tags: [
-                            { zh: "陰部鼓起", en: "pussy bulge", jp: "膣のふくらみ", value: "pussy bulge" },
-                            { zh: "腹部鼓起", en: "belly bulge", jp: "お腹のふくらみ", value: "belly bulge" },
-                            { zh: "陰部被撐開", en: "stretching pussy", jp: "膣が広がる", value: "stretching pussy" },
-                            { zh: "緊緻插入", en: "tight fit", jp: "きつい挿入", value: "tight fit" }
-                        ]
-                    },
-                    {
                         subCategory: "插入動作 / 強度",
                         tags: [
                             { zh: "深度扭動插入", en: "twisting deep penetration", jp: "ねじり挿入", value: "twisting deep penetration" },
@@ -11205,8 +11154,6 @@
                             { zh: "雙手插入", en: "two hands penetration", jp: "両手で挿入", value: "two hands penetration" },
                             { zh: "高角度穿插", en: "high angle penetration", jp: "高角度挿入", value: "high angle penetration" },
                             { zh: "低角度穿插", en: "low angle penetration", jp: "低角度挿入", value: "low angle penetration" },
-
-
                         ]
                     },
                     {
@@ -11346,6 +11293,30 @@
                         ]
                     },
                     {
+                        subCategory: "插入角度",
+                        tags: [
+                            { zh: "高角度插入", en: "high angle penetration", jp: "高角度挿入", value: "high angle penetration" },
+                            { zh: "低角度插入", en: "low angle penetration", jp: "低角度挿入", value: "low angle penetration" },
+                            { zh: "正面插入", en: "front penetration", jp: "正面挿入", value: "front penetration" },
+                            { zh: "後背插入", en: "from behind penetration", jp: "後背位挿入", value: "from behind penetration" },
+                            { zh: "側面插入", en: "side penetration", jp: "横から挿入", value: "side penetration" },
+                            { zh: "上下夾擊插入", en: "sandwich penetration", jp: "挟まれ挿入", value: "sandwich penetration" }
+                        ]
+                    },
+                    {
+                        subCategory: "視角 / 特寫",
+                        tags: [
+                            { zh: "主觀視角深度穿入", en: "POV deep penetration", jp: "主観視点で深い挿入", value: "POV deep penetration" },
+                            { zh: "POV 側入", en: "POV side penetration", jp: "主観視点で横挿入", value: "POV side penetration" },
+                            { zh: "POV 低角度仰視", en: "POV low angle from below", jp: "主観視点ローアングル下から", value: "POV low angle from below" },
+                            { zh: "正面視角插入", en: "front view penetration", jp: "正面挿入", value: "front view penetration" },
+                            { zh: "後背特寫插入", en: "back close-up penetration", jp: "後ろ特写挿入", value: "back close-up penetration" },
+                            { zh: "前後穿插視角", en: "front-to-back penetration", jp: "前後挿入", value: "front-to-back penetration" },
+                            { zh: "臀部聚焦穿插", en: "butt focus penetration", jp: "お尻に焦点挿入", value: "butt focus penetration" },
+                            { zh: "胸部聚焦穿插", en: "breast focus penetration", jp: "胸に焦点挿入", value: "breast focus penetration" }
+                        ]
+                    },
+                    {
                         subCategory: "假陽具 / 道具插入",
                         tags: [
                             { zh: "假陽具深插入", en: "dildo deep insertion", jp: "ディルド深挿入", value: "dildo deep insertion" },
@@ -11371,30 +11342,6 @@
                             { zh: "乳房揉弄", en: "breast rubbing", jp: "乳房揉み", value: "breast fondling, squeezing breasts" },
                             { zh: "跨坐枕頭摩擦", en: "pillow grinding", jp: "枕擦り付け", value: "straddling pillow, grinding pillow" },
                             { zh: "跨坐物體摩擦", en: "object grinding", jp: "物擦り付け", value: "straddling object, grinding" }
-                        ]
-                    },
-                    {
-                        subCategory: "插入角度",
-                        tags: [
-                            { zh: "高角度插入", en: "high angle penetration", jp: "高角度挿入", value: "high angle penetration" },
-                            { zh: "低角度插入", en: "low angle penetration", jp: "低角度挿入", value: "low angle penetration" },
-                            { zh: "正面插入", en: "front penetration", jp: "正面挿入", value: "front penetration" },
-                            { zh: "後背插入", en: "from behind penetration", jp: "後背位挿入", value: "from behind penetration" },
-                            { zh: "側面插入", en: "side penetration", jp: "横から挿入", value: "side penetration" },
-                            { zh: "上下夾擊插入", en: "sandwich penetration", jp: "挟まれ挿入", value: "sandwich penetration" }
-                        ]
-                    },
-                    {
-                        subCategory: "視角 / 特寫",
-                        tags: [
-                            { zh: "主觀視角深度穿入", en: "POV deep penetration", jp: "主観視点で深い挿入", value: "POV deep penetration" },
-                            { zh: "POV 側入", en: "POV side penetration", jp: "主観視点で横挿入", value: "POV side penetration" },
-                            { zh: "POV 低角度仰視", en: "POV low angle from below", jp: "主観視点ローアングル下から", value: "POV low angle from below" },
-                            { zh: "正面視角插入", en: "front view penetration", jp: "正面挿入", value: "front view penetration" },
-                            { zh: "後背特寫插入", en: "back close-up penetration", jp: "後ろ特写挿入", value: "back close-up penetration" },
-                            { zh: "前後穿插視角", en: "front-to-back penetration", jp: "前後挿入", value: "front-to-back penetration" },
-                            { zh: "臀部聚焦穿插", en: "butt focus penetration", jp: "お尻に焦点挿入", value: "butt focus penetration" },
-                            { zh: "胸部聚焦穿插", en: "breast focus penetration", jp: "胸に焦点挿入", value: "breast focus penetration" }
                         ]
                     },
                     {
@@ -12902,6 +12849,42 @@
                             { zh: "扣子崩裂", en: "buttoned shirt bursting", jp: "ボタン留めの服がはじける", value: "buttoned shirt bursting" },
                             { zh: "扣子被撐開", en: "buttons under tension", jp: "張力でボタンが外れる", value: "buttons under tension" },
                             { zh: "扣子斷裂瞬間", en: "buttons snapping", jp: "ボタンが弾ける瞬間", value: "buttons snapping" },
+                        ]
+                    },
+                    {
+                        subCategory: "衣物相關 / 服裝互動",
+                        tags: [
+                            { zh: "上衣掀起", en: "shirt lifted", jp: "シャツをめくる", value: "shirt lift" },
+                            { zh: "下衣拉起", en: "pants pulled up", jp: "ズボンを引き上げる", value: "pulling up pants" },
+                            { zh: "內褲滑落", en: "panties slipping", jp: "パンティがずり落ちる", value: "panties slipping" },
+                            { zh: "衣物半脫", en: "half-undressed", jp: "服を半脱ぎ", value: "half-off clothes" },
+                            { zh: "衣物全脫", en: "fully undressed", jp: "服を完全に脱ぐ", value: "fully undressed" },
+                            { zh: "胸衣掀開", en: "bra lifted", jp: "ブラをめくる", value: "bra lift" },
+                            { zh: "胸衣半脫", en: "bra half off", jp: "ブラ半脱ぎ", value: "bra half-off" },
+                            { zh: "胸衣全脫", en: "bra fully off", jp: "ブラ完全脱ぎ", value: "bra off" },
+                            { zh: "裙子掀起", en: "skirt lifted", jp: "スカートをめくる", value: "lifted skirt" },
+                            { zh: "裙子滑落", en: "skirt slipping", jp: "スカートが落ちる", value: "skirt slipping" },
+                            { zh: "褲子拉下", en: "pants pulled down", jp: "ズボンを下ろす", value: "pants pulled down" },
+                            { zh: "內褲拉下", en: "panties pulled down", jp: "パンティを下ろす", value: "panties down" },
+                            { zh: "制服半脫", en: "school uniform half off", jp: "制服半脱ぎ", value: "uniform half-off" },
+                            { zh: "制服全脫", en: "school uniform fully off", jp: "制服完全脱ぎ", value: "uniform off" },
+                            { zh: "外套滑落", en: "jacket slipping", jp: "ジャケットが落ちる", value: "jacket slipping" },
+                            { zh: "衣物扯開", en: "clothes ripped open", jp: "服を引き裂く", value: "ripped clothes" },
+                            { zh: "透視服裝", en: "see-through clothes", jp: "透ける服", value: "see-through clothes" },
+                            { zh: "半透明內衣", en: "semi-transparent lingerie", jp: "半透明ランジェリー", value: "sheer lingerie" },
+                            { zh: "絲襪滑落", en: "stockings slipping", jp: "ストッキングが落ちる", value: "stockings slipping" },
+                            { zh: "襪子半脫", en: "socks half off", jp: "靴下半脱ぎ", value: "socks half-off" },
+                            { zh: "高跟鞋脫落", en: "high heels off", jp: "ハイヒール脱げる", value: "heels off" },
+                            { zh: "鞋子脫落", en: "shoes off", jp: "靴脱げる", value: "shoes off" },
+                            { zh: "衣物遮擋局部", en: "clothes covering parts", jp: "服で局部を隠す", value: "clothes covering" },
+                            { zh: "衣物滑動遮擋", en: "clothes sliding cover", jp: "服が滑って隠す", value: "sliding cover" },
+                            { zh: "衣物被拉扯", en: "clothes pulled", jp: "服を引っ張られる", value: "clothes pulled" },
+                            { zh: "內衣露出", en: "lingerie exposed", jp: "下着が見える", value: "lingerie showing" },
+                            { zh: "衣物暴露胸部", en: "clothes revealing breasts", jp: "服で胸を露出", value: "breast exposure" },
+                            { zh: "衣物暴露下體", en: "clothes revealing genitals", jp: "服で下半身を露出", value: "crotch exposure" },
+                            { zh: "衣物被弄亂", en: "clothes messy", jp: "服が乱れる", value: "messy clothes" },
+                            { zh: "袖子滑落", en: "sleeves slipping", jp: "袖が落ちる", value: "slipping sleeves" },
+                            { zh: "帽子移位", en: "hat shifted", jp: "帽子がずれる", value: "shifted hat" }
                         ]
                     },
                     {
