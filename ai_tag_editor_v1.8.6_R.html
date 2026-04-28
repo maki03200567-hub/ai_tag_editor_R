@@ -4579,13 +4579,13 @@
                         subCategory: "外搭 / 連帽 / 開襟類",
                         tags: [
                             { zh: "開襟衫", en: "cardigan", jp: "カーディガン", value: "cardigan" },
-                            { zh: "連帽上衣", en: "hoodie", jp: "パーカー", value: "hoodie" },
-                            { zh: "連帽衫當裙子穿", en: "hoodie as dress", jp: "パーカー ワンピ風", value: "hoodie, mid thigh, hoodie hem visible, hoodie silhouette" },
-                            { zh: "蓋臀下緣帽T", en: "hip-length hoodie", jp: "ヒップ丈パーカー", value: "hip length hoodie" },
-                            { zh: "臀中段帽T", en: "mid-hip hoodie", jp: "ヒップ中丈パーカー", value: "mid hip hoodie" },
-                            { zh: "大腿上段帽T", en: "upper thigh hoodie", jp: "太もも上丈パーカー", value: "upper thigh hoodie" },
-                            { zh: "大腿中段帽T", en: "mid-thigh hoodie", jp: "太もも中丈パーカー", value: "mid thigh hoodie" },
-                            { zh: "大腿高開口帽T", en: "high thigh hoodie", jp: "太もも高丈パーカー", value: "high thigh hoodie" },
+                            { zh: "連帽上衣", en: "hoodie", jp: "パーカー", value: "hoodie top" },
+                            { zh: "連帽衫當裙子穿", en: "hoodie as dress", jp: "パーカー ワンピ風", value: "hoodie dress, mid thigh, hoodie hem visible, hoodie silhouette" },
+                            { zh: "蓋臀下緣帽T", en: "hip-length hoodie", jp: "ヒップ丈パーカー", value: "hip length hoodie dress" },
+                            { zh: "臀中段帽T", en: "mid-hip hoodie", jp: "ヒップ中丈パーカー", value: "mid hip hoodie dress" },
+                            { zh: "大腿上段帽T", en: "upper thigh hoodie", jp: "太もも上丈パーカー", value: "upper thigh hoodie dress" },
+                            { zh: "大腿中段帽T", en: "mid-thigh hoodie", jp: "太もも中丈パーカー", value: "mid thigh hoodie dress" },
+                            { zh: "大腿高開口帽T", en: "high thigh hoodie", jp: "太もも高丈パーカー", value: "high thigh hoodie dress" },
                             { zh: "大尺寸帽T", en: "oversized hoodie", jp: "オーバーサイズパーカー", value: "oversized hoodie" },
                             { zh: "寬版蓋臀帽T", en: "oversized hip hoodie", jp: "オーバーサイズヒップ丈パーカー", value: "oversized hoodie, hip length, hoodie silhouette" },
                             { zh: "寬版臀中段帽T", en: "oversized mid-hip hoodie", jp: "オーバーサイズヒップ中丈パーカー", value: "oversized hoodie, mid hip, hoodie silhouette" },
@@ -7818,12 +7818,6 @@
         { zh: "腋下開口", en: "sideboob", jp: "サイドバスト", value: "sideboob" },
         { zh: "腋下大開口", en: "large armhole", jp: "大きなアームホール", value: "large armhole" },
 
-        // ===== 2. 背心系（你要的重點）=====
-        { zh: "超大袖口背心", en: "deep armhole tank top", jp: "深いアームホールタンクトップ", value: "deep armhole tank top" },
-        { zh: "極低側開背心", en: "extreme low side tank top", jp: "極低サイドタンクトップ", value: "low side tank top" },
-        { zh: "寬側開口上衣", en: "wide side opening top", jp: "ワイドサイド開口トップ", value: "wide side opening" },
-        { zh: "側面完全敞開上衣", en: "open side top", jp: "サイドオープントップ", value: "open side top" },
-
         // ===== 3. 深度控制 =====
         { zh: "側開至胸側", en: "side opening to chest", jp: "胸側までの開口", value: "side opening chest" },
         { zh: "側開至腰部", en: "side opening to waist", jp: "ウエストまでの開口", value: "side opening waist" },
@@ -7839,6 +7833,58 @@
         { zh: "側邊綁帶開口", en: "side lace-up opening", jp: "サイド編み上げ開口", value: "side lace-up" },
         { zh: "側邊扣帶開口", en: "side strap opening", jp: "サイドストラップ開口", value: "side strap" },
         { zh: "側邊開縫", en: "side slit", jp: "サイドスリット", value: "side slit" }
+    ]
+},
+{
+    subCategory: "側面開口（泛用）",
+    tags: [
+        { zh: "側邊開孔", en: "side opening detail", jp: "サイド開口ディテール", value: "side opening detail" },
+
+        // ===== 強度（你要的「開很大」）=====
+        { zh: "寬側開口", en: "wide side opening", jp: "広いサイド開口", value: "wide side opening" },
+        { zh: "大面積側開口", en: "large side cutout", jp: "大型サイドカットアウト", value: "large side cutout" },
+        { zh: "極低側開口", en: "extreme side opening", jp: "極低サイド開口", value: "extreme side opening" },
+        { zh: "深側開口", en: "deep side opening", jp: "深いサイド開口", value: "deep side opening" },
+
+        // ===== 深度控制（往下開到哪）=====
+        { zh: "側開至胸側", en: "side opening to chest", jp: "胸側までの開口", value: "side opening chest" },
+        { zh: "側開至肋骨", en: "side opening to ribs", jp: "肋骨までの開口", value: "side opening ribs" },
+        { zh: "側開至腰部", en: "side opening to waist", jp: "ウエストまでの開口", value: "side opening waist" },
+        { zh: "側開至下腹", en: "side opening to abdomen", jp: "腹部までの開口", value: "side opening abdomen" },
+
+        // ===== 視覺結果（讓AI真的「開出來」）=====
+        { zh: "側胸露出", en: "sideboob", jp: "サイドバスト", value: "sideboob" },
+        { zh: "腋下露出", en: "armpits", jp: "脇", value: "armpits" },
+        { zh: "側腹露出", en: "side midriff", jp: "サイド腹部露出", value: "side midriff" },
+
+
+        // ===== 核心概念 =====
+        { zh: "寬袖洞", en: "wide armholes", jp: "広いアームホール", value: "wide armholes" },
+        { zh: "大袖洞", en: "large armholes", jp: "大きいアームホール", value: "large armholes" },
+        { zh: "袖口放大", en: "enlarged armholes", jp: "拡張アームホール", value: "enlarged armholes" },
+        { zh: "低側邊袖洞", en: "low-cut armholes", jp: "低いアームホール", value: "low-cut armholes" },
+        { zh: "側面大開口", en: "wide side openings", jp: "大きなサイド開口", value: "wide side openings" },
+
+        // ===== 深度 / 開口高度 =====
+        { zh: "袖洞開至胸側", en: "armholes to side chest", jp: "胸横までのアームホール", value: "armholes to side chest" },
+        { zh: "袖洞開至肋骨", en: "armholes to ribcage", jp: "肋骨までのアームホール", value: "armholes to ribcage" },
+        { zh: "袖洞開至腰部", en: "armholes to waist", jp: "ウエストまでのアームホール", value: "armholes to waist" },
+        { zh: "極低袖洞", en: "extreme low armholes", jp: "極低アームホール", value: "extreme low armholes" },
+
+        // ===== 視覺效果 =====
+        { zh: "側胸露出", en: "sideboob", jp: "サイドバスト", value: "sideboob" },
+        { zh: "側胸可見", en: "side chest visible", jp: "側胸露出", value: "side chest visible" },
+        { zh: "腋下完全露出", en: "fully exposed armpits", jp: "脇完全露出", value: "armpits, fully exposed armpits" },
+        { zh: "側腰露出", en: "side waist visible", jp: "側腰露出", value: "side waist visible" },
+
+        // ===== 狀態 / 動態 =====
+        { zh: "袖洞鬆垮", en: "loose armholes", jp: "緩いアームホール", value: "loose armholes" },
+        { zh: "側邊敞開", en: "open sides", jp: "サイドオープン", value: "open sides" },
+        { zh: "布料垂落側開", en: "draped open sides", jp: "垂れたサイド開口", value: "draped open sides" },
+
+
+        // ===== 控制用（避免被補滿）=====
+        { zh: "側邊保持開口", en: "open sides", jp: "サイド開放維持", value: "open sides" }
     ]
 },
                     {
