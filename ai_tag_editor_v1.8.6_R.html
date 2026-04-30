@@ -3651,55 +3651,102 @@
                     }
                 ]
             },
-            {
+{
                 category: { key: "color", zh: "顏色", en: "color&pattern", jp: "色と柄" },
                 groups: [
                     {
                         subCategory: " ",
                         tags: [
+                            // 白色系
                             { zh: "白色", en: "white", jp: "白", value: "white" },
                             { zh: "純白色", en: "pure white", jp: "純白", value: "pure white" },
                             { zh: "奶白色", en: "off white", jp: "オフホワイト", value: "off white" },
+                            { zh: "淡白色", en: "pale white", jp: "薄白色", value: "pale white" },                            
+                            // 黑色系
                             { zh: "黑色", en: "black", jp: "黒", value: "black" },
                             { zh: "深黑色", en: "jet black", jp: "漆黒", value: "jet black" },
-                            { zh: "灰黑色", en: "charcoal", jp: "チャコール", value: "charcoal" },
+                            { zh: "淺黑色", en: "light black", jp: "淡黒", value: "light black" },
+                            { zh: "淡黑色", en: "pale black", jp: "薄黒", value: "pale black" },
+                            { zh: "灰黑色", en: "charcoal", jp: "チャコール", value: "charcoal" },                            
+                            // 紅色系
                             { zh: "紅色", en: "red", jp: "赤", value: "red" },
+                            { zh: "極深紅", en: "jet red", jp: "極深紅", value: "jet red" },
+                            { zh: "淺紅色", en: "light red", jp: "淡紅", value: "light red" },
+                            { zh: "淡紅色", en: "pale red", jp: "薄赤", value: "pale red" },
                             { zh: "深紅色", en: "crimson", jp: "深紅", value: "crimson" },
-                            { zh: "酒紅色", en: "burgundy", jp: "バーガンディ", value: "burgundy" },
+                            { zh: "酒紅色", en: "burgundy", jp: "バーガンディ", value: "burgundy" },                            
+                            // 粉紅色系
                             { zh: "粉紅色", en: "pink", jp: "ピンク", value: "pink" },
-                            { zh: "淡粉紅色", en: "light pink", jp: "ライトピンク", value: "light pink" },
-                            { zh: "亮粉色", en: "hot pink", jp: "ホットピンク", value: "hot pink" },
+                            { zh: "深粉紅", en: "jet pink", jp: "濃いピンク", value: "jet pink" },
+                            { zh: "淺粉紅", en: "light pink", jp: "ライトピンク", value: "light pink" },
+                            { zh: "淡粉紅", en: "pale pink", jp: "ペールピンク", value: "pale pink" },
+                            { zh: "亮粉色", en: "hot pink", jp: "ホットピンク", value: "hot pink" },                            
+                            // 藍色系
                             { zh: "藍色", en: "blue", jp: "青", value: "blue" },
-                            { zh: "深藍色", en: "navy blue", jp: "ネイビーブルー", value: "navy blue" },
+                            { zh: "極深藍", en: "jet blue", jp: "極深青", value: "jet blue" },
                             { zh: "淺藍色", en: "light blue", jp: "ライトブルー", value: "light blue" },
+                            { zh: "淡藍色", en: "pale blue", jp: "ペールブルー", value: "pale blue" },
+                            { zh: "深藍色", en: "navy blue", jp: "ネイビーブルー", value: "navy blue" },
                             { zh: "水藍色", en: "aqua", jp: "アクア", value: "aqua" },
                             { zh: "天藍色", en: "sky blue", jp: "スカイブルー", value: "sky blue" },
-                            { zh: "寶藍色", en: "royal blue", jp: "ロイヤルブルー", value: "royal blue" },
+                            { zh: "寶藍色", en: "royal blue", jp: "ロイヤルブルー", value: "royal blue" },                            
+                            // 綠色系
                             { zh: "綠色", en: "green", jp: "緑", value: "green" },
+                            { zh: "極深綠", en: "jet green", jp: "極深緑", value: "jet green" },
                             { zh: "淺綠色", en: "light green", jp: "ライトグリーン", value: "light green" },
+                            { zh: "淡綠色", en: "pale green", jp: "ペールグリーン", value: "pale green" },
                             { zh: "深綠色", en: "dark green", jp: "ダークグリーン", value: "dark green" },
                             { zh: "翠綠色", en: "emerald green", jp: "エメラルドグリーン", value: "emerald green" },
-                            { zh: "草綠色", en: "lime green", jp: "ライムグリーン", value: "lime green" },
+                            { zh: "草綠色", en: "lime green", jp: "ライムグリーン", value: "lime green" },                            
+                            // 黃色系
                             { zh: "黃色", en: "yellow", jp: "黄色", value: "yellow" },
-                            { zh: "淡黃色", en: "light yellow", jp: "ライトイエロー", value: "light yellow" },
+                            { zh: "極深黃", en: "jet yellow", jp: "濃い黄色", value: "jet yellow" },
+                            { zh: "淺黃色", en: "light yellow", jp: "ライトイエロー", value: "light yellow" },
+                            { zh: "淡黃色", en: "pale yellow", jp: "ペールイエロー", value: "pale yellow" },
                             { zh: "金黃色", en: "golden yellow", jp: "ゴールデンイエロー", value: "golden yellow" },
-                            { zh: "暗黃色", en: "dark yellow", jp: "ダークイエロー", value: "dark yellow" },
+                            { zh: "暗黃色", en: "dark yellow", jp: "ダークイエロー", value: "dark yellow" },                            
+                            // 紫色系
                             { zh: "紫色", en: "purple", jp: "紫", value: "purple" },
-                            { zh: "深紫色", en: "dark purple", jp: "ダークパープル", value: "dark purple" },
-                            { zh: "淺紫色", en: "lavender", jp: "ラベンダー", value: "lavender" },
-                            { zh: "亮紫色", en: "violet", jp: "バイオレット", value: "violet" },
+                            { zh: "極深紫", en: "jet purple", jp: "極深紫", value: "jet purple" },
+                            { zh: "淺紫色", en: "light purple", jp: "ライトパープル", value: "light purple" },
+                            { zh: "淡紫色", en: "pale purple", jp: "ペールパープル", value: "pale purple" },
+                            { zh: "薰衣草色", en: "lavender", jp: "ラベンダー", value: "lavender" },
+                            { zh: "亮紫色", en: "violet", jp: "バイオレット", value: "violet" },                            
+                            // 橘色系
                             { zh: "橘色", en: "orange", jp: "オレンジ", value: "orange" },
+                            { zh: "極深橘", en: "jet orange", jp: "濃いオレンジ", value: "jet orange" },
                             { zh: "淺橘色", en: "light orange", jp: "ライトオレンジ", value: "light orange" },
+                            { zh: "淡橘色", en: "pale orange", jp: "ペールオレンジ", value: "pale orange" },
                             { zh: "深橘色", en: "dark orange", jp: "ダークオレンジ", value: "dark orange" },
-                            { zh: "琥珀色", en: "amber", jp: "琥珀色", value: "amber" },
+                            { zh: "琥珀色", en: "amber", jp: "琥珀色", value: "amber" },                            
+                            // 棕色系
                             { zh: "棕色", en: "brown", jp: "茶色", value: "brown" },
+                            { zh: "極深棕", en: "jet brown", jp: "極深茶色", value: "jet brown" },
                             { zh: "淺棕色", en: "light brown", jp: "ライトブラウン", value: "light brown" },
+                            { zh: "淡棕色", en: "pale brown", jp: "ペールブラウン", value: "pale brown" },
                             { zh: "深棕色", en: "dark brown", jp: "ダークブラウン", value: "dark brown" },
-                            { zh: "咖啡色", en: "coffee brown", jp: "コーヒーブラウン", value: "coffee brown" },
+                            { zh: "咖啡色", en: "coffee brown", jp: "コーヒーブラウン", value: "coffee brown" },                        
+                            // 灰色系
                             { zh: "灰色", en: "gray", jp: "灰色", value: "gray" },
+                            { zh: "極深灰", en: "jet gray", jp: "漆黒に近い灰色", value: "jet gray" },
                             { zh: "淺灰色", en: "light gray", jp: "ライトグレー", value: "light gray" },
+                            { zh: "淡灰色", en: "pale gray", jp: "ペールグレー", value: "pale gray" },
                             { zh: "深灰色", en: "dark gray", jp: "ダークグレー", value: "dark gray" },
                             { zh: "銀灰色", en: "silver gray", jp: "シルバーグレー", value: "silver gray" },
+                            // 金色系
+                            { zh: "金色", en: "gold", jp: "金", value: "gold" },
+                            { zh: "極深金", en: "jet gold", jp: "深い金色", value: "jet gold" },
+                            { zh: "淺金色", en: "light gold", jp: "ライトゴールド", value: "light gold" },
+                            { zh: "淡金色", en: "pale gold", jp: "ペールゴールド", value: "pale gold" },
+                            { zh: "金黃色", en: "golden yellow", jp: "ゴールデンイエロー", value: "golden yellow" },
+                            { zh: "亮金色", en: "bright gold", jp: "ブライトゴールド", value: "bright gold" },
+                            // 銀色系
+                            { zh: "銀色", en: "silver", jp: "銀", value: "silver" },
+                            { zh: "極深銀", en: "jet silver", jp: "深い銀色", value: "jet silver" },
+                            { zh: "淺銀色", en: "light silver", jp: "ライトシルバー", value: "light silver" },
+                            { zh: "淡銀色", en: "pale silver", jp: "ペールシルバー", value: "pale silver" },
+                            { zh: "亮銀色", en: "bright silver", jp: "ブライトシルバー", value: "bright silver" },
+                            { zh: "鉑金色", en: "platinum", jp: "プラチナ", value: "platinum" }
                         ]
                     },
                     {
@@ -9704,6 +9751,10 @@
                             { zh: "紙飛機", en: "paper airplane", jp: "紙飛行機", value: "paper airplane" },
                             { zh: "摩托車", en: "motorcycle", jp: "オートバイ", value: "motorcycle" },
                             { zh: "騎摩托車", en: "motorcycle", jp: "バイク", value: "ground vehicle, motor vehicle, motorcycle, on motorcycle, vehicle focus, wheel, riding, handoru, step, meter, brake lever, clutch lever, grip, mirror, tail lamp, blinker, headlight, brake pedal, change pedal, shift pedal, foot brake, straddling, motorcycle straddling, (Realistic motorcycle), SUZUKI GSX-S1000F,((STREETFIGHTER:1.4))" },
+{ zh: "神像", en: "statue", jp: "像", value: "statue" },
+{ zh: "宗教雕像", en: "religious statue", jp: "宗教像", value: "religious statue" },
+{ zh: "神明雕像", en: "deity statue", jp: "神像", value: "deity statue" },
+{ zh: "女神像", en: "goddess statue", jp: "女神像", value: "goddess statue" },
                         ]
                     },
                     {
