@@ -10080,20 +10080,61 @@
                         ]
                     },
                     {
-                        subCategory: "BDSM / 束縛類",
+                        subCategory: "幻想道具",
                         tags: [
-                            { zh: "頸圈", en: "choker", jp: "チョーカー", value: "choker" },
-                            { zh: "口球", en: "ball gag", jp: "ボールギャグ", value: "ball gag" },
-                            { zh: "堵住嘴", en: "gag", jp: "猿轡_さるぐつわ", value: "gag" },
-                            { zh: "束縛用具", en: "bondage gear", jp: "緊縛用具", value: "bondage gear" },
-                            { zh: "束縛用具", en: "Bondage Gear / Restraints", jp: "ボンデージ", value: "bondage gear, restraints, rope bondage" },
-                            { zh: "手銬", en: "handcuffs", jp: "手錠2", value: "handcuffs" },
-                            { zh: "金屬手銬_手環", en: "metal cuffs", jp: "金属の手錠", value: "metal cuffs" },
-                            { zh: "鐐銬", en: "shackles", jp: "足枷", value: "shackles" },
-                            { zh: "銬住_拘束", en: "cuff _restraint", jp: "手錠", value: "cuff _restraint" },
-                            { zh: "拘束具", en: "restraints", jp: "拘束具", value: "restraints" },
-                            { zh: "繩子", en: "rope", jp: "縄", value: "rope" },
-                            { zh: "皮帶", en: "leash", jp: "リード", value: "leash" },
+                            // --- 藥劑 ---
+                            { zh: "藥水", en: "potion", jp: "ポーション", value: "potion" },
+                            { zh: "治療藥水", en: "healing potion", jp: "回復ポーション", value: "healing potion" },
+                            { zh: "魔力藥水", en: "mana potion", jp: "マナポーション", value: "mana potion" },
+                            { zh: "體力藥水", en: "stamina potion", jp: "スタミナポーション", value: "stamina potion" },
+                            { zh: "毒藥瓶", en: "poison vial", jp: "毒薬瓶", value: "poison vial" },
+                            { zh: "煉金藥劑", en: "alchemy flask", jp: "錬金薬", value: "alchemy flask" },
+                            // --- 魔石 ---
+                            { zh: "魔石", en: "magic stone", jp: "魔石", value: "magic stone" },
+                            { zh: "魔力結晶", en: "mana crystal", jp: "魔力結晶", value: "mana crystal" },
+                            { zh: "發光魔石", en: "glowing magic stone", jp: "発光魔石", value: "glowing magic stone" },
+                            { zh: "元素結晶", en: "elemental crystal", jp: "属性結晶", value: "elemental crystal" },
+                            { zh: "龍晶石", en: "dragon crystal", jp: "竜晶石", value: "dragon crystal" },
+                            // --- 符文 ---
+                            { zh: "符文石", en: "rune stone", jp: "ルーンストーン", value: "rune stone" },
+                            { zh: "符文板", en: "rune tablet", jp: "ルーン板", value: "rune tablet" },
+                            { zh: "古代符文", en: "ancient rune", jp: "古代ルーン", value: "ancient rune" },
+                            { zh: "魔法刻印石", en: "engraved rune stone", jp: "刻印ルーン石", value: "engraved rune stone" },
+                            // --- 書籍 ---
+                            { zh: "魔導書", en: "grimoire", jp: "魔導書", value: "grimoire" },
+                            { zh: "法術書", en: "spellbook", jp: "スペルブック", value: "spellbook" },
+                            { zh: "古書", en: "ancient book", jp: "古文書", value: "ancient book" },
+                            { zh: "卷軸", en: "scroll", jp: "巻物", value: "scroll" },
+                            { zh: "魔法卷軸", en: "magic scroll", jp: "魔法の巻物", value: "magic scroll" },
+                            // --- 飾品 ---
+                            { zh: "護身符", en: "amulet", jp: "お守り", value: "amulet" },
+                            { zh: "魔法護符", en: "magic amulet", jp: "魔法のお守り", value: "magic amulet" },
+                            { zh: "吊墜", en: "pendant", jp: "ペンダント", value: "pendant" },
+                            { zh: "寶珠", en: "orb", jp: "オーブ", value: "orb" },
+                            { zh: "魔法寶珠", en: "magic orb", jp: "魔法オーブ", value: "magic orb" },
+                            // --- 貨幣 ---
+                            { zh: "金幣袋", en: "coin pouch", jp: "金貨袋", value: "coin pouch" },
+                            { zh: "金幣", en: "gold coins", jp: "金貨", value: "gold coins" },
+                            { zh: "銀幣", en: "silver coins", jp: "銀貨", value: "silver coins" },
+                            { zh: "寶石", en: "gemstone", jp: "宝石", value: "gemstone" },
+                            // --- 冒險者 ---
+                            { zh: "冒險者證", en: "guild card", jp: "ギルドカード", value: "guild card" },
+                            { zh: "任務單", en: "quest paper", jp: "依頼書", value: "quest paper" },
+                            { zh: "地圖卷軸", en: "map scroll", jp: "地図の巻物", value: "map scroll" },
+                            { zh: "指南針", en: "compass", jp: "コンパス", value: "compass" },
+                            // --- 素材 ---
+                            { zh: "龍鱗", en: "dragon scale", jp: "竜の鱗", value: "dragon scale" },
+                            { zh: "魔物角", en: "monster horn", jp: "魔物の角", value: "monster horn" },
+                            { zh: "魔核", en: "monster core", jp: "魔核", value: "monster core" },
+                            { zh: "妖精粉末", en: "fairy dust", jp: "妖精の粉", value: "fairy dust" },
+                            { zh: "魔法草藥", en: "magic herb", jp: "魔法薬草", value: "magic herb" },
+                            // --- 神秘物品 ---
+                            { zh: "封印盒", en: "sealed box", jp: "封印箱", value: "sealed box" },
+                            { zh: "遺物", en: "artifact", jp: "アーティファクト", value: "artifact" },
+                            { zh: "古代遺物", en: "ancient relic", jp: "古代遺物", value: "ancient relic" },
+                            { zh: "聖遺物", en: "holy relic", jp: "聖遺物", value: "holy relic" },
+                            { zh: "水晶球", en: "crystal ball", jp: "水晶玉", value: "crystal ball" },
+                            { zh: "封印水晶", en: "sealed crystal", jp: "封印水晶", value: "sealed crystal" }
                         ]
                     },
                     {
@@ -10159,6 +10200,23 @@
                             { zh: "宗教雕像", en: "religious statue", jp: "宗教像", value: "religious statue" },
                             { zh: "神明雕像", en: "deity statue", jp: "神像", value: "deity statue" },
                             { zh: "女神像", en: "goddess statue", jp: "女神像", value: "goddess statue" },
+                        ]
+                    },
+                    {
+                        subCategory: "BDSM / 束縛類",
+                        tags: [
+                            { zh: "頸圈", en: "choker", jp: "チョーカー", value: "choker" },
+                            { zh: "口球", en: "ball gag", jp: "ボールギャグ", value: "ball gag" },
+                            { zh: "堵住嘴", en: "gag", jp: "猿轡_さるぐつわ", value: "gag" },
+                            { zh: "束縛用具", en: "bondage gear", jp: "緊縛用具", value: "bondage gear" },
+                            { zh: "束縛用具", en: "Bondage Gear / Restraints", jp: "ボンデージ", value: "bondage gear, restraints, rope bondage" },
+                            { zh: "手銬", en: "handcuffs", jp: "手錠2", value: "handcuffs" },
+                            { zh: "金屬手銬_手環", en: "metal cuffs", jp: "金属の手錠", value: "metal cuffs" },
+                            { zh: "鐐銬", en: "shackles", jp: "足枷", value: "shackles" },
+                            { zh: "銬住_拘束", en: "cuff _restraint", jp: "手錠", value: "cuff _restraint" },
+                            { zh: "拘束具", en: "restraints", jp: "拘束具", value: "restraints" },
+                            { zh: "繩子", en: "rope", jp: "縄", value: "rope" },
+                            { zh: "皮帶", en: "leash", jp: "リード", value: "leash" },
                         ]
                     },
                     {
