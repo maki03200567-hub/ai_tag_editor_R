@@ -765,13 +765,13 @@
                     {
                         subCategory: "景深",
                         tags: [
-{ zh: "淺景深", en: "shallow depth of field", jp: "浅い被写界深度", value: "shallow depth of field" },
-{ zh: "深景深", en: "deep depth of field", jp: "深い被写界深度", value: "deep depth of field" },
-{ zh: "背景散景", en: "bokeh", jp: "ボケ", value: "bokeh" },
-{ zh: "前景虛化", en: "foreground blur", jp: "前景ボケ", value: "foreground blur" },
-{ zh: "背景虛化", en: "background blur", jp: "背景ボケ", value: "background blur" },
-{ zh: "焦點人物", en: "focus on subject", jp: "被写体にフォーカス", value: "focus on subject" },
-                    ]
+                            { zh: "淺景深", en: "shallow depth of field", jp: "浅い被写界深度", value: "shallow depth of field" },
+                            { zh: "深景深", en: "deep depth of field", jp: "深い被写界深度", value: "deep depth of field" },
+                            { zh: "背景散景", en: "bokeh", jp: "ボケ", value: "bokeh" },
+                            { zh: "前景虛化", en: "foreground blur", jp: "前景ボケ", value: "foreground blur" },
+                            { zh: "背景虛化", en: "background blur", jp: "背景ボケ", value: "background blur" },
+                            { zh: "焦點人物", en: "focus on subject", jp: "被写体にフォーカス", value: "focus on subject" },
+                        ]
                     },
                     {
                         subCategory: "聚焦 / 特寫",
@@ -1712,6 +1712,22 @@
                         subCategory: "臉孔",
                         tags: [
                             { zh: "幼態臉孔", en: "neotenous face", jp: "幼形成の顔", value: "neotenous face" },
+                            { zh: "娃娃臉", en: "baby face", jp: "童顔", value: "baby face" },
+                            { zh: "童顏", en: "childlike face", jp: "童顔", value: "childlike face" },
+                            { zh: "幼態臉", en: "youthful face", jp: "幼い顔立ち", value: "youthful face" },
+                            { zh: "圓臉", en: "round face", jp: "丸顔", value: "round face" },
+                            { zh: "小臉", en: "small face", jp: "小顔", value: "small face" },
+                            { zh: "柔和五官", en: "soft facial features", jp: "柔らかな顔立ち", value: "soft facial features" },
+                            { zh: "稚嫩五官", en: "delicate facial features", jp: "繊細な顔立ち", value: "delicate facial features" },
+                            { zh: "圓潤臉頰", en: "chubby cheeks", jp: "ふっくらした頬", value: "chubby cheeks" },
+                            { zh: "粉嫩臉頰", en: "rosy cheeks", jp: "赤らんだ頬", value: "rosy cheeks" },
+                            { zh: "大眼睛", en: "large eyes", jp: "大きな目", value: "large eyes" },
+                            { zh: "圓眼", en: "round eyes", jp: "丸い目", value: "round eyes" },
+                            { zh: "短鼻", en: "small nose", jp: "小さな鼻", value: "small nose" },
+                            { zh: "小嘴", en: "small mouth", jp: "小さな口", value: "small mouth" },
+                            { zh: "豐滿嘴唇", en: "full lips", jp: "ふっくらした唇", value: "full lips" },
+                            { zh: "光滑肌膚", en: "smooth skin", jp: "滑らかな肌", value: "smooth skin" },
+                            { zh: "無瑕肌膚", en: "flawless skin", jp: "透明感のある肌", value: "flawless skin" },
                             { zh: "圓潤臉型", en: "round face", jp: "丸い顔", value: "round face" },
                             { zh: "短下巴", en: "short chin", jp: "短い顎", value: "short chin" },
                             { zh: "小鼻子", en: "small nose", jp: "小さい鼻", value: "small nose" },
@@ -14547,10 +14563,10 @@
             input.value = "";
         }
 
-function importPrompt() {
+        function importPrompt() {
 
-    const text = prompt(
-`請貼上 Prompt。
+            const text = prompt(
+                `請貼上 Prompt。
 
 使用 BREAK 分隔 Output：
 
@@ -14559,60 +14575,60 @@ tag1, tag2
 BREAK
 
 tag3, tag4`
-    );
+            );
 
-    if (!text) return;
+            if (!text) return;
 
-    parsePrompt(text);
-}
+            parsePrompt(text);
+        }
 
-function parsePrompt(text) {
+        function parsePrompt(text) {
 
-    pushUndoState();
+            pushUndoState();
 
-    // 以 BREAK 分段（大小寫都接受）
-    const sections = text.split(/\bBREAK\b/i);
+            // 以 BREAK 分段（大小寫都接受）
+            const sections = text.split(/\bBREAK\b/i);
 
-    outputData = [];
+            outputData = [];
 
-    sections.forEach(section => {
+            sections.forEach(section => {
 
-        const values = section
-            .split(",")
-            .map(v => v.trim())
-            .filter(v => v.length);
+                const values = section
+                    .split(",")
+                    .map(v => v.trim())
+                    .filter(v => v.length);
 
-        const tags = values.map(v => {
+                const tags = values.map(v => {
 
-            for (let cat in jsonData) {
+                    for (let cat in jsonData) {
 
-                const match = jsonData[cat].find(t => t.value === v);
+                        const match = jsonData[cat].find(t => t.value === v);
 
-                if (match) return match;
-            }
+                        if (match) return match;
+                    }
 
-            // 找不到就建立自訂 Tag
-            return {
-                label:{
-                    zh:v,
-                    en:v,
-                    jp:v
-                },
-                value:v
-            };
+                    // 找不到就建立自訂 Tag
+                    return {
+                        label: {
+                            zh: v,
+                            en: v,
+                            jp: v
+                        },
+                        value: v
+                    };
 
-        });
+                });
 
-        outputData.push(tags);
+                outputData.push(tags);
 
-    });
+            });
 
-    outputsDiv.innerHTML = "";
+            outputsDiv.innerHTML = "";
 
-    outputData.forEach((_,i)=>createOutputBox(i));
+            outputData.forEach((_, i) => createOutputBox(i));
 
-    updateAllTagHighlight();
-}
+            updateAllTagHighlight();
+        }
 
         function renderTemplateList() {
             const container = document.getElementById("templateList");
